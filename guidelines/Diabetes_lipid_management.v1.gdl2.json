@@ -1,0 +1,4565 @@
+{
+  "gdl_version": "2.0",
+  "id": "Diabetes_lipid_management.v1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Author",
+      "organisation": "Cambio Healthcare Systems",
+      "email": ""
+    },
+    "details": {
+      "sv": {
+        "id": "sv",
+        "purpose": "FHIR-baserade cds-regler för demonstrationsändamål.",
+        "keywords": [
+          "Diabetes"
+        ]
+      },
+      "en": {
+        "id": "en",
+        "purpose": "Sample fhir-based cds-rules for demonstration purpose",
+        "keywords": [
+          "Diabetes"
+        ]
+      },
+      "es": {
+        "id": "es",
+        "purpose": "Ejemplos de reglas de cds basadas en fhir para propósitos de demostración.",
+        "keywords": [
+          "Diabetes"
+        ]
+      }
+    },
+    "other_details": {
+      "references": "NICE guideline -Cardiovascular disease: risk assessment and reduction, including lipid modification, Chapter 1.3.20-1.3.51,"
+    },
+    "references": [
+      {
+        "id": "1",
+        "label": "NICE guideline. Cardiovascular disease: risk assessment and reduction, including lipid modification, Chapter 1.3.20-1.3.51 [49, pp. 20-26].",
+        "url": "https://www.nice.org.uk/guidance/CG181"
+      }
+    ]
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0010": {
+        "id": "gt0010",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+        "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0011": {
+            "id": "gt0011",
+            "path": "/medicationCodeableConcept/coding[0]"
+          },
+          "gt0958": {
+            "id": "gt0958",
+            "path": "/effectivePeriod/start"
+          }
+        },
+        "predicates": [
+          "/medicationCodeableConcept/coding[0] is_a local::gt0012|Statin|"
+        ]
+      },
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0004|Type-2 diabetes|"
+        ]
+      },
+      "gt0008": {
+        "id": "gt0008",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.qrisk2_score.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/valueQuantity"
+          },
+          "gt9000": {
+            "id": "gt9000",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0037|QRISK2|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0019": {
+        "id": "gt0019",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0020": {
+            "id": "gt0020",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0021|CVD|"
+        ]
+      },
+      "gt0015": {
+        "id": "gt0015",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.lipids_ldl_cholesterol.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/valueQuantity"
+          },
+          "gt9001": {
+            "id": "gt9001",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0036|LDL Cholesterol|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0007|CKD|"
+        ]
+      },
+      "gt0017": {
+        "id": "gt0017",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.lipids_ldl_cholesterol.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/valueQuantity"
+          },
+          "gt9002": {
+            "id": "gt9002",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/effectiveDateTime<=($currentDateTime-3,mo)",
+          "/code/coding[0] is_a local::gt0036|LDL Cholesterol|"
+        ]
+      },
+      "gt0039": {
+        "id": "gt0039",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.aspartate_transaminase.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0040": {
+            "id": "gt0040",
+            "path": "/valueQuantity"
+          },
+          "gt9003": {
+            "id": "gt9003",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0038|Aspartate transaminase (AST)|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0042": {
+        "id": "gt0042",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.alanine_transaminase.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0043": {
+            "id": "gt0043",
+            "path": "/valueQuantity"
+          },
+          "gt9004": {
+            "id": "gt9004",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0041|Alanine transaminase (ALT)|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0049": {
+        "id": "gt0049",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0050": {
+            "id": "gt0050",
+            "path": "/valueQuantity"
+          },
+          "gt9005": {
+            "id": "gt9005",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0051|eGFR|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0053": {
+        "id": "gt0053",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0054": {
+            "id": "gt0054",
+            "path": "/code/coding[0]"
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "path": "/onsetDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0055|Muscle pain|"
+        ]
+      }
+    },
+    "templates": {
+      "gt1000": {
+        "id": "gt1000",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationRequest",
+        "template_id": "FHIR-STU3-MedicationRequest.generic.v0",
+        "object": {
+          "resourceType": "MedicationRequest",
+          "status": "draft",
+          "intent": "proposal",
+          "authoredOn": "{$gt2006}",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.whocc.no/atc",
+                "code": "C10AA05",
+                "display": "atorvastatin"
+              }
+            ]
+          },
+          "dosageInstruction": [
+            {
+              "text": "{$gt2000}mg daily",
+              "doseQuantity": {
+                "value": "{$gt2000}",
+                "unit": "mg",
+                "system": "http://unitsofmeasure.org/",
+                "code": "mg"
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "periodUnit": "d",
+                  "boundsPeriod": {
+                    "start": "{$gt2006}"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "gt1001": {
+        "id": "gt1001",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationRequest",
+        "template_id": "FHIR-STU3-MedicationRequest.generic.v0",
+        "object": {
+          "resourceType": "MedicationRequest",
+          "status": "draft",
+          "intent": "proposal",
+          "authoredOn": "{$gt2006}",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.whocc.no/atc",
+                "code": "C10AA05",
+                "display": "atorvastatin"
+              }
+            ]
+          }
+        }
+      },
+      "gt1002": {
+        "id": "gt1002",
+        "model_id": "org.hl7.fhir.dstu3.model.Goal",
+        "template_id": "FHIR-STU3-Goal.generic.v0",
+        "object": {
+          "resourceType": "Goal",
+          "status": "proposed",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/goal-category",
+                  "code": "safety"
+                }
+              ]
+            }
+          ],
+          "description": {
+            "coding": [
+              {
+                "system": "http://www.c3-cloud.eu/fhir/goal-code",
+                "code": "g0007",
+                "display": "{$gt5100}"
+              }
+            ],
+            "text": "{$gt5101}"
+          },
+          "startDate": "{$gt2005}",
+          "target": {
+            "measure": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "13457-7",
+                  "display": "{$gt5110}"
+                }
+              ]
+            },
+            "detailRange": {
+              "high": {
+                "value": "{$gt2001}",
+                "unit": "{$gt2004}",
+                "system": "http://unitsofmeasure.org/",
+                "code": "{$gt2004}"
+              }
+            },
+            "dueDate": "{$gt2016}"
+          }
+        }
+      },
+      "gt1003": {
+        "id": "gt1003",
+        "model_id": "org.hl7.fhir.dstu3.model.Appointment",
+        "template_id": "FHIR-STU3-Appointment.generic.v0",
+        "object": {
+          "resourceType": "Appointment",
+          "id": "appointment-offer",
+          "status": "proposed",
+          "description": "{$gt2002}",
+          "appointmentType": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/v2/0276",
+                "code": "FOLLOWUP",
+                "display": "{$gt5111}"
+              }
+            ]
+          },
+          "start": "{$gt2003}"
+        }
+      },
+      "gt1004": {
+        "id": "gt1004",
+        "model_id": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+        "template_id": "FHIR-STU3-ProcedureRequest.generic.v0",
+        "object": {
+          "resourceType": "ProcedureRequest",
+          "status": "draft",
+          "intent": "proposal",
+          "extension": [
+            {
+              "url": "http://www.c3-cloud.eu/fhir/StructureDefinition/description",
+              "valueString": "{$gt4205}"
+            }
+          ],
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://www.c3-cloud.eu/fhir/care-plan-activity-category",
+                  "code": "lab-request",
+                  "display": "{$gt5109}"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "{$gt4203}",
+                "display": "{$gt4204}"
+              }
+            ]
+          },
+          "occurrenceDateTime": "{$gt4202}",
+          "performer": {
+            "display": "{$gt5104}"
+          }
+        }
+      },
+      "gt1005": {
+        "id": "gt1005",
+        "model_id": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+        "template_id": "FHIR-STU3-ProcedureRequest.generic.v0",
+        "object": {
+          "resourceType": "ProcedureRequest",
+          "status": "draft",
+          "intent": "proposal",
+          "extension": [
+            {
+              "url": "http://www.c3-cloud.eu/fhir/StructureDefinition/description",
+              "valueString": "{$gt5102}"
+            }
+          ],
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://www.c3-cloud.eu/fhir/care-plan-activity-category",
+                  "code": "lab-request",
+                  "display": "{$gt5109}"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2157-6",
+                "display": "{$gt5112}"
+              }
+            ]
+          },
+          "performer": {
+            "display": "{$gt5104}"
+          }
+        }
+      },
+      "gt1006": {
+        "id": "gt1006",
+        "model_id": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+        "template_id": "FHIR-STU3-ProcedureRequest.generic.v0",
+        "object": {
+          "resourceType": "ProcedureRequest",
+          "status": "draft",
+          "intent": "proposal",
+          "extension": [
+            {
+              "url": "http://www.c3-cloud.eu/fhir/StructureDefinition/description",
+              "valueString": "{$gt5106}"
+            }
+          ],
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://www.c3-cloud.eu/fhir/care-plan-activity-category",
+                  "code": "lab-request",
+                  "display": "{$gt5109}"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "718087004",
+                "display": "{$gt5103}"
+              }
+            ]
+          },
+          "performer": {
+            "display": "{$gt5105}"
+          }
+        }
+      },
+      "gt1007": {
+        "id": "gt1007",
+        "model_id": "org.hl7.fhir.dstu3.model.ReferralRequest",
+        "template_id": "FHIR-STU3-ReferralRequest.generic.v0",
+        "object": {
+          "resourceType": "ReferralRequest",
+          "status": "draft",
+          "intent": "proposal",
+          "specialty": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "11911009",
+                "display": "{$gt5107}"
+              }
+            ],
+            "text": "{$gt5113}"
+          },
+          "authoredOn": "{$gt2005}",
+          "description": "{$gt5108}"
+        }
+      }
+    },
+    "rules": {
+      "gt0126": {
+        "id": "gt0126",
+        "priority": 13,
+        "when": [
+          "$gt0011|Statin treatment|==null",
+          "$gt0006|CKD diagnosis|!=null",
+          "$gt0016|Latest LDL Cholesterol|!=null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8051.term}",
+            "detail": "{$gt8052.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8053.term}",
+                "uuid": "390ebd19-c8c1-4b34-94f0-b00748b98fc7",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8054.term}",
+                    "resource_template": {
+                      "template_id": "gt1000",
+                      "assignments": [
+                        "$gt2000=20",
+                        "$gt2006=$currentDateTime.string"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8055.term}",
+                    "resource_template": {
+                      "template_id": "gt1002",
+                      "assignments": [
+                        "$gt2001=($gt0016|Latest LDL Cholesterol|.magnitude*0.6)",
+                        "$gt2004=$gt0016.unit",
+                        "$gt2005=$currentDateTime.string",
+                        "$gt2016=($currentDate+3,mo)",
+                        "$gt5100=$gt5000.term",
+                        "$gt5101=$gt5001.term",
+                        "$gt5110=$gt5010.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8004.term}",
+                    "resource_template": {
+                      "template_id": "gt1003",
+                      "assignments": [
+                        "$gt2002=$gt8004.term",
+                        "$gt2003=($currentDate+3,mo)",
+                        "$gt5111=$gt5011.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8005.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='24331-1'",
+                        "$gt4204=$gt8082.term",
+                        "$gt4205=$gt8083.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8006.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='1920-8'",
+                        "$gt4204=$gt8084.term",
+                        "$gt4205=$gt8085.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8007.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='1742-6'",
+                        "$gt4204=$gt8086.term",
+                        "$gt4205=$gt8087.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0056": {
+        "id": "gt0056",
+        "priority": 12,
+        "when": [
+          "$gt0011|Statin treatment|!=null",
+          "$gt0040|Aspartate transaminase (AST)|!=null",
+          "$gt0043|Alanine transaminase (ALT)|!=null",
+          "$gt0040|Aspartate transaminase (AST)|<750,U/L",
+          "$gt0043|Alanine transaminase (ALT)|<750,U/L",
+          "$gt0054|Muscle pain condition|!=null",
+          "$gt0958|Statin medication effective datetime|!=null",
+          "$gt0057|Muscle pain onset date|<=($gt0958|Statin medication effective datetime|+3,mo)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8043.term}",
+            "detail": "{$gt8044.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8045.term}",
+                "uuid": "1c43162a-1b10-4038-8c4f-0a85937b4970",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8046.term}",
+                    "resource_template": {
+                      "template_id": "gt1005",
+                      "assignments": [
+                        "$gt5102=$gt5002.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term",
+                        "$gt5112=$gt5012.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0052": {
+        "id": "gt0052",
+        "priority": 11,
+        "when": [
+          "$gt0011|Statin treatment|!=null",
+          "$gt0040|Aspartate transaminase (AST)|!=null",
+          "$gt0043|Alanine transaminase (ALT)|!=null",
+          "$gt0040|Aspartate transaminase (AST)|<750,U/L",
+          "$gt0043|Alanine transaminase (ALT)|<750,U/L",
+          "$gt0054|Muscle pain condition|==null",
+          "$gt0016|Latest LDL Cholesterol|!=null",
+          "$gt0018|Previous LDL Cholesterol|!=null",
+          "$gt0016|Latest LDL Cholesterol|.unit==$gt0018|Previous LDL Cholesterol|.unit",
+          "$gt0016|Latest LDL Cholesterol|.magnitude>=($gt0018|Previous LDL Cholesterol|.magnitude*0.6)",
+          "$gt0050|eGFR value|<30,mL/min/{1.73_m2}"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8038.term}",
+            "detail": "{$gt8039.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8040.term}",
+                "uuid": "e1cc4df1-1e57-4b3b-b322-caaf91f16681",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8041.term}",
+                    "resource_template": {
+                      "template_id": "gt1007",
+                      "assignments": [
+                        "$gt2005=$currentDateTime.string",
+                        "$gt5107=$gt5007.term",
+                        "$gt5108=$gt5008.term",
+                        "$gt5113=$gt5007.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8042.term}",
+                    "resource_template": {
+                      "template_id": "gt1002",
+                      "assignments": [
+                        "$gt2001=($gt0016|Latest LDL Cholesterol|.magnitude*0.6)",
+                        "$gt2004=$gt0016.unit",
+                        "$gt2005=$currentDateTime.string",
+                        "$gt2016=($currentDate+3,mo)",
+                        "$gt5100=$gt5000.term",
+                        "$gt5101=$gt5001.term",
+                        "$gt5110=$gt5010.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8005.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='24331-1'",
+                        "$gt4204=$gt8080.term",
+                        "$gt4205=$gt8081.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8004.term}",
+                    "resource_template": {
+                      "template_id": "gt1003",
+                      "assignments": [
+                        "$gt2002=$gt8004.term",
+                        "$gt2003=($currentDate+3,mo)",
+                        "$gt5111=$gt5011.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0048": {
+        "id": "gt0048",
+        "priority": 10,
+        "when": [
+          "$gt0011|Statin treatment|!=null",
+          "$gt0040|Aspartate transaminase (AST)|!=null",
+          "$gt0043|Alanine transaminase (ALT)|!=null",
+          "$gt0040|Aspartate transaminase (AST)|<750,U/L",
+          "$gt0043|Alanine transaminase (ALT)|<750,U/L",
+          "$gt0054|Muscle pain condition|==null",
+          "($gt0016|Latest LDL Cholesterol|==null)||($gt0018|Previous LDL Cholesterol|==null)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8035.term}",
+            "detail": "{$gt8036.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8037.term}",
+                "uuid": "bce7d70f-b1ec-429b-98bf-b3c8ebe50155",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8005.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='24331-1'",
+                        "$gt4204=$gt8078.term",
+                        "$gt4205=$gt8079.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0047": {
+        "id": "gt0047",
+        "priority": 9,
+        "when": [
+          "$gt0011|Statin treatment|!=null",
+          "($gt0040|Aspartate transaminase (AST)|==null)||($gt0043|Alanine transaminase (ALT)|==null)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8032.term}",
+            "detail": "{$gt8033.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8034.term}",
+                "uuid": "6e0cbf49-8e51-4450-be05-c76f7bd8fae9",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8006.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='1920-8'",
+                        "$gt4204=$gt8074.term",
+                        "$gt4205=$gt8075.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8007.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='1742-6'",
+                        "$gt4204=$gt8076.term",
+                        "$gt4205=$gt8077.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0046": {
+        "id": "gt0046",
+        "priority": 8,
+        "when": [
+          "$gt0011|Statin treatment|==null",
+          "$gt0003|Type-2 diabetes|!=null",
+          "$gt0006|CKD diagnosis|==null",
+          "$gt0020|CVD diagnosis|==null",
+          "$gt0009|QRISK2 score|!=null",
+          "$gt0009|QRISK2 score|<10,%"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8030.term}",
+            "detail": "{$gt8031.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            }
+          }
+        ]
+      },
+      "gt0045": {
+        "id": "gt0045",
+        "priority": 7,
+        "when": [
+          "$gt0011|Statin treatment|==null",
+          "$gt0003|Type-2 diabetes|!=null",
+          "$gt0006|CKD diagnosis|==null",
+          "$gt0020|CVD diagnosis|==null",
+          "$gt0009|QRISK2 score|==null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8026.term}",
+            "detail": "{$gt8027.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8028.term}",
+                "uuid": "cd762e47-17cf-4c31-a2a0-2d9970e33ea9",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8029.term}",
+                    "resource_template": {
+                      "template_id": "gt1006",
+                      "assignments": [
+                        "$gt5103=$gt5003.term",
+                        "$gt5105=$gt5005.term",
+                        "$gt5106=$gt5006.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0044": {
+        "id": "gt0044",
+        "priority": 6,
+        "when": [
+          "$gt0011|Statin treatment|!=null",
+          "$gt0040|Aspartate transaminase (AST)|!=null",
+          "$gt0043|Alanine transaminase (ALT)|!=null",
+          "$gt0040|Aspartate transaminase (AST)|>=750,U/L",
+          "$gt0043|Alanine transaminase (ALT)|>=750,U/L"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8022.term}",
+            "detail": "{$gt8023.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8024.term}",
+                "uuid": "85ea34a1-aa11-432f-b098-1168d18730c8",
+                "actions": [
+                  {
+                    "type": "delete",
+                    "description": "{$gt8025.term}",
+                    "resource_template": {
+                      "template_id": "gt1001",
+                      "assignments": [
+                        "$gt2006=$currentDateTime.string"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0025": {
+        "id": "gt0025",
+        "priority": 5,
+        "when": [
+          "$gt0011|Statin treatment|==null",
+          "$gt0003|Type-2 diabetes|!=null",
+          "$gt0006|CKD diagnosis|==null",
+          "$gt0020|CVD diagnosis|!=null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8000.term}",
+            "detail": "{$gt8001.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8002.term}",
+                "uuid": "f55737e9-c19d-4eb7-b749-b3f22e1ebcf0",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8003.term}",
+                    "resource_template": {
+                      "template_id": "gt1000",
+                      "assignments": [
+                        "$gt2000=80",
+                        "$gt2006=$currentDateTime.string"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8004.term}",
+                    "resource_template": {
+                      "template_id": "gt1003",
+                      "assignments": [
+                        "$gt2002=$gt8004.term",
+                        "$gt2003=($currentDate+3,mo)",
+                        "$gt5111=$gt5011.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8005.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=($currentDate+3,mo)",
+                        "$gt4203='24331-1'",
+                        "$gt4204=$gt8056.term",
+                        "$gt4205=$gt8057.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8006.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=($currentDate+3,mo)",
+                        "$gt4203='1920-8'",
+                        "$gt4204=$gt8058.term",
+                        "$gt4205=$gt8059.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8007.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=($currentDate+3,mo)",
+                        "$gt4203='1742-6'",
+                        "$gt4204=$gt8060.term",
+                        "$gt4205=$gt8061.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0026": {
+        "id": "gt0026",
+        "priority": 4,
+        "when": [
+          "$gt0011|Statin treatment|==null",
+          "$gt0003|Type-2 diabetes|!=null",
+          "$gt0006|CKD diagnosis|==null",
+          "$gt0020|CVD diagnosis|==null",
+          "$gt0009|QRISK2 score|!=null",
+          "$gt0009|QRISK2 score|>=10,%",
+          "$gt0016|Latest LDL Cholesterol|!=null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8008.term}",
+            "detail": "{$gt8009.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8010.term}",
+                "uuid": "fe171c1f-0667-43af-a5cd-e9e7b3af5c8e",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8011.term}",
+                    "resource_template": {
+                      "template_id": "gt1000",
+                      "assignments": [
+                        "$gt2000=20",
+                        "$gt2006=$currentDateTime.string"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8012.term}",
+                    "resource_template": {
+                      "template_id": "gt1002",
+                      "assignments": [
+                        "$gt2001=($gt0016|Latest LDL Cholesterol|.magnitude*0.6)",
+                        "$gt2004=$gt0016.unit",
+                        "$gt2005=$currentDateTime.string",
+                        "$gt2016=($currentDate+3,mo)",
+                        "$gt5100=$gt5000.term",
+                        "$gt5101=$gt5001.term",
+                        "$gt5110=$gt5010.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8004.term}",
+                    "resource_template": {
+                      "template_id": "gt1003",
+                      "assignments": [
+                        "$gt2002=$gt8004.term",
+                        "$gt2003=($currentDate+3,mo)",
+                        "$gt5111=$gt5011.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8005.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='24331-1'",
+                        "$gt4204=$gt8062.term",
+                        "$gt4205=$gt8063.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8013.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='1920-8'",
+                        "$gt4204=$gt8064.term",
+                        "$gt4205=$gt8065.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8007.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='1742-6'",
+                        "$gt4204=$gt8066.term",
+                        "$gt4205=$gt8067.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0034": {
+        "id": "gt0034",
+        "priority": 3,
+        "when": [
+          "$gt0011|Statin treatment|!=null",
+          "$gt0040|Aspartate transaminase (AST)|!=null",
+          "$gt0043|Alanine transaminase (ALT)|!=null",
+          "$gt0040|Aspartate transaminase (AST)|<750,U/L",
+          "$gt0043|Alanine transaminase (ALT)|<750,U/L",
+          "$gt0054|Muscle pain condition|==null",
+          "$gt0016|Latest LDL Cholesterol|!=null",
+          "$gt0018|Previous LDL Cholesterol|!=null",
+          "$gt0016|Latest LDL Cholesterol|.unit==$gt0018|Previous LDL Cholesterol|.unit",
+          "$gt0016|Latest LDL Cholesterol|.magnitude>=($gt0018|Previous LDL Cholesterol|.magnitude*0.6)",
+          "$gt0050|eGFR value|>=30,mL/min/{1.73_m2}"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8014.term}",
+            "detail": "{$gt8015.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "2c96cc9f-896b-44dc-8440-66df3cbeb5b7",
+                "label": "{$gt8016.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8017.term}",
+                    "resource_template": {
+                      "template_id": "gt1000",
+                      "assignments": [
+                        "$gt2000=80",
+                        "$gt2006=$currentDateTime.string"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8004.term}",
+                    "resource_template": {
+                      "template_id": "gt1003",
+                      "assignments": [
+                        "$gt2002=$gt8004.term",
+                        "$gt2003=($currentDateTime+5,d)",
+                        "$gt5111=$gt5011.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8018.term}",
+                    "resource_template": {
+                      "template_id": "gt1002",
+                      "assignments": [
+                        "$gt2001=($gt0016|Latest LDL Cholesterol|.magnitude*0.6)",
+                        "$gt2004=$gt0016.unit",
+                        "$gt2005=$currentDateTime.string",
+                        "$gt2016=($currentDate+3,mo)",
+                        "$gt5100=$gt5000.term",
+                        "$gt5101=$gt5001.term",
+                        "$gt5110=$gt5010.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8005.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='24331-1'",
+                        "$gt4204=$gt8068.term",
+                        "$gt4205=$gt8069.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8004.term}",
+                    "resource_template": {
+                      "template_id": "gt1003",
+                      "assignments": [
+                        "$gt2002=$gt8004.term",
+                        "$gt2003=($currentDate+3,mo)",
+                        "$gt5111=$gt5011.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0035": {
+        "id": "gt0035",
+        "priority": 2,
+        "when": [
+          "$gt0011|Statin treatment|!=null",
+          "$gt0040|Aspartate transaminase (AST)|!=null",
+          "$gt0043|Alanine transaminase (ALT)|!=null",
+          "$gt0040|Aspartate transaminase (AST)|<750,U/L",
+          "$gt0043|Alanine transaminase (ALT)|<750,U/L",
+          "$gt0054|Muscle pain condition|==null",
+          "$gt0016|Latest LDL Cholesterol|!=null",
+          "$gt0018|Previous LDL Cholesterol|!=null",
+          "$gt0016|Latest LDL Cholesterol|.unit==$gt0018|Previous LDL Cholesterol|.unit",
+          "$gt0016|Latest LDL Cholesterol|.magnitude<($gt0018|Previous LDL Cholesterol|.magnitude*0.6)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt8019.term}",
+            "detail": "{$gt8020.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt8021.term}",
+                "uuid": "d4787b06-9e26-48f8-91ee-6184b6011fcd",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt8070.term}",
+                    "resource_template": {
+                      "template_id": "gt1003",
+                      "assignments": [
+                        "$gt2002=$gt8070.term",
+                        "$gt2003=($currentDateTime+1,a)",
+                        "$gt5111=$gt5011.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt8005.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='24331-1'",
+                        "$gt4204=$gt8071.term",
+                        "$gt4205=$gt8072.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0027": {
+        "id": "gt0027",
+        "priority": 1,
+        "when": [
+          "$gt0016|Latest LDL Cholesterol|==null",
+          "!fired($gt0048)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0220.term}",
+            "detail": "{$gt0221.term}",
+            "indicator": "info",
+            "source": {
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "label": "{$gt0222.term}",
+                "uuid": "b698822a-6568-4c2e-ba27-2cfae59b215c",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0223.term}",
+                    "resource_template": {
+                      "template_id": "gt1004",
+                      "assignments": [
+                        "$gt4202=$currentDateTime",
+                        "$gt4203='13457-7'",
+                        "$gt4204=$gt0036.term",
+                        "$gt4205=$gt0224.term",
+                        "$gt5104=$gt5004.term",
+                        "$gt5109=$gt5009.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0007": {
+            "id": "gt0007",
+            "text": "CKD",
+            "description": "Chronic kidney disease"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Previous LDL Cholesterol",
+            "description": "LDL-Cholesterol level in the sample."
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Goal name",
+            "description": "The name of the desired health outcome."
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "QRISK2 score",
+            "description": "QRISK2 score"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Type-2 diabetes diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Estimated Glomerular Filtration Rate",
+            "description": "Value describing estimation of glomerular filtration rate adjusted by body-surface area (mL/min/1.73m²)."
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Start statin treatment in patient with CVD"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Type-2 diabetes"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Start statin treatment in patient without CVD"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Latest LDL Cholesterol",
+            "description": "LDL-Cholesterol level in the sample."
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "CKD diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0028": {
+            "id": "gt0028"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "CVD",
+            "description": "Chronic vascular disease"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Request description",
+            "description": "Narrative description of the service requested."
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Statin treatment",
+            "description": "The generic name of the drug which is an alternative name to the name of medication"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Request QRISK"
+          },
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes lipids lowering in type 2 diabetes without CKD",
+            "description": "Managing lipids and cardiovascular risk in Type 2 Diabetes patients"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Statin"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Requested medication generic name",
+            "description": "The generic name of the drug which is an alternative name to the name of medication"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "Increase statin dose"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Requested medication dose",
+            "description": "*"
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Continue treatment"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "CVD diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "LDL Cholesterol",
+            "description": "LDL Cholesterol lab test result."
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "QRISK2",
+            "description": "QRISK2 cardiovascular disease 10 year risk score."
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "Aspartate transaminase (AST)",
+            "description": "Aspartate transaminase (AST)."
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "Aspartate transaminase (AST) lab test",
+            "description": "Aspartate transaminase (AST) lab test."
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "Aspartate transaminase (AST) test value",
+            "description": "Aspartate transaminase (AST) test value."
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Alanine transaminase (ALT)",
+            "description": "Alanine transaminase (ALT)."
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Alanine transaminase (ALT) lab test",
+            "description": "Alanine transaminase (ALT) lab test."
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Alanine transaminase (ALT) test value",
+            "description": "Alanine transaminase (ALT) test value."
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "Stop statin treatment",
+            "description": "Stop statin treatment rule."
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "Measure and evaluate QRISK2",
+            "description": "Measure and evaluate QRISK2 rule."
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "No indication for lipid lowering primary intervention",
+            "description": "No indication for lipid lowering primary intervention rule."
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Order liver transaminases test",
+            "description": "Order liver transaminases test rule."
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "Order lipid lab test",
+            "description": "Order lipid lab test rule."
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "eGFR lab test",
+            "description": "eGFR lab test."
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "eGFR value",
+            "description": "eGFR value"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "eGFR",
+            "description": "eGFR"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Agree an increased dose with a renal specialist",
+            "description": "Agree an increased dose with a renal specialist rule."
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Muscle pain condition",
+            "description": "Muscle pain condition."
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Muscle pain condition",
+            "description": "Muscle pain condition."
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "Muscle pain",
+            "description": "Muscle pain."
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Suspect statin's side effect and measure CK",
+            "description": "Suspect statin's side effect and measure CK rule."
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "Muscle pain onset date",
+            "description": "Muscle pain onset date."
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "Statin medication effective datetime",
+            "description": "Statin medication effective datetime."
+          },
+          "gt8000": {
+            "id": "gt8000",
+            "text": "Atorvastatin Recommendation-80mg, lipid and liver transaminases tests",
+            "description": ""
+          },
+          "gt8001": {
+            "id": "gt8001",
+            "text": "Offer atorvastatin 80 mg. Appointment for control visit after 3 months. Suggest lipid and liver transaminases tests.",
+            "description": ""
+          },
+          "gt8002": {
+            "id": "gt8002",
+            "text": "Offer atorvastatin 80 mg. Appointment for control visit after 3 months. Suggestion lipid and liver transaminases tests.",
+            "description": ""
+          },
+          "gt8003": {
+            "id": "gt8003",
+            "text": "Atorvastatin Recommendation-80mg",
+            "description": ""
+          },
+          "gt8004": {
+            "id": "gt8004",
+            "text": "Follow-up to check the results of the treatment",
+            "description": ""
+          },
+          "gt8005": {
+            "id": "gt8005",
+            "text": "Lipid Panel Test",
+            "description": ""
+          },
+          "gt8006": {
+            "id": "gt8006",
+            "text": "Aspartate transaminase (AST) test",
+            "description": ""
+          },
+          "gt8007": {
+            "id": "gt8007",
+            "text": "Alanine transaminase (ALT) Test",
+            "description": ""
+          },
+          "gt8008": {
+            "id": "gt8008",
+            "text": "Atorvastatin Recommendation-20mg, lipid and liver transaminases tests",
+            "description": ""
+          },
+          "gt8009": {
+            "id": "gt8009",
+            "text": "Offer atorvastatin 20 mg. Add a goal to lower the non-HDL Cholesterol by 40%. Appointment for control visit after 3 months. Suggest lipid and liver transaminases tests.",
+            "description": ""
+          },
+          "gt8010": {
+            "id": "gt8010",
+            "text": "Offer atorvastatin 20 mg. Add a goal to lower the non-HDL Cholesterol by 40%. Appointment for control visit after 3 months. Suggestion lipid and liver transaminases tests.",
+            "description": ""
+          },
+          "gt8011": {
+            "id": "gt8011",
+            "text": "Offer Starting Statin Treatment",
+            "description": ""
+          },
+          "gt8012": {
+            "id": "gt8012",
+            "text": "Statin Treatment Followup Goal",
+            "description": ""
+          },
+          "gt8013": {
+            "id": "gt8013",
+            "text": "Aspartate transaminase (AST) test",
+            "description": ""
+          },
+          "gt8014": {
+            "id": "gt8014",
+            "text": "Recommendation for increasing the dose of Statin treatment (atorvastatin 80mg) and suggest lipid test and 3 months control visit.",
+            "description": ""
+          },
+          "gt8015": {
+            "id": "gt8015",
+            "text": "Increase the dose of atorvastatin to 80 mg. Add a goal to lower the non-HDL Cholesterol by 40%. See also NICE guidelines for cardiovascular disease (CG181) and suggest lipid test and 3 months control visit.",
+            "description": ""
+          },
+          "gt8016": {
+            "id": "gt8016",
+            "text": "Atorvastatin Recommendation-80mg and a goal to lower the non-HDL Cholesterol by 40%.",
+            "description": ""
+          },
+          "gt8017": {
+            "id": "gt8017",
+            "text": "Atorvastatin Recommendation-80mg",
+            "description": ""
+          },
+          "gt8018": {
+            "id": "gt8018",
+            "text": "Statin Treatment Followup Goal",
+            "description": ""
+          },
+          "gt8019": {
+            "id": "gt8019",
+            "text": "Continue treatment and offer annual follow-up and lipid test suggestion.",
+            "description": ""
+          },
+          "gt8020": {
+            "id": "gt8020",
+            "text": "Continue treatment and offer annual follow-up and lipid test suggestion.",
+            "description": ""
+          },
+          "gt8021": {
+            "id": "gt8021",
+            "text": "Annual follow-up",
+            "description": ""
+          },
+          "gt8022": {
+            "id": "gt8022",
+            "text": "Stop statin treatment.",
+            "description": ""
+          },
+          "gt8023": {
+            "id": "gt8023",
+            "text": "Stop statin treatment.",
+            "description": ""
+          },
+          "gt8024": {
+            "id": "gt8024",
+            "text": "Stop statin treatment.",
+            "description": ""
+          },
+          "gt8025": {
+            "id": "gt8025",
+            "text": "Stop statin",
+            "description": ""
+          },
+          "gt8026": {
+            "id": "gt8026",
+            "text": "Measure and evaluate QRISK2",
+            "description": ""
+          },
+          "gt8027": {
+            "id": "gt8027",
+            "text": "Measure and evaluate QRISK2",
+            "description": ""
+          },
+          "gt8028": {
+            "id": "gt8028",
+            "text": "Measure and evaluate QRISK2",
+            "description": ""
+          },
+          "gt8029": {
+            "id": "gt8029",
+            "text": "QRISK2 Observation",
+            "description": ""
+          },
+          "gt8030": {
+            "id": "gt8030",
+            "text": "No indication for lipid lowering primary intervention.",
+            "description": ""
+          },
+          "gt8031": {
+            "id": "gt8031",
+            "text": "No indication for lipid lowering primary intervention.",
+            "description": ""
+          },
+          "gt8032": {
+            "id": "gt8032",
+            "text": "Order liver transaminases test",
+            "description": ""
+          },
+          "gt8033": {
+            "id": "gt8033",
+            "text": "Order liver transaminases test (AST and ALT)",
+            "description": ""
+          },
+          "gt8034": {
+            "id": "gt8034",
+            "text": "Order liver transaminases test",
+            "description": ""
+          },
+          "gt8035": {
+            "id": "gt8035",
+            "text": "Order lipid lab test.",
+            "description": ""
+          },
+          "gt8036": {
+            "id": "gt8036",
+            "text": "Order lipid lab test.",
+            "description": ""
+          },
+          "gt8037": {
+            "id": "gt8037",
+            "text": "Order lipid lab test.",
+            "description": ""
+          },
+          "gt8038": {
+            "id": "gt8038",
+            "text": "Referral to a Renal Specialist to agree on an increased statin dose and suggest lipid test and 3 months control visit.",
+            "description": ""
+          },
+          "gt8039": {
+            "id": "gt8039",
+            "text": "Referral to a Renal Specialist to agree on an increased statin dose and suggest lipid test. Add a goal to lower the non-HDL Cholesterol by 40% and 3 months control visit.",
+            "description": ""
+          },
+          "gt8040": {
+            "id": "gt8040",
+            "text": "Referral to a Renal Specialist to agree on an increased statin dose and a goal to lower the non-HDL Cholesterol by 40%",
+            "description": ""
+          },
+          "gt8041": {
+            "id": "gt8041",
+            "text": "Referral to a Renal Specialist to agree on an increased statin dose",
+            "description": ""
+          },
+          "gt8042": {
+            "id": "gt8042",
+            "text": "Statin Treatment Followup Goal",
+            "description": ""
+          },
+          "gt8043": {
+            "id": "gt8043",
+            "text": "Measure Creatine Kinase (CK)",
+            "description": ""
+          },
+          "gt8044": {
+            "id": "gt8044",
+            "text": "Suspect statin side effect and Measure Creatine Kinase (CK)",
+            "description": ""
+          },
+          "gt8045": {
+            "id": "gt8045",
+            "text": "Creatine Kinase Observation",
+            "description": ""
+          },
+          "gt8046": {
+            "id": "gt8046",
+            "text": "Creatine Kinase Observation",
+            "description": ""
+          },
+          "gt8047": {
+            "id": "gt8047",
+            "text": "Measure Creatine Kinase (CK)",
+            "description": ""
+          },
+          "gt8048": {
+            "id": "gt8048",
+            "text": "Suspect statin side effect and Measure Creatine Kinase (CK)",
+            "description": ""
+          },
+          "gt8049": {
+            "id": "gt8049",
+            "text": "Creatine Kinase Observation",
+            "description": ""
+          },
+          "gt8050": {
+            "id": "gt8050",
+            "text": "Creatine Kinase Observation",
+            "description": ""
+          },
+          "gt8051": {
+            "id": "gt8051",
+            "text": "Atorvastatin Recommendation-20mg, lipid and liver transaminases tests",
+            "description": ""
+          },
+          "gt8052": {
+            "id": "gt8052",
+            "text": "Offer atorvastatin 20 mg. Add a goal to lower the non-HDL Cholesterol by 40%. Appointment for control visit after 3 months. Suggest lipid and liver transaminases tests.",
+            "description": ""
+          },
+          "gt8053": {
+            "id": "gt8053",
+            "text": "Offer atorvastatin 20 mg. Add a goal to lower the non-HDL Cholesterol by 40%. Appointment for control visit after 3 months. Suggestion lipid and liver transaminases tests.",
+            "description": ""
+          },
+          "gt8054": {
+            "id": "gt8054",
+            "text": "Offer Starting Statin Treatment",
+            "description": ""
+          },
+          "gt8055": {
+            "id": "gt8055",
+            "text": "Statin Treatment Followup Goal",
+            "description": ""
+          },
+          "gt8056": {
+            "id": "gt8056",
+            "text": "Lipid panel",
+            "description": ""
+          },
+          "gt8057": {
+            "id": "gt8057",
+            "text": "Have lipid Panel test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8058": {
+            "id": "gt8058",
+            "text": "Aspartate transaminase (AST)",
+            "description": ""
+          },
+          "gt8059": {
+            "id": "gt8059",
+            "text": "Have Aspartate transaminase (AST) test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8060": {
+            "id": "gt8060",
+            "text": "Alanine transaminase (ALT)",
+            "description": ""
+          },
+          "gt8061": {
+            "id": "gt8061",
+            "text": "Have Alanine transaminase (ALT) test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8062": {
+            "id": "gt8062",
+            "text": "Lipid panel",
+            "description": ""
+          },
+          "gt8063": {
+            "id": "gt8063",
+            "text": "Have lipid Panel test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8064": {
+            "id": "gt8064",
+            "text": "Aspartate transaminase (AST)",
+            "description": ""
+          },
+          "gt8065": {
+            "id": "gt8065",
+            "text": "Have Aspartate transaminase (AST) test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8066": {
+            "id": "gt8066",
+            "text": "Alanine transaminase (ALT)",
+            "description": ""
+          },
+          "gt8067": {
+            "id": "gt8067",
+            "text": "Have Alanine transaminase (ALT) test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8068": {
+            "id": "gt8068",
+            "text": "Lipid panel",
+            "description": ""
+          },
+          "gt8069": {
+            "id": "gt8069",
+            "text": "Have lipid Panel test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8070": {
+            "id": "gt8070",
+            "text": "Annual Follow-up to check the results of the treatment",
+            "description": ""
+          },
+          "gt8071": {
+            "id": "gt8071",
+            "text": "Lipid panel",
+            "description": ""
+          },
+          "gt8072": {
+            "id": "gt8072",
+            "text": "Have lipid Panel test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8074": {
+            "id": "gt8074",
+            "text": "Aspartate transaminase (AST)",
+            "description": ""
+          },
+          "gt8075": {
+            "id": "gt8075",
+            "text": "Have Aspartate transaminase (AST) test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8076": {
+            "id": "gt8076",
+            "text": "Alanine transaminase (ALT)",
+            "description": ""
+          },
+          "gt8077": {
+            "id": "gt8077",
+            "text": "Have Alanine transaminase (ALT) test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8078": {
+            "id": "gt8078",
+            "text": "Lipid panel",
+            "description": ""
+          },
+          "gt8079": {
+            "id": "gt8079",
+            "text": "Have lipid Panel test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8080": {
+            "id": "gt8080",
+            "text": "Lipid panel",
+            "description": ""
+          },
+          "gt8081": {
+            "id": "gt8081",
+            "text": "Have lipid Panel test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8082": {
+            "id": "gt8082",
+            "text": "Lipid panel",
+            "description": ""
+          },
+          "gt8083": {
+            "id": "gt8083",
+            "text": "Have lipid Panel test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8084": {
+            "id": "gt8084",
+            "text": "Aspartate transaminase (AST)",
+            "description": ""
+          },
+          "gt8085": {
+            "id": "gt8085",
+            "text": "Have Aspartate transaminase (AST) test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt8086": {
+            "id": "gt8086",
+            "text": "Alanine transaminase (ALT)",
+            "description": ""
+          },
+          "gt8087": {
+            "id": "gt8087",
+            "text": "Have Alanine transaminase (ALT) test before 3 monthly lipid control visit",
+            "description": ""
+          },
+          "gt9000": {
+            "id": "gt9000",
+            "text": "qrisk2ScoreEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9001": {
+            "id": "gt9001",
+            "text": "ldlc-latestEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9002": {
+            "id": "gt9002",
+            "text": "ldlc-priorEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9003": {
+            "id": "gt9003",
+            "text": "astEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9004": {
+            "id": "gt9004",
+            "text": "altEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9005": {
+            "id": "gt9005",
+            "text": "egfrEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "value",
+            "description": "$currentDateTime"
+          },
+          "gt2006": {
+            "id": "gt2006",
+            "text": "value",
+            "description": "$currentDateTime"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text": "value",
+            "description": "/target/detailRange/high"
+          },
+          "gt2010": {
+            "id": "gt2010",
+            "text": "value",
+            "description": "/medicationCodeableConcept/coding/display"
+          },
+          "gt2011": {
+            "id": "gt2011",
+            "text": "value",
+            "description": "/medicationCodeableConcept/coding/code"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt2016": {
+            "id": "gt2016",
+            "text": "value",
+            "description": "/target/dueDate"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt4205": {
+            "id": "gt4205",
+            "text": "value",
+            "description": "/extension/valueString"
+          },
+          "gt4204": {
+            "id": "gt4204",
+            "text": "value",
+            "description": "/code/coding/display"
+          },
+          "gt4203": {
+            "id": "gt4203",
+            "text": "value",
+            "description": "/code/coding/code"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Decrease non-HDL cholesterol",
+            "description": "/description/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "Decrease Non-HDL Cholesterol by 40%. Evaluate progress with 3 monthly measurements.",
+            "description": "/description/text"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "Measure creatine kinase",
+            "description": "/extension/valueString"
+          },
+          "gt5003": {
+            "id": "gt5003",
+            "text": "QRISK2 cardiovascular disease 10 year risk score",
+            "description": "/code/coding/display"
+          },
+          "gt5004": {
+            "id": "gt5004",
+            "text": "PATIENT",
+            "description": "/performer"
+          },
+          "gt5005": {
+            "id": "gt5005",
+            "text": "HP",
+            "description": "/performer"
+          },
+          "gt5006": {
+            "id": "gt5006",
+            "text": "Measure and evaluate QRISK2",
+            "description": "/extension/valueString"
+          },
+          "gt5007": {
+            "id": "gt5007",
+            "text": "Nephrologist",
+            "description": "/specialty/coding/display"
+          },
+          "gt5008": {
+            "id": "gt5008",
+            "text": "Referral to a Renal Specialist to agree on an increased statin dose for lipid lowering, Proposed dose 80mg",
+            "description": "/description"
+          },
+          "gt5009": {
+            "id": "gt5009",
+            "text": "Lab Request",
+            "description": "/category/coding/display"
+          },
+          "gt5010": {
+            "id": "gt5010",
+            "text": "Cholesterol in LDL",
+            "description": "/target/measure/coding/display"
+          },
+          "gt5011": {
+            "id": "gt5011",
+            "text": "FOLLOWUP",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5012": {
+            "id": "gt5012",
+            "text": "Creatine kinase",
+            "description": "/code/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/description/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/extension/valueString"
+          },
+          "gt5103": {
+            "id": "gt5103",
+            "text": "value",
+            "description": "/code/coding/display"
+          },
+          "gt5104": {
+            "id": "gt5104",
+            "text": "value",
+            "description": "/performer"
+          },
+          "gt5105": {
+            "id": "gt5105",
+            "text": "value",
+            "description": "/performer"
+          },
+          "gt5106": {
+            "id": "gt5106",
+            "text": "value",
+            "description": "/extension/valueString"
+          },
+          "gt5107": {
+            "id": "gt5107",
+            "text": "value",
+            "description": "/specialty/coding/display"
+          },
+          "gt5108": {
+            "id": "gt5108",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt5109": {
+            "id": "gt5109",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5110": {
+            "id": "gt5110",
+            "text": "value",
+            "description": "/target/measure/coding/display"
+          },
+          "gt5111": {
+            "id": "gt5111",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5112": {
+            "id": "gt5112",
+            "text": "value",
+            "description": "/code/coding/display"
+          },
+          "gt5113": {
+            "id": "gt5113",
+            "text": "value",
+            "description": "/specialty/text"
+          },
+          "gt4202": {
+            "id": "gt4202",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt0220": {
+            "id": "gt0220",
+            "text": "Perform LDL cholesterol test",
+            "description": "cards.summary"
+          },
+          "gt0221": {
+            "id": "gt0221",
+            "text": "The patient has no record of an LDL cholesterol result in order to set the new goal for the management of LDL cholesterol in patients with diabetes.",
+            "description": "cards.detail"
+          },
+          "gt0222": {
+            "id": "gt0222",
+            "text": "Perform LDL cholesterol test",
+            "description": "cards.label"
+          },
+          "gt0223": {
+            "id": "gt0223",
+            "text": "Perform LDL cholesterol test",
+            "description": "cards.description"
+          },
+          "gt0224": {
+            "id": "gt0224",
+            "text": "Perform LDL cholesterol test",
+            "description": "/extension/valueString"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Generate LDL-cholesterol procedure request",
+            "description": ""
+          }
+        }
+      },
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Kronisk njursvikt",
+            "description": "Chronic kidney disease"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Tidigare LDL-kolesterol",
+            "description": "LDL-Cholesterol level in the sample."
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Namn på mål",
+            "description": "The name of the desired health outcome."
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "QRISK2-poäng",
+            "description": "QRISK2 score"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Diagnos för typ-2 diabetes",
+            "description": "The index diagnosis"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Uppskattad glomerulär filtrationshastighet",
+            "description": "Value describing estimation of glomerular filtration rate adjusted by body-surface area (mL/min/1.73m²)."
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Starta statinbehandling för patient med kardiovaskulär sjukdom"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Typ-2 diabetes"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Starta statinbehandling för patient utan kardiovaskulär sjukdom"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Senaste LDL-kolesterol",
+            "description": "LDL-Cholesterol level in the sample."
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Diagnos för kronisk njursvikt",
+            "description": "The index diagnosis"
+          },
+          "gt0028": {
+            "id": "gt0028"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Kardiovaskulär sjukdom",
+            "description": "Chronic vascular disease"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Beskrivning av förfrågan",
+            "description": "Narrative description of the service requested."
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Statinbehandling",
+            "description": "The generic name of the drug which is an alternative name to the name of medication"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Efterfråga QRISK"
+          },
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Lipidsänkning vid typ 2-diabetes utan kronisk njursvikt",
+            "description": "Managing lipids and cardiovascular risk in Type 2 Diabetes patients"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Statin"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Requested medication generic name",
+            "description": "The generic name of the drug which is an alternative name to the name of medication"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "Increase statin dose"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Requested medication dose",
+            "description": "*"
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Continue treatment"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Diagnos för kardiovaskulär sjukdom",
+            "description": "The index diagnosis"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "LDL Cholesterol",
+            "description": "LDL Cholesterol lab test result."
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "QRISK2",
+            "description": "QRISK2 cardiovascular disease 10 year risk score."
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "Aspartate transaminase (AST)",
+            "description": "Aspartate transaminase (AST)."
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "Aspartate transaminase (AST) lab test",
+            "description": "Aspartate transaminase (AST) lab test."
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "Aspartate transaminase (AST) test value",
+            "description": "Aspartate transaminase (AST) test value."
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Alanine transaminase (ALT)",
+            "description": "Alanine transaminase (ALT)."
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Alanine transaminase (ALT) lab test",
+            "description": "Alanine transaminase (ALT) lab test."
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Alanine transaminase (ALT) test value",
+            "description": "Alanine transaminase (ALT) test value."
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "Stop statin treatment",
+            "description": "Stop statin treatment rule."
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "Measure and evaluate QRISK2",
+            "description": "Measure and evaluate QRISK2 rule."
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "No indication for lipid lowering primary intervention",
+            "description": "No indication for lipid lowering primary intervention rule."
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Order liver transaminases test",
+            "description": "Order liver transaminases test rule."
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "Order lipid lab test",
+            "description": "Order lipid lab test rule."
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "eGFR lab test",
+            "description": "eGFR lab test."
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "eGFR value",
+            "description": "eGFR value"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "eGFR",
+            "description": "eGFR"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Agree an increased dose with a renal specialist",
+            "description": "Agree an increased dose with a renal specialist rule."
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Muscle pain condition",
+            "description": "Muscle pain condition."
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Muscle pain condition",
+            "description": "Muscle pain condition."
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "Muscle pain",
+            "description": "Muscle pain."
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Suspect statin's side effect and measure CK",
+            "description": "Suspect statin's side effect and measure CK rule."
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "Muscle pain onset date",
+            "description": "Muscle pain onset date."
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "Statin medication effective datetime",
+            "description": "Statin medication effective datetime."
+          },
+          "gt8000": {
+            "id": "gt8000",
+            "text": "Rekommendation om atorvastatin 80 mg samt provtagning för analys av lipidvärden och levertransaminaser",
+            "description": "Statin medication effective datetime."
+          },
+          "gt8001": {
+            "id": "gt8001",
+            "text": "Erbjud atorvastatin 80 mg. Boka besökstid för kontroll om 3 månader. Föreslå test av lipidvärden och levertransaminaser",
+            "description": "Offer atorvastatin 80 mg. Appointment for control visit after 3 months. Suggest lipid and liver transaminases tests."
+          },
+          "gt8002": {
+            "id": "gt8002",
+            "text": "Erbjud atorvastatin 80 mg. Boka besökstid för kontroll om 3 månader. Föreslå test av lipidvärden och levertransaminaser.",
+            "description": "Offer atorvastatin 80 mg. Appointment for control visit after 3 months. Suggest lipid and liver transaminases tests."
+          },
+          "gt8003": {
+            "id": "gt8003",
+            "text": "Rekommendation om atorvastatin 80mg.",
+            "description": ""
+          },
+          "gt8004": {
+            "id": "gt8004",
+            "text": "Gör uppföljning för att kontrollera behandlingsresultaten",
+            "description": ""
+          },
+          "gt8005": {
+            "id": "gt8005",
+            "text": "Provtagning för analys av lipidprofil",
+            "description": ""
+          },
+          "gt8006": {
+            "id": "gt8006",
+            "text": "Provtagning för analys av aspartataminotransferas (ASAT)",
+            "description": ""
+          },
+          "gt8007": {
+            "id": "gt8007",
+            "text": "Provtagning för analys av alaninaminotransferas (ALAT)",
+            "description": ""
+          },
+          "gt8008": {
+            "id": "gt8008",
+            "text": "Rekommendation om atorvastatin 20 mg samt provtagning för analys av lipidvärden och levertransaminaser",
+            "description": ""
+          },
+          "gt8009": {
+            "id": "gt8009",
+            "text": "Erbjud atorvastatin 20 mg. Lägg till ett mål om att sänka icke-HDL-kolesterolet med 40%. Boka besökstid för kontroll om 3 månader. Föreslå test av lipidvärden och levertransaminaser.",
+            "description": ""
+          },
+          "gt8010": {
+            "id": "gt8010",
+            "text": "Erbjud atorvastatin 20 mg. Lägg till ett mål om att sänka icke-HDL-kolesterolet med 40%. Boka besökstid för kontroll om 3 månader. Föreslå test av lipidvärden och levertransaminaser.",
+            "description": ""
+          },
+          "gt8011": {
+            "id": "gt8011",
+            "text": "Erbjud påbörjan av statinbehandling",
+            "description": ""
+          },
+          "gt8012": {
+            "id": "gt8012",
+            "text": "Uppföljning av statinbehandlingsmål",
+            "description": ""
+          },
+          "gt8013": {
+            "id": "gt8013",
+            "text": "Provtagning för analys av aspartataminotransferas (ASAT)",
+            "description": ""
+          },
+          "gt8014": {
+            "id": "gt8014",
+            "text": "Rekommendation om ökning av statindos (atorvastatin 80 mg) och föreslå provtagning för analys av lipider samt kontrollbesök om 3 månader.",
+            "description": ""
+          },
+          "gt8015": {
+            "id": "gt8015",
+            "text": "Öka dosen av atorvastatin till 80 mg. Lägg till ett mål om att sänka icke-HDL-kolesterolet med 40%. Se även NICE-riktlinjerna om kardiovaskulär sjukdom (CG181) och föreslå provtagning för analys av lipider samt kontrollbesök om 3 månader.",
+            "description": ""
+          },
+          "gt8016": {
+            "id": "gt8016",
+            "text": "Rekommendation om atorvastatin 80 mg och lägg till ett mål om att sänka icke-HDL-kolesterol med 40%.",
+            "description": ""
+          },
+          "gt8017": {
+            "id": "gt8017",
+            "text": "Rekommendation om atorvastatin 80 mg.",
+            "description": ""
+          },
+          "gt8018": {
+            "id": "gt8018",
+            "text": "Uppföljning av statinbehandlingsmål",
+            "description": ""
+          },
+          "gt8019": {
+            "id": "gt8019",
+            "text": "Fortsätt behandling och erbjud årlig uppföljning. Föreslå provtagning för analys av lipider.",
+            "description": ""
+          },
+          "gt8020": {
+            "id": "gt8020",
+            "text": "Fortsätt behandling och erbjud årlig uppföljning. Föreslå provtagning för analys av lipider.",
+            "description": ""
+          },
+          "gt8021": {
+            "id": "gt8021",
+            "text": "Årlig uppföljning",
+            "description": ""
+          },
+          "gt8022": {
+            "id": "gt8022",
+            "text": "Avsluta statinbehandling.",
+            "description": ""
+          },
+          "gt8023": {
+            "id": "gt8023",
+            "text": "Avsluta statinbehandling.",
+            "description": ""
+          },
+          "gt8024": {
+            "id": "gt8024",
+            "text": "Avsluta statinbehandling.",
+            "description": ""
+          },
+          "gt8025": {
+            "id": "gt8025",
+            "text": "Avsluta statin",
+            "description": ""
+          },
+          "gt8026": {
+            "id": "gt8026",
+            "text": "Kontrollera och utvärdera QRISK2",
+            "description": ""
+          },
+          "gt8027": {
+            "id": "gt8027",
+            "text": "Kontrollera och utvärdera QRISK2",
+            "description": ""
+          },
+          "gt8028": {
+            "id": "gt8028",
+            "text": "Kontrollera och utvärdera QRISK2",
+            "description": ""
+          },
+          "gt8029": {
+            "id": "gt8029",
+            "text": "QRISK2-observation",
+            "description": ""
+          },
+          "gt8030": {
+            "id": "gt8030",
+            "text": "Ingen indikation för sänkning av lipider föreligger (som primär intervention).",
+            "description": ""
+          },
+          "gt8031": {
+            "id": "gt8031",
+            "text": "Ingen indikation för sänkning av lipider föreligger (som primär intervention).",
+            "description": ""
+          },
+          "gt8032": {
+            "id": "gt8032",
+            "text": "Beställ provtagning för analys av levertransaminaser",
+            "description": ""
+          },
+          "gt8033": {
+            "id": "gt8033",
+            "text": "Beställ provtagning för analys av levertransaminaser (ASAT och ALAT)",
+            "description": ""
+          },
+          "gt8034": {
+            "id": "gt8034",
+            "text": "Beställ provtagning för analys av levertransaminaser",
+            "description": ""
+          },
+          "gt8035": {
+            "id": "gt8035",
+            "text": "Beställ provtagning för analys av lipider.",
+            "description": ""
+          },
+          "gt8036": {
+            "id": "gt8036",
+            "text": "Beställ provtagning för analys av lipider.",
+            "description": ""
+          },
+          "gt8037": {
+            "id": "gt8037",
+            "text": "Beställ provtagning för analys av lipider.",
+            "description": ""
+          },
+          "gt8038": {
+            "id": "gt8038",
+            "text": "Remittera till en njurspecialist för att komma överens om en ökad statindos. Föreslå provtagning för analys av lipider samt kontrollbesök om 3 månader.",
+            "description": ""
+          },
+          "gt8039": {
+            "id": "gt8039",
+            "text": "Remittera till en njurspecialist för att komma överens om en ökad statindos. Föreslå provtagning för analys av lipider. Lägg till ett mål för att sänka icke-HDL-kolesterolet med 40% samt kontrollbesök om 3 månader.",
+            "description": ""
+          },
+          "gt8040": {
+            "id": "gt8040",
+            "text": "Remittera till en njurspecialist för att komma överens om en ökad statindos. Lägg till ett mål för att sänka icke-HDL-kolesterolet med 40%",
+            "description": ""
+          },
+          "gt8041": {
+            "id": "gt8041",
+            "text": "Remittera till en njurspecialist för att komma överens om en ökad statindos",
+            "description": ""
+          },
+          "gt8042": {
+            "id": "gt8042",
+            "text": "Uppföljning av statinbehandlingsmål",
+            "description": ""
+          },
+          "gt8043": {
+            "id": "gt8043",
+            "text": "Kontrollera kreatinkinas (CK)",
+            "description": ""
+          },
+          "gt8044": {
+            "id": "gt8044",
+            "text": "Misstänk bieffekter av statinbehandling och kontrollera kreatinkinas (CK)",
+            "description": ""
+          },
+          "gt8045": {
+            "id": "gt8045",
+            "text": "Kreatinkinas-observation",
+            "description": ""
+          },
+          "gt8046": {
+            "id": "gt8046",
+            "text": "Kreatinkinas-observation",
+            "description": ""
+          },
+          "gt8047": {
+            "id": "gt8047",
+            "text": "Kontrollera kreatinkinas (CK)",
+            "description": ""
+          },
+          "gt8048": {
+            "id": "gt8048",
+            "text": "Misstänk bieffekter av statinbehandling och kontrollera kreatinkinas (CK)",
+            "description": ""
+          },
+          "gt8049": {
+            "id": "gt8049",
+            "text": "Kreatinkinas-observation",
+            "description": ""
+          },
+          "gt8050": {
+            "id": "gt8050",
+            "text": "Kreatinkinas-observation",
+            "description": ""
+          },
+          "gt8051": {
+            "id": "gt8051",
+            "text": "Rekommendation om atorvastatin 20 mg samt provtagning för analys av lipider och levertransaminaser",
+            "description": ""
+          },
+          "gt8052": {
+            "id": "gt8052",
+            "text": "Erbjud atorvastatin 20 mg. Lägg till ett mål om att sänka icke-HDL-kolesterolet med 40%. Boka besökstid för kontroll om 3 månader. Föreslå provtagning för analys av lipider och levertransaminaser.",
+            "description": ""
+          },
+          "gt8053": {
+            "id": "gt8053",
+            "text": "Erbjud atorvastatin 20 mg. Lägg till ett mål om att sänka icke-HDL-kolesterolet med 40%. Boka besökstid för kontroll om 3 månader. Föreslå provtagning för analys av lipider och levertransaminaser.",
+            "description": ""
+          },
+          "gt8054": {
+            "id": "gt8054",
+            "text": "Erbjud påbörjan av statinbehandling",
+            "description": ""
+          },
+          "gt8055": {
+            "id": "gt8055",
+            "text": "Uppföljning av statinbehandlingsmål",
+            "description": ""
+          },
+          "gt8056": {
+            "id": "gt8056",
+            "text": "Lipidprofil",
+            "description": ""
+          },
+          "gt8057": {
+            "id": "gt8057",
+            "text": "Ta prover för lipidprofil innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8058": {
+            "id": "gt8058",
+            "text": "Aspartataminotransferas (ASAT)",
+            "description": ""
+          },
+          "gt8059": {
+            "id": "gt8059",
+            "text": "Ta prover för aspartataminotransferas (ASAT) innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8060": {
+            "id": "gt8060",
+            "text": "Alaninaminotransferas (ALAT)",
+            "description": ""
+          },
+          "gt8061": {
+            "id": "gt8061",
+            "text": "Ta prover för alaninaminotransferas (ALAT) innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8062": {
+            "id": "gt8062",
+            "text": "Lipidprofil",
+            "description": ""
+          },
+          "gt8063": {
+            "id": "gt8063",
+            "text": "Ta prover för lipidprofil innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8064": {
+            "id": "gt8064",
+            "text": "Aspartataminotransferas (ASAT)",
+            "description": ""
+          },
+          "gt8065": {
+            "id": "gt8065",
+            "text": "Ta prover för aspartataminotransferas (ASAT) innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8066": {
+            "id": "gt8066",
+            "text": "Alaninaminotransferas (ALAT) ",
+            "description": ""
+          },
+          "gt8067": {
+            "id": "gt8067",
+            "text": "Ta prover för alaninaminotransferas (ALAT) innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8068": {
+            "id": "gt8068",
+            "text": "Lipidprofil",
+            "description": ""
+          },
+          "gt8069": {
+            "id": "gt8069",
+            "text": "Ta prover för lipidprofil innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8070": {
+            "id": "gt8070",
+            "text": "Årlig uppföljning för att se resultaten av behandlingen",
+            "description": ""
+          },
+          "gt8071": {
+            "id": "gt8071",
+            "text":  "Lipidprofil",
+            "description": ""
+          },
+          "gt8072": {
+            "id": "gt8072",
+            "text":  "Ta prover för lipidprofil innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8074": {
+            "id": "gt8074",
+            "text":  "Aspartataminotransferas (ASAT)",
+            "description": ""
+          },
+          "gt8075": {
+            "id": "gt8075",
+            "text":  "Ta prover för aspartataminotransferas (ASAT) innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8076": {
+            "id": "gt8076",
+            "text":  "Alaninaminotransferas (ALAT) ",
+            "description": ""
+          },
+          "gt8077": {
+            "id": "gt8077",
+            "text":  "Ta prover för alaninaminotransferas (ALAT) innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8078": {
+            "id": "gt8078",
+            "text":  "Lipidprofil",
+            "description": ""
+          },
+          "gt8079": {
+            "id": "gt8079",
+            "text":  "Ta prover för lipidprofil innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8080": {
+            "id": "gt8080",
+            "text":  "Lipidprofil",
+            "description": ""
+          },
+          "gt8081": {
+            "id": "gt8081",
+            "text":  "Ta prover för lipidprofil innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8082": {
+            "id": "gt8082",
+            "text":  "Lipidprofil",
+            "description": ""
+          },
+          "gt8083": {
+            "id": "gt8083",
+            "text":  "Ta prover för lipidprofil innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8084": {
+            "id": "gt8084",
+            "text":  "Aspartataminotransferas (ASAT)",
+            "description": ""
+          },
+          "gt8085": {
+            "id": "gt8085",
+            "text":  "Ta prover för aspartataminotransferas (ASAT) innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt8086": {
+            "id": "gt8086",
+            "text":  "Alaninaminotransferas (ALAT) ",
+            "description": ""
+          },
+          "gt8087": {
+            "id": "gt8087",
+            "text":  "Ta prover för alaninaminotransferas (ALAT) innan besöket för lipidkontroll som återkommer var tredje månad",
+            "description": ""
+          },
+          "gt9000": {
+            "id": "gt9000",
+            "text":  "qrisk2ScoreEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9001": {
+            "id": "gt9001",
+            "text":  "ldlc-latestEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9002": {
+            "id": "gt9002",
+            "text":  "ldlc-priorEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9003": {
+            "id": "gt9003",
+            "text":  "astEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9004": {
+            "id": "gt9004",
+            "text":  "altEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9005": {
+            "id": "gt9005",
+            "text":  "egfrEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text":  "value",
+            "description": "$currentDateTime"
+          },
+          "gt2006": {
+            "id": "gt2006",
+            "text":  "value",
+            "description": "$currentDateTime"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text":  "value",
+            "description": "/target/detailRange/high"
+          },
+          "gt2010": {
+            "id": "gt2010",
+            "text":  "value",
+            "description": "/medicationCodeableConcept/coding/display"
+          },
+          "gt2011": {
+            "id": "gt2011",
+            "text":  "value",
+            "description": "/medicationCodeableConcept/coding/code"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text":  "value",
+            "description": "/start"
+          },
+          "gt2016": {
+            "id": "gt2016",
+            "text":  "value",
+            "description": "/target/dueDate"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text":  "value",
+            "description": "/description"
+          },
+          "gt4205": {
+            "id": "gt4205",
+            "text":  "value",
+            "description": "/extension/valueString"
+          },
+          "gt4204": {
+            "id": "gt4204",
+            "text":  "value",
+            "description": "/code/coding/display"
+          },
+          "gt4203": {
+            "id": "gt4203",
+            "text":  "value",
+            "description": "/code/coding/code"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text":  "Förminska non-HDL kolesterol nivån",
+            "description": "/description/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "Förminska non-HDL kolesterol nivån med 40%. Gör kontroll varje 3 månader",
+            "description": "/description/text"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "Gör kreatinkinas prov",
+            "description": "/extension/valueString"
+          },
+          "gt5003": {
+            "id": "gt5003",
+            "text": "10-årsrisk för hjärtkärlsjukdom enligt QRISK2-skalan",
+            "description": "/code/coding/display"
+          },
+          "gt5004": {
+            "id": "gt5004",
+            "text": "Patienten",
+            "description": "/performer"
+          },
+          "gt5005": {
+            "id": "gt5005",
+            "text": "Sjukvårdspersonal",
+            "description": "/performer"
+          },
+          "gt5006": {
+            "id": "gt5006",
+            "text": "Mät och utvärdera QRISK2",
+            "description": "/extension/valueString"
+          },
+          "gt5007": {
+            "id": "gt5007",
+            "text": "Nefrolog",
+            "description": "/specialty/coding/display"
+          },
+          "gt5008": {
+            "id": "gt5008",
+            "text": "Remiss till en Renal Specialist att komma överens om en ökad statin dos för lipidsänkande, föreslagen dos 80 mg",
+            "description": "/description"
+          },
+          "gt5009": {
+            "id": "gt5009",
+            "text": "Provsbegäran",
+            "description": "/category/coding/display"
+          },
+          "gt5010": {
+            "id": "gt5010",
+            "text": "LDL-kolesterol",
+            "description": "/target/measure/coding/display"
+          },
+          "gt5011": {
+            "id": "gt5011",
+            "text": "Upföjlning",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5012": {
+            "id": "gt5012",
+            "text": "Kreatinkinas",
+            "description": "/code/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/description/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/extension/valueString"
+          },
+          "gt5103": {
+            "id": "gt5103",
+            "text": "value",
+            "description": "/code/coding/display"
+          },
+          "gt5104": {
+            "id": "gt5104",
+            "text": "value",
+            "description": "/performer"
+          },
+          "gt5105": {
+            "id": "gt5105",
+            "text": "value",
+            "description": "/performer"
+          },
+          "gt5106": {
+            "id": "gt5106",
+            "text": "value",
+            "description": "/extension/valueString"
+          },
+          "gt5107": {
+            "id": "gt5107",
+            "text": "value",
+            "description": "/specialty/coding/display"
+          },
+          "gt5108": {
+            "id": "gt5108",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt5109": {
+            "id": "gt5109",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5110": {
+            "id": "gt5110",
+            "text": "value",
+            "description": "/target/measure/coding/display"
+          },
+          "gt5111": {
+            "id": "gt5111",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5112": {
+            "id": "gt5112",
+            "text": "value",
+            "description": "/code/coding/display"
+          },
+          "gt5113": {
+            "id": "gt5113",
+            "text": "value",
+            "description": "/specialty/text"
+          },
+          "gt4202": {
+            "id": "gt4202",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt0220": {
+            "id": "gt0220",
+            "text": "Beställ provtagning av LDL-kolesterol",
+            "description": "cards.summary"
+          },
+          "gt0221": {
+            "id": "gt0221",
+            "text": "Patienten har inget dokumenterat LDL-kolesterolvärde som krävs för att upprätta ett nytt mål för hantering av LDL-kolesterol hos diabetespatienter.",
+            "description": "cards.detail"
+          },
+          "gt0222": {
+            "id": "gt0222",
+            "text": "Beställ provtagning av LDL-kolesterol",
+            "description": "cards.label"
+          },
+          "gt0223": {
+            "id": "gt0223",
+            "text": "Beställ provtagning av LDL-kolesterol",
+            "description": "cards.description"
+          },
+          "gt0224": {
+            "id": "gt0224",
+            "text": "Beställ provtagning av LDL-kolesterol",
+            "description": "/extension/valueString"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Generate LDL-cholesterol procedure request",
+            "description": ""
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0007": {
+            "id": "gt0007",
+            "text": "CKD",
+            "description": "Chronic kidney disease"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Previous LDL Cholesterol",
+            "description": "LDL-Cholesterol level in the sample."
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Nombre de la meta",
+            "description": "The name of the desired health outcome."
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "QRISK2 score",
+            "description": "QRISK2 score"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Type-2 diabetes diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Tasa estimada de filtración glomerular",
+            "description": "Value describing estimation of glomerular filtration rate adjusted by body-surface area (mL/min/1.73m²)."
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Start statin treatment in patient with CVD"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Type-2 diabetes"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Start statin treatment in patient without CVD"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Latest LDL Cholesterol",
+            "description": "LDL-Cholesterol level in the sample."
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "CKD diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0028": {
+            "id": "gt0028"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "CVD",
+            "description": "Chronic vascular disease"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Request description",
+            "description": "Narrative description of the service requested."
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Statin treatment",
+            "description": "The generic name of the drug which is an alternative name to the name of medication"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Request QRISK"
+          },
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - reducción de los lípidos en la diabetes tipo 2 sin ERC",
+            "description": "Managing lipids and cardiovascular risk in Type 2 Diabetes patients"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Statin"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Nombre genérico del medicamento solicitado",
+            "description": "The generic name of the drug which is an alternative name to the name of medication"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "Increase statin dose"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Requested medication dose",
+            "description": "*"
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Continue treatment"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "CVD diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "LDL Cholesterol",
+            "description": "LDL Cholesterol lab test result."
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "QRISK2",
+            "description": "QRISK2 cardiovascular disease 10 year risk score."
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "Aspartate transaminase (AST)",
+            "description": "Aspartate transaminase (AST)."
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "Aspartate transaminase (AST) lab test",
+            "description": "Aspartate transaminase (AST) lab test."
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "Aspartate transaminase (AST) test value",
+            "description": "Aspartate transaminase (AST) test value."
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Alanine transaminase (ALT)",
+            "description": "Alanine transaminase (ALT)."
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Alanine transaminase (ALT) lab test",
+            "description": "Alanine transaminase (ALT) lab test."
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Alanine transaminase (ALT) test value",
+            "description": "Alanine transaminase (ALT) test value."
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "Stop statin treatment",
+            "description": "Stop statin treatment rule."
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "Measure and evaluate QRISK2",
+            "description": "Measure and evaluate QRISK2 rule."
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "No indication for lipid lowering primary intervention",
+            "description": "No indication for lipid lowering primary intervention rule."
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Order liver transaminases test",
+            "description": "Order liver transaminases test rule."
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "Order lipid lab test",
+            "description": "Order lipid lab test rule."
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "eGFR lab test",
+            "description": "eGFR lab test."
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "eGFR value",
+            "description": "eGFR value"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "eGFR",
+            "description": "eGFR"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Agree an increased dose with a renal specialist",
+            "description": "Agree an increased dose with a renal specialist rule."
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Muscle pain condition",
+            "description": "Muscle pain condition."
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Muscle pain condition",
+            "description": "Muscle pain condition."
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "Muscle pain",
+            "description": "Muscle pain."
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Suspect statin's side effect and measure CK",
+            "description": "Suspect statin's side effect and measure CK rule."
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "Muscle pain onset date",
+            "description": "Muscle pain onset date."
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "Statin medication effective datetime",
+            "description": "Statin medication effective datetime."
+          },
+          "gt8000": {
+            "id": "gt8000",
+            "text": "Atorvastatina Recomendación-80mg, lípidos y pruebas de transaminasas hepáticas",
+            "description": ""
+          },
+          "gt8001": {
+            "id": "gt8001",
+            "text": "Oferta de atorvastatina 80 mg. Cita para visita de control después de 3 meses. Sugerir pruebas de transaminasas lipídicas y hepáticas.",
+            "description": ""
+          },
+          "gt8002": {
+            "id": "gt8002",
+            "text": "Oferta de atorvastatina 80 mg. Cita para visita de control después de 3 meses. Sugerencia de lípidos y pruebas de transaminasas hepáticas.",
+            "description": ""
+          },
+          "gt8003": {
+            "id": "gt8003",
+            "text": "Atorvastatina Recomendación-80mg.",
+            "description": ""
+          },
+          "gt8004": {
+            "id": "gt8004",
+            "text": "Seguimiento para comprobar los resultados del tratamiento",
+            "description": ""
+          },
+          "gt8005": {
+            "id": "gt8005",
+            "text": "Prueba de panel lipídico",
+            "description": ""
+          },
+          "gt8006": {
+            "id": "gt8006",
+            "text": "Prueba de aspartato transaminasa (AST)",
+            "description": ""
+          },
+          "gt8007": {
+            "id": "gt8007",
+            "text": "Prueba de alanina transaminasa (ALT)",
+            "description": ""
+          },
+          "gt8008": {
+            "id": "gt8008",
+            "text": "Atorvastatina Recomendación-20mg, lípidos y pruebas de transaminasas hepáticas",
+            "description": ""
+          },
+          "gt8009": {
+            "id": "gt8009",
+            "text": "Oferta de atorvastatina 20 mg. Agregue un objetivo para reducir el colesterol no HDL en un 40%. Cita para visita de control después de 3 meses. Sugerir pruebas de transaminasas lipídicas y hepáticas.",
+            "description": ""
+          },
+          "gt8010": {
+            "id": "gt8010",
+            "text": "Oferta de atorvastatina 20 mg. Agregue un objetivo para reducir el colesterol no HDL en un 40%. Cita para visita de control después de 3 meses. Sugerencia de lípidos y pruebas de transaminasas hepáticas.",
+            "description": ""
+          },
+          "gt8011": {
+            "id": "gt8011",
+            "text": "Oferta de tratamiento inicial con estatinas",
+            "description": ""
+          },
+          "gt8012": {
+            "id": "gt8012",
+            "text": "Tratamiento con estatinas objetivo de seguimiento",
+            "description": ""
+          },
+          "gt8013": {
+            "id": "gt8013",
+            "text": "Prueba de aspartato transaminasa (AST)",
+            "description": ""
+          },
+          "gt8014": {
+            "id": "gt8014",
+            "text": "Recomendación para aumentar la dosis de tratamiento con estatinas (atorvastatina 80 mg) y sugerir una prueba de lípidos y 3 meses de control de visita.",
+            "description": ""
+          },
+          "gt8015": {
+            "id": "gt8015",
+            "text": "Aumente la dosis de atorvastatina a 80 mg. Agregue un objetivo para reducir el colesterol no HDL en un 40%. Consulte también las pautas de NICE para enfermedades cardiovasculares (CG181) y sugiera una prueba de lípidos y una visita de control de 3 meses.",
+            "description": ""
+          },
+          "gt8016": {
+            "id": "gt8016",
+            "text": "Atorvastatina Recomendación-80 mg y un objetivo para reducir el colesterol no HDL en un 40%",
+            "description": ""
+          },
+          "gt8017": {
+            "id": "gt8017",
+            "text": "Atorvastatina Recomendación-80mg",
+            "description": ""
+          },
+          "gt8018": {
+            "id": "gt8018",
+            "text": "Tratamiento con estatinas objetivo de seguimiento",
+            "description": ""
+          },
+          "gt8019": {
+            "id": "gt8019",
+            "text": "Continuar el tratamiento y ofrecer un seguimiento anual y sugerir la prueba de lípidos.",
+            "description": ""
+          },
+          "gt8020": {
+            "id": "gt8020",
+            "text": "Continuar el tratamiento y ofrecer un seguimiento anual y sugerir la prueba de lípidos.",
+            "description": ""
+          },
+          "gt8021": {
+            "id": "gt8021",
+            "text": "Seguimiento anual",
+            "description": ""
+          },
+          "gt8022": {
+            "id": "gt8022",
+            "text": "Detener el tratamiento con estatinas.",
+            "description": ""
+          },
+          "gt8023": {
+            "id": "gt8023",
+            "text": "Detener el tratamiento con estatinas",
+            "description": ""
+          },
+          "gt8024": {
+            "id": "gt8024",
+            "text": "Detener el tratamiento con estatinas",
+            "description": ""
+          },
+          "gt8025": {
+            "id": "gt8025",
+            "text": "Dejar de estatinas",
+            "description": ""
+          },
+          "gt8026": {
+            "id": "gt8026",
+            "text": "Medir y evaluar QRISK2",
+            "description": ""
+          },
+          "gt8027": {
+            "id": "gt8027",
+            "text": "Medir y evaluar QRISK2",
+            "description": ""
+          },
+          "gt8028": {
+            "id": "gt8028",
+            "text": "Medir y evaluar QRISK2",
+            "description": ""
+          },
+          "gt8029": {
+            "id": "gt8029",
+            "text": "Observación QRISK2",
+            "description": ""
+          },
+          "gt8030": {
+            "id": "gt8030",
+            "text": "No hay indicación de reducción primaria de lípidos.",
+            "description": ""
+          },
+          "gt8031": {
+            "id": "gt8031",
+            "text": "No hay indicación de reducción primaria de lípidos.",
+            "description": ""
+          },
+          "gt8032": {
+            "id": "gt8032",
+            "text": "Solicitar prueba de transaminasas hepáticas",
+            "description": ""
+          },
+          "gt8033": {
+            "id": "gt8033",
+            "text": "Solicitar prueba de transaminasas hepáticas (AST y ALT)",
+            "description": ""
+          },
+          "gt8034": {
+            "id": "gt8034",
+            "text": "Solicitar prueba de transaminasas hepáticas (AST y ALT)",
+            "description": ""
+          },
+          "gt8035": {
+            "id": "gt8035",
+            "text": "Ordenar prueba de laboratorio de lípidos.",
+            "description": ""
+          },
+          "gt8036": {
+            "id": "gt8036",
+            "text": "Ordenar prueba de laboratorio de lípidos.",
+            "description": ""
+          },
+          "gt8037": {
+            "id": "gt8037",
+            "text": "Ordenar prueba de laboratorio de lípidos.",
+            "description": ""
+          },
+          "gt8038": {
+            "id": "gt8038",
+            "text": "Referir a un especialista renal para acordar un aumento de la dosis de estatina y sugerir una prueba de lípidos y 3 meses de control.",
+            "description": ""
+          },
+          "gt8039": {
+            "id": "gt8039",
+            "text": "RReferir a un especialista renal para acordar un aumento de la dosis de estatina y sugerir una prueba de lípidos. Agregue un objetivo para reducir el colesterol no HDL en un 40% y en una visita de control de 3 meses.",
+            "description": ""
+          },
+          "gt8040": {
+            "id": "gt8040",
+            "text": "Referencia a un especialista renal para acordar una dosis mayor de estatinas y un objetivo para reducir el colesterol no HDL en un 40%",
+            "description": ""
+          },
+          "gt8041": {
+            "id": "gt8041",
+            "text": "Referencia a un especialista renal para acordar un aumento de la dosis de estatina",
+            "description": ""
+          },
+          "gt8042": {
+            "id": "gt8042",
+            "text": "Tratamiento con estatinas objetivo de seguimiento",
+            "description": ""
+          },
+          "gt8043": {
+            "id": "gt8043",
+            "text": "Medir la creatina quinasa (CK)",
+            "description": ""
+          },
+          "gt8044": {
+            "id": "gt8044",
+            "text": "Sospeche los efectos secundarios de las estatinas y mida la creatina quinasa (CK)",
+            "description": ""
+          },
+          "gt8045": {
+            "id": "gt8045",
+            "text": "Observación de la creatina quinasa",
+            "description": ""
+          },
+          "gt8046": {
+            "id": "gt8046",
+            "text": "Observación de la creatina quinasa",
+            "description": ""
+          },
+          "gt8047": {
+            "id": "gt8047",
+            "text": "Medir la creatina quinasa (CK)",
+            "description": ""
+          },
+          "gt8048": {
+            "id": "gt8048",
+            "text": "Sospeche los efectos secundarios de las estatinas y mida la creatina quinasa (CK)",
+            "description": ""
+          },
+          "gt8049": {
+            "id": "gt8049",
+            "text": "Observación de la creatina quinasa",
+            "description": ""
+          },
+          "gt8050": {
+            "id": "gt8050",
+            "text": "Observación de la creatina quinasa",
+            "description": ""
+          },
+          "gt8051": {
+            "id": "gt8051",
+            "text": "Atorvastatina Recomendación-20mg, lípidos y pruebas de transaminasas hepáticas",
+            "description": ""
+          },
+          "gt8052": {
+            "id": "gt8052",
+            "text": "Oferta de atorvastatina 20 mg. Agregue un objetivo para reducir el colesterol no HDL en un 40%. Cita para visita de control después de 3 meses. Sugerir pruebas de transaminasas lipídicas y hepáticas.",
+            "description": ""
+          },
+          "gt8053": {
+            "id": "gt8053",
+            "text": "Oferta de atorvastatina 20 mg. Agregue un objetivo para reducir el colesterol no HDL en un 40%. Cita para visita de control después de 3 meses. Sugerencia de lípidos y pruebas de transaminasas hepáticas.",
+            "description": ""
+          },
+          "gt8054": {
+            "id": "gt8054",
+            "text": "Oferta de tratamiento inicial con estatinas",
+            "description": ""
+          },
+          "gt8055": {
+            "id": "gt8055",
+            "text": "Tratamiento con estatinas objetivo de seguimiento",
+            "description": ""
+          },
+          "gt8056": {
+            "id": "gt8056",
+            "text": "Panel de lípidos",
+            "description": ""
+          },
+          "gt8057": {
+            "id": "gt8057",
+            "text": "Hágase una prueba de panel de lípidos antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8058": {
+            "id": "gt8058",
+            "text": "Aspartato transaminasa (AST)",
+            "description": ""
+          },
+          "gt8059": {
+            "id": "gt8059",
+            "text": "Hágase la prueba de aspartato transaminasa (AST) antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8060": {
+            "id": "gt8060",
+            "text": "Alanina transaminasa (ALT)",
+            "description": ""
+          },
+          "gt8061": {
+            "id": "gt8061",
+            "text": "Hágase la prueba de alanina transaminasa (ALT) antes de la visita de control de lípidos cada 3 meses",
+            "description": ""
+          },
+          "gt8062": {
+            "id": "gt8062",
+            "text": "Panel de lípidos",
+            "description": ""
+          },
+          "gt8063": {
+            "id": "gt8063",
+            "text": "Hágase una prueba de panel de lípidos antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8064": {
+            "id": "gt8064",
+            "text": "Aspartato transaminasa (AST)",
+            "description": ""
+          },
+          "gt8065": {
+            "id": "gt8065",
+            "text": "Hágase la prueba de aspartato transaminasa (AST) antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8066": {
+            "id": "gt8066",
+            "text": "Alanina transaminasa (ALT)",
+            "description": ""
+          },
+          "gt8067": {
+            "id": "gt8067",
+            "text": "Hágase la prueba de alanina transaminasa (ALT) antes de la visita de control de lípidos cada 3 meses",
+            "description": ""
+          },
+          "gt8068": {
+            "id": "gt8068",
+            "text": "Panel de lípidos",
+            "description": ""
+          },
+          "gt8069": {
+            "id": "gt8069",
+            "text": "Hágase una prueba de panel de lípidos antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8070": {
+            "id": "gt8070",
+            "text": "Seguimiento anual para comprobar los resultados del tratamiento.",
+            "description": ""
+          },
+          "gt8071": {
+            "id": "gt8071",
+            "text":  "Panel de lípidos",
+            "description": ""
+          },
+          "gt8072": {
+            "id": "gt8072",
+            "text":  "Hágase una prueba de panel de lípidos antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8074": {
+            "id": "gt8074",
+            "text":  "Aspartato transaminasa (AST)",
+            "description": ""
+          },
+          "gt8075": {
+            "id": "gt8075",
+            "text":  "Hágase la prueba de aspartato transaminasa (AST) antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8076": {
+            "id": "gt8076",
+            "text":  "Alanina transaminasa (ALT)",
+            "description": ""
+          },
+          "gt8077": {
+            "id": "gt8077",
+            "text":  "Hágase la prueba de alanina transaminasa (ALT) antes de la visita de control de lípidos cada 3 meses",
+            "description": ""
+          },
+          "gt8078": {
+            "id": "gt8078",
+            "text":  "Panel de lípidos",
+            "description": ""
+          },
+          "gt8079": {
+            "id": "gt8079",
+            "text":  "Hágase una prueba de panel de lípidos antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8080": {
+            "id": "gt8080",
+            "text":  "Panel de lípidos",
+            "description": ""
+          },
+          "gt8081": {
+            "id": "gt8081",
+            "text":  "Hágase una prueba de panel de lípidos antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8082": {
+            "id": "gt8082",
+            "text":  "Panel de lípidos",
+            "description": ""
+          },
+          "gt8083": {
+            "id": "gt8083",
+            "text":  "Hágase una prueba de panel de lípidos antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8084": {
+            "id": "gt8084",
+            "text":  "Aspartato transaminasa (AST)",
+            "description": ""
+          },
+          "gt8085": {
+            "id": "gt8085",
+            "text":  "Hágase la prueba de aspartato transaminasa (AST) antes de la visita de control de lípidos que se realiza cada 3 meses",
+            "description": ""
+          },
+          "gt8086": {
+            "id": "gt8086",
+            "text":  "Alanina transaminasa (ALT)",
+            "description": ""
+          },
+          "gt8087": {
+            "id": "gt8087",
+            "text":  "Hágase la prueba de alanina transaminasa (ALT) antes de la visita de control de lípidos cada 3 meses",
+            "description": ""
+          },
+          "gt9000": {
+            "id": "gt9000",
+            "text":  "qrisk2ScoreEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9001": {
+            "id": "gt9001",
+            "text":  "ldlc-latestEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9002": {
+            "id": "gt9002",
+            "text":  "ldlc-priorEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9003": {
+            "id": "gt9003",
+            "text":  "astEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9004": {
+            "id": "gt9004",
+            "text":  "altEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt9005": {
+            "id": "gt9005",
+            "text":  "egfrEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text":  "value",
+            "description": "$currentDateTime"
+          },
+          "gt2006": {
+            "id": "gt2006",
+            "text":  "value",
+            "description": "$currentDateTime"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text":  "value",
+            "description": "/target/detailRange/high"
+          },
+          "gt2010": {
+            "id": "gt2010",
+            "text":  "value",
+            "description": "/medicationCodeableConcept/coding/display"
+          },
+          "gt2011": {
+            "id": "gt2011",
+            "text":  "value",
+            "description": "/medicationCodeableConcept/coding/code"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text":  "value",
+            "description": "/start"
+          },
+          "gt2016": {
+            "id": "gt2016",
+            "text":  "value",
+            "description": "/target/dueDate"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text":  "value",
+            "description": "/description"
+          },
+          "gt4205": {
+            "id": "gt4205",
+            "text":  "value",
+            "description": "/extension/valueString"
+          },
+          "gt4204": {
+            "id": "gt4204",
+            "text":  "value",
+            "description": "/code/coding/display"
+          },
+          "gt4203": {
+            "id": "gt4203",
+            "text":  "value",
+            "description": "/code/coding/code"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text":  "Disminuir el nivel de colesterol no HDL",
+            "description": "/description/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "Disminuir el colesterol no HDL en un 40%. Evaluar el progreso con medidas de 3 meses.",
+            "description": "/description/text"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "Medir la creatina quinasa",
+            "description": "/extension/valueString"
+          },
+          "gt5003": {
+            "id": "gt5003",
+            "text": "Puntaje de la evaluación con la escala de riesgo de enfermedad cardiovascular a 10 años QRISK2",
+            "description": "/code/coding/display"
+          },
+          "gt5004": {
+            "id": "gt5004",
+            "text": "Paciente",
+            "description": "/performer"
+          },
+          "gt5005": {
+            "id": "gt5005",
+            "text": "Profesional de la salud",
+            "description": "/performer"
+          },
+          "gt5006": {
+            "id": "gt5006",
+            "text": "Medir y evaluar QRISK2",
+            "description": "/extension/valueString"
+          },
+          "gt5007": {
+            "id": "gt5007",
+            "text": "Nefrólogo",
+            "description": "/specialty/coding/display"
+          },
+          "gt5008": {
+            "id": "gt5008",
+            "text": "Remisión a un especialista renal a un acuerdo sobre una dosis de estatina aumentado para la reducción de lípidos, propuesto dosis de 80 mg",
+            "description": "/description"
+          },
+          "gt5009": {
+            "id": "gt5009",
+            "text": "Solicitud de laboratorio",
+            "description": "/category/coding/display"
+          },
+          "gt5010": {
+            "id": "gt5010",
+            "text": "Colesterol LDL",
+            "description": "/target/measure/coding/display"
+          },
+          "gt5011": {
+            "id": "gt5011",
+            "text": "Seguir",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5012": {
+            "id": "gt5012",
+            "text": "Creatina quinasa",
+            "description": "/code/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/description/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/extension/valueString"
+          },
+          "gt5103": {
+            "id": "gt5103",
+            "text": "value",
+            "description": "/code/coding/display"
+          },
+          "gt5104": {
+            "id": "gt5104",
+            "text": "value",
+            "description": "/performer"
+          },
+          "gt5105": {
+            "id": "gt5105",
+            "text": "value",
+            "description": "/performer"
+          },
+          "gt5106": {
+            "id": "gt5106",
+            "text": "value",
+            "description": "/extension/valueString"
+          },
+          "gt5107": {
+            "id": "gt5107",
+            "text": "value",
+            "description": "/specialty/coding/display"
+          },
+          "gt5108": {
+            "id": "gt5108",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt5109": {
+            "id": "gt5109",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5110": {
+            "id": "gt5110",
+            "text": "value",
+            "description": "/target/measure/coding/display"
+          },
+          "gt5111": {
+            "id": "gt5111",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5112": {
+            "id": "gt5112",
+            "text": "value",
+            "description": "/code/coding/display"
+          },
+          "gt5113": {
+            "id": "gt5113",
+            "text": "value",
+            "description": "/specialty/text"
+          },
+          "gt4202": {
+            "id": "gt4202",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt0220": {
+            "id": "gt0220",
+            "text": "Realizar un análisis de LDL (lipoproteina baja densidad)",
+            "description": "cards.summary"
+          },
+          "gt0221": {
+            "id": "gt0221",
+            "text": "El paciente no tiene ningún registro de colesterol LDL que establecería un nuevo objetivo para el control de los niveles de LDL en pacientes con diabetes",
+            "description": "cards.detail"
+          },
+          "gt0222": {
+            "id": "gt0222",
+            "text": "Realizar un análisis de LDL (lipoproteina baja densidad)",
+            "description": "cards.label"
+          },
+          "gt0223": {
+            "id": "gt0223",
+            "text": "Realizar un análisis de LDL (lipoproteina baja densidad)",
+            "description": "cards.description"
+          },
+          "gt0224": {
+            "id": "gt0224",
+            "text": "Realizar un análisis de LDL (lipoproteina baja densidad)",
+            "description": "/extension/valueString"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Generate LDL-cholesterol procedure request",
+            "description": ""
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ATC": {
+        "id": "ATC",
+        "bindings": {
+          "gt0012": {
+            "codes": [
+              "ATC::C10AA05",
+              "ATC::C10AA01",
+              "ATC::C10BA02",
+              "ATC::C10BA05",
+              "ATC::C10BA08",
+              "ATC::C10BA02",
+              "ATC::C10BA04",
+              "ATC::C10AA03",
+              "ATC::C10BA03"
+            ]
+          }
+        }
+      },
+      "CIE-10-CM-ES": {
+        "id": "CIE-10-CM-ES",
+        "bindings": {
+          "gt0004": {
+            "codes": [
+              "CIE-10-CM-ES::E11",
+              "CIE-10-CM-ES::E13.11",
+              "CIE-10-CM-ES::E10.10"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "CIE-10-CM-ES::N18",
+              "CIE-10-CM-ES::N19",
+              "CIE-10-CM-ES::I12.0",
+              "CIE-10-CM-ES::I13.1"
+            ]
+          },
+          "gt0021": {
+            "codes": [
+              "CIE-10-CM-ES::I20",
+              "CIE-10-CM-ES::I21",
+              "CIE-10-CM-ES::I22",
+              "CIE-10-CM-ES::I23",
+              "CIE-10-CM-ES::I24",
+              "CIE-10-CM-ES::I25",
+              "CIE-10-CM-ES::I63",
+              "CIE-10-CM-ES::I65",
+              "CIE-10-CM-ES::I66",
+              "CIE-10-CM-ES::I67.2",
+              "CIE-10-CM-ES::I70",
+              "CIE-10-CM-ES::K55.1",
+              "CIE-10-CM-ES::E11.5"
+            ]
+          },
+          "gt0055": {
+            "codes": [
+              "CIE-10-CM-ES::M79.1"
+            ]
+          }
+        }
+      },
+      "DBP": {
+        "id": "DBP",
+        "bindings": {
+          "gt0036": {
+            "codes": [
+              "DBP::104",
+              "DBP::120"
+            ]
+          },
+          "gt0038": {
+            "codes": [
+              "DBP::51"
+            ]
+          },
+          "gt0041": {
+            "codes": [
+              "DBP::52"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "DBP::33382"
+            ]
+          }
+        }
+      },
+      "READ2": {
+        "id": "READ2",
+        "bindings": {
+          "gt0004": {
+            "codes": [
+              "READ2::C10F",
+              "READ2::F1711",
+              "READ2::C107",
+              "READ2::C104",
+              "READ2::C101",
+              "READ2::F372",
+              "READ2::EMISNQHO137"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "READ2::1Z1",
+              "READ2::K05"
+            ]
+          },
+          "gt0021": {
+            "codes": [
+              "READ2::G3",
+              "READ2::G63",
+              "READ2::G64",
+              "READ2::G66",
+              "READ2::G670",
+              "READ2::G6W",
+              "READ2::G6X",
+              "READ2::G70",
+              "READ2::Gyu32",
+              "READ2::Gyu66",
+              "READ2::J421",
+              "READ2::C107",
+              "READ2::G5yX"
+            ]
+          },
+          "gt0036": {
+            "codes": [
+              "READ2::44P6",
+              "READ2::44PI"
+            ]
+          },
+          "gt0038": {
+            "codes": [
+              "READ2::44HB"
+            ]
+          },
+          "gt0041": {
+            "codes": [
+              "READ2::44GB"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "READ2::451E"
+            ]
+          },
+          "gt0055": {
+            "codes": [
+              "READ2::N2410"
+            ]
+          }
+        }
+      },
+      "SNOMED-CT": {
+        "id": "SNOMED-CT",
+        "bindings": {
+          "gt0004": {
+            "codes": [
+              "SNOMED-CT::44054006",
+              "SNOMED-CT::420436000",
+              "SNOMED-CT::423263001",
+              "SNOMED-CT::421895002",
+              "SNOMED-CT::421707005",
+              "SNOMED-CT::395204000",
+              "SNOMED-CT::120731000119103",
+              "SNOMED-CT::420662003",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::421847006",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::420422005",
+              "SNOMED-CT::49455004"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "SNOMED-CT::425369003",
+              "SNOMED-CT::431855005",
+              "SNOMED-CT::431856006",
+              "SNOMED-CT::433144002",
+              "SNOMED-CT::431857002",
+              "SNOMED-CT::433146000"
+            ]
+          },
+          "gt0021": {
+            "codes": [
+              "SNOMED-CT::55382008",
+              "SNOMED-CT::72092001",
+              "SNOMED-CT::194828000",
+              "SNOMED-CT::432504007",
+              "SNOMED-CT::194861007",
+              "SNOMED-CT::413838009",
+              "SNOMED-CT::111354009",
+              "SNOMED-CT::22298006",
+              "SNOMED-CT::195231004",
+              "SNOMED-CT::28790007",
+              "SNOMED-CT::413439005",
+              "SNOMED-CT::57054005",
+              "SNOMED-CT::401303003",
+              "SNOMED-CT::401314000",
+              "SNOMED-CT::194856005",
+              "SNOMED-CT::421895002",
+              "SNOMED-CT::49601007"
+            ]
+          },
+          "gt0037": {
+            "codes": [
+              "SNOMED-CT::718087004"
+            ]
+          },
+          "gt0055": {
+            "codes": [
+              "SNOMED-CT::68962001"
+            ]
+          }
+        }
+      },
+      "LOINC": {
+        "id": "LOINC",
+        "bindings": {
+          "gt0036": {
+            "codes": [
+              "LOINC::13457-7"
+            ]
+          },
+          "gt0038": {
+            "codes": [
+              "LOINC::1920-8"
+            ]
+          },
+          "gt0041": {
+            "codes": [
+              "LOINC::1742-6"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "LOINC::33914-3"
+            ]
+          }
+        }
+      },
+      "NPU": {
+        "id": "NPU",
+        "bindings": {
+          "gt0036": {
+            "codes": [
+              "NPU::NPU10171"
+            ]
+          },
+          "gt0038": {
+            "codes": [
+              "NPU::NPU22279",
+              "NPU::NPU01324"
+            ]
+          },
+          "gt0041": {
+            "codes": [
+              "NPU::NPU19981",
+              "NPU::NPU01121"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "NPU::EGFRKRE",
+              "NPU::SWE05406",
+              "NPU::SWE05405",
+              "NPU::SWE05404",
+              "NPU::SWE05387",
+              "NPU::SWE05386",
+              "NPU::SWE05385"
+            ]
+          }
+        }
+      },
+      "ICD-10-SE": {
+        "id": "ICD-10-SE",
+        "bindings": {
+          "gt0021": {
+            "codes": [
+              "ICD-10-SE::I20",
+              "ICD-10-SE::I21",
+              "ICD-10-SE::I22",
+              "ICD-10-SE::I23",
+              "ICD-10-SE::I24",
+              "ICD-10-SE::I25",
+              "ICD-10-SE::I63",
+              "ICD-10-SE::I65",
+              "ICD-10-SE::I66",
+              "ICD-10-SE::I672",
+              "ICD-10-SE::I70",
+              "ICD-10-SE::K551",
+              "ICD-10-SE::E115"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10-SE::N189",
+              "ICD-10-SE::N180",
+              "ICD-10-SE::N183",
+              "ICD-10-SE::N184",
+              "ICD-10-SE::N181",
+              "ICD-10-SE::N182",
+              "ICD-10-SE::N185"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-SE::E11",
+              "ICD-10-SE::G632"
+            ]
+          },
+          "gt0055": {
+            "codes": [
+              "ICD-10-SE::M791"
+            ]
+          }
+        }
+      },
+      "ICD-10-UK": {
+        "id": "ICD-10-UK",
+        "bindings": {
+          "gt0021": {
+            "codes": [
+              "ICD-10-UK::I20",
+              "ICD-10-UK::I21",
+              "ICD-10-UK::I22",
+              "ICD-10-UK::I23",
+              "ICD-10-UK::I24",
+              "ICD-10-UK::I25",
+              "ICD-10-UK::I63",
+              "ICD-10-UK::I65",
+              "ICD-10-UK::I66",
+              "ICD-10-UK::I67.2",
+              "ICD-10-UK::I70",
+              "ICD-10-UK::K55.1",
+              "ICD-10-UK::E11.5"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10-UK::N18",
+              "ICD-10-UK::I120",
+              "ICD-10-UK::I131",
+              "ICD-10-UK::N19"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-UK::E11",
+              "ICD-10-UK::G63.2"
+            ]
+          },
+          "gt0055": {
+            "codes": [
+              "ICD-10-UK::M79.1"
+            ]
+          }
+        }
+      },
+      "ICD-10": {
+        "id": "ICD-10",
+        "bindings": {
+          "gt0021": {
+            "codes": [
+              "ICD-10::I20",
+              "ICD-10::I21",
+              "ICD-10::I22",
+              "ICD-10::I23",
+              "ICD-10::I24",
+              "ICD-10::I25",
+              "ICD-10::I63",
+              "ICD-10::I65",
+              "ICD-10::I66",
+              "ICD-10::I67.2",
+              "ICD-10::I70",
+              "ICD-10::K55.1",
+              "ICD-10::E11.5"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10::N18.9",
+              "ICD-10::N18.0",
+              "ICD-10::N18.3",
+              "ICD-10::N18.4",
+              "ICD-10::N18.1",
+              "ICD-10::N18.2",
+              "ICD-10::N18.5"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10::E11",
+              "ICD-10::G63.2"
+            ]
+          },
+          "gt0055": {
+            "codes": [
+              "ICD-10::M79.1"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

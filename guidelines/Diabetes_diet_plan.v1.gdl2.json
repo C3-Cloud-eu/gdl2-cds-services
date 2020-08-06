@@ -1,0 +1,2066 @@
+{
+  "id": "Diabetes_diet_plan.v1",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2018-02-21",
+      "organisation": "Cambio Healthcare Systems"
+    },
+    "lifecycle_state": "Author draft",
+    "details": {
+      "sv": {
+        "id": "sv",
+        "purpose": "FHIR-baserade cds-regler för demonstrationsändamål",
+        "copyright": "© Cambio Healthcare Systems"
+      },
+      "en": {
+        "id": "en",
+        "purpose": "Sample fhir-based cds-rules for demonstration purpose",
+        "copyright": "© Cambio Healthcare Systems"
+      },
+      "es": {
+        "id": "es",
+        "purpose": "Ejemplos de reglas de cds basadas en fhir para propósitos de demostración",
+        "copyright": "© Cambio Healthcare Systems"
+      }
+    },
+    "other_details": {
+      "references": "1. NICE guideline [NG28], 2017. Type 2 diabetes in adults: management - Dietary Advice. https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations#dietary-advice-2\n2. Clinical guideline [CG182], 2015. Chronic kidney disease in adults: assessment and management - Lifestyle Advice. https://www.nice.org.uk/guidance/cg182/chapter/1-recommendations#information-and-education"
+    },
+    "references": [
+      {
+        "id": "1",
+        "label": "NICE diabetes guideline, Chapter 1.3 [48, pp. 13-14].",
+        "url": "https://www.nice.org.uk/guidance/ng28"
+      },
+      {
+        "id": "2",
+        "label": "NICE CKD guideline CG182, Chapter 1.4.6-1.4.9 [60, pp. 29-30].",
+        "url": "https://www.nice.org.uk/guidance/cg182"
+      },
+      {
+        "id": "3",
+        "label": "Osakidetza Clinical guideline and Renal Failure pathway",
+        "url": ""
+      }
+    ]
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0004|type2DiabetesDiagnosis|"
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0007|Chronic kidney disease stage 3|"
+        ]
+      },
+      "gt0008": {
+        "id": "gt0008",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/code/coding[0]"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/valueQuantity"
+          },
+          "gt5104": {
+            "id": "gt5104",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0041|Estimated Glomerular Filtration Rate|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0034": {
+        "id": "gt0034",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0035": {
+            "id": "gt0035",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0032|Chronic kidney disease stage 4|"
+        ]
+      },
+      "gt0036": {
+        "id": "gt0036",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0037": {
+            "id": "gt0037",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0033|Chronic kidney disease stage 5|"
+        ]
+      },
+      "gt0038": {
+        "id": "gt0038",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0039": {
+            "id": "gt0039",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0040|Chronic kidney disease stage 2|"
+        ]
+      }
+    },
+    "templates": {
+      "gt3020": {
+        "id": "gt3020",
+        "model_id": "org.hl7.fhir.dstu3.model.Goal",
+        "template_id": "FHIR-STU3-Goal.generic.v0",
+        "object": {
+          "description": {
+            "coding": [
+              {
+                "code": "g0006",
+                "system": "http://www.c3-cloud.eu/fhir/goal-code",
+                "display": "{$gt5100}"
+              }
+            ],
+            "text": "{$gt5101}"
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "code": "dietary",
+                  "system": "http://hl7.org/fhir/goal-category"
+                }
+              ]
+            }
+          ],
+          "startDate": "{$gt3021}",
+          "status": "proposed",
+          "resourceType": "Goal"
+        }
+      },
+      "gt3022": {
+        "id": "gt3022",
+        "model_id": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+        "template_id": "FHIR-STU3-ProcedureRequest.generic.v0",
+        "object": {
+          "extension": [
+            {
+              "valueString": "{$gt3023}",
+              "url": "http://www.c3-cloud.eu/fhir/StructureDefinition/description"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "code": "{$gt3024}",
+                "system": "http://www.c3-cloud.eu/fhir/diet-code",
+                "display": "{$gt3025}"
+              }
+            ]
+          },
+          "performer": {
+            "display": "{$gt5102}"
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "code": "diet",
+                  "system": "http://www.c3-cloud.eu/fhir/care-plan-activity-category",
+                  "display": "{$gt5103}"
+                }
+              ]
+            }
+          ],
+          "intent": "proposal",
+          "status": "draft",
+          "resourceType": "ProcedureRequest"
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0003|type2Diabetes|!=null"
+    ],
+    "rules": {
+      "gt0031": {
+        "id": "gt0031",
+        "priority": 4,
+        "when": [
+          "($gt0010|eGFRValue|<30,mL/min/{1.73_m2})||(($gt0035|renalFailureStage4|!=null)||($gt0037|renalFailureStage5|!=null))"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt3002.term}",
+            "detail": "{$gt3003.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.4.6-1.4.9 [60, pp. 29–30].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "475e0231-7a35-47e0-829a-764f46960613",
+                "label": "{$gt3004.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt3040.term}",
+                    "resource_template": {
+                      "template_id": "gt3020",
+                      "assignments": [
+                        "$gt3021=$currentDateTime",
+                        "$gt5100=$gt5000.term",
+                        "$gt5101=$gt5001.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt3043.term}",
+                    "resource_template": {
+                      "template_id": "gt3022",
+                      "assignments": [
+                        "$gt3023=$gt3044.term",
+                        "$gt3025=$gt3045.term",
+                        "$gt3024='d0003'",
+                        "$gt5102=$gt5002.term",
+                        "$gt5103=$gt5003.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0030": {
+        "id": "gt0030",
+        "priority": 3,
+        "when": [
+          "(($gt0010|eGFRValue|>=30,mL/min/{1.73_m2})&&($gt0010|eGFRValue|<90,mL/min/{1.73_m2}))||(($gt0039|renalFailureStage2|!=null)||($gt0006|renalFailureStage3|!=null))",
+          "!fired($gt0031)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt2000.term}",
+            "detail": "{$gt2001.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.4.6-1.4.9 [60, pp. 29–30].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "96d16534-2f99-4d39-be5e-60856b1b91ab",
+                "label": "{$gt2002.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt3034.term}",
+                    "resource_template": {
+                      "template_id": "gt3020",
+                      "assignments": [
+                        "$gt3021=$currentDateTime",
+                        "$gt5100=$gt5000.term",
+                        "$gt5101=$gt5001.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt3037.term}",
+                    "resource_template": {
+                      "template_id": "gt3022",
+                      "assignments": [
+                        "$gt3023=$gt3046.term",
+                        "$gt3025=$gt3047.term",
+                        "$gt3024='d0002'",
+                        "$gt5102=$gt5002.term",
+                        "$gt5103=$gt5003.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0029": {
+        "id": "gt0029",
+        "priority": 2,
+        "when": [
+          "!fired($gt0030)",
+          "!fired($gt0031)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt1000.term}",
+            "detail": "{$gt1001.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.3 [48, pp. 13-14].",
+              "url": "https://www.nice.org.uk/guidance/ng28",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "b84fc8d3-b3a8-4605-bada-adb6a43fd78a",
+                "label": "{$gt1002.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt3028.term}",
+                    "resource_template": {
+                      "template_id": "gt3020",
+                      "assignments": [
+                        "$gt3021=$currentDateTime",
+                        "$gt5100=$gt5000.term",
+                        "$gt5101=$gt5001.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt3031.term}",
+                    "resource_template": {
+                      "template_id": "gt3022",
+                      "assignments": [
+                        "$gt3023=$gt3048.term",
+                        "$gt3025=$gt3049.term",
+                        "$gt3024='d0001'",
+                        "$gt5102=$gt5002.term",
+                        "$gt5103=$gt5003.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0028": {
+        "id": "gt0028",
+        "priority": 1,
+        "when": [
+        ],
+        "cards": [
+          {
+            "summary": "{$gt3000.term}",
+            "detail": "{$gt3001.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.3 [48, pp. 13-14].",
+              "url": "https://www.nice.org.uk/guidance/ng28",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Diet Management"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "type2Diabetes",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "type2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "renalFailureStage3",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Chronic kidney disease stage 3",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "eGFRValue",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "general info card"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "egfr >= 90"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "egfr = 30 - <90"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "egfr < 30"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Chronic kidney disease stage 4",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Chronic kidney disease stage 5",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "renalFailureStage4",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "renalFailureStage5",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "renalFailureStage2",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "Chronic kidney disease stage 2",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Estimated Glomerular Filtration Rate",
+            "description": ""
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "value",
+            "description": "/extension[0]"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "terminologyId",
+            "description": "/code/coding"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "value",
+            "description": "/target/dueDate"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "terminologyId",
+            "description": "/code/coding"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt1000": {
+            "id": "gt1000",
+            "text": "Diet Advice to adults with type 2 diabetes",
+            "description": "summary"
+          },
+          "gt1001": {
+            "id": "gt1001",
+            "text": "Diet Advice to adults with type 2 diabetes",
+            "description": "detail"
+          },
+          "gt1002": {
+            "id": "gt1002",
+            "text": "Comply with the dietary restrictions of type 2 diabetes and follow the prescribed diets.",
+            "description": "label"
+          },
+          "gt1003": {
+            "id": "gt1003",
+            "text": "Dietary restriction goal",
+            "description": "description"
+          },
+          "gt1004": {
+            "id": "gt1004",
+            "text": "Preparation to correctly follow the prescribed diet",
+            "description": "description"
+          },
+          "gt1005": {
+            "id": "gt1005",
+            "text": "Follow the Diet",
+            "description": "description"
+          },
+          "gt2000": {
+            "id": "gt2000",
+            "text": "Diet Advice to adults with type 2 diabetes & Renal failure (Stage 2 or 3)",
+            "description": "summary"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text": "Diet Advice to adults with type 2 diabetes and Renal failure (Stage 2 or 3): Mediterranean diet with reduced sodium level (salt intake)",
+            "description": "detail"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text": "Comply with the dietary restrictions of mild renal failure and diabetes and follow the prescribed diets.",
+            "description": "label"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "Dietary restriction goal",
+            "description": "description"
+          },
+          "gt2004": {
+            "id": "gt2004",
+            "text": "Preparation to correctly follow the prescribed diet",
+            "description": "description"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "Follow the Diet",
+            "description": "description"
+          },
+          "gt3000": {
+            "id": "gt3000",
+            "text": "Personalized Diet Advice",
+            "description": "summary"
+          },
+          "gt3001": {
+            "id": "gt3001",
+            "text": "-Provide individualised and ongoing nutritional advice from a healthcare professional with specific expertise and competencies in nutrition. -Provide dietary advice in a form sensitive to the person's needs, culture and beliefs, being sensitive to their willingness to change and the effects on their quality of life. - Emphasize advice on healthy balanced eating that is applicable to the general population when providing advice to adults with type 2 diabetes. -Individualise recommendations for carbohydrate and alcohol intake, and meal patterns. - Reducing the risk of hypoglycaemia should be a particular aim for a person using insulin or an insulin secretagogue.",
+            "description": "detail"
+          },
+          "gt3002": {
+            "id": "gt3002",
+            "text": "Diet Advice to adults with type 2 diabetes & Severe Renal failure (GFR<30)",
+            "description": "summary"
+          },
+          "gt3003": {
+            "id": "gt3003",
+            "text": "Diet Advice to adults with type 2 diabetes & Severe Renal failure: Encourage Mediterranean diet with reduced sodium level and restricted potassium and phosphate intake.",
+            "description": "detail"
+          },
+          "gt3004": {
+            "id": "gt3004",
+            "text": "Comply with the dietary restrictions of renal failure and diabetes and follow the prescribed diets.",
+            "description": "label"
+          },
+          "gt3005": {
+            "id": "gt3005",
+            "text": "Dietary restriction goal",
+            "description": "description"
+          },
+          "gt3006": {
+            "id": "gt3006",
+            "text": "Preparation to correctly follow the prescribed diet",
+            "description": "description"
+          },
+          "gt3007": {
+            "id": "gt3007",
+            "text": "Follow the Diet",
+            "description": "description"
+          },
+          "gt3020": {
+            "id": "gt3020",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt3021": {
+            "id": "gt3021",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt3022": {
+            "id": "gt3022",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt3023": {
+            "id": "gt3023",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt3024": {
+            "id": "gt3024",
+            "text": "code",
+            "description": "/code/coding[0]"
+          },
+          "gt3025": {
+            "id": "gt3025",
+            "text": "value",
+            "description": "/code/coding[0]"
+          },
+          "gt3026": {
+            "id": "gt3026",
+            "text": "description",
+            "description": "description"
+          },
+          "gt3027": {
+            "id": "gt3027",
+            "text": "Compliance with dietary recommendations",
+            "description": "descriptionValue"
+          },
+          "gt3028": {
+            "id": "gt3028",
+            "text": "Comply with the dietary restrictions of type 2 diabetes. Evaluate every 6 months.",
+            "description": "ElementValue"
+          },
+          "gt3029": {
+            "id": "gt3029",
+            "text": "description",
+            "description": "description"
+          },
+          "gt3031": {
+            "id": "gt3031",
+            "text": "High-fibre, low glycaemic index diet",
+            "description": "descriptionValue"
+          },
+          "gt3034": {
+            "id": "gt3034",
+            "text": "Comply with the dietary restrictions of mild renal failure and diabetes. Evaluate every 6 months.",
+            "description": "ElementValue"
+          },
+          "gt3037": {
+            "id": "gt3037",
+            "text": "Mediterranean diet with reduced sodium level (salt intake)",
+            "description": "ElementValue"
+          },
+          "gt3040": {
+            "id": "gt3040",
+            "text": "Comply with the dietary restrictions of renal failure and diabetes. Evaluate every 6 months.",
+            "description": "ElementValue"
+          },
+          "gt3043": {
+            "id": "gt3043",
+            "text": "Mediterranean diet with reduced sodium level and restricted potassium and phosphate intake",
+            "description": "ElementValue"
+          },
+          "gt3044": {
+            "id": "gt3044",
+            "text": "Mediterranean diet with reduced sodium level and restricted potassium and phosphate intake. Reduced alcohol intake. Do not consume foods marketed specifically for people with diabetes.",
+            "description": ""
+          },
+          "gt3045": {
+            "id": "gt3045",
+            "text": "Mediterranean diet with reduced sodium level and restricted potassium and phosphate intake",
+            "description": ""
+          },
+          "gt3046": {
+            "id": "gt3046",
+            "text": "Mediterranean diet with reduced sodium level (salt intake). Reduced alcohol intake. Do not consume foods marketed specifically for people with diabetes.",
+            "description": ""
+          },
+          "gt3047": {
+            "id": "gt3047",
+            "text": "Mediterranean diet with reduced sodium level (salt intake)",
+            "description": ""
+          },
+          "gt3048": {
+            "id": "gt3048",
+            "text": "High-fibre, low-glycaemic-index sources of carbohydrate in the diet, such as fruit, vegetables, wholegrains and pulses; include low-fat dairy products and oily fish; and control the intake of foods containing saturated and trans fatty acids. Reduced alcohol intake. Do not consume foods marketed specifically for people with diabetes.",
+            "description": ""
+          },
+          "gt3049": {
+            "id": "gt3049",
+            "text": "High-fibre, low glycaemic index diet",
+            "description": ""
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Comply with dietary recommendations",
+            "description": "/description/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "Comply with dietary recommendations",
+            "description": "/description/text"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "PATIENT",
+            "description": "/performer/display"
+          },
+          "gt5003": {
+            "id": "gt5003",
+            "text": "Diet",
+            "description": "/category/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/description/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt5103": {
+            "id": "gt5103",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5104": {
+            "id": "gt5104",
+            "text": "eGFReffectiveDateTime",
+            "description": ""
+          }
+        }
+      },
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Kosthandläggning"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "type2Diabetes",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "type2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "renalFailureStage3",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Chronic kidney disease stage 3",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "eGFRValue",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "general info card",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "egfr >= 90",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "egfr = 30 - <90",
+            "description": ""
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "egfr < 30",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Chronic kidney disease stage 4",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Chronic kidney disease stage 5",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "renalFailureStage4",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "renalFailureStage5",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "renalFailureStage2",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "Chronic kidney disease stage 2",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Estimated Glomerular Filtration Rate",
+            "description": ""
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "FHIR-STU3-Goal.generic.v0",
+            "description": ""
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "FHIR-STU3-Goal.generic.v0",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "value",
+            "description": "/extension[0]"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "terminologyId",
+            "description": "/code/coding"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "value",
+            "description": "/target/dueDate"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "terminologyId",
+            "description": "/code/coding"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt1000": {
+            "id": "gt1000",
+            "text": "Kostråd till vuxna med typ 2-diabetes",
+            "description": "summary"
+          },
+          "gt1001": {
+            "id": "gt1001",
+            "text": "Kostråd till vuxna med typ 2-diabetes",
+            "description": "detail"
+          },
+          "gt1002": {
+            "id": "gt1002",
+            "text": "Följ kostrestråden för typ 2-diabetes och Följ de ordinerade dieterna.",
+            "description": "label"
+          },
+          "gt1003": {
+            "id": "gt1003",
+            "text": "Kostbehandlingsmål",
+            "description": "description"
+          },
+          "gt1004": {
+            "id": "gt1004",
+            "text": "Förberedelser för att följa den ordinerade kosten",
+            "description": "description"
+          },
+          "gt1005": {
+            "id": "gt1005",
+            "text": "Följ kostråden",
+            "description": "description"
+          },
+          "gt2000": {
+            "id": "gt2000",
+            "text": "Kostråd till vuxna med typ 2-diabetes & njursvikt (stadium 2 eller 3)",
+            "description": "summary"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text": "Kostråd till vuxna med typ 2-diabetes och njursvikt (stadium 2 eller 3): Medelhavsdiet med reducerad natriumnivå (saltintag)",
+            "description": "detail"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text": "Följ kostrestråden för måttlig njursvikt och diabetes och Följ den ordinerade kosten.",
+            "description": "label"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "Kostbehandlingsmål",
+            "description": "description"
+          },
+          "gt2004": {
+            "id": "gt2004",
+            "text": "Förberedelser för att följa den ordinerade kosten",
+            "description": "description"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "Följ kostråden",
+            "description": "description"
+          },
+          "gt3000": {
+            "id": "gt3000",
+            "text": "Personliga kostråd",
+            "description": "summary"
+          },
+          "gt3001": {
+            "id": "gt3001",
+            "text": "-Ge individualiserad och fortlöpande kostrådgivning av sjukvårdspersonal med specifik nutritionskompetens. -Ge kostråd som tar utgångspunkt i personens behov, kultur och önskemål samt  tar hänsyn till dennes villighet till förändring samt påverkan på livskvaliteten.  - Lägg tonvikt på råd kring hälsosam, balanserad kost, tillämpbar för den allmänna befolkningen, när rådgivning ges till vuxna med typ 2-diabetes. - Individualisera rekommendationerna för kolhydrat- och alkoholintag och för måltidsmönster. – En reducerad risk för hypogklykemi bör vara ett särskilt mål för personer som behandlas med insulin eller insulinstimulerande läkemedel.",
+            "description": "detail"
+          },
+          "gt3002": {
+            "id": "gt3002",
+            "text": "Kostråd till vuxna med typ 2-diabetes & avancerad njursvikt (GFR<30)",
+            "description": "summary"
+          },
+          "gt3003": {
+            "id": "gt3003",
+            "text": "Kostråd till vuxna med typ 2-diabetes & avancerad njursvikt: Uppmuntra till medelhavsdiet med reducerad natriumnivå och begränsat kalium- och fosfatintag.",
+            "description": "detail"
+          },
+          "gt3004": {
+            "id": "gt3004",
+            "text": "Följ kostrestråden för typ 2-diabetes och Följ de ordinerade dieterna.",
+            "description": "label"
+          },
+          "gt3005": {
+            "id": "gt3005",
+            "text": "Kostbehandlingsmål",
+            "description": "description"
+          },
+          "gt3006": {
+            "id": "gt3006",
+            "text": "Förberedelser för att följa den ordinerade kosten",
+            "description": "description"
+          },
+          "gt3007": {
+            "id": "gt3007",
+            "text": "Följ kostråden",
+            "description": "description"
+          },
+          "gt3020": {
+            "id": "gt3020",
+            "text": "FHIR-STU3-Goal.generic.v0",
+            "description": ""
+          },
+          "gt3021": {
+            "id": "gt3021",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt3022": {
+            "id": "gt3022",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt3023": {
+            "id": "gt3023",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt3024": {
+            "id": "gt3024",
+            "text": "code",
+            "description": "/code/coding[0]"
+          },
+          "gt3025": {
+            "id": "gt3025",
+            "text": "value",
+            "description": "/code/coding[0]"
+          },
+          "gt3026": {
+            "id": "gt3026",
+            "text": "description",
+            "description": "description"
+          },
+          "gt3027": {
+            "id": "gt3027",
+            "text": "Följsamhet till kostrekommendationer",
+            "description": "descriptionValue"
+          },
+          "gt3028": {
+            "id": "gt3028",
+            "text": "Följ kostrestråden för typ 2-diabetes. Utvärdera var sjätte månad.",
+            "description": "ElementValue"
+          },
+          "gt3029": {
+            "id": "gt3029",
+            "text": "description",
+            "description": "description"
+          },
+          "gt3031": {
+            "id": "gt3031",
+            "text": "Kost med högt fiberinnehåll och lågt glykemiskt index",
+            "description": "descriptionValue"
+          },
+          "gt3034": {
+            "id": "gt3034",
+            "text": "Följ kostråden för måttlig njursvikt och diabetes. Utvärdera var sjätte månad.",
+            "description": "ElementValue"
+          },
+          "gt3037": {
+            "id": "gt3037",
+            "text": "Medelhavsdiet med reducerad natriumnivå (saltintag)",
+            "description": "ElementValue"
+          },
+          "gt3040": {
+            "id": "gt3040",
+            "text": "Följ dietrestriktionerna för njursvikt och diabetes. Utvärdera var sjätte månad.",
+            "description": "ElementValue"
+          },
+          "gt3043": {
+            "id": "gt3043",
+            "text": "Medelhavsdiet med reducerad natriumnivå och begränsat kalium- och fosfatintag",
+            "description": "ElementValue"
+          },
+          "gt3044": {
+            "id": "gt3044",
+            "text": "Medelhavsdiet med reducerad natriumnivå och begränsat kalium- och fosfatintag. Reducerat alkoholintag. Konsumera inte livsmedel som marknadsförs specifikt till diabetiker.",
+            "description": ""
+          },
+          "gt3045": {
+            "id": "gt3045",
+            "text": "Medelhavsdiet med reducerad natriumnivå och begränsat kalium- och fosfatintag",
+            "description": ""
+          },
+          "gt3046": {
+            "id": "gt3046",
+            "text": "Medelhavsdiet med reducerad natriumnivå (saltintag). Reducerat alkoholintag. Konsumera inte livsmedel som marknadsförs specifikt till diabetiker.",
+            "description": ""
+          },
+          "gt3047": {
+            "id": "gt3047",
+            "text": "Medelhavsdiet med reducerad natriumnivå (saltintag)",
+            "description": ""
+          },
+          "gt3048": {
+            "id": "gt3048",
+            "text": "Fiberrika kolhydratskällor med lågt glykemiskt index i kosten, som frukt, grönsaker, fullkorn och baljväxter; inkludera fettsnåla mjölkprodukter och fet fisk; och kontrollera intaget av livsmedel som innehåller mättat fett och transfett. Reducera alkoholintag. Konsumera inte livsmedel som marknadsförs specifikt för diabetiker.",
+            "description": ""
+          },
+          "gt3049": {
+            "id": "gt3049",
+            "text": "Kost med högt fiberinnehåll och lågt glykemiskt index",
+            "description": ""
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Följ kostrådet",
+            "description": "/description/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "Följ kostrådet",
+            "description": "/description/text"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "Patienten",
+            "description": "/performer/display"
+          },
+          "gt5003": {
+            "id": "gt5003",
+            "text": "kost",
+            "description": "/category/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/description/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt5103": {
+            "id": "gt5103",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5104": {
+            "id": "gt5104",
+            "text": "*(en) effectiveDateTime",
+            "description": ""
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Manejo de la dieta"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "type2Diabetes",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "type2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "renalFailureStage3",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Chronic kidney disease stage 3",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "eGFRValue",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "general info card",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "egfr >= 90",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "egfr = 30 - <90",
+            "description": ""
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "egfr < 30",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Chronic kidney disease stage 4",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Chronic kidney disease stage 5",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "renalFailureStage4",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "renalFailureStage5",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "renalFailureStage2",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "Chronic kidney disease stage 2",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Estimated Glomerular Filtration Rate",
+            "description": ""
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "FHIR-STU3-Goal.generic.v0",
+            "description": ""
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "FHIR-STU3-Goal.generic.v0",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "value",
+            "description": "/extension[0]"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "terminologyId",
+            "description": "/code/coding"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "value",
+            "description": "/target/dueDate"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "terminologyId",
+            "description": "/code/coding"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt1000": {
+            "id": "gt1000",
+            "text": "Consejos dietéticos para adultos con diabetes tipo 2",
+            "description": "summary"
+          },
+          "gt1001": {
+            "id": "gt1001",
+            "text": "Consejos dietéticos para adultos con diabetes tipo 2",
+            "description": "detail"
+          },
+          "gt1002": {
+            "id": "gt1002",
+            "text": "Cumpla con las restricciones dietéticas de la diabetes tipo 2 y siga las dietas prescritas.",
+            "description": "label"
+          },
+          "gt1003": {
+            "id": "gt1003",
+            "text": "Meta de restricción dietética",
+            "description": "description"
+          },
+          "gt1004": {
+            "id": "gt1004",
+            "text": "Preparación para seguir correctamente la dieta prescrita.",
+            "description": "description"
+          },
+          "gt1005": {
+            "id": "gt1005",
+            "text": "Siga la dieta",
+            "description": "description"
+          },
+          "gt2000": {
+            "id": "gt2000",
+            "text": "Consejos dietéticos para adultos con diabetes tipo 2 e insuficiencia renal (Etapa 2 ó 3)",
+            "description": "summary"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text": "Consejos dietéticos para adultos con diabetes tipo 2 e insuficiencia renal (Etapa 2 ó 3): dieta mediterránea con nivel de sodio reducido (consumo de sal)",
+            "description": "detail"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text": "Cumpla con las restricciones dietéticas de la insuficiencia renal leve y diabetes y siga las dietas prescritas.",
+            "description": "label"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "Meta de restricción dietética",
+            "description": "description"
+          },
+          "gt2004": {
+            "id": "gt2004",
+            "text": "Preparación para seguir correctamente la dieta prescrita.",
+            "description": "description"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "Siga la dieta",
+            "description": "description"
+          },
+          "gt3000": {
+            "id": "gt3000",
+            "text": "Consejos de dieta personalizada",
+            "description": "summary"
+          },
+          "gt3001": {
+            "id": "gt3001",
+            "text": "Proporcione asesoramiento nutricional individualizado y continuo de un profesional de la salud con experiencia específica y competencias en nutrición. -Proporcione consejos dietéticos de acuerdo a la cultura y creencias de la persona, siendo sensible a su disposición al cambio y los efectos en su calidad de vida. - Enfatice los consejos sobre alimentación saludable y equilibrada que se aplican a la población general al ofrecer consejos a adultos con diabetes tipo 2. -Personalice las  recomendaciones para la ingesta de carbohidratos y alcohol, y los  patrones de comida. - La reducción del riesgo de hipoglucemia debe ser un objetivo particular para una persona que usa insulina o un secretagogo de insulina.",
+            "description": "detail"
+          },
+          "gt3002": {
+            "id": "gt3002",
+            "text": "Consejos dietéticos para adultos con diabetes tipo 2 e insuficiencia renal grave (GFR<30)",
+            "description": "summary"
+          },
+          "gt3003": {
+            "id": "gt3003",
+            "text": "Consejos dietéticos para adultos con diabetes tipo 2 y insuficiencia renal grave: fomente la dieta mediterránea con un nivel de sodio reducido y una ingesta limitada de potasio y fosfato.",
+            "description": "detail"
+          },
+          "gt3004": {
+            "id": "gt3004",
+            "text": "Cumpla con las restricciones dietéticas de insuficiencia renal y diabetes y siga las dietas prescritas.",
+            "description": "label"
+          },
+          "gt3005": {
+            "id": "gt3005",
+            "text": "Meta de restricción dietética",
+            "description": "description"
+          },
+          "gt3006": {
+            "id": "gt3006",
+            "text": "Preparación para seguir correctamente la dieta prescrita.",
+            "description": "description"
+          },
+          "gt3007": {
+            "id": "gt3007",
+            "text": "Siga la dieta",
+            "description": "description"
+          },
+          "gt3020": {
+            "id": "gt3020",
+            "text": "FHIR-STU3-Goal.generic.v0",
+            "description": ""
+          },
+          "gt3021": {
+            "id": "gt3021",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt3022": {
+            "id": "gt3022",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt3023": {
+            "id": "gt3023",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt3024": {
+            "id": "gt3024",
+            "text": "code",
+            "description": "/code/coding[0]"
+          },
+          "gt3025": {
+            "id": "gt3025",
+            "text": "value",
+            "description": "/code/coding[0]"
+          },
+          "gt3026": {
+            "id": "gt3026",
+            "text": "description",
+            "description": "description"
+          },
+          "gt3027": {
+            "id": "gt3027",
+            "text": "Cumplimiento de las recomendaciones dietéticas.",
+            "description": "descriptionValue"
+          },
+          "gt3028": {
+            "id": "gt3028",
+            "text": "Cumpla con las restricciones dietéticas de diabetes tipo 2 y diabetes. Evalúe cada 6 meses.",
+            "description": "ElementValue"
+          },
+          "gt3029": {
+            "id": "gt3029",
+            "text": "description",
+            "description": "description"
+          },
+          "gt3031": {
+            "id": "gt3031",
+            "text": "Dieta alta en fibra, bajo índice glucémico",
+            "description": "descriptionValue"
+          },
+          "gt3034": {
+            "id": "gt3034",
+            "text": "Cumpla con las restricciones dietéticas insuficiencia renal leve y diabetes. Evalúe cada 6 meses.",
+            "description": "ElementValue"
+          },
+          "gt3037": {
+            "id": "gt3037",
+            "text": "Dieta mediterránea con bajo nivel de sodio (consumo de sal)",
+            "description": "ElementValue"
+          },
+          "gt3040": {
+            "id": "gt3040",
+            "text": "Cumpla con las restricciones dietéticas de insuficiencia renal y diabetes. Evalúe cada 6 meses.",
+            "description": "ElementValue"
+          },
+          "gt3043": {
+            "id": "gt3043",
+            "text": "Dieta mediterránea con niveles reducidos de sodio e ingesta restringida de potasio y fosfato",
+            "description": "ElementValue"
+          },
+          "gt3044": {
+            "id": "gt3044",
+            "text": "Dieta mediterránea con niveles reducidos de sodio e ingesta restringida de potasio y fosfato. Reducción del consumo de alcohol. No consuma alimentos comercializados específicamente para personas con diabetes.",
+            "description": ""
+          },
+          "gt3045": {
+            "id": "gt3045",
+            "text": "Dieta mediterránea con niveles reducidos de sodio e ingesta restringida de potasio y fosfato",
+            "description": ""
+          },
+          "gt3046": {
+            "id": "gt3046",
+            "text": "Dieta mediterránea con nivel de sodio reducido (ingesta de sal). Reducción del consumo de alcohol. No consuma alimentos comercializados específicamente para personas con diabetes.",
+            "description": ""
+          },
+          "gt3047": {
+            "id": "gt3047",
+            "text": "Dieta mediterránea con bajo nivel de sodio (consumo de sal)",
+            "description": ""
+          },
+          "gt3048": {
+            "id": "gt3048",
+            "text": "Fuentes de carbohidratos en la dieta con alto contenido de fibra y bajo índice glucémico, como frutas, verduras, cereales integrales y legumbres; Incluye productos lácteos bajos en grasa y pescado graso; y controlar la ingesta de alimentos que contengan ácidos grasos saturados y trans. Reducción del consumo de alcohol. No consuma alimentos comercializados específicamente para personas con diabetes.",
+            "description": ""
+          },
+          "gt3049": {
+            "id": "gt3049",
+            "text": "Dieta alta en fibra, bajo índice glucémico",
+            "description": ""
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Cumplir con las recomendaciones dietéticas.",
+            "description": "/description/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "Cumplir con las recomendaciones dietéticas.",
+            "description": "/description/text"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "Paciente",
+            "description": "/performer/display"
+          },
+          "gt5003": {
+            "id": "gt5003",
+            "text": "diet",
+            "description": "/category/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/description/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt5103": {
+            "id": "gt5103",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5104": {
+            "id": "gt5104",
+            "text": "*(en) effectiveDateTime",
+            "description": ""
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ICD-10-SE": {
+        "id": "ICD-10-SE",
+        "bindings": {
+          "gt0032": {
+            "codes": [
+              "ICD-10-SE::N184"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "ICD-10-SE::N185"
+            ]
+          },
+          "gt0040": {
+            "codes": [
+              "ICD-10-SE::N182"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10-SE::N183"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-SE::E11",
+              "ICD-10-SE::G632"
+            ]
+          }
+        }
+      },
+      "NPU": {
+        "id": "NPU",
+        "bindings": {
+          "gt0041": {
+            "codes": [
+              "NPU::EGFRKRE",
+              "NPU::SWE05406",
+              "NPU::SWE05405",
+              "NPU::SWE05404",
+              "NPU::SWE05387",
+              "NPU::SWE05386",
+              "NPU::SWE05385"
+            ]
+          }
+        }
+      },
+      "ICD-10": {
+        "id": "ICD-10",
+        "bindings": {
+          "gt0032": {
+            "codes": [
+              "ICD-10::N18.4"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "ICD-10::N18.5"
+            ]
+          },
+          "gt0040": {
+            "codes": [
+              "ICD-10::N18.2"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10::N18.3"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10::E11",
+              "ICD-10::G63.2"
+            ]
+          }
+        }
+      },
+      "DBP": {
+        "id": "DBP",
+        "bindings": {
+          "gt0041": {
+            "codes": [
+              "DBP::33382"
+            ]
+          }
+        }
+      },
+      "LOINC": {
+        "id": "LOINC",
+        "bindings": {
+          "gt0041": {
+            "codes": [
+              "LOINC::33914-3"
+            ]
+          }
+        }
+      },
+      "CIE-10-CM-ES": {
+        "id": "CIE-10-CM-ES",
+        "bindings": {
+          "gt0032": {
+            "codes": [
+              "CIE-10-CM-ES::N18.4"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "CIE-10-CM-ES::N18.5"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "CIE-10-CM-ES::N18.3"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "CIE-10-CM-ES::E11",
+              "CIE-10-CM-ES::E13.11",
+              "CIE-10-CM-ES::E10.10"
+            ]
+          },
+          "gt0040": {
+            "codes": [
+              "CIE-10-CM-ES::N18.2"
+            ]
+          }
+        }
+      },
+      "ICD-10-UK": {
+        "id": "ICD-10-UK",
+        "bindings": {
+          "gt0032": {
+            "codes": [
+              "ICD-10-UK::N18.4"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "ICD-10-UK::N18.5"
+            ]
+          },
+          "gt0040": {
+            "codes": [
+              "ICD-10-UK::N18.2"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10-UK::N18.3"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-UK::E11",
+              "ICD-10-UK::G63.2"
+            ]
+          }
+        }
+      },
+      "READ2": {
+        "id": "READ2",
+        "bindings": {
+          "gt0032": {
+            "codes": [
+              "READ2::1Z13",
+              "READ2::K054"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "READ2::1Z14",
+              "READ2::K055"
+            ]
+          },
+          "gt0040": {
+            "codes": [
+              "READ2::1Z11",
+              "READ2::K052"
+            ]
+          },
+          "gt0041": {
+            "codes": [
+              "READ2::451E"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "READ2::1Z12",
+              "READ2::K053"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "READ2::C10F",
+              "READ2::F1711",
+              "READ2::C107",
+              "READ2::C104",
+              "READ2::C101",
+              "READ2::F372",
+              "READ2::EMISNQHO137"
+            ]
+          }
+        }
+      },
+      "SNOMED-CT": {
+        "id": "SNOMED-CT",
+        "bindings": {
+          "gt0032": {
+            "codes": [
+              "SNOMED-CT::431857002"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "SNOMED-CT::433146000"
+            ]
+          },
+          "gt0040": {
+            "codes": [
+              "SNOMED-CT::431856006"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "SNOMED-CT::433144002"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "SNOMED-CT::44054006",
+              "SNOMED-CT::420436000",
+              "SNOMED-CT::423263001",
+              "SNOMED-CT::421895002",
+              "SNOMED-CT::421707005",
+              "SNOMED-CT::395204000",
+              "SNOMED-CT::120731000119103",
+              "SNOMED-CT::420662003",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::421847006",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::420422005",
+              "SNOMED-CT::49455004"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

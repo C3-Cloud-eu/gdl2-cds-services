@@ -1,0 +1,2169 @@
+{
+  "id": "diabetes_hbA1c_targets.v1",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2018-05-05",
+      "organisation": "Cambio Healthcare Systems"
+    },
+    "lifecycle_state": "Author draft",
+    "details": {
+      "sv": {
+        "id": "sv",
+        "purpose": "FHIR-baserade cds-regler för demonstrationsändamål."
+      },
+      "en": {
+        "id": "en",
+        "purpose": "Sample fhir-based cds-rules for demonstration purposes only."
+      },
+      "es": {
+        "id": "es",
+        "purpose": "Ejemplos de reglas de cds basadas en fhir para propósitos de demostración."
+      }
+    },
+    "other_details": {
+      "references": "NICE guideline [ng28/chapter/1-recommendations], 2017. Type 2 diabetes in adults: management - HbA1c Targets: https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations/chapter/1-recommendations#blood-glucose-management-2\""
+    },
+    "references": [
+      {
+        "id": "1",
+        "label": "NICE diabetes guideline, Chapter 1.6.1-1.6.11 [48, pp. 16-18].",
+        "url": "https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations"
+      }
+    ]
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0004|type2DiabetesDiagnosis|"
+        ]
+      },
+      "gt0018": {
+        "id": "gt0018",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/valueQuantity"
+          },
+          "gt0153": {
+            "id": "gt0153",
+            "path": "/code/coding[0]"
+          },
+          "gt0160": {
+            "id": "gt0160",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "max(/effectiveDateTime)",
+          "/code/coding[0] is_a local::gt0154|estimated Glomerular Filtration Rate|"
+        ]
+      },
+      "gt0042": {
+        "id": "gt0042",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0043": {
+            "id": "gt0043",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0044|chronicKidneyDiseaseStage4Diagnosis|"
+        ]
+      },
+      "gt0046": {
+        "id": "gt0046",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+        "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0047": {
+            "id": "gt0047",
+            "path": "/medicationCodeableConcept/coding[0]"
+          }
+        },
+        "predicates": [
+          "/medicationCodeableConcept/coding[0] is_a local::gt0048|hypoglycemiaRiskMedication|"
+        ]
+      },
+      "gt0049": {
+        "id": "gt0049",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0050": {
+            "id": "gt0050",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0051|hypoglycemiaDueToType2DiabetesDiagnosis|"
+        ]
+      },
+      "gt0052": {
+        "id": "gt0052",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0053": {
+            "id": "gt0053",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0054|comaDueToType2DiabetesDiagnosis|"
+        ]
+      },
+      "gt0093": {
+        "id": "gt0093",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0094": {
+            "id": "gt0094",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0095|chronicKidneyDiseaseStage5Diagnosis|"
+        ]
+      },
+      "gt2002": {
+        "id": "gt2002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt2003": {
+            "id": "gt2003",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt9004|Terminal illness - late stage|"
+        ]
+      },
+      "gt2004": {
+        "id": "gt2004",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt2005": {
+            "id": "gt2005",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt9005|Poor prognosis|"
+        ]
+      },
+      "gt2018": {
+        "id": "gt2018",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.frailty_score.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0161": {
+            "id": "gt0161",
+            "path": "/effectiveDateTime"
+          },
+          "gt2019": {
+            "id": "gt2019",
+            "path": "/valueQuantity"
+          },
+          "gt2153": {
+            "id": "gt2153",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt2154|Frailty score|",
+          "max(/effectiveDateTime)"
+        ]
+      }
+    },
+    "templates": {
+      "gt0114": {
+        "id": "gt0114",
+        "model_id": "org.hl7.fhir.dstu3.model.Goal",
+        "template_id": "FHIR-STU3-Goal.hba1c_targets.v0",
+        "object": {
+          "description": {
+            "coding": [
+              {
+                "code": "g0008",
+                "system": "http://www.c3-cloud.eu/fhir/goal-code",
+                "display": "{$gt5100}"
+              }
+            ],
+            "text": "{$gt0117}"
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "code": "safety",
+                  "system": "http://hl7.org/fhir/goal-category"
+                }
+              ]
+            }
+          ],
+          "startDate": "{$gt0115}",
+          "status": "proposed",
+          "resourceType": "Goal",
+          "target": {
+            "detailRange": {
+              "high": {
+                "unit": "mmol/mol",
+                "code": "mmol/mol",
+                "system": "http://unitsofmeasure.org",
+                "value": "{$gt0116}"
+              }
+            },
+            "measure": {
+              "coding": [
+                {
+                  "code": "4548-4",
+                  "system": "http://loinc.org",
+                  "display": "HbA1c"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0003|Type 2 Diabetes|!=null"
+    ],
+    "rules": {
+      "gt0005": {
+        "id": "gt0005",
+        "priority": 5,
+        "cards": [
+          {
+            "summary": "{$gt0097.term}",
+            "detail": "{$gt0098.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.6.1-1.6.11 [48, pp. 16-18].",
+              "url": "https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            }
+          },
+          {
+            "summary": "{$gt0103.term}",
+            "detail": "{$gt0104.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.6.1-1.6.11 [48, pp. 16-18].",
+              "url": "https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            }
+          },
+          {
+            "summary": "{$gt0109.term}",
+            "detail": "{$gt0110.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.6.1-1.6.11 [48, pp. 16-18].",
+              "url": "https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            }
+          }
+        ]
+      },
+      "gt0020": {
+        "id": "gt0020",
+        "priority": 4,
+        "when": [
+          "$gt2019|frailtyScoreValue|>=5",
+          "($gt2003|terminalIllnessCondition|!=null)||($gt2005|poorPrognosisCondition|==null)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0119.term}",
+            "detail": "{$gt0120.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.6.1-1.6.11 [48, pp. 16-18].",
+              "url": "https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            }
+          }
+        ]
+      },
+      "gt0021": {
+        "id": "gt0021",
+        "priority": 3,
+        "when": [
+          "$gt2019|frailtyScoreValue|>=5",
+          "$gt2003|terminalIllnessCondition|==null",
+          "$gt2005|poorPrognosisCondition|!=null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0126.term}",
+            "detail": "{$gt0127.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.6.1-1.6.11 [48, pp. 16-18].",
+              "url": "https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "12bcf96a-76e7-4305-b8c4-e9c5cdbd6ef6",
+                "label": "{$gt0131.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0133.term}",
+                    "resource_template": {
+                      "template_id": "gt0114",
+                      "assignments": [
+                        "$gt0115=$currentDateTime",
+                        "$gt5100=$gt5000.term",
+                        "$gt0117=$gt2500.term",
+                        "$gt0116=63.0"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0022": {
+        "id": "gt0022",
+        "priority": 2,
+        "when": [
+          "$gt2019|frailtyScoreValue|<5||$gt2019|frailtyScoreValue|==null",
+          "(($gt0050|Hypoglycemia due to Type 2 Diabetes Mellitus|!=null)||(($gt0053|Coma Associated with Type 2 Diabetes Mellitus|!=null)||($gt0047|Medication Risk of Hypoglycemia|!=null)))||((($gt0019|latestEgfrValue|<45,mL/min/{1.73_m2})||($gt0043|Chronic Kidney Disease Stage 4|!=null))||($gt0094|Chronic Kidney Disease Stage 5|!=null))"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0135.term}",
+            "detail": "{$gt0136.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.6.1-1.6.11 [48, pp. 16-18].",
+              "url": "https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "d77e4efb-47ef-4104-9a7b-e99e25a956dc",
+                "label": "{$gt0140.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0142.term}",
+                    "resource_template": {
+                      "template_id": "gt0114",
+                      "assignments": [
+                        "$gt0115=$currentDateTime",
+                        "$gt5100=$gt5000.term",
+                        "$gt0117=$gt2501.term",
+                        "$gt0116=52.0"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0023": {
+        "id": "gt0023",
+        "priority": 1,
+        "when": [
+          "($gt2019|frailtyScoreValue|<5)||($gt2019|frailtyScoreValue|==null)",
+          "($gt0019|latestEgfrValue|==null)||($gt0019|latestEgfrValue|>=45,mL/min/{1.73_m2})",
+          "$gt0043|Chronic Kidney Disease Stage 4|==null",
+          "$gt0047|Medication Risk of Hypoglycemia|==null",
+          "$gt0050|Hypoglycemia due to Type 2 Diabetes Mellitus|==null",
+          "$gt0053|Coma Associated with Type 2 Diabetes Mellitus|==null",
+          "$gt0094|Chronic Kidney Disease Stage 5|==null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0144.term}",
+            "detail": "{$gt0145.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline, Chapter 1.6.1-1.6.11 [48, pp. 16-18].",
+              "url": "https://www.nice.org.uk/guidance/ng28/chapter/1-recommendations",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "a21fa7f7-bf2a-4add-a387-20a7e8e01621",
+                "label": "{$gt0150.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0152.term}",
+                    "resource_template": {
+                      "template_id": "gt0114",
+                      "assignments": [
+                        "$gt0115=$currentDateTime",
+                        "$gt5100=$gt5000.term",
+                        "$gt0117=$gt2502.term",
+                        "$gt0116=46.0"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "HbA1c targets"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Type 2 Diabetes",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "type2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Type 2 Diabetes Exists (Cards 1-3)"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "latestEgfrValue",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "C1=YES & C3=YES (Card 4)"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "C1=YES & C3=NO (Card 5)"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "C1=NO & C2=YES (Card 6)"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "C1=NO & C2=NO (Card 7)"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Chronic Kidney Disease Stage 4",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "chronicKidneyDiseaseStage4Diagnosis",
+            "description": ""
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Medication Risk of Hypoglycemia",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "hypoglycemiaRiskMedication",
+            "description": ""
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "Hypoglycemia due to Type 2 Diabetes Mellitus",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "hypoglycemiaDueToType2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Coma Associated with Type 2 Diabetes Mellitus",
+            "description": ""
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "comaDueToType2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "magnitude",
+            "description": "/target/detailRange/high"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Chronic Kidney Disease Stage 5",
+            "description": ""
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "chronicKidneyDiseaseStage5Diagnosis",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Estimate trends in glucose control",
+            "description": "summaryValue"
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "If disturbed erythrocyte turnover and/or abnormal haemoglobin and/or unexplained discrepancies between HbA1c and glucose measurements then estimate trends in blood glucose control using one of the following: quality-controlled plasma glucose profiles, total glycated haemoglobin estimation (if abnormal haemoglobins), fructosamine estimation. Seek advice from specialists in diabetes and clinical biochemistry",
+            "description": "detailValue"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "Life style advice",
+            "description": "summaryValue"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "Offer life style advice",
+            "description": "detailValue"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0109": {
+            "id": "gt0109",
+            "text": "Decision about individual HbA1c targets",
+            "description": "summaryValue"
+          },
+          "gt0110": {
+            "id": "gt0110",
+            "text": "Involve the patient in decision about individual HbA1c targets",
+            "description": "detailValue"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "magnitude",
+            "description": "/target/detailRange/high"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "HbA1c goal not relevant. Avoid hyperglycemic symptoms.",
+            "description": "summaryValue"
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "HbA1c goal not relevant. Avoid hyperglycemic symptoms.",
+            "description": "detailValue"
+          },
+          "gt0121": {
+            "id": "gt0121",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0122": {
+            "id": "gt0122",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0123": {
+            "id": "gt0123",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0124": {
+            "id": "gt0124",
+            "text": "labelValue",
+            "description": "labelValue"
+          },
+          "gt0126": {
+            "id": "gt0126",
+            "text": "Suggestion for HbA1c target",
+            "description": "summaryValue"
+          },
+          "gt0127": {
+            "id": "gt0127",
+            "text": "Treatment target is supposed to be 63 mmol/mol (<= 7.9%). Patient is frail or has reduced life expectancy. Consider relaxing HbA1c target.",
+            "description": "detailValue"
+          },
+          "gt0128": {
+            "id": "gt0128",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0131": {
+            "id": "gt0131",
+            "text": "Treatment target 63 mmol/mol (<= 7.9%) Followup Goal",
+            "description": "labelValue"
+          },
+          "gt0132": {
+            "id": "gt0132",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0133": {
+            "id": "gt0133",
+            "text": "Treatment target is supposed to be 63 mmol/mol (<= 7.9%)",
+            "description": "descriptionValue"
+          },
+          "gt0135": {
+            "id": "gt0135",
+            "text": "Suggestion for HbA1c target",
+            "description": "summaryValue"
+          },
+          "gt0136": {
+            "id": "gt0136",
+            "text": "Treatment target is supposed to be 52 mmol/mol (<= 6.9%). Treatment risk of hypoglycemia or eGFR<45 or patient has chronic renal failure diagnosis. Consider relaxing HbA1c target.",
+            "description": "detailValue"
+          },
+          "gt0137": {
+            "id": "gt0137",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0138": {
+            "id": "gt0138",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0139": {
+            "id": "gt0139",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0140": {
+            "id": "gt0140",
+            "text": "Treatment target 52 mmol/mol (<= 6.9%) Followup Goal",
+            "description": "labelValue"
+          },
+          "gt0141": {
+            "id": "gt0141",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0142": {
+            "id": "gt0142",
+            "text": "Treatment target is supposed to be 52 mmol/mol (<= 6.9%)",
+            "description": "descriptionValue"
+          },
+          "gt0144": {
+            "id": "gt0144",
+            "text": "Suggestion for HbA1c target",
+            "description": "summaryValue"
+          },
+          "gt0145": {
+            "id": "gt0145",
+            "text": "Treatment target is supposed to be 46 mmol/mol (<= 6.4%). Consider relaxing HbA1c target.",
+            "description": "detailValue"
+          },
+          "gt0146": {
+            "id": "gt0146",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0147": {
+            "id": "gt0147",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0148": {
+            "id": "gt0148",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0149": {
+            "id": "gt0149",
+            "text": "labelValue",
+            "description": "labelValue"
+          },
+          "gt0150": {
+            "id": "gt0150",
+            "text": "Treatment target 46 mmol/mol (<= 6.4%) Followup Goal",
+            "description": "labelValue"
+          },
+          "gt0151": {
+            "id": "gt0151",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0152": {
+            "id": "gt0152",
+            "text": "Treatment target is supposed to be 46 mmol/mol (<= 6.4%)",
+            "description": "descriptionValue"
+          },
+          "gt0153": {
+            "id": "gt0153",
+            "text": "latestEgfrCode",
+            "description": ""
+          },
+          "gt0154": {
+            "id": "gt0154",
+            "text": "estimated Glomerular Filtration Rate",
+            "description": ""
+          },
+          "gt0160": {
+            "id": "gt0160",
+            "text": "egfrEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0161": {
+            "id": "gt0161",
+            "text": "frailtyScoreEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "terminalIllnessCondition",
+            "description": "description gt2003"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "poorPrognosisCondition",
+            "description": "description gt2005"
+          },
+          "gt2019": {
+            "id": "gt2019",
+            "text": "frailtyScoreValue",
+            "description": "description gt2019"
+          },
+          "gt2153": {
+            "id": "gt2153",
+            "text": "frailtyScoreCondition",
+            "description": "description gt2153"
+          },
+          "gt2154": {
+            "id": "gt2154",
+            "text": "Frailty score",
+            "description": ""
+          },
+          "gt2500": {
+            "id": "gt2500",
+            "text": "Keep HbA1c level below 63 mmol/mol (<= 7.9%)",
+            "description": "descriptionValue"
+          },
+          "gt2501": {
+            "id": "gt2501",
+            "text": "Keep HbA1c level below 52 mmol/mol (<= 6.9%)",
+            "description": "descriptionValue"
+          },
+          "gt2502": {
+            "id": "gt2502",
+            "text": "Keep HbA1c level below 46 mmol/mol (<= 6.4%)",
+            "description": "descriptionValue"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Keep HbA1c level below agreed target",
+            "description": "description/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "description/coding/display"
+          },
+          "gt9004": {
+            "id": "gt9004",
+            "text": "Terminal illness - late stage",
+            "description": ""
+          },
+          "gt9005": {
+            "id": "gt9005",
+            "text": "Poor prognosis",
+            "description": ""
+          }
+        }
+      },
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "HbA1c-mål"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Type 2 Diabetes",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "type2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Type 2 Diabetes Exists (Cards 1-3)"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "latestEgfrValue",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "C1=YES & C3=YES (Card 4)"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "C1=YES & C3=NO (Card 5)"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "C1=NO & C2=YES (Card 6)"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "C1=NO & C2=NO (Card 7)"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Chronic Kidney Disease Stage 4",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "chronicKidneyDiseaseStage4Diagnosis",
+            "description": ""
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Medication Risk of Hypoglycemia",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "hypoglycemiaRiskMedication",
+            "description": ""
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "Hypoglykemi i samband med diabetes mellitus typ 2",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "hypoglycemiaDueToType2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Koma i samband med diabetes mellitus typ 2",
+            "description": ""
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "comaDueToType2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "magnitude",
+            "description": "/target/detailRange/high"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Kronisk njursjukdom, stadium 5",
+            "description": ""
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "chronicKidneyDiseaseStage5Diagnosis",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Beräkna trenden för glukoskontrollen",
+            "description": "summaryValue"
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "Om erytrocytomsättningen är störd och/eller hemoglobinopati och/eller oförklarlig skillnad mellan HbA1c och glukosvärden, uppskatta då glukostrenden genom tillämpning av en av följande: kvalitetskontrollerade glukosprofiler, HbA1c substansfraktion  (om hemoglobinopati), eller bestäm fruktosamin. Rådfråga specialist inom diabetes samt klinisk biokemi.",
+            "description": "detailValue"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "Livsstilsråd",
+            "description": "summaryValue"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "Erbjud livsstilsråd",
+            "description": "detailValue"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0109": {
+            "id": "gt0109",
+            "text": "Beslut om individuellt HbA1c-mål",
+            "description": "summaryValue"
+          },
+          "gt0110": {
+            "id": "gt0110",
+            "text": "Involvera patienten i beslut om individuella HbA1c-mål",
+            "description": "detailValue"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "magnitude",
+            "description": "/target/detailRange/high"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "HbA1c-mål ej relevant. Undvik hyperglykemiska symtom.",
+            "description": "summaryValue"
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "HbA1c-mål ej relevant. Undvik hyperglykemiska symtom.",
+            "description": "detailValue"
+          },
+          "gt0121": {
+            "id": "gt0121",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0122": {
+            "id": "gt0122",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0123": {
+            "id": "gt0123",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0124": {
+            "id": "gt0124",
+            "text": "labelValue",
+            "description": "labelValue"
+          },
+          "gt0126": {
+            "id": "gt0126",
+            "text": "Förslag till HbA1c-mål",
+            "description": "summaryValue"
+          },
+          "gt0127": {
+            "id": "gt0127",
+            "text": "Behandlingsmål bör vara <= 63 mmol/mol. Patienten är svag eller har minskad förväntad livslängd. Överväg höjning av HbA1c-mål.",
+            "description": "detailValue"
+          },
+          "gt0128": {
+            "id": "gt0128",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0131": {
+            "id": "gt0131",
+            "text": "Behandlingsmål <= 63 mmol/mol. Uppföljningsmål.",
+            "description": "labelValue"
+          },
+          "gt0132": {
+            "id": "gt0132",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0133": {
+            "id": "gt0133",
+            "text": "Behandlingsmål bör vara <= 63 mmol/mol",
+            "description": "descriptionValue"
+          },
+          "gt0135": {
+            "id": "gt0135",
+            "text": "Förslag till HbA1c-mål",
+            "description": "summaryValue"
+          },
+          "gt0136": {
+            "id": "gt0136",
+            "text": "Behandlingsmål bör vara <=  52 mmol/mol. Risk för hypoglykemi föreligger eller eGFR<45 eller patienten har kronisk njursvikt. Överväg en höjning av HbA1c-mål.",
+            "description": "detailValue"
+          },
+          "gt0137": {
+            "id": "gt0137",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0138": {
+            "id": "gt0138",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0139": {
+            "id": "gt0139",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0140": {
+            "id": "gt0140",
+            "text": "Behandlingsmål <= 52 mmol/mol. Uppföljningsmål.",
+            "description": "labelValue"
+          },
+          "gt0141": {
+            "id": "gt0141",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0142": {
+            "id": "gt0142",
+            "text": "Behandlingsmål bör vara <= 52 mmol/mol",
+            "description": "descriptionValue"
+          },
+          "gt0144": {
+            "id": "gt0144",
+            "text": "Förslag till HbA1c-mål",
+            "description": "summaryValue"
+          },
+          "gt0145": {
+            "id": "gt0145",
+            "text": "Behandlingsmål bör vara <= 46 mmol/mol. Överväg en höjning av HbA1c-mål.",
+            "description": "detailValue"
+          },
+          "gt0146": {
+            "id": "gt0146",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0147": {
+            "id": "gt0147",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0148": {
+            "id": "gt0148",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0149": {
+            "id": "gt0149",
+            "text": "labelValue",
+            "description": "labelValue"
+          },
+          "gt0150": {
+            "id": "gt0150",
+            "text": "Behandlingsmål <= 46 mmol/mol. Uppföljningsmål.",
+            "description": "labelValue"
+          },
+          "gt0151": {
+            "id": "gt0151",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0152": {
+            "id": "gt0152",
+            "text": "Behandlingsmål bör vara <=  46 mmol/mol",
+            "description": "descriptionValue"
+          },
+          "gt0153": {
+            "id": "gt0153",
+            "text": "latestEgfrCode",
+            "description": ""
+          },
+          "gt0154": {
+            "id": "gt0154",
+            "text": "estimated Glomerular Filtration Rate",
+            "description": ""
+          },
+          "gt0160": {
+            "id": "gt0160",
+            "text": "egfrEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0161": {
+            "id": "gt0161",
+            "text": "frailtyScoreEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "terminalIllnessCondition",
+            "description": "description gt2003"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "poorPrognosisCondition",
+            "description": "description gt2005"
+          },
+          "gt2019": {
+            "id": "gt2019",
+            "text": "frailtyScoreValue",
+            "description": "description gt2019"
+          },
+          "gt2153": {
+            "id": "gt2153",
+            "text": "frailtyScoreCondition",
+            "description": "description gt2153"
+          },
+          "gt2154": {
+            "id": "gt2154",
+            "text": "Frailty score",
+            "description": ""
+          },
+          "gt2500": {
+            "id": "gt2500",
+            "text": "Håll HbA1c-nivån under 63 mmol/mol",
+            "description": "descriptionValue"
+          },
+          "gt2501": {
+            "id": "gt2501",
+            "text": "Håll HbA1c-nivån under 52 mmol/mol",
+            "description": "descriptionValue"
+          },
+          "gt2502": {
+            "id": "gt2502",
+            "text": "Håll HbA1c-nivån under 46 mmol/mol",
+            "description": "descriptionValue"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Håll HbA1c-nivån under överenskomna målet",
+            "description": "description/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "description/coding/display"
+          },
+          "gt9004": {
+            "id": "gt9004",
+            "text": "Terminal illness - late stage",
+            "description": ""
+          },
+          "gt9005": {
+            "id": "gt9005",
+            "text": "Poor prognosis",
+            "description": ""
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Objetivos de HbA1c"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Type 2 Diabetes",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "type2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Type 2 Diabetes Exists (Cards 1-3)"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "latestEgfrValue",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "C1=YES & C3=YES (Card 4)"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "C1=YES & C3=NO (Card 5)"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "C1=NO & C2=YES (Card 6)"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "C1=NO & C2=NO (Card 7)"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Chronic Kidney Disease Stage 4",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "chronicKidneyDiseaseStage4Diagnosis",
+            "description": ""
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Medication Risk of Hypoglycemia",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "hypoglycemiaRiskMedication",
+            "description": ""
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "Hypoglycemia due to Type 2 Diabetes Mellitus",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "hypoglycemiaDueToType2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Coma Associated with Type 2 Diabetes Mellitus",
+            "description": ""
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "comaDueToType2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "magnitude",
+            "description": "/target/detailRange/high"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Chronic Kidney Disease Stage 5",
+            "description": ""
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "chronicKidneyDiseaseStage5Diagnosis",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Estimar las tendencias en el control de la glucosa",
+            "description": "summaryValue"
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "Si se altera el recambio de eritrocitos y/o la hemoglobina es anormal y/o se observan discrepancias inexplicables entre las mediciones de HbA1c y glucosa, estime la tendencia en el control de la glucosa en sangre usando uno de los siguientes parámetros: perfiles de glucosa en plasma, estimación de hemoglobina glicosilada total (en el caso de hemoglobina anormal), estimacion de fructosamina. Consulte con nefrólogos y especialistas en bioquímica clínica.",
+            "description": "detailValue"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "Consejos de estilo de vida",
+            "description": "summaryValue"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "Ofrecer consejos de estilo de vida",
+            "description": "detailValue"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0109": {
+            "id": "gt0109",
+            "text": "Decisión sobre los objetivos individuales de HbA1c",
+            "description": "summaryValue"
+          },
+          "gt0110": {
+            "id": "gt0110",
+            "text": "Involucrar al paciente en la decisión sobre los objetivos individuales de HbA1c",
+            "description": "detailValue"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "FHIR-STU3-Goal.hba1c_targets.v0"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "magnitude",
+            "description": "/target/detailRange/high"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "La meta de HbA1c no es relevante. Evitar los síntomas hiperglucémicos.",
+            "description": "summaryValue"
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "La meta de HbA1c no es relevante. Evitar los síntomas hiperglucémicos.",
+            "description": "detailValue"
+          },
+          "gt0121": {
+            "id": "gt0121",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0122": {
+            "id": "gt0122",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0123": {
+            "id": "gt0123",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0124": {
+            "id": "gt0124",
+            "text": "labelValue",
+            "description": "labelValue"
+          },
+          "gt0126": {
+            "id": "gt0126",
+            "text": "Sugerencia para el objetivo de HbA1c",
+            "description": "summaryValue"
+          },
+          "gt0127": {
+            "id": "gt0127",
+            "text": "Se supone que el objetivo del tratamiento es 63 mmol/mol (<= 7.9%). Si el paciente es frágil o tiene una esperanza de vida reducida, considere la posibilidad de relajar el objetivo de HbA1c.",
+            "description": "detailValue"
+          },
+          "gt0128": {
+            "id": "gt0128",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0131": {
+            "id": "gt0131",
+            "text": "Objetivo de tratamiento 63 mmol/mol (<= 7.9%) Objetivo de seguimiento",
+            "description": "labelValue"
+          },
+          "gt0132": {
+            "id": "gt0132",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0133": {
+            "id": "gt0133",
+            "text": "El objetivo del tratamiento se supone que es 63 mmol/mol (<= 7.9%)",
+            "description": "descriptionValue"
+          },
+          "gt0135": {
+            "id": "gt0135",
+            "text": "Sugerencia para el objetivo de HbA1c",
+            "description": "summaryValue"
+          },
+          "gt0136": {
+            "id": "gt0136",
+            "text": "El objetivo del tratamiento se supone que es 52 mmol/mol (<= 6.9%). Si existe riesgo de tratamiento de hipoglucemia o el valor de eGFR (filtrado glomerular)  <45 o el paciente tiene diagnóstico de insuficiencia renal crónica, considere la posibilidad de relajar el objetivo de HbA1c.",
+            "description": "detailValue"
+          },
+          "gt0137": {
+            "id": "gt0137",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0138": {
+            "id": "gt0138",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0139": {
+            "id": "gt0139",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0140": {
+            "id": "gt0140",
+            "text": "Objetivo de tratamiento 52 mmol/mol (<= 6.9%). Meta de seguimiento",
+            "description": "labelValue"
+          },
+          "gt0141": {
+            "id": "gt0141",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0142": {
+            "id": "gt0142",
+            "text": "El objetivo del tratamiento se supone que es 52 mmol/mol (<= 6.9%)",
+            "description": "descriptionValue"
+          },
+          "gt0144": {
+            "id": "gt0144",
+            "text": "Sugerencia para el objetivo de HbA1c",
+            "description": "summaryValue"
+          },
+          "gt0145": {
+            "id": "gt0145",
+            "text": "El objetivo del tratamiento se supone que es 46 mmol/mol (<= 6.4%). Considere la posibilidad de relajar el objetivo de HbA1c.",
+            "description": "detailValue"
+          },
+          "gt0146": {
+            "id": "gt0146",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0147": {
+            "id": "gt0147",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0148": {
+            "id": "gt0148",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0149": {
+            "id": "gt0149",
+            "text": "labelValue",
+            "description": "labelValue"
+          },
+          "gt0150": {
+            "id": "gt0150",
+            "text": "Objetivo de tratamiento 46 mmol/mol (<= 6.4%) Objetivo de seguimiento",
+            "description": "labelValue"
+          },
+          "gt0151": {
+            "id": "gt0151",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0152": {
+            "id": "gt0152",
+            "text": "El objetivo del tratamiento se supone que es 46 mmol/mol (<= 6.4%)",
+            "description": "descriptionValue"
+          },
+          "gt0153": {
+            "id": "gt0153",
+            "text": "latestEgfrCode",
+            "description": ""
+          },
+          "gt0154": {
+            "id": "gt0154",
+            "text": "estimated Glomerular Filtration Rate",
+            "description": ""
+          },
+          "gt0160": {
+            "id": "gt0160",
+            "text": "egfrEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0161": {
+            "id": "gt0161",
+            "text": "frailtyScoreEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "terminalIllnessCondition",
+            "description": "description gt2003"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "poorPrognosisCondition",
+            "description": "description gt2005"
+          },
+          "gt2019": {
+            "id": "gt2019",
+            "text": "frailtyScoreValue",
+            "description": "description gt2019"
+          },
+          "gt2153": {
+            "id": "gt2153",
+            "text": "frailtyScoreCondition",
+            "description": "description gt2153"
+          },
+          "gt2154": {
+            "id": "gt2154",
+            "text": "Frailty score",
+            "description": ""
+          },
+          "gt2500": {
+            "id": "gt2500",
+            "text": "Mantenga el nivel de HbA1C por debajo de 63 mmol/mol (<= 7.9%)",
+            "description": "descriptionValue"
+          },
+          "gt2501": {
+            "id": "gt2501",
+            "text": "Mantenga el nivel de HbA1C por debajo de 52 mmol/mol (<= 6.9%)",
+            "description": "descriptionValue"
+          },
+          "gt2502": {
+            "id": "gt2502",
+            "text": "Mantenga el nivel de HbA1C por debajo de 46 mmol/mol (<= 6.4%)",
+            "description": "descriptionValue"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Mantenga el nivel de HbA1c por debajo del objetivo acordado",
+            "description": "description/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "description/coding/display"
+          },
+          "gt9004": {
+            "id": "gt9004",
+            "text": "Terminal illness - late stage",
+            "description": ""
+          },
+          "gt9005": {
+            "id": "gt9005",
+            "text": "Poor prognosis",
+            "description": ""
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ATC": {
+        "id": "ATC",
+        "bindings": {
+          "gt0048": {
+            "codes": [
+              "ATC::A10A",
+              "ATC::A10BB",
+              "ATC::A10BC01",
+              "ATC::A10BD01",
+              "ATC::A10BD02",
+              "ATC::A10BD04",
+              "ATC::A10BD06",
+              "ATC::A10BD07",
+              "ATC::A10BD08",
+              "ATC::A10BD10",
+              "ATC::A10BD11",
+              "ATC::A10BD13",
+              "ATC::A10BD15",
+              "ATC::A10BD20",
+              "ATC::A10BX02",
+              "ATC::A10BX03"
+            ]
+          }
+        }
+      },
+      "ICD-10-SE": {
+        "id": "ICD-10-SE",
+        "bindings": {
+          "gt0054": {
+            "codes": [
+              "ICD-10-SE::E110"
+            ]
+          },
+          "gt0044": {
+            "codes": [
+              "ICD-10-SE::N184"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "ICD-10-SE::E116A",
+              "ICD-10-SE::E110C"
+            ]
+          },
+          "gt0095": {
+            "codes": [
+              "ICD-10-SE::N185"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-SE::E11",
+              "ICD-10-SE::G632"
+            ]
+          }
+        }
+      },
+      "NPU": {
+        "id": "NPU",
+        "bindings": {
+          "gt0154": {
+            "codes": [
+              "NPU::EGFRKRE",
+              "NPU::SWE05406",
+              "NPU::SWE05405",
+              "NPU::SWE05404",
+              "NPU::SWE05387",
+              "NPU::SWE05386",
+              "NPU::SWE05385"
+            ]
+          }
+        }
+      },
+      "DBP": {
+        "id": "DBP",
+        "bindings": {
+          "gt0154": {
+            "codes": [
+              "DBP::33382"
+            ]
+          }
+        }
+      },
+      "ICD-10": {
+        "id": "ICD-10",
+        "bindings": {
+          "gt0054": {
+            "codes": [
+              "ICD-10::E11.0"
+            ]
+          },
+          "gt0044": {
+            "codes": [
+              "ICD-10::N18.4"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "ICD-10::E11.6A"
+            ]
+          },
+          "gt0095": {
+            "codes": [
+              "ICD-10::N18.5"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10::E11",
+              "ICD-10::G63.2"
+            ]
+          }
+        }
+      },
+      "LOINC": {
+        "id": "LOINC",
+        "bindings": {
+          "gt0154": {
+            "codes": [
+              "LOINC::33914-3"
+            ]
+          }
+        }
+      },
+      "CIE-10-CM-ES": {
+        "id": "CIE-10-CM-ES",
+        "bindings": {
+          "gt0054": {
+            "codes": [
+              "CIE-10-CM-ES::E11.641",
+              "CIE-10-CM-ES::E13.11"
+            ]
+          },
+          "gt0044": {
+            "codes": [
+              "CIE-10-CM-ES::N18.4"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "CIE-10-CM-ES::E11.649"
+            ]
+          },
+          "gt0095": {
+            "codes": [
+              "CIE-10-CM-ES::N18.5"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "CIE-10-CM-ES::E11",
+              "CIE-10-CM-ES::E13.11",
+              "CIE-10-CM-ES::E10.10"
+            ]
+          }
+        }
+      },
+      "ICD-10-UK": {
+        "id": "ICD-10-UK",
+        "bindings": {
+          "gt0054": {
+            "codes": [
+              "ICD-10-UK::E11.0"
+            ]
+          },
+          "gt0044": {
+            "codes": [
+              "ICD-10-UK::N18.4"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "ICD-10-UK::E11.6A"
+            ]
+          },
+          "gt0095": {
+            "codes": [
+              "ICD-10-UK::N18.5"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-UK::E11",
+              "ICD-10-UK::G63.2"
+            ]
+          }
+        }
+      },
+      "READ2": {
+        "id": "READ2",
+        "bindings": {
+          "gt0054": {
+            "codes": [
+              "READ2::C10FD",
+              "READ2::C10FP"
+            ]
+          },
+          "gt0044": {
+            "codes": [
+              "READ2::1Z13",
+              "READ2::K054"
+            ]
+          },
+          "gt0154": {
+            "codes": [
+              "READ2::451E"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "READ2::EMISNQHO137"
+            ]
+          },
+          "gt0095": {
+            "codes": [
+              "READ2::1Z14",
+              "READ2::K055"
+            ]
+          },
+          "gt2154": {
+            "codes": [
+              "READ2::38Ql"
+            ]
+          },
+          "gt9004": {
+            "codes": [
+              "READ2::1Z01"
+            ]
+          },
+          "gt9005": {
+            "codes": [
+              "READ2::66W1"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "READ2::C10F",
+              "READ2::F1711",
+              "READ2::C107",
+              "READ2::C104",
+              "READ2::C101",
+              "READ2::F372",
+              "READ2::EMISNQHO137"
+            ]
+          }
+        }
+      },
+      "SNOMED-CT": {
+        "id": "SNOMED-CT",
+        "bindings": {
+          "gt0054": {
+            "codes": [
+              "SNOMED-CT::420662003",
+              "SNOMED-CT::421847006"
+            ]
+          },
+          "gt0044": {
+            "codes": [
+              "SNOMED-CT::431857002"
+            ]
+          },
+          "gt0051": {
+            "codes": [
+              "SNOMED-CT::120731000119103"
+            ]
+          },
+          "gt0095": {
+            "codes": [
+              "SNOMED-CT::433146000"
+            ]
+          },
+          "gt2154": {
+            "codes": [
+              "SNOMED-CT::713636003",
+              "SNOMED-CT::713634000"
+            ]
+          },
+          "gt9004": {
+            "codes": [
+              "SNOMED-CT::300936002"
+            ]
+          },
+          "gt9005": {
+            "codes": [
+              "SNOMED-CT::170969009"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "SNOMED-CT::44054006",
+              "SNOMED-CT::420436000",
+              "SNOMED-CT::423263001",
+              "SNOMED-CT::421895002",
+              "SNOMED-CT::421707005",
+              "SNOMED-CT::395204000",
+              "SNOMED-CT::120731000119103",
+              "SNOMED-CT::420662003",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::421847006",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::420422005",
+              "SNOMED-CT::49455004"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

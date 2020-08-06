@@ -1,0 +1,2458 @@
+{
+    "id": "chf_fluid_overload.v4",
+    "gdl_version": "2.0",
+    "concept": "gt0001",
+    "language": {
+        "original_language": "ISO_639-1::en"
+    },
+    "description": {
+        "original_author": {
+            "date": "2018-06-14",
+            "name": "Lei Zhao",
+            "organisation": "University of Warwick",
+            "email": "lei.zhao@warwick.ac.uk"
+        },
+        "lifecycle_state": "Author draft",
+        "details": {
+            "sv": {
+                "id": "sv",
+                "keywords": [
+                    "*(en) HF",
+                    "*(en) Diuretics",
+                    "*(en) Fluid Overload",
+                    "*(en) Fluid Retention"
+                ]
+            },
+            "en": {
+                "id": "en",
+                "keywords": [
+                    "HF",
+                    "Diuretics",
+                    "Fluid Overload",
+                    "Fluid Retention"
+                ]
+            },
+            "es": {
+                "id": "es",
+                "keywords": [
+                    "*(en) HF",
+                    "*(en) Diuretics",
+                    "*(en) Fluid Overload",
+                    "*(en) Fluid Retention"
+                ]
+            }
+        },
+        "other_details": {},
+        "references": [
+            {
+                "id": "1",
+                "label": "Chronic heart failure in adults: management",
+                "url": "https://www.nice.org.uk/guidance/cg108"
+            }
+        ]
+    },
+    "definition": {
+        "data_bindings": {
+            "gt0002": {
+                "id": "gt0002",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0003": {
+                        "id": "gt0003",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0004|HF Code|"
+                ]
+            },
+            "gt0005": {
+                "id": "gt0005",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0006": {
+                        "id": "gt0006",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0007|FluidOverload Code|"
+                ]
+            },
+            "gt0009": {
+                "id": "gt0009",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0010": {
+                        "id": "gt0010",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0011|Diuretics Code|"
+                ]
+            }
+        },
+        "templates": {
+            "gt0020": {
+                "id": "gt0020",
+                "name": "org.hl7.fhir.dstu3.model.MedicationRequest",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationRequest",
+                "template_id": "FHIR-STU3-MedicationRequest.generic.v0",
+                "object": {
+                    "authoredOn": "{$gt0060}",
+                    "medicationCodeableConcept": {
+                        "coding": [
+                            {
+                                "code": "{$gt0024}",
+                                "system": "http://www.whocc.no/atc",
+                                "display": "{$gt0023}"
+                            }
+                        ]
+                    },
+                    "intent": "proposal",
+                    "status": "draft",
+                    "resourceType": "MedicationRequest"
+                }
+            },
+            "gt0027": {
+                "id": "gt0027",
+                "name": "org.hl7.fhir.dstu3.model.Appointment",
+                "model_id": "org.hl7.fhir.dstu3.model.Appointment",
+                "template_id": "FHIR-STU3-Appointment.generic.v0",
+                "object": {
+                    "start": "{$gt0029}",
+                    "description": "{$gt0028}",
+                    "status": "proposed",
+                    "resourceType": "Appointment"
+                }
+            },
+            "gt0061": {
+                "id": "gt0061",
+                "name": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+                "model_id": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+                "template_id": "FHIR-STU3-ProcedureRequest.generic.v0",
+                "object": {
+                    "extension": [
+                        {
+                            "valueString": "{$gt0062}",
+                            "url": "https://gitlab.cambiocds.com/CDS-PLATFORM/c3cloud-cdsm/blob/resource_profiles/src/main/resources/extensions/extension-ProcedureRequest-description-string-value.xml"
+                        }
+                    ],
+                    "code": {
+                        "coding": [
+                            {
+                                "code": "{$gt0065}",
+                                "system": "http://loinc.org",
+                                "display": "{$gt0064}"
+                            }
+                        ]
+                    },
+                    "performer": {
+                        "display": "PATIENT"
+                    },
+                    "category": [
+                        {
+                            "coding": [
+                                {
+                                    "code": "lab-request",
+                                    "system": "http://www.c3-cloud.eu/fhir/care-plan-activity-category",
+                                    "display": "Lab Request"
+                                }
+                            ]
+                        }
+                    ],
+                    "intent": "proposal",
+                    "status": "draft",
+                    "resourceType": "ProcedureRequest"
+                }
+            }
+        },
+        "pre_conditions": [
+            "$gt0003|HF|!=null"
+        ],
+        "rules": {
+            "gt0008": {
+                "id": "gt0008",
+                "priority": 3,
+                "when": [
+                    "$gt0006|FluidOverload|!=null",
+                    "!($gt0010|Diuretics|!=null)"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0013.term}",
+                        "detail": "{$gt0014.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        },
+                        "suggestions": [
+                            {
+                                "uuid": "f71d06a5-3824-4c76-afd4-8252347bb6a8",
+                                "label": "{$gt0018.term}",
+                                "actions": [
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0026.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0020",
+                                            "assignments": [
+                                                "$gt0060=$currentDateTime+0,d",
+                                                "$gt0023=$gt0081.term",
+                                                "$gt0024=$gt0082.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0031.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0027",
+                                            "assignments": [
+                                                "$gt0029=$currentDateTime+7,d",
+                                                "$gt0028=$gt0083.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0067.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0084.term",
+                                                "$gt0064=$gt0085.term",
+                                                "$gt0065=$gt0086.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0068.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0087.term",
+                                                "$gt0064=$gt0088.term",
+                                                "$gt0065=$gt0089.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0069.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0090.term",
+                                                "$gt0064=$gt0091.term",
+                                                "$gt0065=$gt0092.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0070.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0093.term",
+                                                "$gt0064=$gt0094.term",
+                                                "$gt0065=$gt0095.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0071.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0096.term",
+                                                "$gt0064=$gt0097.term",
+                                                "$gt0065=$gt0098.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0072.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0099.term",
+                                                "$gt0064=$gt0100.term",
+                                                "$gt0065=$gt0101.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0073.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0102.term",
+                                                "$gt0064=$gt0103.term",
+                                                "$gt0065=$gt0104.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0074.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0105.term",
+                                                "$gt0064=$gt0106.term",
+                                                "$gt0065=$gt0107.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0075.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0108.term",
+                                                "$gt0064=$gt0109.term",
+                                                "$gt0065=$gt0110.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0076.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0111.term",
+                                                "$gt0064=$gt0112.term",
+                                                "$gt0065=$gt0113.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0077.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0114.term",
+                                                "$gt0064=$gt0115.term",
+                                                "$gt0065=$gt0116.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0078.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0117.term",
+                                                "$gt0064=$gt0118.term",
+                                                "$gt0065=$gt0119.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0079.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0120.term",
+                                                "$gt0064=$gt0121.term",
+                                                "$gt0065=$gt0122.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0080.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0123.term",
+                                                "$gt0064=$gt0124.term",
+                                                "$gt0065=$gt0125.term"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gt0032": {
+                "id": "gt0032",
+                "priority": 2,
+                "when": [
+                    "$gt0006|FluidOverload|!=null",
+                    "$gt0010|Diuretics|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0034.term}",
+                        "detail": "{$gt0035.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        },
+                        "suggestions": [
+                            {
+                                "uuid": "c40951e4-94b1-485c-b757-92d5a6833782",
+                                "label": "{$gt0039.term}",
+                                "actions": [
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0041.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0027",
+                                            "assignments": [
+                                                "$gt0029=$currentDateTime+7,d",
+                                                "$gt0028=$gt0083.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0067.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0084.term",
+                                                "$gt0064=$gt0085.term",
+                                                "$gt0065=$gt0086.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0068.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0087.term",
+                                                "$gt0064=$gt0088.term",
+                                                "$gt0065=$gt0089.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0069.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0090.term",
+                                                "$gt0064=$gt0091.term",
+                                                "$gt0065=$gt0092.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0070.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0093.term",
+                                                "$gt0064=$gt0094.term",
+                                                "$gt0065=$gt0095.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0071.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0096.term",
+                                                "$gt0064=$gt0097.term",
+                                                "$gt0065=$gt0098.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0072.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0099.term",
+                                                "$gt0064=$gt0100.term",
+                                                "$gt0065=$gt0101.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0073.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0102.term",
+                                                "$gt0064=$gt0103.term",
+                                                "$gt0065=$gt0104.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0074.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0105.term",
+                                                "$gt0064=$gt0106.term",
+                                                "$gt0065=$gt0107.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0075.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0108.term",
+                                                "$gt0064=$gt0109.term",
+                                                "$gt0065=$gt0110.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0076.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0111.term",
+                                                "$gt0064=$gt0112.term",
+                                                "$gt0065=$gt0113.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0077.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0114.term",
+                                                "$gt0064=$gt0115.term",
+                                                "$gt0065=$gt0116.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0078.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0117.term",
+                                                "$gt0064=$gt0118.term",
+                                                "$gt0065=$gt0119.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0079.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0120.term",
+                                                "$gt0064=$gt0121.term",
+                                                "$gt0065=$gt0122.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0080.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0061",
+                                            "assignments": [
+                                                "$gt0062=$gt0123.term",
+                                                "$gt0064=$gt0124.term",
+                                                "$gt0065=$gt0125.term"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gt0042": {
+                "id": "gt0042",
+                "priority": 1,
+                "when": [
+                    "!($gt0006|FluidOverload|!=null)",
+                    "$gt0010|Diuretics|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0044.term}",
+                        "detail": "{$gt0045.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "ontology": {
+        "term_definitions": {
+            "en": {
+                "id": "en",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "CHF Fluid Overload"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "HF Code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "FluidOverload",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "FluidOverload Code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "Card 1, Fluid overload and NOT on diuretics"
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "Diuretics",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "Diuretics Code",
+                        "description": ""
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "Initiate diuretics to treat fluid retention",
+                        "description": "summaryValue"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "Patient has fluid overload. Consider diuretics for fluid retention in patients with heart failure. Patients should usually be treated with a low to medium dose of loop diuretics (for example, less than 80 mg furosemide per day).",
+                        "description": "detailValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "Prescribe diuretics, Blood test, Follow-up appointment",
+                        "description": "labelValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "FHIR-STU3-MedicationStatement.generic.v0"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "FHIR-STU3-MedicationRequest.generic.v0"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "value",
+                        "description": "/intent"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "terminologyId",
+                        "description": "/medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "value",
+                        "description": "/medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "code",
+                        "description": "/medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Prescribe diuretics to treat fluid retention",
+                        "description": "descriptionValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "FHIR-STU3-Appointment.generic.v0"
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "value",
+                        "description": "/description"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "value",
+                        "description": "/start"
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Follow-up Appointment",
+                        "description": "descriptionValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "Card 2, Fluid overload and on diuretics"
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "Increase diuretic dose",
+                        "description": "summaryValue"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Patient has fluid overload and is taking diuretics. Consider increasing the dose to treat the fluid retention.",
+                        "description": "detailValue"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Titrate dose, Blood test, Follow-up appointment",
+                        "description": "labelValue"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "Follow-up Appointment",
+                        "description": "descriptionValue"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "Card 3, No fluid overload and on diuretics"
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "Titrate diuretics",
+                        "description": "summaryValue"
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "Patient has no fluid overload and is taking diuretics. Review blood test results and titrate (up and down) diuretics according to need. Book blood test and follow-up appointment after each titration. ",
+                        "description": "detailValue"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0047": {
+                        "id": "gt0047",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "Card 4, No fluid overload and not on diuretics"
+                    },
+                    "gt0051": {
+                        "id": "gt0051",
+                        "text": "About Diuretics",
+                        "description": "summaryValue"
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "Diuretics should be routinely used for the relief of congestive symptoms and fluid retention in patients with heart failure, and titrated (up and down) according to need following the initiation of subsequent heart failure therapies.  The diagnosis and treatment of heart failure with preserved ejection fraction should be made by a specialist, and other conditions that present in a similar way may need to be considered. Patients in whom this diagnosis has been made should usually be treated with a low to medium dose of loop diuretics (for example, less than 80 mg furosemide per day). Patients who do not respond to this treatment will require further specialist advice. ",
+                        "description": "detailValue"
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0055": {
+                        "id": "gt0055",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "value",
+                        "description": "/authoredOn"
+                    },
+                    "gt0061": {
+                        "id": "gt0061",
+                        "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "value",
+                        "description": "/extension[0]/valueString"
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "value",
+                        "description": "/status"
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "value",
+                        "description": "/code/coding[0]"
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "code",
+                        "description": "/code/coding[0]"
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "Have Sodium test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "Have Potassium test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Have Calcium test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0070": {
+                        "id": "gt0070",
+                        "text": "Have Albumin test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "Have Creatinine test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "Have Glucose test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "Have eGFR test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "Have ALT test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Have AST test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "Have Cholesterol test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "Have HDL-C test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Have LDL-C test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "Have Triglyceride test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "Have FBC test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "DIURETICS",
+                        "description": ""
+                    },
+                    "gt0082": {
+                        "id": "gt0082",
+                        "text": "C03",
+                        "description": ""
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "A follow-up appointment in 1 week to review treatment outcome",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "Have Sodium test before the control visit",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "Sodium [Moles/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "2951-2",
+                        "description": ""
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Have Potassium test before the control visit",
+                        "description": ""
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "Potassium [Moles/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "2823-3",
+                        "description": ""
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Have Calcium test before the control visit",
+                        "description": ""
+                    },
+                    "gt0091": {
+                        "id": "gt0091",
+                        "text": "Calcium [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "17861-6",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "Have Albumin test before the control visit",
+                        "description": ""
+                    },
+                    "gt0094": {
+                        "id": "gt0094",
+                        "text": "Albumin [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "1751-7",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "Have Creatinine test before the control visit",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "Creatinine [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0098": {
+                        "id": "gt0098",
+                        "text": "2160-0",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "Have Glucose test before the control visit",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "Glucose [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "2345-7",
+                        "description": ""
+                    },
+                    "gt0102": {
+                        "id": "gt0102",
+                        "text": "Have eGFR test before the control visit",
+                        "description": ""
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum or Plasma by Creatinine-based formula (MDRD)",
+                        "description": ""
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "33914-3",
+                        "description": ""
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "Have ALT test before the control visit",
+                        "description": ""
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "1742-6",
+                        "description": ""
+                    },
+                    "gt0108": {
+                        "id": "gt0108",
+                        "text": "Have AST test before the control visit",
+                        "description": ""
+                    },
+                    "gt0109": {
+                        "id": "gt0109",
+                        "text": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0110": {
+                        "id": "gt0110",
+                        "text": "1920-8",
+                        "description": ""
+                    },
+                    "gt0111": {
+                        "id": "gt0111",
+                        "text": "Have Cholesterol test before the control visit",
+                        "description": ""
+                    },
+                    "gt0112": {
+                        "id": "gt0112",
+                        "text": "Cholesterol [Mass/​volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0113": {
+                        "id": "gt0113",
+                        "text": "2093-3",
+                        "description": ""
+                    },
+                    "gt0114": {
+                        "id": "gt0114",
+                        "text": "Have HDL-C test before the control visit",
+                        "description": ""
+                    },
+                    "gt0115": {
+                        "id": "gt0115",
+                        "text": "Cholesterol in HDL [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0116": {
+                        "id": "gt0116",
+                        "text": "2085-9",
+                        "description": ""
+                    },
+                    "gt0117": {
+                        "id": "gt0117",
+                        "text": "Have LDL-C test before the control visit",
+                        "description": ""
+                    },
+                    "gt0118": {
+                        "id": "gt0118",
+                        "text": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation",
+                        "description": ""
+                    },
+                    "gt0119": {
+                        "id": "gt0119",
+                        "text": "13457-7",
+                        "description": ""
+                    },
+                    "gt0120": {
+                        "id": "gt0120",
+                        "text": "Have Triglyceride test before the control visit",
+                        "description": ""
+                    },
+                    "gt0121": {
+                        "id": "gt0121",
+                        "text": "Triglyceride [Mass/​volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0122": {
+                        "id": "gt0122",
+                        "text": "2571-8",
+                        "description": ""
+                    },
+                    "gt0123": {
+                        "id": "gt0123",
+                        "text": "Have FBC test before the control visit",
+                        "description": ""
+                    },
+                    "gt0124": {
+                        "id": "gt0124",
+                        "text": "Complete blood count (hemogram) panel - Blood by Automated count",
+                        "description": ""
+                    },
+                    "gt0125": {
+                        "id": "gt0125",
+                        "text": "58410-2",
+                        "description": ""
+                    }
+                }
+            },
+            "sv": {
+                "id": "sv",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) CHF Fluid Overload"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) HF Code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "*(en) FluidOverload",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) FluidOverload Code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Card 1, Fluid overload and NOT on diuretics",
+                        "description": ""
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "*(en) Diuretics",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "*(en) Diuretics Code",
+                        "description": ""
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "Initiera diuretika för att behandla vätskeretention",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "Patienten har vätsk-retention. Överväg diuretika för vätskeretention hos patienter med hjärtsvikt. Patienterna ska vanligtvis behandlas med en låg till medelhög dos av loopdiuretika (till exempel mindre än 80 mg furosemid per dag).",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "Förskriv diuretika, blodprov, uppföljningsbesök",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "*(en) FHIR-STU3-MedicationStatement.generic.v0",
+                        "description": ""
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) FHIR-STU3-MedicationRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "*(en) value",
+                        "description": "*(en) /intent"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) terminologyId",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "*(en) value",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "*(en) code",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Föreskriv diuretika för att behandla vätskeretention",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "*(en) FHIR-STU3-Appointment.generic.v0",
+                        "description": ""
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "*(en) value",
+                        "description": "*(en) /description"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) value",
+                        "description": "*(en) /start"
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Uppföljningsbesök",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "*(en) Card 2, Fluid overload and on diuretics",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "Öka diuretiksdosen",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Patienten har överskottsvätska och tar diuretika. Överväg att öka dosen för att behandla vätskeretentionen.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Titreringsdos, blodprov, uppföljningsbesök",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "Uppföljningsbesök",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "*(en) Card 3, No fluid overload and on diuretics",
+                        "description": ""
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "Titrera diuretika",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "Patienten har ingen vätskeöverbelastning och tar diuretika. Följ blodprov och titrera (upp och ner) diuretika enligt behov. Boka blodprov och uppföljning efter varje titrering.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0047": {
+                        "id": "gt0047",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "*(en) Card 4, No fluid overload and not on diuretics",
+                        "description": ""
+                    },
+                    "gt0051": {
+                        "id": "gt0051",
+                        "text": "Om Diuretika",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "Diuretika bör rutinmässigt användas för avlastning av hjärtsviktssymptom och vätskeretention hos patienter med hjärtsvikt och titreras (upp och ner) enligt behov efter initiering av patientens andra hjärtsviktsmedicinering. Diagnosen och behandlingen av hjärtsvikt med bevarad ejektionssfraktion bör göras av en specialist, då andra tillstånd som förekommer med liknande symptom kan behöva övervägas. Patienter hos vilka denna diagnos har ställts bör vanligtvis behandlas med en låg till medelhög dos av loopdiuretika (till exempel mindre än 80 mg furosemid per dag). Patienter som inte svarar på denna behandling kräver ytterligare specialistrådgivning.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0055": {
+                        "id": "gt0055",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "*(en) value",
+                        "description": "*(en) /authoredOn"
+                    },
+                    "gt0061": {
+                        "id": "gt0061",
+                        "text": "*(en) FHIR-STU3-ProcedureRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "*(en) value",
+                        "description": "*(en) /extension[0]/valueString"
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "*(en) value",
+                        "description": "*(en) /status"
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "*(en) value",
+                        "description": "*(en) /code/coding[0]"
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "*(en) code",
+                        "description": "*(en) /code/coding[0]"
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "Ta prov på s-natrium före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "Ta prov på s-kalium före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Ta prov på s-kalcium före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0070": {
+                        "id": "gt0070",
+                        "text": "Ta prov på s-albumin före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "Ta prov på s-kreatinin före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "Ta glukosprov före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "Kontrollera eGFR före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "Kontrollera ALAT före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Kontrollera ASAT-test före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "Kontrollera kolesterol innan kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "Kontrollera HDL före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Kontrollera LDL före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "Kontrollera Triglycerider före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "Kontrollera faste-glukos före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "DIURETIKA",
+                        "description": ""
+                    },
+                    "gt0082": {
+                        "id": "gt0082",
+                        "text": "*(en) C03",
+                        "description": ""
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "En uppföljningstid inom 1 vecka för att följa upp behandlingsresultatet",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "Ta prov på s-natrium före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "Natrium i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "*(en) 2951-2",
+                        "description": ""
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Ta prov på s-kalium före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "Kalium i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "*(en) 2823-3",
+                        "description": ""
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Ta prov på s-kalcium före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0091": {
+                        "id": "gt0091",
+                        "text": "Kalcium i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "*(en) 17861-6",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "Ta prov på s-albumin före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0094": {
+                        "id": "gt0094",
+                        "text": "Albumin i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "*(en) 1751-7",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "Ta prov på s-kreatinin före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "Kreatinin i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0098": {
+                        "id": "gt0098",
+                        "text": "*(en) 2160-0",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "Ta glukosprov före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "Glukos i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "*(en) 2345-7",
+                        "description": ""
+                    },
+                    "gt0102": {
+                        "id": "gt0102",
+                        "text": "Kontrollera eGFR före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Uppskattad Glomerulär filtreringshastighet / 1,73 m²  i serum eller plasma med kreatininbaserad formel (MDRD)",
+                        "description": ""
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "*(en) 33914-3",
+                        "description": ""
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "Kontrollera ALAT före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": "Alaninaminotransferas i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "*(en) 1742-6",
+                        "description": ""
+                    },
+                    "gt0108": {
+                        "id": "gt0108",
+                        "text": "Kontrollera ASAT-test före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0109": {
+                        "id": "gt0109",
+                        "text": "Aspartataminotransferas i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0110": {
+                        "id": "gt0110",
+                        "text": "*(en) 1920-8",
+                        "description": ""
+                    },
+                    "gt0111": {
+                        "id": "gt0111",
+                        "text": "Kontrollera kolesterol innan kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0112": {
+                        "id": "gt0112",
+                        "text": "Kolesterol i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0113": {
+                        "id": "gt0113",
+                        "text": "*(en) 2093-3",
+                        "description": ""
+                    },
+                    "gt0114": {
+                        "id": "gt0114",
+                        "text": "Kontrollera HDL före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0115": {
+                        "id": "gt0115",
+                        "text": "HDL-Kolesterol i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0116": {
+                        "id": "gt0116",
+                        "text": "*(en) 2085-9",
+                        "description": ""
+                    },
+                    "gt0117": {
+                        "id": "gt0117",
+                        "text": "Kontrollera LDL före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0118": {
+                        "id": "gt0118",
+                        "text": "LDL-Kolesterol i serum eller plasma (beräknad)",
+                        "description": ""
+                    },
+                    "gt0119": {
+                        "id": "gt0119",
+                        "text": "*(en) 13457-7",
+                        "description": ""
+                    },
+                    "gt0120": {
+                        "id": "gt0120",
+                        "text": "Kontrollera Triglycerider före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0121": {
+                        "id": "gt0121",
+                        "text": "Triglycerid i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0122": {
+                        "id": "gt0122",
+                        "text": "*(en) 2571-8",
+                        "description": ""
+                    },
+                    "gt0123": {
+                        "id": "gt0123",
+                        "text": "Kontrollera faste-glukos före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0124": {
+                        "id": "gt0124",
+                        "text": "Fullständigt blodstatus",
+                        "description": ""
+                    },
+                    "gt0125": {
+                        "id": "gt0125",
+                        "text": "*(en) 58410-2",
+                        "description": ""
+                    }
+                }
+            },
+            "es": {
+                "id": "es",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) CHF Fluid Overload"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) HF Code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "*(en) FluidOverload",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) FluidOverload Code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Card 1, Fluid overload and NOT on diuretics",
+                        "description": ""
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "*(en) Diuretics",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "*(en) Diuretics Code",
+                        "description": ""
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "Inicie tratamiento con diuréticos para tratar la retención de líquidos",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "El paciente tiene retención de líquidos. En pacientes con insuficiencia cardíaca, considere tratamiento con diuréticos para la retención de líquidos. Los pacientes generalmente deben tratarse con una dosis baja a media de diuréticos de asa (por ejemplo, menos de 80 mg de furosemida por día).",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "Prescriba diuréticos, análisis de sangre, cita de seguimiento.",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "*(en) FHIR-STU3-MedicationStatement.generic.v0",
+                        "description": ""
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) FHIR-STU3-MedicationRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "*(en) value",
+                        "description": "*(en) /intent"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) terminologyId",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "*(en) value",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "*(en) code",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Prescriba diuréticos para tratar la retención de líquidos.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "*(en) FHIR-STU3-Appointment.generic.v0",
+                        "description": ""
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "*(en) value",
+                        "description": "*(en) /description"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) value",
+                        "description": "*(en) /start"
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Cita de seguimiento",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "*(en) Card 2, Fluid overload and on diuretics",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "Aumente la dosis de diuréticos.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "El paciente tiene retención de líquidos y está tomando diuréticos. Considere aumentar la dosis para tratar la retención de líquidos.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Dosis de titulación, análisis de sangre, cita de seguimiento.",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "*(en) Card 3, No fluid overload and on diuretics",
+                        "description": ""
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "Valore tratamiento con diuréticos",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "El paciente no tiene retención de líquidos y está tomando diuréticos. Revise los resultados de los análisis de sangre y ajuste la dosis de los diuréticos (suba o baje) según sea necesario. Análisis de sangre y cita de seguimiento después de cada ajuste.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0047": {
+                        "id": "gt0047",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "*(en) Card 4, No fluid overload and not on diuretics",
+                        "description": ""
+                    },
+                    "gt0051": {
+                        "id": "gt0051",
+                        "text": "Acerca de los diuréticos",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "Los diuréticos deben usarse de forma rutinaria para el alivio de los síntomas congestivos y la retención de líquidos en pacientes con insuficiencia cardíaca, y deben ajustarse (hacia arriba y hacia abajo) según sea necesario después del inicio de las terapias posteriores para la insuficiencia cardíaca. El diagnóstico y tratamiento de la insuficiencia cardíaca con fracción de eyección preservada debe ser realizada por un especialista, y es posible que deban considerarse otras afecciones que se presenten de manera similar. Los pacientes en los que se ha realizado este diagnóstico generalmente deben tratarse con una dosis baja o media de diuréticos de asa (por ejemplo, menos de 80 mg de furosemida por día). Los pacientes que no respondan a este tratamiento necesitarán nuevos consejos de un especialista.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0055": {
+                        "id": "gt0055",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "*(en) value",
+                        "description": "*(en) /authoredOn"
+                    },
+                    "gt0061": {
+                        "id": "gt0061",
+                        "text": "*(en) FHIR-STU3-ProcedureRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "*(en) value",
+                        "description": "*(en) /extension[0]/valueString"
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "*(en) value",
+                        "description": "*(en) /status"
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "*(en) value",
+                        "description": "*(en) /code/coding[0]"
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "*(en) code",
+                        "description": "*(en) /code/coding[0]"
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "Realice un análisis de sodio antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "Realice un análisis de potasio antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Realice un análisis de calcio antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0070": {
+                        "id": "gt0070",
+                        "text": "Realice un análisis de albúmina antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "Realice un análisis de creatininna antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "Realice un análisis de glucosa antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "Realice un análisis de filtrado glomerular antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "Realice un análisis de ALT/GPT antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Realice un análisis de AST/GOT antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "Realice un análisis de colesterol antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "Realice un análisis de colesterol HDL-C  suero antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Realice un análisis de colesterol LDL antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "Realice un análisis de triglicéridos antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "Realice un hemograma antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "",
+                        "description": ""
+                    },
+                    "gt0082": {
+                        "id": "gt0082",
+                        "text": "*(en) C03",
+                        "description": ""
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "Cita de seguimiento en 1 semana para revisar el resultado del tratamiento",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "Realice un análisis de sodio antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "Sodio [Moles / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "*(en) 2951-2",
+                        "description": ""
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Realice un análisis de potasio antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "Potasio [Moles / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "*(en) 2823-3",
+                        "description": ""
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Realice un análisis de calcio antes de la visita de control",
+                        "description": ""
+                    },
+                    "gt0091": {
+                        "id": "gt0091",
+                        "text": "Calcio [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "*(en) 17861-6",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "Realice un análisis de albúmina antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0094": {
+                        "id": "gt0094",
+                        "text": "Albúmina [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "*(en) 1751-7",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "Realice un análisis de creatinina antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "Creatinina [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0098": {
+                        "id": "gt0098",
+                        "text": "*(en) 2160-0",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "Realice análisis de glucosa antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "Glucosa [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "*(en) 2345-7",
+                        "description": ""
+                    },
+                    "gt0102": {
+                        "id": "gt0102",
+                        "text": "Realice un análisis de filtrado glomerular (eGFR) antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Tasa de filtración glomerular / 1.73 metros cuadrados pronosticada [tasa de volumen / área] en suero o plasma mediante la fórmula basada en creatinina (MDRD)",
+                        "description": ""
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "*(en) 33914-3",
+                        "description": ""
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "Realice un análisis de ALT/GPT antes de la visita de control",
+                        "description": ""
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": "Alanina aminotransferasa/GPT [Actividad / volumen enzimático] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "*(en) 1742-6",
+                        "description": ""
+                    },
+                    "gt0108": {
+                        "id": "gt0108",
+                        "text": "Realice un análisis de AST/GOT antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0109": {
+                        "id": "gt0109",
+                        "text": "Aspartato aminotransferasa/GOT [Actividad enzimática / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0110": {
+                        "id": "gt0110",
+                        "text": "*(en) 1920-8",
+                        "description": ""
+                    },
+                    "gt0111": {
+                        "id": "gt0111",
+                        "text": "Realice un análisis de colesterol antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0112": {
+                        "id": "gt0112",
+                        "text": "Colesterol [masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0113": {
+                        "id": "gt0113",
+                        "text": "*(en) 2093-3",
+                        "description": ""
+                    },
+                    "gt0114": {
+                        "id": "gt0114",
+                        "text": "Realice un análisis de colesterol HDL-C  suero antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0115": {
+                        "id": "gt0115",
+                        "text": "Colesterol en HDL [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0116": {
+                        "id": "gt0116",
+                        "text": "*(en) 2085-9",
+                        "description": ""
+                    },
+                    "gt0117": {
+                        "id": "gt0117",
+                        "text": "Realice un análisis de colesterol LDL antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0118": {
+                        "id": "gt0118",
+                        "text": "Colesterol  LDL [Masa / volumen] en suero o plasma por cálculo",
+                        "description": ""
+                    },
+                    "gt0119": {
+                        "id": "gt0119",
+                        "text": "*(en) 13457-7",
+                        "description": ""
+                    },
+                    "gt0120": {
+                        "id": "gt0120",
+                        "text": "Realice un análisis de triglicéridos antes de la visita de control",
+                        "description": ""
+                    },
+                    "gt0121": {
+                        "id": "gt0121",
+                        "text": "Nivel de Trigliceridos en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0122": {
+                        "id": "gt0122",
+                        "text": "*(en) 2571-8",
+                        "description": ""
+                    },
+                    "gt0123": {
+                        "id": "gt0123",
+                        "text": "Realice un hemograma antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0124": {
+                        "id": "gt0124",
+                        "text": " Sangre por recuento automatizado",
+                        "description": ""
+                    },
+                    "gt0125": {
+                        "id": "gt0125",
+                        "text": "*(en) 58410-2",
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "term_bindings": {
+            "ATC": {
+                "id": "ATC",
+                "bindings": {
+                    "gt0011": {
+                        "codes": [
+                            "ATC::C03",
+                            "ATC::C09BA",
+                            "ATC::C09DA",
+                            "ATC::C07C",
+                            "ATC::C02L",
+                            "ATC::C08G"
+                        ]
+                    }
+                }
+            },
+            "ICD-10-SE": {
+                "id": "ICD-10-SE",
+                "bindings": {
+                    "gt0007": {
+                        "codes": [
+                            "ICD-10-SE::E877"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "ICD-10-SE::I110",
+                            "ICD-10-SE::I130",
+                            "ICD-10-SE::I132",
+                            "ICD-10-SE::I50"
+                        ]
+                    }
+                }
+            },
+            "ICD-10": {
+                "id": "ICD-10",
+                "bindings": {
+                    "gt0007": {
+                        "codes": [
+                            "ICD-10::E87.7"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "ICD-10::I11.0",
+                            "ICD-10::I13.0",
+                            "ICD-10::I13.2",
+                            "ICD-10::I50"
+                        ]
+                    }
+                }
+            },
+            "CIE-10-CM-ES": {
+                "id": "CIE-10-CM-ES",
+                "bindings": {
+                    "gt0007": {
+                        "codes": [
+                            "CIE-10-CM-ES::E87.7"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "CIE-10-CM-ES::I11.0",
+                            "CIE-10-CM-ES::I13.0",
+                            "CIE-10-CM-ES::I13.2",
+                            "CIE-10-CM-ES::I50"
+                        ]
+                    }
+                }
+            },
+            "SNOMED-CT": {
+                "id": "SNOMED-CT",
+                "bindings": {
+                    "gt0007": {
+                        "codes": [
+                            "SNOMED-CT::21639008"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "SNOMED-CT::42343007",
+                            "SNOMED-CT::420300004",
+                            "SNOMED-CT::421704003",
+                            "SNOMED-CT::420913000",
+                            "SNOMED-CT::422293003",
+                            "SNOMED-CT::5148006",
+                            "SNOMED-CT::194779001",
+                            "SNOMED-CT::194781004"
+                        ]
+                    }
+                }
+            },
+            "READ2": {
+                "id": "READ2",
+                "bindings": {
+                    "gt0007": {
+                        "codes": [
+                            "READ2::C366"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "READ2::G58"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

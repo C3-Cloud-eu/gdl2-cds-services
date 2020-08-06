@@ -1,0 +1,811 @@
+{
+    "id": "depression-psychological-treatment.v4",
+    "gdl_version": "2.0",
+    "concept": "gt0001",
+    "language": {
+        "original_language": "ISO_639-1::en"
+    },
+    "description": {
+        "original_author": {
+            "date": "2018-08-31",
+            "name": "Lei Zhao",
+            "organisation": "University of Warwick",
+            "email": "lei.zhao@warwick.ac.uk"
+        },
+        "lifecycle_state": "Author draft",
+        "details": {
+            "sv": {
+                "id": "sv",
+                "keywords": [
+                    "*(en) depression",
+                    "*(en) psychological treatment"
+                ],
+                "use": "*(en) It is assumed patient has physical health problem in the context of c3-cloud."
+            },
+            "en": {
+                "id": "en",
+                "keywords": [
+                    "depression",
+                    "psychological treatment"
+                ],
+                "use": "It is assumed patient has physical health problem in the context of c3-cloud."
+            },
+            "es": {
+                "id": "es",
+                "keywords": [
+                    "*(en) depression",
+                    "*(en) psychological treatment"
+                ],
+                "use": "*(en) It is assumed patient has physical health problem in the context of c3-cloud."
+            }
+        },
+        "other_details": {},
+        "references": [
+            {
+                "id": "1",
+                "label": "Depression in adults: recognition and management",
+                "url": "https://www.nice.org.uk/guidance/cg90"
+            }
+        ]
+    },
+    "definition": {
+        "data_bindings": {
+            "gt0002": {
+                "id": "gt0002",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0003": {
+                        "id": "gt0003",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0004|Depression code|"
+                ]
+            },
+            "gt0018": {
+                "id": "gt0018",
+                "model_id": "org.hl7.fhir.dstu3.model.Procedure",
+                "template_id": "FHIR-STU3-Procedure.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0019": {
+                        "id": "gt0019",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0020|CBT_IPT code|"
+                ]
+            },
+            "gt0021": {
+                "id": "gt0021",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0022": {
+                        "id": "gt0022",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0023|HF code|"
+                ]
+            }
+        },
+        "templates": {
+            "gt0005": {
+                "id": "gt0005",
+                "name": "org.hl7.fhir.dstu3.model.ReferralRequest",
+                "model_id": "org.hl7.fhir.dstu3.model.ReferralRequest",
+                "template_id": "FHIR-STU3-ReferralRequest.generic.v0",
+                "object": {
+                    "specialty": {
+                        "coding": [
+                            {
+                                "code": "390808007",
+                                "system": "http://snomed.info/sct",
+                                "display": "Mental health care (regime/therapy)"
+                            }
+                        ]
+                    },
+                    "authoredOn": "{$gt0006}",
+                    "description": "{$gt0034}",
+                    "intent": "proposal",
+                    "status": "draft",
+                    "resourceType": "ReferralRequest"
+                }
+            }
+        },
+        "rules": {
+            "gt0008": {
+                "id": "gt0008",
+                "priority": 2,
+                "when": [
+                    "$gt0003|Depression|!=null",
+                    "$gt0019|CBT_IPT|==null",
+                    "$gt0022|HF|==null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0010.term}",
+                        "detail": "{$gt0011.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Depression in adults: recognition and management",
+                            "url": "https://www.nice.org.uk/guidance/cg90",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        },
+                        "suggestions": [
+                            {
+                                "uuid": "8a9b5e36-dd5b-4a0d-9f2f-aac4d2c058a9",
+                                "label": "{$gt0015.term}",
+                                "actions": [
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0017.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0005",
+                                            "assignments": [
+                                                "$gt0006=$currentDateTime+0,d",
+                                                "$gt0034=$gt0035.term"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gt0024": {
+                "id": "gt0024",
+                "priority": 1,
+                "when": [
+                    "$gt0003|Depression|!=null",
+                    "$gt0019|CBT_IPT|==null",
+                    "$gt0022|HF|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0025.term}",
+                        "detail": "{$gt0026.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Depression in adults: recognition and management",
+                            "url": "https://www.nice.org.uk/guidance/cg90",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "ontology": {
+        "term_definitions": {
+            "en": {
+                "id": "en",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "depression-psychological-treatment"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "Depression",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "Depression code",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "FHIR-STU3-ReferralRequest.generic.v0"
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "value",
+                        "description": "/authoredOn"
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "code",
+                        "description": "/specialty/coding[0]"
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "Card-1, if persistent subthreshold depressive symptoms or mild depression AND NOT on CBT/IPT AND NOT HF"
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "Psychological treatment",
+                        "description": "summaryValue"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "Psychological treatment of persistent subthreshold depressive symptoms; mild to moderate depression.",
+                        "description": "detailValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "Referral to Mental Health for CBT or IPT",
+                        "description": "labelValue"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "Refer to Mental Health",
+                        "description": "descriptionValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "CBT_IPT",
+                        "description": ""
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "CBT_IPT code",
+                        "description": ""
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "HF",
+                        "description": ""
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "HF code",
+                        "description": ""
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Card-2, if persistent subthreshold depressive symptoms or mild depression AND NOT on CBT/IPT AND HF"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "Psychological treatment",
+                        "description": "summaryValue"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "A structured group physical activity programme (exercise) is recommended for patient with heart failure and mild to moderate depression.",
+                        "description": "detailValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "Referral to Mental Health for CBT or IPT",
+                        "description": "labelValue"
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "Refer to Mental Health",
+                        "description": "descriptionValue"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "Copy of Copy of Card-1, if persistent subthreshold depressive symptoms or mild depression AND not on CBT/IPT"
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "Psychological treatment",
+                        "description": "summaryValue"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Psychological treatment of persistent subthreshold depressive symptoms; mild to moderate depression.",
+                        "description": "detailValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "Referral to Mental Health for CBT or IPT",
+                        "description": "labelValue"
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "Refer to Mental Health",
+                        "description": "descriptionValue"
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "value",
+                        "description": "/description"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Consider referral to Mental Health for low intensity psychosocial interventions: Cognitive Behavioral Therapy (CBT), Interpersonal Therapy (IPT).",
+                        "description": ""
+                    }
+                }
+            },
+            "sv": {
+                "id": "sv",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) depression-psychological-treatment"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) Depression",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) Depression code",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "*(en) FHIR-STU3-ReferralRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "*(en) value",
+                        "description": "*(en) /authoredOn"
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) code",
+                        "description": "*(en) /specialty/coding[0]"
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Card-1, if persistent subthreshold depressive symptoms or mild depression AND NOT on CBT/IPT AND NOT HF",
+                        "description": ""
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "Psykologisk behandling",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "Psykologisk behandling av kvarstående depressiva symtom, mild till måttlig depression.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "Remiss för behandling med kognitiv beteendeterapi (KBT) eller Interpersonell Terapi (IPT)",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "beskrivning",
+                        "description": "*(en) description"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "Se psykisk hälsa",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "*(en) CBT_IPT",
+                        "description": ""
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) CBT_IPT code",
+                        "description": ""
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "*(en) HF code",
+                        "description": ""
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "*(en) Card-2, if persistent subthreshold depressive symptoms or mild depression AND NOT on CBT/IPT AND HF",
+                        "description": ""
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "Psykologbehandling",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Ett strukturerat fysiskt aktivitetsprogram (motion) i grupp rekommenderas för patienter med hjärtsvikt och mild till måttlig depression.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "Remiss för behandling med kognitiv beteendeterapi (KBT) eller Interpersonell Terapi (IPT)",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "Se psykisk hälsa",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) Copy of Copy of Card-1, if persistent subthreshold depressive symptoms or mild depression AND not on CBT/IPT",
+                        "description": ""
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "Psykologbehandling",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Psykologbehandling av kvarstående depressiva symtom, mild till måttlig depression.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "Remiss för behandling med kognitiv beteendeterapi (KBT) eller Interpersonell Terapi (IPT)",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "Se psykisk hälsa",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "*(en) value",
+                        "description": "*(en) /description"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Överväg remiss för behandling med kognitiv beteendeterapi (KBT) eller interpersonell terapi (IPT).",
+                        "description": ""
+                    }
+                }
+            },
+            "es": {
+                "id": "es",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) depression-psychological-treatment"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) Depression",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) Depression code",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "*(en) FHIR-STU3-ReferralRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "*(en) value",
+                        "description": "*(en) /authoredOn"
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) code",
+                        "description": "*(en) /specialty/coding[0]"
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Card-1, if persistent subthreshold depressive symptoms or mild depression AND NOT on CBT/IPT AND NOT HF",
+                        "description": ""
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "Tratamiento psicologico",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "Tratamiento psicológico de los síntomas depresivos por debajo del umbral persistente; Depresión leve a moderada.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "Derivación a Salud Mental para CBP o IPT",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "descripción",
+                        "description": "*(en) description"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "Derive a Salud Mental",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "*(en) CBT_IPT",
+                        "description": ""
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) CBT_IPT code",
+                        "description": ""
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "*(en) HF code",
+                        "description": ""
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "*(en) Card-2, if persistent subthreshold depressive symptoms or mild depression AND NOT on CBT/IPT AND HF",
+                        "description": ""
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "Tratamiento psicologico",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Se recomienda un programa estructurado de actividad física grupal (ejercicio) para pacientes con insuficiencia cardíaca y depresión leve a moderada.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "Derivación a Salud Mental para TCC o TPI",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "Derive a Salud Mental",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) Copy of Copy of Card-1, if persistent subthreshold depressive symptoms or mild depression AND not on CBT/IPT",
+                        "description": ""
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "Tratamiento psicologico",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Tratamiento psicológico de los síntomas depresivos por debajo del umbral persistente; Depresión leve a moderada.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "Derivación a Salud Mental para TCC o TPI",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "Derive a Salud Mental",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "*(en) value",
+                        "description": "*(en) /description"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Considere la derivación a salud mental para intervenciones psicosociales de baja intensidad: terapia cognitiva conductual (TCC), terapia interpersonal (TPI).",
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "term_bindings": {
+            "ICD-10-SE": {
+                "id": "ICD-10-SE",
+                "bindings": {
+                    "gt0023": {
+                        "codes": [
+                            "ICD-10-SE::I110",
+                            "ICD-10-SE::I130",
+                            "ICD-10-SE::I132",
+                            "ICD-10-SE::I50"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "ICD-10-SE::F320",
+                            "ICD-10-SE::F321",
+                            "ICD-10-SE::F329",
+                            "ICD-10-SE::F330",
+                            "ICD-10-SE::F331",
+                            "ICD-10-SE::F339",
+                            "ICD-10-SE::F341"
+                        ]
+                    }
+                }
+            },
+            "ICD-10": {
+                "id": "ICD-10",
+                "bindings": {
+                    "gt0023": {
+                        "codes": [
+                            "ICD-10::I11.0",
+                            "ICD-10::I13.0",
+                            "ICD-10::I13.2",
+                            "ICD-10::I50"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "ICD-10::F32.0",
+                            "ICD-10::F32.1",
+                            "ICD-10::F32.9",
+                            "ICD-10::F33.0",
+                            "ICD-10::F33.1",
+                            "ICD-10::F33.9",
+                            "ICD-10::F34.1"
+                        ]
+                    }
+                }
+            },
+            "CIE-10-CM-ES": {
+                "id": "CIE-10-CM-ES",
+                "bindings": {
+                    "gt0023": {
+                        "codes": [
+                            "CIE-10-CM-ES::I11.0",
+                            "CIE-10-CM-ES::I13.0",
+                            "CIE-10-CM-ES::I13.2",
+                            "CIE-10-CM-ES::I50"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "CIE-10-CM-ES::F32.0",
+                            "CIE-10-CM-ES::F32.1",
+                            "CIE-10-CM-ES::F32.89",
+                            "CIE-10-CM-ES::F32.9",
+                            "CIE-10-CM-ES::F33.0",
+                            "CIE-10-CM-ES::F33.1",
+                            "CIE-10-CM-ES::F33.9",
+                            "CIE-10-CM-ES::F34.1",
+                            "CIE-10-CM-ES::F43.21"
+                        ]
+                    }
+                }
+            },
+            "SNOMED-CT": {
+                "id": "SNOMED-CT",
+                "bindings": {
+                    "gt0023": {
+                        "codes": [
+                            "SNOMED-CT::42343007",
+                            "SNOMED-CT::420300004",
+                            "SNOMED-CT::421704003",
+                            "SNOMED-CT::420913000",
+                            "SNOMED-CT::422293003",
+                            "SNOMED-CT::5148006",
+                            "SNOMED-CT::194779001",
+                            "SNOMED-CT::194781004"
+                        ]
+                    },
+                    "gt0020": {
+                        "codes": [
+                            "SNOMED-CT::718026005",
+                            "SNOMED-CT::443730003"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "SNOMED-CT::310495003",
+                            "SNOMED-CT::40379007",
+                            "SNOMED-CT::78667006"
+                        ]
+                    }
+                }
+            },
+            "READ2": {
+                "id": "READ2",
+                "bindings": {
+                    "gt0023": {
+                        "codes": [
+                            "READ2::G58"
+                        ]
+                    },
+                    "gt0020": {
+                        "codes": [
+                            "READ2::8G13",
+                            "READ2::8G16"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "READ2::E2003",
+                            "READ2::Eu32",
+                            "READ2::Eu32z",
+                            "READ2::E112",
+                            "READ2::E1120",
+                            "READ2::E1121",
+                            "READ2::E1122",
+                            "READ2::E1125",
+                            "READ2::E1126",
+                            "READ2::E112z",
+                            "READ2::E2B",
+                            "READ2::E2B1",
+                            "READ2::E1130",
+                            "READ2::E1131",
+                            "READ2::E1132",
+                            "READ2::E1135",
+                            "READ2::E1136",
+                            "READ2::E1137",
+                            "READ2::1BT"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

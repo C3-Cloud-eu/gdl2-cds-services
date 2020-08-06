@@ -1,0 +1,780 @@
+{
+    "id": "depression-antidepressant-treatment.v4",
+    "gdl_version": "2.0",
+    "concept": "gt0001",
+    "language": {
+        "original_language": "ISO_639-1::en"
+    },
+    "description": {
+        "original_author": {
+            "date": "2018-08-31",
+            "name": "Lei Zhao",
+            "organisation": "University of Warwick",
+            "email": "lei.zhao@warwick.ac.uk"
+        },
+        "lifecycle_state": "Author draft",
+        "details": {
+            "sv": {
+                "id": "sv",
+                "keywords": [
+                    "*(en) depression",
+                    "*(en) antidepressant",
+                    "*(en) SSRI"
+                ],
+                "use": "*(en) It is assumed the conditions for antidepressant drug treatment are met. It is assumed C3DP will provide the conditions for antidepressant drug treatment as checklist to users.\n"
+            },
+            "en": {
+                "id": "en",
+                "keywords": [
+                    "depression",
+                    "antidepressant",
+                    "SSRI"
+                ],
+                "use": "It is assumed the conditions for antidepressant drug treatment are met. It is assumed C3DP will provide the conditions for antidepressant drug treatment as checklist to users.\n"
+            },
+            "es": {
+                "id": "es",
+                "keywords": [
+                    "*(en) depression",
+                    "*(en) antidepressant",
+                    "*(en) SSRI"
+                ],
+                "use": "*(en) It is assumed the conditions for antidepressant drug treatment are met. It is assumed C3DP will provide the conditions for antidepressant drug treatment as checklist to users.\n"
+            }
+        },
+        "other_details": {},
+        "references": [
+            {
+                "id": "1",
+                "label": "Depression in adults: recognition and management",
+                "url": "https://www.nice.org.uk/guidance/cg90"
+            }
+        ]
+    },
+    "definition": {
+        "data_bindings": {
+            "gt0002": {
+                "id": "gt0002",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0004": {
+                        "id": "gt0004",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0005|Depression code|"
+                ]
+            },
+            "gt0003": {
+                "id": "gt0003",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0006": {
+                        "id": "gt0006",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0007|Antidepressant code|"
+                ]
+            },
+            "gt0031": {
+                "id": "gt0031",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0032": {
+                        "id": "gt0032",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0033|SSRI code|"
+                ]
+            }
+        },
+        "templates": {
+            "gt0009": {
+                "id": "gt0009",
+                "name": "org.hl7.fhir.dstu3.model.MedicationRequest",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationRequest",
+                "template_id": "FHIR-STU3-MedicationRequest.generic.v0",
+                "object": {
+                    "authoredOn": "{$gt0010}",
+                    "medicationCodeableConcept": {
+                        "coding": [
+                            {
+                                "code": "N06AB",
+                                "system": "http://www.whocc.no/atc",
+                                "display": "Selective serotonin reuptake inhibitors"
+                            }
+                        ]
+                    },
+                    "intent": "proposal",
+                    "status": "draft",
+                    "resourceType": "MedicationRequest"
+                }
+            },
+            "gt0011": {
+                "id": "gt0011",
+                "name": "org.hl7.fhir.dstu3.model.Appointment",
+                "model_id": "org.hl7.fhir.dstu3.model.Appointment",
+                "template_id": "FHIR-STU3-Appointment.generic.v0",
+                "object": {
+                    "start": "{$gt0012}",
+                    "description": "{$gt0034}",
+                    "status": "proposed",
+                    "resourceType": "Appointment"
+                }
+            }
+        },
+        "rules": {
+            "gt0008": {
+                "id": "gt0008",
+                "priority": 2,
+                "when": [
+                    "$gt0004|Depression|!=null",
+                    "$gt0006|Antidepressant|==null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0014.term}",
+                        "detail": "{$gt0015.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Depression in adults: recognition and management",
+                            "url": "https://www.nice.org.uk/guidance/cg90",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        },
+                        "suggestions": [
+                            {
+                                "uuid": "c57f2f67-8ea0-44f9-a015-e3b8999f3a26",
+                                "label": "{$gt0019.term}",
+                                "actions": [
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0021.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0009",
+                                            "assignments": [
+                                                "$gt0010=$currentDateTime+0,d"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0023.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0011",
+                                            "assignments": [
+                                                "$gt0012=$currentDateTime+14,d",
+                                                "$gt0034=$gt0035.term"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gt0024": {
+                "id": "gt0024",
+                "priority": 1,
+                "when": [
+                    "$gt0004|Depression|!=null",
+                    "$gt0006|Antidepressant|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0026.term}",
+                        "detail": "{$gt0027.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Depression in adults: recognition and management",
+                            "url": "https://www.nice.org.uk/guidance/cg90",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "ontology": {
+        "term_definitions": {
+            "en": {
+                "id": "en",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "depression-antidepressant-treatment"
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "Depression",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "Depression code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "Antidepressant",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "Antidepressant code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "Card 1, if mild depression & not on Antidepressants"
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "FHIR-STU3-MedicationRequest.generic.v0"
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "value",
+                        "description": "/authoredOn"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "FHIR-STU3-Appointment.generic.v0"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "value",
+                        "description": "/start"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "Prescribe SSRI to treat depression",
+                        "description": "summaryValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "Consider antidepressant drug treatment for patient with persistent subthreshold depressive symptoms or mild to moderate depression",
+                        "description": "detailValue"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "Prescribe SSRI and follow up in 2 weeks",
+                        "description": "labelValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "Prescribe SSRI",
+                        "description": "descriptionValue"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "Follow-up Appointment",
+                        "description": "descriptionValue"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Card 2, if mild depression & on Antidepressants"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Evaluate response to Antidepressant treatment ",
+                        "description": "summaryValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "Evaluate patient response to Antidepressant treatment.  If response is adequate, continue the treatment and review in 4 weeks.  If response is NOT adequate, consider\n •\tIncreasing dose and review in 2 weeks\n •\tSwitching to another SSRI and review in 2 weeks\n •\tOr referral to specialist",
+                        "description": "detailValue"
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "SSRI",
+                        "description": ""
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "SSRI code",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "value",
+                        "description": "/description"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "A follow-up appointment in 2 weeks to review treatment outcome",
+                        "description": ""
+                    }
+                }
+            },
+            "sv": {
+                "id": "sv",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) depression-antidepressant-treatment"
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) Depression",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "*(en) Depression code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "*(en) Antidepressant",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) Antidepressant code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Card 1, if mild depression & not on Antidepressants",
+                        "description": ""
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "*(en) FHIR-STU3-MedicationRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "*(en) value",
+                        "description": "*(en) /authoredOn"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "*(en) FHIR-STU3-Appointment.generic.v0",
+                        "description": ""
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "*(en) value",
+                        "description": "*(en) /start"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "Förskriv SSRI för att behandla depression",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "Överväg antidepressiv läkemedelsbehandling för patient med kvarstående depressiva symtom eller mild till måttlig depression",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "Förskriv SSRI och följ upp inom 2 veckor",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "Förskriv SSRI",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "Uppföljningsbesök",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "*(en) Card 2, if mild depression & on SSRI",
+                        "description": ""
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Utvärdera svaret på SSRI-behandling",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "Utvärdera patientens svar på SSRI-behandling. Om svaret är adekvat, fortsätt behandlingen och följ upp om 4 veckor. Om svaret inte är tillräckligt, överväga\n • Ökad dos och uppföljning om 2 veckor\n • Byte till annat SSRI och uppföljning om 2 veckor\n • Eller remiss till specialist",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "*(en) SSRI",
+                        "description": ""
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "*(en) SSRI code",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "*(en) value",
+                        "description": "*(en) /description"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "En uppföljning inom 2 veckor för att följa upp behandlingsresultatet",
+                        "description": ""
+                    }
+                }
+            },
+            "es": {
+                "id": "es",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) depression-antidepressant-treatment"
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) Depression",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "*(en) Depression code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "*(en) Antidepressant",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) Antidepressant code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Card 1, if mild depression & not on Antidepressants",
+                        "description": ""
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "*(en) FHIR-STU3-MedicationRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "*(en) value",
+                        "description": "*(en) /authoredOn"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "*(en) FHIR-STU3-Appointment.generic.v0",
+                        "description": ""
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "*(en) value",
+                        "description": "*(en) /start"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "Prescriba ISRS para tratar la depresión",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "Considere el tratamiento con medicamentos antidepresivos para pacientes con síntomas depresivos por debajo del umbral persistente o depresión leve a moderada",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "Prescriba ISRS y seguimiento en 2 semanas.",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "Prescriba ISRS",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "Cita de seguimiento",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "*(en) Card 2, if mild depression & on SSRI",
+                        "description": ""
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Evalúe la respuesta al tratamiento con ISRS",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "Evalúe la respuesta del paciente al tratamiento con ISRS. Si la respuesta es adecuada, continúe el tratamiento y revíselo en 4 semanas. Si la respuesta NO es adecuada, considere:\n • Incrementar la dosis y revisar en 2 semanas\n • Cambiar a otro ISRS y revisar en 2 semanas\n • O referir a un especialista",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "*(en) SSRI",
+                        "description": ""
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "*(en) SSRI code",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "*(en) value",
+                        "description": "*(en) /description"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Cita de seguimiento en 2 semanas para revisar el resultado del tratamiento",
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "term_bindings": {
+            "ATC": {
+                "id": "ATC",
+                "bindings": {
+                    "gt0033": {
+                        "codes": [
+                            "ATC::N06AB"
+                        ]
+                    },
+                    "gt0007": {
+                        "codes": [
+                            "ATC::N06A"
+                        ]
+                    }
+                }
+            },
+            "ICD-10-SE": {
+                "id": "ICD-10-SE",
+                "bindings": {
+                    "gt0005": {
+                        "codes": [
+                            "ICD-10-SE::F320",
+                            "ICD-10-SE::F321",
+                            "ICD-10-SE::F329",
+                            "ICD-10-SE::F330",
+                            "ICD-10-SE::F331",
+                            "ICD-10-SE::F339",
+                            "ICD-10-SE::F341"
+                        ]
+                    }
+                }
+            },
+            "ICD-10": {
+                "id": "ICD-10",
+                "bindings": {
+                    "gt0005": {
+                        "codes": [
+                            "ICD-10::F32.0",
+                            "ICD-10::F32.1",
+                            "ICD-10::F32.9",
+                            "ICD-10::F33.0",
+                            "ICD-10::F33.1",
+                            "ICD-10::F33.9",
+                            "ICD-10::F34.1"
+                        ]
+                    }
+                }
+            },
+            "CIE-10-CM-ES": {
+                "id": "CIE-10-CM-ES",
+                "bindings": {
+                    "gt0005": {
+                        "codes": [
+                            "CIE-10-CM-ES::F32.0",
+                            "CIE-10-CM-ES::F32.1",
+                            "CIE-10-CM-ES::F32.89",
+                            "CIE-10-CM-ES::F32.9",
+                            "CIE-10-CM-ES::F33.0",
+                            "CIE-10-CM-ES::F33.1",
+                            "CIE-10-CM-ES::F33.9",
+                            "CIE-10-CM-ES::F34.1",
+                            "CIE-10-CM-ES::F43.21"
+                        ]
+                    }
+                }
+            },
+            "SNOMED-CT": {
+                "id": "SNOMED-CT",
+                "bindings": {
+                    "gt0005": {
+                        "codes": [
+                            "SNOMED-CT::310495003",
+                            "SNOMED-CT::40379007",
+                            "SNOMED-CT::78667006"
+                        ]
+                    }
+                }
+            },
+            "READ2": {
+                "id": "READ2",
+                "bindings": {
+                    "gt0005": {
+                        "codes": [
+                            "READ2::E2003",
+                            "READ2::Eu32",
+                            "READ2::Eu32z",
+                            "READ2::E112",
+                            "READ2::E1120",
+                            "READ2::E1121",
+                            "READ2::E1122",
+                            "READ2::E1125",
+                            "READ2::E1126",
+                            "READ2::E112z",
+                            "READ2::E2B",
+                            "READ2::E2B1",
+                            "READ2::E1130",
+                            "READ2::E1131",
+                            "READ2::E1132",
+                            "READ2::E1135",
+                            "READ2::E1136",
+                            "READ2::E1137",
+                            "READ2::1BT"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

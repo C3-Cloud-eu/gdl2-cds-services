@@ -1,0 +1,1724 @@
+{
+  "id": "CKD_Referral.v10",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2020-01-14",
+      "name": "Jacques BOUAUD",
+      "organisation": "AP-HP - LIMICS",
+      "email": "jacques.bouaud@aphp.fr"
+    },
+    "other_contributors": [
+      "Jacques BOUAUD",
+      "Brigitte SEROUSSI",
+      "Catherine DUCLOS"
+    ],
+    "lifecycle_state": "Author draft",
+    "details": {
+      "sv": {
+        "id": "sv",
+        "purpose": "To test if referral criteria of a CKD patient are met to refer to either urological services or a specialist (nephrologist).",
+        "keywords": [
+          "C3-Cloud",
+          "Chronic Kidney Disease",
+          "Renal Failure",
+          "Referral to specialist",
+          "Version 10"
+        ],
+        "misuse": "Implementation notes [2019/06/03 JB]\n- Some rules not implemented due to concept coding issues (e.g. suspected renal artery stenosis) and to modeling issues (e.g. change in GFR category)\n- Use of additional specific FHIR profile to have a local placehoslder for a boolean variable (FHIR-STU3-Observation.ckd-referral-variable.v0) \n- One reconcilaition rule added: R1.3.DM-RF13a. \n- Execution in GDL2 editor works\n- Modified rule 1.3c splitted into 1.3c and 1.3d  + corrected referral coding in sct\n- [10/01/2019: prepared multilingual support (en/sv/es)]\n- [11/01/2019: adaptation to GDL2 Editor v2.3.0 - max(effectiveDateTime)]\n- [24/01/2019: include full mappings for CDSM terminologies]\n- [25/01/2019: include validated translations for Swedish and Spanish]\n- [30/01/2019: include codes for local terminologies]\n- [20/02/2019: Correction for READ2 and ICD-10-SE identifiers]\n- [10/03/2019: New code for Renal outflow obstruction and haematuria]\n- [03/06/2019: Multiple units for ACR by JB]\n- [16/09/2019: ICD-10-UK (and READ) update for CKD, HF, Diabetes and AF by JB]\n- [14/01/2020: missing translations (issue 334) by JB]",
+        "copyright": "© LIMICS"
+      },
+      "en": {
+        "id": "en",
+        "purpose": "To test if referral criteria of a CKD patient are met to refer to either urological services or a specialist (nephrologist).",
+        "keywords": [
+          "C3-Cloud",
+          "Chronic Kidney Disease",
+          "Renal Failure",
+          "Referral to specialist",
+          "Version 10"
+        ],
+        "misuse": "Implementation notes [2019/06/03 JB]\n- Some rules not implemented due to concept coding issues (e.g. suspected renal artery stenosis) and to modeling issues (e.g. change in GFR category)\n- Use of additional specific FHIR profile to have a local placehoslder for a boolean variable (FHIR-STU3-Observation.ckd-referral-variable.v0) \n- One reconcilaition rule added: R1.3.DM-RF13a. \n- Execution in GDL2 editor works\n- Modified rule 1.3c splitted into 1.3c and 1.3d  + corrected referral coding in sct\n- [10/01/2019: prepared multilingual support (en/sv/es)]\n- [11/01/2019: adaptation to GDL2 Editor v2.3.0 - max(effectiveDateTime)]\n- [24/01/2019: include full mappings for CDSM terminologies]\n- [25/01/2019: include validated translations for Swedish and Spanish]\n- [30/01/2019: include codes for local terminologies]\n- [20/02/2019: Correction for READ2 and ICD-10-SE identifiers]\n- [10/03/2019: New code for Renal outflow obstruction and haematuria]\n- [03/06/2019: Multiple units for ACR by JB]\n- [16/09/2019: ICD-10-UK (and READ) update for CKD, HF, Diabetes and AF by JB]\n- [14/01/2020: missing translations (issue 334) by JB]",
+        "copyright": "© LIMICS"
+      },
+      "es": {
+        "id": "es",
+        "purpose": "To test if referral criteria of a CKD patient are met to refer to either urological services or a specialist (nephrologist).",
+        "keywords": [
+          "C3-Cloud",
+          "Chronic Kidney Disease",
+          "Renal Failure",
+          "Referral to specialist",
+          "Version 10"
+        ],
+        "misuse": "Implementation notes [2019/06/03 JB]\n- Some rules not implemented due to concept coding issues (e.g. suspected renal artery stenosis) and to modeling issues (e.g. change in GFR category)\n- Use of additional specific FHIR profile to have a local placehoslder for a boolean variable (FHIR-STU3-Observation.ckd-referral-variable.v0) \n- One reconcilaition rule added: R1.3.DM-RF13a. \n- Execution in GDL2 editor works\n- Modified rule 1.3c splitted into 1.3c and 1.3d  + corrected referral coding in sct\n- [10/01/2019: prepared multilingual support (en/sv/es)]\n- [11/01/2019: adaptation to GDL2 Editor v2.3.0 - max(effectiveDateTime)]\n- [24/01/2019: include full mappings for CDSM terminologies]\n- [25/01/2019: include validated translations for Swedish and Spanish]\n- [30/01/2019: include codes for local terminologies]\n- [20/02/2019: Correction for READ2 and ICD-10-SE identifiers]\n- [10/03/2019: New code for Renal outflow obstruction and haematuria]\n- [03/06/2019: Multiple units for ACR by JB]\n- [16/09/2019: ICD-10-UK (and READ) update for CKD, HF, Diabetes and AF by JB]\n- [14/01/2020: missing translations (issue 334) by JB]",
+        "copyright": "© LIMICS"
+      }
+    },
+    "other_details": {
+      "references": "Chronic kidney disease in adults: assessment and management - Clinical guideline [CG182] - Published date: July 2014 - Last updated: January 2015\nhttps://www.nice.org.uk/guidance/cg182/chapter/1-Recommendations#referral-criteria"
+    },
+    "references": [
+      {
+        "id": "1",
+        "label": "Chronic kidney disease in adults: assessment and management - Clinical guideline [CG182] - Published date: July 2014 - Last updated: January 2015",
+        "url": "https://www.nice.org.uk/guidance/cg182/chapter/1-Recommendations#referral-criteria"
+      }
+    ]
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0006|CKDcode|"
+        ]
+      },
+      "gt0007": {
+        "id": "gt0007",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0009|RenalOutflowObstructioncode|"
+        ]
+      },
+      "gt0011": {
+        "id": "gt0011",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0013|Haematuriacode|"
+        ]
+      },
+      "gt0015": {
+        "id": "gt0015",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.albumin_creatinine_ratio.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/code/coding[0]"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/valueQuantity"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0017|ACRcode|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0019": {
+        "id": "gt0019",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0020": {
+            "id": "gt0020",
+            "path": "/code/coding[0]"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/valueQuantity"
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0023|eGFRcode|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0024": {
+        "id": "gt0024",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0025": {
+            "id": "gt0025",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0074|Diabetescode|"
+        ]
+      },
+      "gt0026": {
+        "id": "gt0026",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+        "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0027": {
+            "id": "gt0027",
+            "path": "/medicationCodeableConcept/coding[0]"
+          }
+        },
+        "predicates": [
+          "/medicationCodeableConcept/coding[0] is_a local::gt0022|AntidiabeticDrugcode|"
+        ]
+      },
+      "gt0058": {
+        "id": "gt0058",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.ckd-referral-variable.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0059": {
+            "id": "gt0059",
+            "path": "/component[0]/valueCode"
+          }
+        }
+      }
+    },
+    "templates": {
+      "gt0043": {
+        "id": "gt0043",
+        "name": "org.hl7.fhir.dstu3.model.ReferralRequest",
+        "model_id": "org.hl7.fhir.dstu3.model.ReferralRequest",
+        "template_id": "FHIR-STU3-ReferralRequest.generic.v0",
+        "object": {
+          "specialty": {
+            "coding": [
+              {
+                "code": "{$gt0046}",
+                "system": "http://snomed.info/sct",
+                "display": "{$gt0047}"
+              }
+            ],
+            "text": "EMPTY0"
+          },
+          "authoredOn": "{$gt0044}",
+          "description": "{$gt0045}",
+          "intent": "proposal",
+          "status": "draft",
+          "resourceType": "ReferralRequest"
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0004|CKD|!=null"
+    ],
+    "default_actions": [
+      "$gt0058.create($gt0059|CriteriaMet|=local::0|False|)"
+    ],
+    "rules": {
+      "gt0034": {
+        "id": "gt0034",
+        "priority": 8,
+        "when": [
+          "$gt0004|CKD|!=null",
+          "$gt0008|RenalOutflowObstruction|!=null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0036.term}",
+            "detail": "{$gt0037.term}",
+            "indicator": "info",
+            "source": {
+              "label": "Chronic kidney disease in adults: assessment and management - Clinical guideline [CG182] - Published date: July 2014 - Last updated: January 2015",
+              "url": "https://www.nice.org.uk/guidance/cg182/chapter/1-Recommendations#referral-criteria",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "348fe1f9-0df4-4535-8e06-83268e74ab2a",
+                "label": "{$gt0042.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0049.term}",
+                    "resource_template": {
+                      "template_id": "gt0043",
+                      "assignments": [
+                        "$gt0044=$currentDateTime+0,d",
+                        "$gt0045=$gt0077.term",
+                        "$gt0047=$gt0078.term",
+                        "$gt0046='306201000'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0050": {
+        "id": "gt0050",
+        "priority": 7,
+        "when": [
+          "!fired($gt0034)",
+          "$gt0004|CKD|!=null",
+          "(($gt0018|ACRValue|<30,mg/mmol)||($gt0018|ACRValue|<30,g/mol))||($gt0018|ACRValue|<300,mg/g)",
+          "$gt0012|Haematuria|!=null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0051.term}",
+            "detail": "{$gt0052.term}",
+            "indicator": "info",
+            "source": {
+              "label": "Chronic kidney disease in adults: assessment and management - Clinical guideline [CG182] - Published date: July 2014 - Last updated: January 2015",
+              "url": "https://www.nice.org.uk/guidance/cg182/chapter/1-Recommendations#referral-criteria",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "9dc202f3-5466-442b-a807-aacd67c31951",
+                "label": "{$gt0053.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0054.term}",
+                    "resource_template": {
+                      "template_id": "gt0043",
+                      "assignments": [
+                        "$gt0044=$currentDateTime+0,d",
+                        "$gt0045=$gt0079.term",
+                        "$gt0047=$gt0080.term",
+                        "$gt0046='306201000'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0060": {
+        "id": "gt0060",
+        "priority": 6,
+        "when": [
+          "$gt0004|CKD|!=null",
+          "$gt0021|eGFRValue|<30,mL/min/{1.73_m2}",
+          "$gt0059|CriteriaMet|==local::0|False|"
+        ],
+        "then": [
+          "$gt0059|CriteriaMet|=local::1|True|"
+        ]
+      },
+      "gt0073": {
+        "id": "gt0073",
+        "priority": 5,
+        "when": [
+          "$gt0004|CKD|!=null",
+          "$gt0025|Diabetes|!=null",
+          "$gt0021|eGFRValue|>45,mL/min/{1.73_m2}",
+          "(($gt0018|ACRValue|>3,mg/mmol)||($gt0018|ACRValue|>3,g/mol))||($gt0018|ACRValue|>30,mg/g)",
+          "$gt0059|CriteriaMet|==local::0|False|"
+        ],
+        "then": [
+          "$gt0059|CriteriaMet|=local::1|True|"
+        ]
+      },
+      "gt0061": {
+        "id": "gt0061",
+        "priority": 4,
+        "when": [
+          "$gt0004|CKD|!=null",
+          "(($gt0018|ACRValue|>=30,mg/mmol)||($gt0018|ACRValue|>=30,g/mol))||($gt0018|ACRValue|>=300,mg/g)",
+          "$gt0012|Haematuria|!=null",
+          "$gt0059|CriteriaMet|==local::0|False|"
+        ],
+        "then": [
+          "$gt0059|CriteriaMet|=local::1|True|"
+        ]
+      },
+      "gt0062": {
+        "id": "gt0062",
+        "priority": 3,
+        "when": [
+          "$gt0004|CKD|!=null",
+          "(($gt0018|ACRValue|>=70,mg/mmol)||($gt0018|ACRValue|>=70,g/mol))||($gt0018|ACRValue|>=700,mg/g)",
+          "$gt0025|Diabetes|==null",
+          "$gt0059|CriteriaMet|==local::0|False|"
+        ],
+        "then": [
+          "$gt0059|CriteriaMet|=local::1|True|"
+        ]
+      },
+      "gt0075": {
+        "id": "gt0075",
+        "priority": 2,
+        "when": [
+          "$gt0004|CKD|!=null",
+          "(($gt0018|ACRValue|>=70,mg/mmol)||($gt0018|ACRValue|>=70,g/mol))||($gt0018|ACRValue|>=700,mg/g)",
+          "$gt0025|Diabetes|!=null",
+          "$gt0027|AntidiabeticMedication|==null",
+          "$gt0059|CriteriaMet|==local::0|False|"
+        ],
+        "then": [
+          "$gt0059|CriteriaMet|=local::1|True|"
+        ]
+      },
+      "gt0063": {
+        "id": "gt0063",
+        "priority": 1,
+        "when": [
+          "$gt0004|CKD|!=null",
+          "$gt0059|CriteriaMet|==local::1|True|"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0065.term}",
+            "detail": "{$gt0066.term}",
+            "indicator": "info",
+            "source": {
+              "label": "Chronic kidney disease in adults: assessment and management - Clinical guideline [CG182] - Published date: July 2014 - Last updated: January 2015",
+              "url": "https://www.nice.org.uk/guidance/cg182/chapter/1-Recommendations#referral-criteria",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "a356f5e8-1007-468b-913f-cb42bf89de24",
+                "label": "{$gt0070.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0072.term}",
+                    "resource_template": {
+                      "template_id": "gt0043",
+                      "assignments": [
+                        "$gt0044=$currentDateTime+0,d",
+                        "$gt0045=$gt0081.term",
+                        "$gt0047=$gt0082.term",
+                        "$gt0046='306286007'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Kronisk njursjukdom riktlinjer remisservice",
+            "description": "This guideline service deals with the referral algorithm of Chronic Kidney Disease patients to either urological services or a specialist.It implements the flowchart '5.4.6. Referral Criteria' of deliverable D7.1 of the C3Cloud project.This flowchart is based on the NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26]. It describes the conditions for referral. The patient should not be referred if they are not met.This CDSM accounts for DM-RF reconciliation rules specified in deliverable D7.2 of the C3Cloud project."
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "*(en) CKD",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "*(en) CKDcode",
+            "description": ""
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "*(en) RenalOutflowObstruction",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "*(en) RenalOutflowObstructioncode",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "*(en) Haematuria",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "*(en) Haematuriacode",
+            "description": ""
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "*(en) T2Diabetescode",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "*(en) ACRObservation",
+            "description": ""
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "*(en) ACRcode",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "*(en) ACRValue",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "*(en) eGFRObservation",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "*(en) eGFRValue",
+            "description": ""
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "*(en) AntidiabeticDrugcode",
+            "description": ""
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "*(en) eGFRcode",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "*(en) Diabetes",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "*(en) AntidiabeticMedication",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "*(en) FHIR-STU3-ReferralRequest.generic.v0",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "*(en) value",
+            "description": "*(en) /authoredOn"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "*(en) value",
+            "description": "*(en) /description"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "*(en) value",
+            "description": "*(en) /specialty/coding[0]"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "*(en) code",
+            "description": "*(en) /specialty/coding[0]"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "*(en) value",
+            "description": "*(en) /specialty/text"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "*(en) R1.1-Card 1 refer to urological services",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Remittera till urolog",
+            "description": "summaryValue"
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "Remittera till urolog",
+            "description": "detailValue"
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "*(en) labelValue",
+            "description": "*(en) labelValue"
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Remittera till urolog",
+            "description": "labelValue"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "*(en) FHIR-STU3-ReferralRequest.generic.v0",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "*(en) value",
+            "description": "*(en) /authoredOn"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "*(en) value",
+            "description": "*(en) /description"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "*(en) code",
+            "description": "*(en) /specialty/coding[0]"
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "*(en) value",
+            "description": "*(en) /specialty/coding[0]"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "Remittera till urolog",
+            "description": "descriptionValue"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "*(en) R1.2-Card 1 refer to urological services",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "Remittera till urolog",
+            "description": "summaryValue"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Remittera till urolog",
+            "description": "detailValue"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Remittera till urolog",
+            "description": "labelValue"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Remittera till urolog",
+            "description": "descriptionValue"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "*(en) CriteriaMetPlaceHolder",
+            "description": ""
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "*(en) CriteriaMet",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "*(en) CriteriaMet",
+            "description": "*(en) valueCode"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "*(en) R1.3a eGFR<30",
+            "description": ""
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "*(en) R1.3b ACR>=30 and haematuria",
+            "description": ""
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "*(en) R1.3c ACR>=70 and (NOT DM)",
+            "description": ""
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "*(en) R1.4-Card 2: Discuss with or send to specialist",
+            "description": ""
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "Diskutera med, eller remittera till specialist",
+            "description": "summaryValue"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "Överväg att diskutera handläggningen med en specialist via brev, e-post eller telefon i de fall där ett specialistbesök inte bedöms vara nödvändigt",
+            "description": "detailValue"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "Remittera till en specialist",
+            "description": "labelValue"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "Remittera till en specialist",
+            "description": "descriptionValue"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "*(en) R1.3.DM-RF13a DM AND eGFR > 45 AND ACR > 3",
+            "description": ""
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "*(en) Diabetescode",
+            "description": ""
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "*(en) R1.3d ACR>=70 AND DM AND (NOT diabetes therapy)",
+            "description": ""
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "*(en) Copy of R1.3c ACR>=70 and (NOT (DM AND diabetes therapy))",
+            "description": ""
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "Remittera till urolog",
+            "description": ""
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Remittera till urolog",
+            "description": ""
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "Remittera till urolog",
+            "description": ""
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "Remittera till urolog",
+            "description": ""
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Remittera till en njurspecialist",
+            "description": ""
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Remittera till en njurspecialist",
+            "description": ""
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "*(en) effectiveDateTime",
+            "description": ""
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "*(en) effectiveDateTime",
+            "description": ""
+          }
+        }
+      },
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "CKD Guideline Referral Service",
+            "description": "This guideline service deals with the referral algorithm of Chronic Kidney Disease patients to either urological services or a specialist.It implements the flowchart '5.4.6. Referral Criteria' of deliverable D7.1 of the C3Cloud project.This flowchart is based on the NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26]. It describes the conditions for referral. The patient should not be referred if they are not met.This CDSM accounts for DM-RF reconciliation rules specified in deliverable D7.2 of the C3Cloud project."
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "CKD",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "CKDcode",
+            "description": ""
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "RenalOutflowObstruction",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "RenalOutflowObstructioncode",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Haematuria",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Haematuriacode",
+            "description": ""
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "T2Diabetescode",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "ACRObservation",
+            "description": ""
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "ACRcode",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "ACRValue",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "eGFRObservation",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "eGFRValue",
+            "description": ""
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "AntidiabeticDrugcode",
+            "description": ""
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "eGFRcode",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Diabetes",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "AntidiabeticMedication",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "value",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "code",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "value",
+            "description": "/specialty/text"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "R1.1-Card 1 refer to urological services"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Referral to urological services",
+            "description": "summaryValue"
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "Referral to urological services",
+            "description": "detailValue"
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "labelValue",
+            "description": "labelValue"
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Refer to urological services",
+            "description": "labelValue"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "code",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "value",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "Referral to urological services",
+            "description": "descriptionValue"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "R1.2-Card 1 refer to urological services"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "Referral to urological services",
+            "description": "summaryValue"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Referral to urological services",
+            "description": "detailValue"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Refer to urological services",
+            "description": "labelValue"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Referral to urological services",
+            "description": "descriptionValue"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "CriteriaMetPlaceHolder",
+            "description": ""
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "CriteriaMet",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "CriteriaMet",
+            "description": "valueCode"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "R1.3a eGFR<30"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "R1.3b ACR>=30 and haematuria"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "R1.3c ACR>=70 and (NOT DM)"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "R1.4-Card 2: Discuss with or send to specialist"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "Discuss with or send to specialist",
+            "description": "summaryValue"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "Consider discussing management issues with a specialist by letter, email or telephone in cases where it may not be necessary for the person with CKD to be seen by the specialist",
+            "description": "detailValue"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "Refer to a specialist",
+            "description": "labelValue"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "Refer to a specialist",
+            "description": "descriptionValue"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "R1.3.DM-RF13a DM AND eGFR > 45 AND ACR > 3"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "Diabetescode",
+            "description": ""
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "R1.3d ACR>=70 AND DM AND (NOT diabetes therapy)"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "Copy of R1.3c ACR>=70 and (NOT (DM AND diabetes therapy))"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "Referral to urological services",
+            "description": ""
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Referral to urology service",
+            "description": ""
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "Referral to urological services",
+            "description": ""
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "Referral to urology service",
+            "description": ""
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Refer to a nephrologist",
+            "description": ""
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Referral to a nephrologist",
+            "description": ""
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "ACReffectiveDateTime",
+            "description": ""
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "eGFReffectiveDateTime",
+            "description": ""
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Servicio de derivación de la Guía para la Insuficiencia renal crónica",
+            "description": "This guideline service deals with the referral algorithm of Chronic Kidney Disease patients to either urological services or a specialist.It implements the flowchart '5.4.6. Referral Criteria' of deliverable D7.1 of the C3Cloud project.This flowchart is based on the NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26]. It describes the conditions for referral. The patient should not be referred if they are not met.This CDSM accounts for DM-RF reconciliation rules specified in deliverable D7.2 of the C3Cloud project."
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "*(en) CKD",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "*(en) CKDcode",
+            "description": ""
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "*(en) RenalOutflowObstruction",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "*(en) RenalOutflowObstructioncode",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "*(en) Haematuria",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "*(en) Haematuriacode",
+            "description": ""
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "*(en) T2Diabetescode",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "*(en) ACRObservation",
+            "description": ""
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "*(en) ACRcode",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "*(en) ACRValue",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "*(en) eGFRObservation",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "*(en) eGFRValue",
+            "description": ""
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "*(en) AntidiabeticDrugcode",
+            "description": ""
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "*(en) eGFRcode",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "*(en) Diabetes",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "*(en) AntidiabeticMedication",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "*(en) FHIR-STU3-ReferralRequest.generic.v0",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "*(en) value",
+            "description": "*(en) /authoredOn"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "*(en) value",
+            "description": "*(en) /description"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "*(en) value",
+            "description": "*(en) /specialty/coding[0]"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "*(en) code",
+            "description": "*(en) /specialty/coding[0]"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "*(en) value",
+            "description": "*(en) /specialty/text"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "*(en) R1.1-Card 1 refer to urological services",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Derivación a Urología",
+            "description": "summaryValue"
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "Derivación a Urología",
+            "description": "detailValue"
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "*(en) labelValue",
+            "description": "*(en) labelValue"
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Derive a Urología",
+            "description": "labelValue"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "*(en) FHIR-STU3-ReferralRequest.generic.v0",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "*(en) value",
+            "description": "*(en) /authoredOn"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "*(en) value",
+            "description": "*(en) /description"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "*(en) code",
+            "description": "*(en) /specialty/coding[0]"
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "*(en) value",
+            "description": "*(en) /specialty/coding[0]"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "Derivación a Urología",
+            "description": "descriptionValue"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "*(en) R1.2-Card 1 refer to urological services",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "Derivación a Urología",
+            "description": "summaryValue"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Derivación a Urología",
+            "description": "detailValue"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Derive a Urología",
+            "description": "labelValue"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Derivación a Urología",
+            "description": "descriptionValue"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "*(en) CriteriaMetPlaceHolder",
+            "description": ""
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "*(en) CriteriaMet",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "*(en) CriteriaMet",
+            "description": "*(en) valueCode"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "*(en) R1.3a eGFR<30",
+            "description": ""
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "*(en) R1.3b ACR>=30 and haematuria",
+            "description": ""
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "*(en) R1.3c ACR>=70 and (NOT DM)",
+            "description": ""
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "*(en) R1.4-Card 2: Discuss with or send to specialist",
+            "description": ""
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "Cambie impresiones con o envíelo al especialista",
+            "description": "summaryValue"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "Considere discutir los problemas de gestión con el especialista por carta, correo electrónico o  teléfono en aquello casos en que puede no ser necesario que la persona con Infuciencia renal crónica sea visto por el especialista",
+            "description": "detailValue"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "Derive a un especialista",
+            "description": "labelValue"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "Derive a un especialista",
+            "description": "descriptionValue"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "*(en) R1.3.DM-RF13a DM AND eGFR > 45 AND ACR > 3",
+            "description": ""
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "*(en) Diabetescode",
+            "description": ""
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "*(en) R1.3d ACR>=70 AND DM AND (NOT diabetes therapy)",
+            "description": ""
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "*(en) Copy of R1.3c ACR>=70 and (NOT (DM AND diabetes therapy))",
+            "description": ""
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "Derivación a Urología",
+            "description": ""
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Derivación a Urología",
+            "description": ""
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "Derivación a Urología",
+            "description": ""
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "Derivación a Urología",
+            "description": ""
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Derive al nefrólogo",
+            "description": ""
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Derive a nefrólogo",
+            "description": ""
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "*(en) effectiveDateTime",
+            "description": ""
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "*(en) effectiveDateTime",
+            "description": ""
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ATC": {
+        "id": "ATC",
+        "bindings": {
+          "gt0022": {
+            "codes": [
+              "ATC::A10"
+            ]
+          }
+        }
+      },
+      "ICD-10-SE": {
+        "id": "ICD-10-SE",
+        "bindings": {
+          "gt0013": {
+            "codes": [
+              "ICD-10-SE::N02",
+              "ICD-10-SE::R31"
+            ]
+          },
+          "gt0074": {
+            "codes": [
+              "ICD-10-SE::E10",
+              "ICD-10-SE::E11",
+              "ICD-10-SE::E12",
+              "ICD-10-SE::E13",
+              "ICD-10-SE::E14"
+            ]
+          },
+          "gt0009": {
+            "codes": [
+              "ICD-10-SE::N13"
+            ]
+          },
+          "gt0006": {
+            "codes": [
+              "ICD-10-SE::N18",
+              "ICD-10-SE::N19",
+              "ICD-10-SE::I120",
+              "ICD-10-SE::I131"
+            ]
+          }
+        }
+      },
+      "NPU": {
+        "id": "NPU",
+        "bindings": {
+          "gt0023": {
+            "codes": [
+              "NPU::EGFRKRE"
+            ]
+          },
+          "gt0017": {
+            "codes": [
+              "NPU::XKREAINDX"
+            ]
+          }
+        }
+      },
+      "DBP": {
+        "id": "DBP",
+        "bindings": {
+          "gt0023": {
+            "codes": [
+              "DBP::33382"
+            ]
+          },
+          "gt0017": {
+            "codes": [
+              "DBP::907"
+            ]
+          }
+        }
+      },
+      "LOINC": {
+        "id": "LOINC",
+        "bindings": {
+          "gt0023": {
+            "codes": [
+              "LOINC::33914-3"
+            ]
+          },
+          "gt0017": {
+            "codes": [
+              "LOINC::32294-1"
+            ]
+          }
+        }
+      },
+      "CIE-10-CM-ES": {
+        "id": "CIE-10-CM-ES",
+        "bindings": {
+          "gt0013": {
+            "codes": [
+              "CIE-10-CM-ES::N02",
+              "CIE-10-CM-ES::R31"
+            ]
+          },
+          "gt0074": {
+            "codes": [
+              "CIE-10-CM-ES::E10",
+              "CIE-10-CM-ES::E11",
+              "CIE-10-CM-ES::E12",
+              "CIE-10-CM-ES::E13",
+              "CIE-10-CM-ES::E14"
+            ]
+          },
+          "gt0009": {
+            "codes": [
+              "CIE-10-CM-ES::N13"
+            ]
+          },
+          "gt0006": {
+            "codes": [
+              "CIE-10-CM-ES::N18",
+              "CIE-10-CM-ES::N19",
+              "CIE-10-CM-ES::I12.0",
+              "CIE-10-CM-ES::I13.1"
+            ]
+          }
+        }
+      },
+      "ICD-10-UK": {
+        "id": "ICD-10-UK",
+        "bindings": {
+          "gt0013": {
+            "codes": [
+              "ICD-10-UK::N02",
+              "ICD-10-UK::N31"
+            ]
+          },
+          "gt0074": {
+            "codes": [
+              "ICD-10-UK::E10",
+              "ICD-10-UK::E11",
+              "ICD-10-UK::E12",
+              "ICD-10-UK::E13",
+              "ICD-10-UK::E14"
+            ]
+          },
+          "gt0009": {
+            "codes": [
+              "ICD-10-UK::N13"
+            ]
+          },
+          "gt0006": {
+            "codes": [
+              "ICD-10-UK::N18",
+              "ICD-10-UK::N19",
+              "ICD-10-UK::I120",
+              "ICD-10-UK::I131"
+            ]
+          }
+        }
+      },
+      "READ2": {
+        "id": "READ2",
+        "bindings": {
+          "gt0023": {
+            "codes": [
+              "READ2::451E"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "READ2::K197"
+            ]
+          },
+          "gt0074": {
+            "codes": [
+              "READ2::C10"
+            ]
+          },
+          "gt0009": {
+            "codes": [
+              "READ2::K19X"
+            ]
+          },
+          "gt0006": {
+            "codes": [
+              "READ2::1Z1",
+              "READ2::K05"
+            ]
+          },
+          "gt0017": {
+            "codes": [
+              "READ2::46TC"
+            ]
+          }
+        }
+      },
+      "SNOMED-CT": {
+        "id": "SNOMED-CT",
+        "bindings": {
+          "gt0013": {
+            "codes": [
+              "SNOMED-CT::34436003",
+              "SNOMED-CT::53298000",
+              "SNOMED-CT::197941005",
+              "SNOMED-CT::281860005"
+            ]
+          },
+          "gt0074": {
+            "codes": [
+              "SNOMED-CT::73211009",
+              "SNOMED-CT::46635009",
+              "SNOMED-CT::44054006"
+            ]
+          },
+          "gt0009": {
+            "codes": [
+              "SNOMED-CT::7163005"
+            ]
+          },
+          "gt0006": {
+            "codes": [
+              "SNOMED-CT::425369003",
+              "SNOMED-CT::431855005",
+              "SNOMED-CT::431856006",
+              "SNOMED-CT::433144002",
+              "SNOMED-CT::431857002",
+              "SNOMED-CT::433146000"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

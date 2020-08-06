@@ -1,0 +1,4452 @@
+{
+  "id": "Diabetes_nephropathy_management.v1",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2018-03-12",
+      "organisation": "Cambio Healthcare Systems"
+    },
+    "lifecycle_state": "Author draft",
+    "details": {
+      "sv": {
+        "id": "sv",
+        "purpose": "FHIR-baserade cds-regler för demonstrationsändamål",
+        "copyright": "© Cambio Healthcare Systems"
+      },
+	  "en": {
+        "id": "en",
+        "purpose": "Sample fhir-based cds-rules for demonstration purpose",
+        "copyright": "© Cambio Healthcare Systems"
+      },
+      "es": {
+        "id": "es",
+        "purpose": "Ejemplos de reglas de cds basadas en propósitos para propósitos de demostración",
+        "copyright": "© Cambio Healthcare Systems"
+      }
+    },
+    "other_details": {
+      "references": "1. Clinical guideline [CG182], 2015. Chronic kidney disease in adults: assessment and management - Referral criteria. https://www.nice.org.uk/guidance/cg182/chapter/1-Recommendations#referral-criteria"
+    },
+    "references": [
+      {
+        "id": "1",
+        "label": "Osakidetza Renal Failure Pathway and Diabetes Clinical guideline",
+        "url": "https://www.osakidetza.euskadi.eus/r85-pkoste11/en/contenidos/informacion/osteba_publicaciones/en_osteba/clinical_practice_guidelines.html"
+      },
+      {
+        "id": "2",
+        "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+        "url": "https://www.nice.org.uk/guidance/cg182"
+      }
+    ]
+  },
+  "definition": {
+    "pre_conditions": [
+      "$gt0012|type2Diabetes|!=null"
+    ],
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/valueQuantity"
+          },
+          "gt0136": {
+            "id": "gt0136",
+            "path": "/code/coding[0]"
+          },
+          "gt4109": {
+            "id": "gt4109",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0060|eGFR Test|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.albumin_creatinine_ratio.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/valueQuantity"
+          },
+          "gt0137": {
+            "id": "gt0137",
+            "path": "/code/coding[0]"
+          },
+          "gt4150": {
+            "id": "gt4150",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0053|Albumin/Creatinine Ratio Test|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0011": {
+        "id": "gt0011",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0013|Type 2 Diabetes Diagnosis|"
+        ]
+      },
+      "gt4018": {
+        "id": "gt4018",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt4019": {
+            "id": "gt4019",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0010|Hypertension Diagnosis|"
+        ]
+      },
+      "gt4106": {
+        "id": "gt4106",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt4107": {
+            "id": "gt4107",
+            "path": "/code/coding[0]"
+          },
+          "gt4108": {
+            "id": "gt4108",
+            "path": "/valueQuantity"
+          },
+          "gt4110": {
+            "id": "gt4110",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0060|eGFR Test|"
+        ]
+      }
+    },
+    "templates": {
+      "gt0069": {
+        "id": "gt0069",
+        "model_id": "org.hl7.fhir.dstu3.model.ReferralRequest",
+        "template_id": "FHIR-STU3-ReferralRequest.generic.v0",
+        "object": {
+          "specialty": {
+            "coding": [
+              {
+                "code": "11911009",
+                "system": "http://snomed.info/sct",
+                "display": "{$gt5107}"
+              }
+            ],
+            "text": "{$gt5113}"
+          },
+          "authoredOn": "{$gt0070}",
+          "description": "{$gt0077}",
+          "intent": "proposal",
+          "status": "draft",
+          "resourceType": "ReferralRequest"
+        }
+      },
+      "gt4007": {
+        "id": "gt4007",
+        "model_id": "org.hl7.fhir.dstu3.model.Appointment",
+        "template_id": "FHIR-STU3-Appointment.generic.v0",
+        "object": {
+          "appointmentType": {
+            "coding": [
+              {
+                "code": "FOLLOWUP",
+                "system": "http://hl7.org/fhir/v2/0276",
+                "display": "{$gt5100}"
+              }
+            ]
+          },
+          "specialty": [
+            {
+              "coding": [
+                {
+                  "code": "{$gt4010}",
+                  "system": "http://snomed.info/sct",
+                  "display": "{$gt4009}"
+                }
+              ]
+            }
+          ],
+          "start": "{$gt4012}",
+          "description": "{$gt4011}",
+          "status": "proposed",
+          "resourceType": "Appointment"
+        }
+      },
+      "gt4013": {
+        "id": "gt4013",
+        "model_id": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+        "template_id": "FHIR-STU3-ProcedureRequest.generic.v0",
+        "object": {
+          "extension": [
+            {
+              "valueString": "{$gt4014}",
+              "url": "http://www.c3-cloud.eu/fhir/StructureDefinition/description"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "code": "{$gt4016}",
+                "system": "http://loinc.org",
+                "display": "{$gt4015}"
+              }
+            ]
+          },
+          "performer": {
+            "display": "{$gt5101}"
+          },
+          "occurrenceDateTime": "{$gt4017}",
+          "category": [
+            {
+              "coding": [
+                {
+                  "code": "lab-request",
+                  "system": "http://www.c3-cloud.eu/fhir/care-plan-activity-category",
+                  "display": "{$gt5102}"
+                }
+              ]
+            }
+          ],
+          "intent": "proposal",
+          "status": "draft",
+          "resourceType": "ProcedureRequest"
+        }
+      }
+    },
+    "rules": {
+      "gt0046": {
+        "id": "gt0046",
+        "priority": 4,
+        "when": [
+          "((((($gt0004|eGFRValue-latest|!=null)&&($gt0004|eGFRValue-latest|>=45,mL/min/{1.73_m2}))&&($gt0007|ACRValue|!=null))&&(($gt0007|ACRValue|>30,mg/mmol{creat})||(($gt0007|ACRValue|>30,mg/mmol)||(($gt0007|ACRValue|>300,mg/g)||($gt0007|ACRValue|>30,g/mol)))))||(((((($gt0004|eGFRValue-latest|!=null)&&($gt4108|eGFRValue-2ndLatest|!=null))&&($gt0004|eGFRValue-latest|.magnitude<($gt4108.magnitude-($gt4108.magnitude/4))))&&($gt4109|eGFReffectiveDateTime-latest|!=null))&&($gt4110|eGFReffectiveDateTime-2ndLatest|!=null))&&($gt4109|eGFReffectiveDateTime-latest|>=($gt4110+14,d))))||($gt4019|refractoryHypertension|!=null)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt4082.term}",
+            "detail": "{$gt4083.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "8af56bb2-1111-453a-8c35-efaa625214f6",
+                "label": "{$gt4084.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4027.term}",
+                    "resource_template": {
+                      "template_id": "gt0069",
+                      "assignments": [
+                        "$gt0070=($currentDateTime)",
+                        "$gt0077=$gt1001.term",
+                        "$gt5107=$gt5007.term",
+                        "$gt5113=$gt5007.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "summary": "{$gt2000.term}",
+            "detail": "{$gt2001.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "86cccb9b-abbe-4c36-9eb4-2533aec23a97",
+                "label": "{$gt2002.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4037.term}",
+                    "resource_template": {
+                      "template_id": "gt4007",
+                      "assignments": [
+                        "$gt4012=($currentDateTime+1,a)",
+                        "$gt4011=$gt4113.term",
+                        "$gt4009=$gt4114.term",
+                        "$gt4010='62247001'",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "summary": "{$gt4044.term}",
+            "detail": "{$gt4045.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "2de26b5b-3f46-419d-a38e-8b97d47c474b",
+                "label": "{$gt4051.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4054.term}",
+                    "resource_template": {
+                      "template_id": "gt4007",
+                      "assignments": [
+                        "$gt4012=($currentDateTime+3,mo)",
+                        "$gt4011=$gt4115.term",
+                        "$gt4009=$gt4116.term",
+                        "$gt4010='106292003'",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "summary": "{$gt4079.term}",
+            "detail": "{$gt4080.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "ba6ce335-848a-4393-9e10-10ad335c5129",
+                "label": "{$gt4081.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4072.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+6,mo)",
+                        "$gt4014=$gt4117.term",
+                        "$gt4015=$gt4118.term",
+                        "$gt4016='32294-1'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt4075.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+6,mo)",
+                        "$gt4014=$gt4119.term",
+                        "$gt4015=$gt4120.term",
+                        "$gt4016='33914-3'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt4078.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+6,mo)",
+                        "$gt4014=$gt4121.term",
+                        "$gt4015=$gt4122.term",
+                        "$gt4016='4548-4'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0014": {
+        "id": "gt0014",
+        "priority": 3,
+        "when": [
+          "$gt0004|eGFRValue-latest|!=null",
+          "$gt0004|eGFRValue-latest|<30,mL/min/{1.73_m2}",
+          "!fired($gt0046)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt4000.term}",
+            "detail": "{$gt4001.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "8af56bb2-1111-453a-8c35-efaa625214f6",
+                "label": "{$gt4002.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4027.term}",
+                    "resource_template": {
+                      "template_id": "gt0069",
+                      "assignments": [
+                        "$gt0070=($currentDateTime)",
+                        "$gt0077=$gt4123.term",
+                        "$gt5107=$gt5007.term",
+                        "$gt5113=$gt5007.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0021": {
+        "id": "gt0021",
+        "priority": 2,
+        "when": [
+          "!fired($gt0046)",
+          "$gt0004|eGFRValue-latest|!=null",
+          "$gt0004|eGFRValue-latest|>=30,mL/min/{1.73_m2}",
+          "$gt0004|eGFRValue-latest|<45,mL/min/{1.73_m2}"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt3000.term}",
+            "detail": "{$gt3001.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "98194348-422d-4d8c-87ad-f3b27c87597a",
+                "label": "{$gt3002.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4037.term}",
+                    "resource_template": {
+                      "template_id": "gt4007",
+                      "assignments": [
+                        "$gt4012=($currentDateTime+6,mo)",
+                        "$gt4011=$gt4124.term",
+                        "$gt4009=$gt4125.term",
+                        "$gt4010='62247001'",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "summary": "{$gt4044.term}",
+            "detail": "{$gt4045.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "2de26b5b-3f46-419d-a38e-8b97d47c474b",
+                "label": "{$gt4051.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4054.term}",
+                    "resource_template": {
+                      "template_id": "gt4007",
+                      "assignments": [
+                        "$gt4012=($currentDateTime+3,mo)",
+                        "$gt4011=$gt4126.term",
+                        "$gt4009=$gt4127.term",
+                        "$gt4010='106292003'",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "summary": "{$gt4062.term}",
+            "detail": "{$gt4063.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "ba6ce335-848a-4393-9e10-10ad335c5129",
+                "label": "{$gt4069.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4072.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+3,mo)",
+                        "$gt4014=$gt4128.term",
+                        "$gt4015=$gt4129.term",
+                        "$gt4016='32294-1'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt4075.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+3,mo)",
+                        "$gt4014=$gt4130.term",
+                        "$gt4015=$gt4131.term",
+                        "$gt4016='33914-3'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt4078.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+3,mo)",
+                        "$gt4014=$gt4132.term",
+                        "$gt4015=$gt4133.term",
+                        "$gt4016='4548-4'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0045": {
+        "id": "gt0045",
+        "priority": 1,
+        "when": [
+          "$gt0004|eGFRValue-latest|!=null",
+          "$gt0004|eGFRValue-latest|>=45,mL/min/{1.73_m2}",
+          "$gt0004|eGFRValue-latest|<60,mL/min/{1.73_m2}",
+          "!fired($gt0046)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt2000.term}",
+            "detail": "{$gt2001.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "86cccb9b-abbe-4c36-9eb4-2533aec23a97",
+                "label": "{$gt2002.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4037.term}",
+                    "resource_template": {
+                      "template_id": "gt4007",
+                      "assignments": [
+                        "$gt4012=($currentDateTime+1,a)",
+                        "$gt4011=$gt4134.term",
+                        "$gt4009=$gt4135.term",
+                        "$gt4010='62247001'",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "summary": "{$gt4044.term}",
+            "detail": "{$gt4045.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "2de26b5b-3f46-419d-a38e-8b97d47c474b",
+                "label": "{$gt4051.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4054.term}",
+                    "resource_template": {
+                      "template_id": "gt4007",
+                      "assignments": [
+                        "$gt4012=($currentDateTime+3,mo)",
+                        "$gt4011=$gt4136.term",
+                        "$gt4009=$gt4137.term",
+                        "$gt4010='106292003'",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "summary": "{$gt4079.term}",
+            "detail": "{$gt4080.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE CKD guideline CG182, Chapter 1.3, Table 2 [60, p. 26].",
+              "url": "https://www.nice.org.uk/guidance/cg182",
+              "label_reference": "$ref[2].label",
+              "url_reference": "$ref[2].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "ba6ce335-848a-4393-9e10-10ad335c5129",
+                "label": "{$gt4081.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt4072.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+6,mo)",
+                        "$gt4014=$gt4138.term",
+                        "$gt4015=$gt4139.term",
+                        "$gt4016='32294-1'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt4075.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+6,mo)",
+                        "$gt4014=$gt4140.term",
+                        "$gt4015=$gt4141.term",
+                        "$gt4016='33914-3'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt4078.term}",
+                    "resource_template": {
+                      "template_id": "gt4013",
+                      "assignments": [
+                        "$gt4017=($currentDateTime+6,mo)",
+                        "$gt4014=$gt4142.term",
+                        "$gt4015=$gt4143.term",
+                        "$gt4016='4548-4'",
+                        "$gt5101=$gt5001.term",
+                        "$gt5102=$gt5002.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Management of Diabetic Nephropathy"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "estimatedGlomerularFiltrationRate",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "eGFRValue-latest",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "albuminCreatinineRatio",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "ACRValue",
+            "description": "/valueQuantity"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "refractoryHypertension",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Hypertension Diagnosis",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "type2Diabetes",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Type 2 Diabetes Diagnosis",
+            "description": ""
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "eGFR <30"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "intent",
+            "description": ""
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Nephrology",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "start",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "description",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "eGFR >=30 and <45"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "description",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "status",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "start",
+            "description": ""
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "General Practice",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "appointmentType",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Renal Care Management",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "Nursing",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "description",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "status",
+            "description": ""
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "start",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "appointmentType",
+            "description": ""
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "category",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Laboratory Test",
+            "description": ""
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Hemoglobin A1c Test",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "description",
+            "description": ""
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "eGFR >=45 and <60"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "eGFR >=45 and ACR >300"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "description",
+            "description": ""
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "category",
+            "description": ""
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Albumin/Creatinine Ratio Test",
+            "description": ""
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "description",
+            "description": ""
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "category",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "eGFR Test",
+            "description": ""
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "authoredOn",
+            "description": "authoredOn"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "value",
+            "description": "/specialty/coding"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "code",
+            "description": "/specialty/coding"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "FHIR-STU3-Appointment.generic.v0"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "value",
+            "description": "/specialty/coding"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "code",
+            "description": "/specialty/coding"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "code",
+            "description": "/category/coding"
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "value",
+            "description": "/category/coding"
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "code",
+            "description": "/category/coding"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "value",
+            "description": "/category/coding"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "FHIR-STU3-Appointment.generic.v0"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "code",
+            "description": "/specialty/coding/code"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "display",
+            "description": "/specialty/coding/display"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "value",
+            "description": "/specialty/text"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt0109": {
+            "id": "gt0109",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "value",
+            "description": "/occurrenceTiming/code/text"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0118": {
+            "id": "gt0118",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0121": {
+            "id": "gt0121",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0122": {
+            "id": "gt0122",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0123": {
+            "id": "gt0123",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0124": {
+            "id": "gt0124",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt0125": {
+            "id": "gt0125",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0126": {
+            "id": "gt0126",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0127": {
+            "id": "gt0127",
+            "text": "value",
+            "description": "/occurrenceTiming/code/text"
+          },
+          "gt0128": {
+            "id": "gt0128",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt0131": {
+            "id": "gt0131",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt0132": {
+            "id": "gt0132",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0133": {
+            "id": "gt0133",
+            "text": "description",
+            "description": "/extension/valueString"
+          },
+          "gt0134": {
+            "id": "gt0134",
+            "text": "code",
+            "description": "/code/coding/code"
+          },
+          "gt0135": {
+            "id": "gt0135",
+            "text": "display",
+            "description": "/code/coding/display"
+          },
+          "gt0136": {
+            "id": "gt0136",
+            "text": "eGFR-latest",
+            "description": ""
+          },
+          "gt0137": {
+            "id": "gt0137",
+            "text": "ACR",
+            "description": ""
+          },
+          "gt0200": {
+            "id": "gt0200",
+            "text": "code",
+            "description": "/specialty/coding/display"
+          },
+          "gt1000": {
+            "id": "gt1000",
+            "text": "Referral or consulting the nephrologist",
+            "description": "summary"
+          },
+          "gt1001": {
+            "id": "gt1001",
+            "text": "Consider referring or consulting the nephrologist",
+            "description": "detail"
+          },
+          "gt1002": {
+            "id": "gt1002",
+            "text": "Referral or consulting the nephrologist",
+            "description": "label"
+          },
+          "gt1003": {
+            "id": "gt1003",
+            "text": "Consider referring or consulting the nephrologist",
+            "description": "description"
+          },
+          "gt2000": {
+            "id": "gt2000",
+            "text": "GP Appointment for management of nephropathy",
+            "description": "summary"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text": "GP Appointment for management of nephropathy (One (1) appointment per year with the GP)",
+            "description": "detail"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text": "GP Appointment for management of nephropathy",
+            "description": "label"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "GP Appointment for management of nephropathy ",
+            "description": "description"
+          },
+          "gt2004": {
+            "id": "gt2004",
+            "text": "Nurse Appointment for management of nephropathy",
+            "description": "description"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "HbA1c Test",
+            "description": "description"
+          },
+          "gt2006": {
+            "id": "gt2006",
+            "text": "Albumin/Creatinine Test",
+            "description": "description"
+          },
+          "gt2007": {
+            "id": "gt2007",
+            "text": "eGFR Test",
+            "description": "description"
+          },
+          "gt3000": {
+            "id": "gt3000",
+            "text": "GP Appointment for management of nephropathy",
+            "description": "summary"
+          },
+          "gt3001": {
+            "id": "gt3001",
+            "text": "GP Appointment for management of nephropathy (Two (2) appointments per year with the GP)",
+            "description": "detail"
+          },
+          "gt3002": {
+            "id": "gt3002",
+            "text": "GP Appointment for management of nephropathy",
+            "description": "label"
+          },
+          "gt3003": {
+            "id": "gt3003",
+            "text": "GP Appointment for management of nephropathy ",
+            "description": "description"
+          },
+          "gt3004": {
+            "id": "gt3004",
+            "text": "Nurse Appointment for management of nephropathy",
+            "description": "description"
+          },
+          "gt3005": {
+            "id": "gt3005",
+            "text": "HbA1c Test",
+            "description": "description"
+          },
+          "gt3006": {
+            "id": "gt3006",
+            "text": "Albumin/Creatinine Test",
+            "description": "description"
+          },
+          "gt3007": {
+            "id": "gt3007",
+            "text": "eGFR Test",
+            "description": "description"
+          },
+          "gt4000": {
+            "id": "gt4000",
+            "text": "Referral for Nephrologist",
+            "description": "summary"
+          },
+          "gt4001": {
+            "id": "gt4001",
+            "text": "Referral for Nephrologist (Monitor nephropathy-G4)",
+            "description": "detail"
+          },
+          "gt4002": {
+            "id": "gt4002",
+            "text": "Referral for Nephrologist (Monitor nephropathy-G4)",
+            "description": "label"
+          },
+          "gt4003": {
+            "id": "gt4003",
+            "text": "Referral for Nephrologist (Monitor nephropathy)",
+            "description": "description"
+          },
+          "gt4006": {
+            "id": "gt4006",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt4007": {
+            "id": "gt4007",
+            "text": "FHIR-STU3-Appointment.generic.v0"
+          },
+          "gt4008": {
+            "id": "gt4008",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt4009": {
+            "id": "gt4009",
+            "text": "value",
+            "description": "/specialty[0]/coding[0]"
+          },
+          "gt4010": {
+            "id": "gt4010",
+            "text": "code",
+            "description": "/specialty[0]/coding[0]"
+          },
+          "gt4011": {
+            "id": "gt4011",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt4012": {
+            "id": "gt4012",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt4013": {
+            "id": "gt4013",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+          },
+          "gt4014": {
+            "id": "gt4014",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt4015": {
+            "id": "gt4015",
+            "text": "value",
+            "description": "/code/coding[0]"
+          },
+          "gt4016": {
+            "id": "gt4016",
+            "text": "code",
+            "description": "/code/coding[0]"
+          },
+          "gt4017": {
+            "id": "gt4017",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt4019": {
+            "id": "gt4019",
+            "text": "refractoryHypertension",
+            "description": ""
+          },
+          "gt4027": {
+            "id": "gt4027",
+            "text": "Referral to specialist services",
+            "description": "descriptionValue"
+          },
+          "gt4028": {
+            "id": "gt4028",
+            "text": "Referral for Nephrologist (Monitor nephropathy)",
+            "description": "Referral for Nephrologist (Monitor nephropathy)"
+          },
+          "gt4031": {
+            "id": "gt4031",
+            "text": "GP Appointment for management of nephropathy",
+            "description": "GP Appointment for management of nephropathy"
+          },
+          "gt4037": {
+            "id": "gt4037",
+            "text": "GP Appointment for management of nephropathy",
+            "description": "descriptionValue"
+          },
+          "gt4044": {
+            "id": "gt4044",
+            "text": "Nurse Appointment for management of nephropathy",
+            "description": "summaryValue"
+          },
+          "gt4045": {
+            "id": "gt4045",
+            "text": "Nurse Appointment for management of nephropathy (Three (3) appointments per year with the Nurse)",
+            "description": "detailValue"
+          },
+          "gt4046": {
+            "id": "gt4046",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt4047": {
+            "id": "gt4047",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt4048": {
+            "id": "gt4048",
+            "text": "info",
+            "description": "info"
+          },
+          "gt4051": {
+            "id": "gt4051",
+            "text": "Nurse Appointment for management of nephropathy",
+            "description": "labelValue"
+          },
+          "gt4054": {
+            "id": "gt4054",
+            "text": "Nurse Appointment for management of nephropathy",
+            "description": "description"
+          },
+          "gt4062": {
+            "id": "gt4062",
+            "text": "Schedule albumin-to-creatinin ratio, eGFR (kidney function) and HbA1c measurements every 3 months.",
+            "description": "summaryValue"
+          },
+          "gt4063": {
+            "id": "gt4063",
+            "text": "Schedule albumin-to-creatinin ratio, eGFR (kidney function) and HbA1c measurements every 3 months.",
+            "description": "detailValue"
+          },
+          "gt4064": {
+            "id": "gt4064",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt4065": {
+            "id": "gt4065",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt4066": {
+            "id": "gt4066",
+            "text": "info",
+            "description": "info"
+          },
+          "gt4069": {
+            "id": "gt4069",
+            "text": "Albumin-to-creatinin ratio, eGFR (kidney function) and HbA1c measurements every 3 months.",
+            "description": "labelValue"
+          },
+          "gt4072": {
+            "id": "gt4072",
+            "text": "Albumin/Creatinine [Ratio] in Urine Test",
+            "description": "descriptionValue"
+          },
+          "gt4075": {
+            "id": "gt4075",
+            "text": "eGFR Test",
+            "description": "descriptionValue"
+          },
+          "gt4078": {
+            "id": "gt4078",
+            "text": "HbA1c Test",
+            "description": "descriptionValue"
+          },
+          "gt4079": {
+            "id": "gt4079",
+            "text": "Schedule albumin-to-creatinin ratio, eGFR (kidney function) and HbA1c measurements every 6 months.",
+            "description": "summaryValue"
+          },
+          "gt4080": {
+            "id": "gt4080",
+            "text": "Schedule albumin-to-creatinin ratio, eGFR (kidney function) and HbA1c measurements every 6 months.",
+            "description": "detailValue"
+          },
+          "gt4081": {
+            "id": "gt4081",
+            "text": "Albumin-to-creatinin ratio, eGFR (kidney function) and HbA1c measurements every 6 months.",
+            "description": "labelValue"
+          },
+          "gt4082": {
+            "id": "gt4082",
+            "text": "Referral or consulting the nephrologist",
+            "description": "ElementValue"
+          },
+          "gt4083": {
+            "id": "gt4083",
+            "text": "Consider referring or consulting the nephrologist",
+            "description": "ElementValue"
+          },
+          "gt4084": {
+            "id": "gt4084",
+            "text": "Referral or consulting the nephrologist",
+            "description": "ElementValue"
+          },
+          "gt4107": {
+            "id": "gt4107",
+            "text": "eGFR-2ndLatest",
+            "description": ""
+          },
+          "gt4108": {
+            "id": "gt4108",
+            "text": "eGFRValue-2ndLatest",
+            "description": ""
+          },
+          "gt4109": {
+            "id": "gt4109",
+            "text": "eGFReffectiveDateTime-latest",
+            "description": ""
+          },
+          "gt4110": {
+            "id": "gt4110",
+            "text": "eGFReffectiveDateTime-2ndLatest",
+            "description": ""
+          },
+          "gt4111": {
+            "id": "gt4111",
+            "text": "Set eGFR-2ndLatest"
+          },
+          "gt4112": {
+            "id": "gt4112",
+            "text": "Referral for Nephrologist (Monitor nephropathy)",
+            "description": ""
+          },
+          "gt4113": {
+            "id": "gt4113",
+            "text": "GP Appointment for the yearly management of nephropathy",
+            "description": ""
+          },
+          "gt4114": {
+            "id": "gt4114",
+            "text": "General Practitioner",
+            "description": ""
+          },
+          "gt4115": {
+            "id": "gt4115",
+            "text": "Nurse Appointment for the quarterly management of nephropathy",
+            "description": ""
+          },
+          "gt4116": {
+            "id": "gt4116",
+            "text": "Nurse",
+            "description": ""
+          },
+          "gt4117": {
+            "id": "gt4117",
+            "text": "Have Albumin/Creatinine test in every six months",
+            "description": ""
+          },
+          "gt4118": {
+            "id": "gt4118",
+            "text": "Albumin/Creatinine [Ratio] in Urine",
+            "description": ""
+          },
+          "gt4119": {
+            "id": "gt4119",
+            "text": "Have eGFR in every six months",
+            "description": ""
+          },
+          "gt4120": {
+            "id": "gt4120",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4121": {
+            "id": "gt4121",
+            "text": "Have HbA1c in every six months",
+            "description": ""
+          },
+          "gt4122": {
+            "id": "gt4122",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4123": {
+            "id": "gt4123",
+            "text": "Referral for Nephrologist (Monitor nephropathy)",
+            "description": ""
+          },
+          "gt4124": {
+            "id": "gt4124",
+            "text": "GP Appointment for the six-monthly management of nephropathy",
+            "description": ""
+          },
+          "gt4125": {
+            "id": "gt4125",
+            "text": "General Practitioner",
+            "description": ""
+          },
+          "gt4126": {
+            "id": "gt4126",
+            "text": "Nurse Appointment for the quarterly management of nephropathy",
+            "description": ""
+          },
+          "gt4127": {
+            "id": "gt4127",
+            "text": "Nurse",
+            "description": ""
+          },
+          "gt4128": {
+            "id": "gt4128",
+            "text": "Have Albumin/Creatinine test in every three months",
+            "description": ""
+          },
+          "gt4129": {
+            "id": "gt4129",
+            "text": "Albumin/Creatinine [Ratio] in Urine",
+            "description": ""
+          },
+          "gt4130": {
+            "id": "gt4130",
+            "text": "Have eGFR in every three months",
+            "description": ""
+          },
+          "gt4131": {
+            "id": "gt4131",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4132": {
+            "id": "gt4132",
+            "text": "Have HbA1c in every three months",
+            "description": ""
+          },
+          "gt4133": {
+            "id": "gt4133",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4134": {
+            "id": "gt4134",
+            "text": "GP Appointment for the yearly management of nephropathy",
+            "description": ""
+          },
+          "gt4135": {
+            "id": "gt4135",
+            "text": "General Practitioner",
+            "description": ""
+          },
+          "gt4136": {
+            "id": "gt4136",
+            "text": "Nurse Appointment for the quarterly management of nephropathy",
+            "description": ""
+          },
+          "gt4137": {
+            "id": "gt4137",
+            "text": "Nurse",
+            "description": ""
+          },
+          "gt4138": {
+            "id": "gt4138",
+            "text": "Have Albumin/Creatinine test in every six months",
+            "description": ""
+          },
+          "gt4139": {
+            "id": "gt4139",
+            "text": "Albumin/Creatinine [Ratio] in Urine",
+            "description": ""
+          },
+          "gt4140": {
+            "id": "gt4140",
+            "text": "Have eGFR in every six months",
+            "description": ""
+          },
+          "gt4141": {
+            "id": "gt4141",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4142": {
+            "id": "gt4142",
+            "text": "Have HbA1c in every six months",
+            "description": ""
+          },
+          "gt4143": {
+            "id": "gt4143",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4150": {
+            "id": "gt4150",
+            "text": "urineAlbuminEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "FOLLOWUP",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "PATIENT",
+            "description": "/performer/display"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "Lab Request",
+            "description": "/category/coding/display"
+          },
+          "gt5007": {
+            "id": "gt5007",
+            "text": "Nephrologist",
+            "description": "/specialty/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5107": {
+            "id": "gt5107",
+            "text": "value",
+            "description": "/specialty/coding/display"
+          },
+          "gt5113": {
+            "id": "gt5113",
+            "text": "value",
+            "description": "/specialty/text"
+          }
+        }
+      },
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Hantering av Diabetesnefropati"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "estimatedGlomerularFiltrationRate",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "eGFRValue-latest",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "albuminCreatinineRatio",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "ACRValue",
+            "description": "/valueQuantity"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "refractoryHypertension",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Hypertension Diagnosis",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "type2Diabetes",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Type 2 Diabetes Diagnosis",
+            "description": ""
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "eGFR <30",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "intent",
+            "description": ""
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Nephrology",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "start",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "description",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "eGFR >=30 and <45",
+            "description": ""
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "description",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "status",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "start",
+            "description": ""
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "General Practice",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "appointmentType",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Renal Care Management",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "Nursing",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "description",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "status",
+            "description": ""
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "start",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "appointmentType",
+            "description": ""
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "category",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Laboratory Test",
+            "description": ""
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Hemoglobin A1c Test",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "description",
+            "description": ""
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "eGFR >=45 and <60",
+            "description": ""
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "eGFR >=45 and ACR >300",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "description",
+            "description": ""
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "category",
+            "description": ""
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Albumin/Creatinine Ratio Test",
+            "description": ""
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "description",
+            "description": ""
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "category",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "eGFR Test",
+            "description": ""
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "authoredOn",
+            "description": "authoredOn"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0",
+            "description": ""
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "value",
+            "description": "/specialty/coding"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "code",
+            "description": "/specialty/coding"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "FHIR-STU3-Appointment.generic.v0",
+            "description": ""
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "value",
+            "description": "/specialty/coding"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "code",
+            "description": "/specialty/coding"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "code",
+            "description": "/category/coding"
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "value",
+            "description": "/category/coding"
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "code",
+            "description": "/category/coding"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "value",
+            "description": "/category/coding"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "FHIR-STU3-Appointment.generic.v0",
+            "description": ""
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "code",
+            "description": "/specialty/coding/code"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "display",
+            "description": "/specialty/coding/display"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "value",
+            "description": "/specialty/text"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0109": {
+            "id": "gt0109",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "value",
+            "description": "/occurrenceTiming/code/text"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0118": {
+            "id": "gt0118",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0121": {
+            "id": "gt0121",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0122": {
+            "id": "gt0122",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0123": {
+            "id": "gt0123",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0124": {
+            "id": "gt0124",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0125": {
+            "id": "gt0125",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0126": {
+            "id": "gt0126",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0127": {
+            "id": "gt0127",
+            "text": "value",
+            "description": "/occurrenceTiming/code/text"
+          },
+          "gt0128": {
+            "id": "gt0128",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0131": {
+            "id": "gt0131",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt0132": {
+            "id": "gt0132",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0133": {
+            "id": "gt0133",
+            "text": "description",
+            "description": "/extension/valueString"
+          },
+          "gt0134": {
+            "id": "gt0134",
+            "text": "code",
+            "description": "/code/coding/code"
+          },
+          "gt0135": {
+            "id": "gt0135",
+            "text": "display",
+            "description": "/code/coding/display"
+          },
+          "gt0136": {
+            "id": "gt0136",
+            "text": "eGFR-latest",
+            "description": ""
+          },
+          "gt0137": {
+            "id": "gt0137",
+            "text": "ACR",
+            "description": ""
+          },
+          "gt0200": {
+            "id": "gt0200",
+            "text": "code",
+            "description": "/specialty/coding/display"
+          },
+          "gt1000": {
+            "id": "gt1000",
+            "text": "Remittera till, eller konsultera nefrolog",
+            "description": "summary"
+          },
+          "gt1001": {
+            "id": "gt1001",
+            "text": "Överväg att remittera till, eller konsultera nefrolog",
+            "description": "detail"
+          },
+          "gt1002": {
+            "id": "gt1002",
+            "text": "Remittera till, eller konsultera nefrolog",
+            "description": "label"
+          },
+          "gt1003": {
+            "id": "gt1003",
+            "text": "Överväg att remittera till, eller konsultera nefrolog",
+            "description": "description"
+          },
+          "gt2000": {
+            "id": "gt2000",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati",
+            "description": "summary"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati (1 besök hos allmänläkare per år)",
+            "description": "detail"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati",
+            "description": "label"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati",
+            "description": "description"
+          },
+          "gt2004": {
+            "id": "gt2004",
+            "text": "Besök hos sjuksköterska för uppföljning av nefropati",
+            "description": "description"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "HbA1c-prov",
+            "description": "description"
+          },
+          "gt2006": {
+            "id": "gt2006",
+            "text": "Albumin/Kreatinin-prov",
+            "description": "description"
+          },
+          "gt2007": {
+            "id": "gt2007",
+            "text": "eGFR-prov",
+            "description": "description"
+          },
+          "gt3000": {
+            "id": "gt3000",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati",
+            "description": "summary"
+          },
+          "gt3001": {
+            "id": "gt3001",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati (2 besök hos allmänläkare per år)",
+            "description": "detail"
+          },
+          "gt3002": {
+            "id": "gt3002",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati",
+            "description": "label"
+          },
+          "gt3003": {
+            "id": "gt3003",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati",
+            "description": "description"
+          },
+          "gt3004": {
+            "id": "gt3004",
+            "text": "Besök hos sjuksköterska för uppföljning av nefropati",
+            "description": "description"
+          },
+          "gt3005": {
+            "id": "gt3005",
+            "text": "HbA1c-prov",
+            "description": "description"
+          },
+          "gt3006": {
+            "id": "gt3006",
+            "text": "Albumin/Kreatinin-prov",
+            "description": "description"
+          },
+          "gt3007": {
+            "id": "gt3007",
+            "text": "eGFR-prov",
+            "description": "description"
+          },
+          "gt4000": {
+            "id": "gt4000",
+            "text": "Remittera till nefrolog",
+            "description": "summary"
+          },
+          "gt4001": {
+            "id": "gt4001",
+            "text": "Remittera till nefrolog (Monitorera nefropati-G4)",
+            "description": "detail"
+          },
+          "gt4002": {
+            "id": "gt4002",
+            "text": "Remittera till nefrolog",
+            "description": "label"
+          },
+          "gt4003": {
+            "id": "gt4003",
+            "text": "Remittera till nefrolog (Monitorera nefropati)",
+            "description": "description"
+          },
+          "gt4006": {
+            "id": "gt4006",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt4007": {
+            "id": "gt4007",
+            "text": "FHIR-STU3-Appointment.generic.v0",
+            "description": ""
+          },
+          "gt4008": {
+            "id": "gt4008",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt4009": {
+            "id": "gt4009",
+            "text": "value",
+            "description": "/specialty[0]/coding[0]"
+          },
+          "gt4010": {
+            "id": "gt4010",
+            "text": "code",
+            "description": "/specialty[0]/coding[0]"
+          },
+          "gt4011": {
+            "id": "gt4011",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt4012": {
+            "id": "gt4012",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt4013": {
+            "id": "gt4013",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt4014": {
+            "id": "gt4014",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt4015": {
+            "id": "gt4015",
+            "text": "value",
+            "description": "/code/coding[0]"
+          },
+          "gt4016": {
+            "id": "gt4016",
+            "text": "code",
+            "description": "/code/coding[0]"
+          },
+          "gt4017": {
+            "id": "gt4017",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt4019": {
+            "id": "gt4019",
+            "text": "refractoryHypertension",
+            "description": ""
+          },
+          "gt4027": {
+            "id": "gt4027",
+            "text": "Remittera till specialist",
+            "description": "descriptionValue"
+          },
+          "gt4028": {
+            "id": "gt4028",
+            "text": "Remittera till nefrolog (Monitorera nefropati)",
+            "description": "Referral for Nephrologist (Monitor nephropathy)"
+          },
+          "gt4031": {
+            "id": "gt4031",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati",
+            "description": "GP Appointment for management of nephropathy"
+          },
+          "gt4037": {
+            "id": "gt4037",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati",
+            "description": "descriptionValue"
+          },
+          "gt4044": {
+            "id": "gt4044",
+            "text": "Besök hos sjuksköterska för uppföljning av nefropati",
+            "description": "summaryValue"
+          },
+          "gt4045": {
+            "id": "gt4045",
+            "text": "Besök hos sjuksköterska för uppföljning av nefropati (3 sjuksköterskebesök per år)",
+            "description": "detailValue"
+          },
+          "gt4046": {
+            "id": "gt4046",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt4047": {
+            "id": "gt4047",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt4048": {
+            "id": "gt4048",
+            "text": "info",
+            "description": "info"
+          },
+          "gt4051": {
+            "id": "gt4051",
+            "text": "Besök hos sjuksköterska för uppföljning av nefropati",
+            "description": "labelValue"
+          },
+          "gt4054": {
+            "id": "gt4054",
+            "text": "Besök hos sjuksköterska för uppföljning av nefropati",
+            "description": "description"
+          },
+          "gt4062": {
+            "id": "gt4062",
+            "text": "Planera provtagning av albumin/kreatininkvot, eGFR och HbA1c var tredje månad.",
+            "description": "summaryValue"
+          },
+          "gt4063": {
+            "id": "gt4063",
+            "text": "Planera provtagning av albumin/kreatininkvot, eGFR och HbA1c var tredje månad.",
+            "description": "detailValue"
+          },
+          "gt4064": {
+            "id": "gt4064",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt4065": {
+            "id": "gt4065",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt4066": {
+            "id": "gt4066",
+            "text": "info",
+            "description": "info"
+          },
+          "gt4069": {
+            "id": "gt4069",
+            "text": "Provtagning av albumin/kreatininkvot, eGFR och HbA1c var tredje månad.",
+            "description": "labelValue"
+          },
+          "gt4072": {
+            "id": "gt4072",
+            "text": "Albumin/Kreatininkvot i urinprov",
+            "description": "descriptionValue"
+          },
+          "gt4075": {
+            "id": "gt4075",
+            "text": "eGFR-prov",
+            "description": "descriptionValue"
+          },
+          "gt4078": {
+            "id": "gt4078",
+            "text": "HbA1c-prov",
+            "description": "descriptionValue"
+          },
+          "gt4079": {
+            "id": "gt4079",
+            "text": "Planera provtagning av albumin/kreatininkvot, eGFR och HbA1c var sjätte månad.",
+            "description": "summaryValue"
+          },
+          "gt4080": {
+            "id": "gt4080",
+            "text": "Planera provtagning av albumin/kreatininkvot, eGFR och HbA1c var sjätte månad.",
+            "description": "detailValue"
+          },
+          "gt4081": {
+            "id": "gt4081",
+            "text": "Provtagning av albumin/kreatininkvot, eGFR och HbA1c var sjätte månad.",
+            "description": "labelValue"
+          },
+          "gt4082": {
+            "id": "gt4082",
+            "text": "Remittera till, eller konsultera nefrolog",
+            "description": "ElementValue"
+          },
+          "gt4083": {
+            "id": "gt4083",
+            "text": "Överväg att remittera till, eller konsultera nefrolog",
+            "description": "ElementValue"
+          },
+          "gt4084": {
+            "id": "gt4084",
+            "text": "Remittera till, eller konsultera nefrolog",
+            "description": "ElementValue"
+          },
+          "gt4107": {
+            "id": "gt4107",
+            "text": "eGFR-2ndLatest",
+            "description": ""
+          },
+          "gt4108": {
+            "id": "gt4108",
+            "text": "eGFRValue-2ndLatest",
+            "description": ""
+          },
+          "gt4109": {
+            "id": "gt4109",
+            "text": "eGFReffectiveDateTime-latest",
+            "description": ""
+          },
+          "gt4110": {
+            "id": "gt4110",
+            "text": "eGFReffectiveDateTime-2ndLatest",
+            "description": ""
+          },
+          "gt4111": {
+            "id": "gt4111",
+            "text": "Set eGFR-2ndLatest",
+            "description": ""
+          },
+          "gt4112": {
+            "id": "gt4112",
+            "text": "Remittera till nefrolog (Monitorera nefropati)",
+            "description": ""
+          },
+          "gt4113": {
+            "id": "gt4113",
+            "text": "Besök hos allmänläkare för årlig uppföljning av nefropati",
+            "description": ""
+          },
+          "gt4114": {
+            "id": "gt4114",
+            "text": "Allmänläkare",
+            "description": ""
+          },
+          "gt4115": {
+            "id": "gt4115",
+            "text": "Sjuksköterskebesök för uppföljning av nefropati varje kvartal",
+            "description": ""
+          },
+          "gt4116": {
+            "id": "gt4116",
+            "text": "Sjuksköterska",
+            "description": ""
+          },
+          "gt4117": {
+            "id": "gt4117",
+            "text": "Ta prov för albumin/kreatinin var sjätte månad",
+            "description": ""
+          },
+          "gt4118": {
+            "id": "gt4118",
+            "text": "Albumin/Kreatininkvot i urin",
+            "description": ""
+          },
+          "gt4119": {
+            "id": "gt4119",
+            "text": "Ta prov för eGFR var sjätte månad",
+            "description": ""
+          },
+          "gt4120": {
+            "id": "gt4120",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4121": {
+            "id": "gt4121",
+            "text": "Ta prov för HbA1c var sjätte månad",
+            "description": ""
+          },
+          "gt4122": {
+            "id": "gt4122",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4123": {
+            "id": "gt4123",
+            "text": "Remittera till nefrolog (Monitorera nefropati)",
+            "description": ""
+          },
+          "gt4124": {
+            "id": "gt4124",
+            "text": "Besök hos allmänläkare för uppföljning av nefropati varje halvår",
+            "description": ""
+          },
+          "gt4125": {
+            "id": "gt4125",
+            "text": "Allmänläkare",
+            "description": ""
+          },
+          "gt4126": {
+            "id": "gt4126",
+            "text": "Sjuksköterskebesök för uppföljning av nefropati varje kvartal",
+            "description": ""
+          },
+          "gt4127": {
+            "id": "gt4127",
+            "text": "Sjuksköterska",
+            "description": ""
+          },
+          "gt4128": {
+            "id": "gt4128",
+            "text": "Ta prov för albumin/kreatinin var tredje månad",
+            "description": ""
+          },
+          "gt4129": {
+            "id": "gt4129",
+            "text": "Albumin/Kreatininkvot i urin",
+            "description": ""
+          },
+          "gt4130": {
+            "id": "gt4130",
+            "text": "Ta prov för eGFR var tredje månad",
+            "description": ""
+          },
+          "gt4131": {
+            "id": "gt4131",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4132": {
+            "id": "gt4132",
+            "text": "Ta prov för HbA1c var tredje månad",
+            "description": ""
+          },
+          "gt4133": {
+            "id": "gt4133",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4134": {
+            "id": "gt4134",
+            "text": "Besök hos allmänläkare för årlig uppföljning av nefropati",
+            "description": ""
+          },
+          "gt4135": {
+            "id": "gt4135",
+            "text": "Allmänläkare",
+            "description": ""
+          },
+          "gt4136": {
+            "id": "gt4136",
+            "text": "Sjuksköterskebesök för uppföljning av nefropati varje kvartal",
+            "description": ""
+          },
+          "gt4137": {
+            "id": "gt4137",
+            "text": "Sjuksköterska",
+            "description": ""
+          },
+          "gt4138": {
+            "id": "gt4138",
+            "text": "Ta prov för albumin/kreatinin var sjätte månad",
+            "description": ""
+          },
+          "gt4139": {
+            "id": "gt4139",
+            "text": "Albumin/Kreatininkvot i urin",
+            "description": ""
+          },
+          "gt4140": {
+            "id": "gt4140",
+            "text": "Ta prov för eGFR var sjätte månad",
+            "description": ""
+          },
+          "gt4141": {
+            "id": "gt4141",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4142": {
+            "id": "gt4142",
+            "text": "Ta prov för HbA1c var sjätte månad",
+            "description": ""
+          },
+          "gt4143": {
+            "id": "gt4143",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4150": {
+            "id": "gt4150",
+            "text": "urineAlbuminEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Upföjlning",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "Patineten",
+            "description": "/performer/display"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "Provsbegäran",
+            "description": "/category/coding/display"
+          },
+          "gt5007": {
+            "id": "gt5007",
+            "text": "Nefrolog",
+            "description": "/specialty/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5107": {
+            "id": "gt5107",
+            "text": "value",
+            "description": "/specialty/coding/display"
+          },
+          "gt5113": {
+            "id": "gt5113",
+            "text": "value",
+            "description": "/specialty/text"
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Manejo de la nefropatía diabética"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "estimatedGlomerularFiltrationRate",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "eGFRValue-latest",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "albuminCreatinineRatio",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "ACRValue",
+            "description": "/valueQuantity"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "refractoryHypertension",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Hypertension Diagnosis",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "type2Diabetes",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Type 2 Diabetes Diagnosis",
+            "description": ""
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "eGFR <30",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "intent",
+            "description": ""
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Nephrology",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "start",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "description",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "eGFR >=30 and <45",
+            "description": ""
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "description",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "status",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "start",
+            "description": ""
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "General Practice",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "appointmentType",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Renal Care Management",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "Nursing",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "description",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "status",
+            "description": ""
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "start",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "specialty",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "appointmentType",
+            "description": ""
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "category",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Laboratory Test",
+            "description": ""
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Hemoglobin A1c Test",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "description",
+            "description": ""
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "eGFR >=45 and <60",
+            "description": ""
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "eGFR >=45 and ACR >300",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "description",
+            "description": ""
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "category",
+            "description": ""
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Albumin/Creatinine Ratio Test",
+            "description": ""
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "description",
+            "description": ""
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "occurrenceDateTime",
+            "description": ""
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "performer",
+            "description": ""
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "category",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "procedure",
+            "description": ""
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "eGFR Test",
+            "description": ""
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "authoredOn",
+            "description": "authoredOn"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "status",
+            "description": "status"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "intent",
+            "description": "intent"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0",
+            "description": ""
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "value",
+            "description": "/specialty/coding"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "code",
+            "description": "/specialty/coding"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "FHIR-STU3-Appointment.generic.v0",
+            "description": ""
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "value",
+            "description": "/specialty/coding"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "code",
+            "description": "/specialty/coding"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "code",
+            "description": "/category/coding"
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "value",
+            "description": "/category/coding"
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "code",
+            "description": "/category/coding"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "value",
+            "description": "/category/coding"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "FHIR-STU3-Appointment.generic.v0",
+            "description": ""
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "code",
+            "description": "/specialty/coding/code"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "display",
+            "description": "/specialty/coding/display"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "value",
+            "description": "/specialty/text"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0109": {
+            "id": "gt0109",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "value",
+            "description": "/occurrenceTiming/code/text"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0118": {
+            "id": "gt0118",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0121": {
+            "id": "gt0121",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0122": {
+            "id": "gt0122",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0123": {
+            "id": "gt0123",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0124": {
+            "id": "gt0124",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0125": {
+            "id": "gt0125",
+            "text": "value",
+            "description": "/code/coding"
+          },
+          "gt0126": {
+            "id": "gt0126",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0127": {
+            "id": "gt0127",
+            "text": "value",
+            "description": "/occurrenceTiming/code/text"
+          },
+          "gt0128": {
+            "id": "gt0128",
+            "text": "value",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "code",
+            "description": "/occurrenceTiming/code/coding"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt0131": {
+            "id": "gt0131",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt0132": {
+            "id": "gt0132",
+            "text": "code",
+            "description": "/code/coding"
+          },
+          "gt0133": {
+            "id": "gt0133",
+            "text": "description",
+            "description": "/extension/valueString"
+          },
+          "gt0134": {
+            "id": "gt0134",
+            "text": "code",
+            "description": "/code/coding/code"
+          },
+          "gt0135": {
+            "id": "gt0135",
+            "text": "display",
+            "description": "/code/coding/display"
+          },
+          "gt0136": {
+            "id": "gt0136",
+            "text": "eGFR-latest",
+            "description": ""
+          },
+          "gt0137": {
+            "id": "gt0137",
+            "text": "ACR",
+            "description": ""
+          },
+          "gt0200": {
+            "id": "gt0200",
+            "text": "code",
+            "description": "/specialty/coding/display"
+          },
+          "gt1000": {
+            "id": "gt1000",
+            "text": "Derivación o consulta al nefrólogo",
+            "description": "summary"
+          },
+          "gt1001": {
+            "id": "gt1001",
+            "text": "Considere derivar o consultar al nefrólogo",
+            "description": "detail"
+          },
+          "gt1002": {
+            "id": "gt1002",
+            "text": "Derivación o consulta al nefrólogo",
+            "description": "label"
+          },
+          "gt1003": {
+            "id": "gt1003",
+            "text": "Considere derivar o consultar al nefrólogo",
+            "description": "description"
+          },
+          "gt2000": {
+            "id": "gt2000",
+            "text": "Consulta de médico de Familia para el tratamiento de la nefropatía",
+            "description": "summary"
+          },
+          "gt2001": {
+            "id": "gt2001",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía (Una (1) cita al año con el médico de familia)",
+            "description": "detail"
+          },
+          "gt2002": {
+            "id": "gt2002",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía",
+            "description": "label"
+          },
+          "gt2003": {
+            "id": "gt2003",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía",
+            "description": "description"
+          },
+          "gt2004": {
+            "id": "gt2004",
+            "text": "Cita con enfermera para gestión de nefropatía",
+            "description": "description"
+          },
+          "gt2005": {
+            "id": "gt2005",
+            "text": "Determinación de HbA1C",
+            "description": "description"
+          },
+          "gt2006": {
+            "id": "gt2006",
+            "text": "Determinación de albúmina/creatinina",
+            "description": "description"
+          },
+          "gt2007": {
+            "id": "gt2007",
+            "text": "Determinación de eGFR (filtrado glomerular)",
+            "description": "description"
+          },
+          "gt3000": {
+            "id": "gt3000",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía",
+            "description": "summary"
+          },
+          "gt3001": {
+            "id": "gt3001",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía (Dos (2) citas por año con el médico de familia)",
+            "description": "detail"
+          },
+          "gt3002": {
+            "id": "gt3002",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía",
+            "description": "label"
+          },
+          "gt3003": {
+            "id": "gt3003",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía ",
+            "description": "description"
+          },
+          "gt3004": {
+            "id": "gt3004",
+            "text": "Cita con enfermera para gestión de nefropatía",
+            "description": "description"
+          },
+          "gt3005": {
+            "id": "gt3005",
+            "text": "Determinación de HbA1C",
+            "description": "description"
+          },
+          "gt3006": {
+            "id": "gt3006",
+            "text": "Determinación de albúmina/creatinina",
+            "description": "description"
+          },
+          "gt3007": {
+            "id": "gt3007",
+            "text": "Determinación de eGFR (filtrado glomerular)",
+            "description": "description"
+          },
+          "gt4000": {
+            "id": "gt4000",
+            "text": "Derivación a nefrólogo",
+            "description": "summary"
+          },
+          "gt4001": {
+            "id": "gt4001",
+            "text": "Derivación a nefrólogo (Monitorizar nefropatía-G4)",
+            "description": "detail"
+          },
+          "gt4002": {
+            "id": "gt4002",
+            "text": "Derivación a nefrólogo",
+            "description": "label"
+          },
+          "gt4003": {
+            "id": "gt4003",
+            "text": "Derivación a nefrólogo (Monitorizar nefropatía)",
+            "description": "description"
+          },
+          "gt4006": {
+            "id": "gt4006",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt4007": {
+            "id": "gt4007",
+            "text": "FHIR-STU3-Appointment.generic.v0",
+            "description": ""
+          },
+          "gt4008": {
+            "id": "gt4008",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt4009": {
+            "id": "gt4009",
+            "text": "value",
+            "description": "/specialty[0]/coding[0]"
+          },
+          "gt4010": {
+            "id": "gt4010",
+            "text": "code",
+            "description": "/specialty[0]/coding[0]"
+          },
+          "gt4011": {
+            "id": "gt4011",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt4012": {
+            "id": "gt4012",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt4013": {
+            "id": "gt4013",
+            "text": "FHIR-STU3-ProcedureRequest.generic.v0",
+            "description": ""
+          },
+          "gt4014": {
+            "id": "gt4014",
+            "text": "value",
+            "description": "/extension[0]/valueString"
+          },
+          "gt4015": {
+            "id": "gt4015",
+            "text": "value",
+            "description": "/code/coding[0]"
+          },
+          "gt4016": {
+            "id": "gt4016",
+            "text": "code",
+            "description": "/code/coding[0]"
+          },
+          "gt4017": {
+            "id": "gt4017",
+            "text": "value",
+            "description": "/occurrenceDateTime"
+          },
+          "gt4019": {
+            "id": "gt4019",
+            "text": "refractoryHypertension",
+            "description": ""
+          },
+          "gt4027": {
+            "id": "gt4027",
+            "text": "Derivación a especialista",
+            "description": "descriptionValue"
+          },
+          "gt4028": {
+            "id": "gt4028",
+            "text": "Derivación a nefrólogo (Monitorizar nefropatía))",
+            "description": "Referral for Nephrologist (Monitor nephropathy)"
+          },
+          "gt4031": {
+            "id": "gt4031",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía",
+            "description": "GP Appointment for management of nephropathy"
+          },
+          "gt4037": {
+            "id": "gt4037",
+            "text": "Consulta de médico de familia para el tratamiento de la nefropatía",
+            "description": "descriptionValue"
+          },
+          "gt4044": {
+            "id": "gt4044",
+            "text": "Cita con enfermera para gestión de nefropatía",
+            "description": "summaryValue"
+          },
+          "gt4045": {
+            "id": "gt4045",
+            "text": "Cita con enfermera para gestión de nefropatía (Tres (3) citas por año con la enfermera)",
+            "description": "detailValue"
+          },
+          "gt4046": {
+            "id": "gt4046",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt4047": {
+            "id": "gt4047",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt4048": {
+            "id": "gt4048",
+            "text": "info",
+            "description": "info"
+          },
+          "gt4051": {
+            "id": "gt4051",
+            "text": "Cita con enfermera para gestión de nefropatía",
+            "description": "labelValue"
+          },
+          "gt4054": {
+            "id": "gt4054",
+            "text": "Cita con enfermera para gestión de nefropatía",
+            "description": "description"
+          },
+          "gt4062": {
+            "id": "gt4062",
+            "text": "Programe la solicitud del cociente albúmina/creatinina, GFR (función renal) y mediciones de HbA1c cada 3 meses.",
+            "description": "summaryValue"
+          },
+          "gt4063": {
+            "id": "gt4063",
+            "text": "Programe la solicitud del cociente albúmina/creatinina, GFR (función renal) y mediciones de HbA1c cada 3 meses.",
+            "description": "detailValue"
+          },
+          "gt4064": {
+            "id": "gt4064",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt4065": {
+            "id": "gt4065",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt4066": {
+            "id": "gt4066",
+            "text": "info",
+            "description": "info"
+          },
+          "gt4069": {
+            "id": "gt4069",
+            "text": "Cociente albúmina/creatinina, GFR (función renal) y mediciones de HbA1c cada 3 meses.",
+            "description": "labelValue"
+          },
+          "gt4072": {
+            "id": "gt4072",
+            "text": "Albúmina/Creatinina [Ratio] en muestra de orina",
+            "description": "descriptionValue"
+          },
+          "gt4075": {
+            "id": "gt4075",
+            "text": "Determinación de eGFR (filtrado glomerular)",
+            "description": "descriptionValue"
+          },
+          "gt4078": {
+            "id": "gt4078",
+            "text": "Determinación de HbA1C",
+            "description": "descriptionValue"
+          },
+          "gt4079": {
+            "id": "gt4079",
+            "text": "Programe la solicitud del cociente albúmina/creatinina, GFR (función renal) y mediciones de HbA1c cada 6 meses.",
+            "description": "summaryValue"
+          },
+          "gt4080": {
+            "id": "gt4080",
+            "text": "Programe la solicitud del cociente albúmina/creatinina, GFR (función renal) y mediciones de HbA1c cada 6 meses.",
+            "description": "detailValue"
+          },
+          "gt4081": {
+            "id": "gt4081",
+            "text": "Cociente albúmina/creatinina, GFR (función renal) y mediciones de HbA1c cada 6 meses.",
+            "description": "labelValue"
+          },
+          "gt4082": {
+            "id": "gt4082",
+            "text": "Derivación o consulta al nefrólogo",
+            "description": "ElementValue"
+          },
+          "gt4083": {
+            "id": "gt4083",
+            "text": "Considere derivar o consultar al nefrólogo",
+            "description": "ElementValue"
+          },
+          "gt4084": {
+            "id": "gt4084",
+            "text": "Derivación o consulta al nefrólogo",
+            "description": "ElementValue"
+          },
+          "gt4107": {
+            "id": "gt4107",
+            "text": "eGFR-2ndLatest",
+            "description": ""
+          },
+          "gt4108": {
+            "id": "gt4108",
+            "text": "eGFRValue-2ndLatest",
+            "description": ""
+          },
+          "gt4109": {
+            "id": "gt4109",
+            "text": "eGFReffectiveDateTime-latest",
+            "description": ""
+          },
+          "gt4110": {
+            "id": "gt4110",
+            "text": "eGFReffectiveDateTime-2ndLatest",
+            "description": ""
+          },
+          "gt4111": {
+            "id": "gt4111",
+            "text": "Set eGFR-2ndLatest",
+            "description": ""
+          },
+          "gt4112": {
+            "id": "gt4112",
+            "text": "Derivación a nefrólogo (Monitorizar nefropatía)",
+            "description": ""
+          },
+          "gt4113": {
+            "id": "gt4113",
+            "text": "Consulta de médico de familia para el tratamiento anual de la nefropatía",
+            "description": ""
+          },
+          "gt4114": {
+            "id": "gt4114",
+            "text": "Médico de familia",
+            "description": ""
+          },
+          "gt4115": {
+            "id": "gt4115",
+            "text": "Cita con enfermera para el tratamiento trimestral de la nefropatía",
+            "description": ""
+          },
+          "gt4116": {
+            "id": "gt4116",
+            "text": "Enfermera/Enfermero",
+            "description": ""
+          },
+          "gt4117": {
+            "id": "gt4117",
+            "text": "Haga la prueba de albúmina/creatinina cada seis meses",
+            "description": ""
+          },
+          "gt4118": {
+            "id": "gt4118",
+            "text": "Albúmina / Creatinina [Ratio] en orina",
+            "description": ""
+          },
+          "gt4119": {
+            "id": "gt4119",
+            "text": "Tenga eGFR (filtrado glomerular) en cada seis meses",
+            "description": ""
+          },
+          "gt4120": {
+            "id": "gt4120",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4121": {
+            "id": "gt4121",
+            "text": "Tenga HbA1c en cada seis meses",
+            "description": ""
+          },
+          "gt4122": {
+            "id": "gt4122",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4123": {
+            "id": "gt4123",
+            "text": "Derivación a nefrólogo (Monitorizar nefropatía)",
+            "description": ""
+          },
+          "gt4124": {
+            "id": "gt4124",
+            "text": "Cita con el médico de familia para el tratamiento semestral de la nefropatía",
+            "description": ""
+          },
+          "gt4125": {
+            "id": "gt4125",
+            "text": "Médico de familia",
+            "description": ""
+          },
+          "gt4126": {
+            "id": "gt4126",
+            "text": "Cita con enfermera para el tratamiento trimestral de la nefropatía",
+            "description": ""
+          },
+          "gt4127": {
+            "id": "gt4127",
+            "text": "Enfermera/Enfermero",
+            "description": ""
+          },
+          "gt4128": {
+            "id": "gt4128",
+            "text": "Haga la prueba de albúmina/creatinina cada tresmeses",
+            "description": ""
+          },
+          "gt4129": {
+            "id": "gt4129",
+            "text": "Albúmina/Creatinina [Ratio] en orina",
+            "description": ""
+          },
+          "gt4130": {
+            "id": "gt4130",
+            "text": "Tener eGFR en cada tres meses",
+            "description": ""
+          },
+          "gt4131": {
+            "id": "gt4131",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4132": {
+            "id": "gt4132",
+            "text": "Tenga HbA1c en cada tres meses",
+            "description": ""
+          },
+          "gt4133": {
+            "id": "gt4133",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4134": {
+            "id": "gt4134",
+            "text": "Consulta de médico de familia para el tratamiento anual de la nefropatía",
+            "description": ""
+          },
+          "gt4135": {
+            "id": "gt4135",
+            "text": "Médico de familia",
+            "description": ""
+          },
+          "gt4136": {
+            "id": "gt4136",
+            "text": "Cita con enfermera para el tratamiento trimestral de la nefropatía",
+            "description": ""
+          },
+          "gt4137": {
+            "id": "gt4137",
+            "text": "Nurse",
+            "description": ""
+          },
+          "gt4138": {
+            "id": "gt4138",
+            "text": "Haga la prueba de albúmina/creatinina cada seis meses",
+            "description": ""
+          },
+          "gt4139": {
+            "id": "gt4139",
+            "text": "Albúmina/Creatinina [Ratio] en orina",
+            "description": ""
+          },
+          "gt4140": {
+            "id": "gt4140",
+            "text": "Tenga eGFR (filtrado glomerular) en cada seis meses",
+            "description": ""
+          },
+          "gt4141": {
+            "id": "gt4141",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt4142": {
+            "id": "gt4142",
+            "text": "Tenga HbA1c en cada seis meses",
+            "description": ""
+          },
+          "gt4143": {
+            "id": "gt4143",
+            "text": "HbA1c",
+            "description": ""
+          },
+          "gt4150": {
+            "id": "gt4150",
+            "text": "urineAlbuminEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Seguir",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5001": {
+            "id": "gt5001",
+            "text": "Paciente",
+            "description": "/performer/display"
+          },
+          "gt5002": {
+            "id": "gt5002",
+            "text": "Solicitud de laboratorio",
+            "description": "/category/coding/display"
+          },
+          "gt5007": {
+            "id": "gt5007",
+            "text": "Nefrólogo",
+            "description": "/specialty/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5101": {
+            "id": "gt5101",
+            "text": "value",
+            "description": "/performer/display"
+          },
+          "gt5102": {
+            "id": "gt5102",
+            "text": "value",
+            "description": "/category/coding/display"
+          },
+          "gt5107": {
+            "id": "gt5107",
+            "text": "value",
+            "description": "/specialty/coding/display"
+          },
+          "gt5113": {
+            "id": "gt5113",
+            "text": "value",
+            "description": "/specialty/text"
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ICD-10-SE": {
+        "id": "ICD-10-SE",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "ICD-10-SE::I10"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "ICD-10-SE::E11",
+              "ICD-10-SE::G632"
+            ]
+          }
+        }
+      },
+      "ICD-10-UK": {
+        "id": "ICD-10-UK",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "ICD-10-UK::I10"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "ICD-10-UK::E11",
+              "ICD-10-UK::G63.2"
+            ]
+          }
+        }
+      },
+      "ICD-10": {
+        "id": "ICD-10",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "ICD-10::I10"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "ICD-10::E11",
+              "ICD-10::G63.2"
+            ]
+          }
+        }
+      },
+      "CIE-10-CM-ES": {
+        "id": "CIE-10-CM-ES",
+        "bindings": {
+          "gt0013": {
+            "codes": [
+              "CIE-10-CM-ES::E11",
+              "CIE-10-CM-ES::E13.11",
+              "CIE-10-CM-ES::E10.10"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "CIE-10-CM-ES::I10"
+            ]
+          }
+        }
+      },
+      "LOINC": {
+        "id": "LOINC",
+        "bindings": {
+          "gt0053": {
+            "codes": [
+              "LOINC::32294-1"
+            ]
+          },
+          "gt0060": {
+            "codes": [
+              "LOINC::33914-3"
+            ]
+          }
+        }
+      },
+      "NPU": {
+        "id": "NPU",
+        "bindings": {
+          "gt0060": {
+            "codes": [
+              "NPU::EGFRKRE",
+              "NPU::SWE05406",
+              "NPU::SWE05405",
+              "NPU::SWE05404",
+              "NPU::SWE05387",
+              "NPU::SWE05386",
+              "NPU::SWE05385"
+            ]
+          },
+          "gt0053": {
+            "codes": [
+              "NPU::XKREAINDX",
+              "NPU::NPU28842",
+              "NPU::SWE05310",
+              "NPU::NPU03918"
+            ]
+          }
+        }
+      },
+      "DBP": {
+        "id": "DBP",
+        "bindings": {
+          "gt0060": {
+            "codes": [
+              "DBP::33382"
+            ]
+          },
+          "gt0053": {
+            "codes": [
+              "DBP::907"
+            ]
+          }
+        }
+      },
+      "READ2": {
+        "id": "READ2",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "READ2::G2"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "READ2::C10F",
+              "READ2::F1711",
+              "READ2::C107",
+              "READ2::C104",
+              "READ2::C101",
+              "READ2::F372",
+              "READ2::EMISNQHO137"
+            ]
+          },
+          "gt0060": {
+            "codes": [
+              "READ2::451E"
+            ]
+          },
+          "gt0053": {
+            "codes": [
+              "READ2::46TC"
+            ]
+          }
+        }
+      },
+      "SNOMED-CT": {
+        "id": "SNOMED-CT",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "SNOMED-CT::38341003"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "SNOMED-CT::44054006",
+              "SNOMED-CT::420436000",
+              "SNOMED-CT::423263001",
+              "SNOMED-CT::421895002",
+              "SNOMED-CT::421707005",
+              "SNOMED-CT::395204000",
+              "SNOMED-CT::120731000119103",
+              "SNOMED-CT::420662003",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::421847006",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::420422005",
+              "SNOMED-CT::49455004"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

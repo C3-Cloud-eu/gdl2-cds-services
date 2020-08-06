@@ -1,0 +1,4469 @@
+{
+    "id": "drug_interaction.v4",
+    "gdl_version": "2.0",
+    "concept": "gt0001",
+    "language": {
+        "original_language": "ISO_639-1::en"
+    },
+    "description": {
+        "original_author": {
+            "date": "2018-09-18",
+            "name": "Lei Zhao",
+            "organisation": "University of Warwick",
+            "email": "lei.zhao@warwick.ac.uk"
+        },
+        "lifecycle_state": "Author draft",
+        "details": {
+            "sv": {
+                "id": "sv",
+                "keywords": [
+                    "*(en) drug interaction"
+                ]
+            },
+            "en": {
+                "id": "en",
+                "keywords": [
+                    "drug interaction"
+                ]
+            },
+            "es": {
+                "id": "es",
+                "keywords": [
+                    "*(en) drug interaction"
+                ]
+            }
+        },
+        "other_details": {}
+    },
+    "definition": {
+        "data_bindings": {
+            "gt0002": {
+                "id": "gt0002",
+                "model_id": "org.hl7.fhir.dstu3.model.Observation",
+                "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0003": {
+                        "id": "gt0003",
+                        "path": "/code/coding[0]"
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "path": "/valueQuantity"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0005|eGFR code|",
+                    "max(/effectiveDateTime)"
+                ]
+            },
+            "gt0006": {
+                "id": "gt0006",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0008": {
+                        "id": "gt0008",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0009|Dapagliflozin code|"
+                ]
+            },
+            "gt0019": {
+                "id": "gt0019",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0020": {
+                        "id": "gt0020",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0021|Canagliflozin code|"
+                ]
+            },
+            "gt0025": {
+                "id": "gt0025",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0026": {
+                        "id": "gt0026",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0027|Empagliflozin code|"
+                ]
+            },
+            "gt0028": {
+                "id": "gt0028",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0029": {
+                        "id": "gt0029",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0030|Insulin code|"
+                ]
+            },
+            "gt0032": {
+                "id": "gt0032",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0033": {
+                        "id": "gt0033",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0034|SSRI code|"
+                ]
+            },
+            "gt0041": {
+                "id": "gt0041",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0042": {
+                        "id": "gt0042",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0043|Blood_glucose_lowering_drugs code|"
+                ]
+            },
+            "gt0047": {
+                "id": "gt0047",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0048": {
+                        "id": "gt0048",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0050|Tramadol code|"
+                ]
+            },
+            "gt0051": {
+                "id": "gt0051",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0052": {
+                        "id": "gt0052",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0053|MAOi code|"
+                ]
+            },
+            "gt0061": {
+                "id": "gt0061",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0062": {
+                        "id": "gt0062",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0063|Mirtazapine code|"
+                ]
+            },
+            "gt0070": {
+                "id": "gt0070",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0071": {
+                        "id": "gt0071",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0072|Bupropion code|"
+                ]
+            },
+            "gt0082": {
+                "id": "gt0082",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0083": {
+                        "id": "gt0083",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0084|Venlafaxin code|"
+                ]
+            },
+            "gt0091": {
+                "id": "gt0091",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0092": {
+                        "id": "gt0092",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0093|hepatic_steatosis code|"
+                ]
+            },
+            "gt0098": {
+                "id": "gt0098",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0099": {
+                        "id": "gt0099",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0100|Agomelatin code|"
+                ]
+            },
+            "gt0108": {
+                "id": "gt0108",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0109": {
+                        "id": "gt0109",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0110|Pioglitazone code|"
+                ]
+            },
+            "gt0111": {
+                "id": "gt0111",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0112": {
+                        "id": "gt0112",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0113|HF code|"
+                ]
+            },
+            "gt0121": {
+                "id": "gt0121",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0122": {
+                        "id": "gt0122",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0123|Saxagliptin code|"
+                ]
+            },
+            "gt0130": {
+                "id": "gt0130",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0131": {
+                        "id": "gt0131",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0132|Sitagliptin code|"
+                ]
+            },
+            "gt0133": {
+                "id": "gt0133",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0134": {
+                        "id": "gt0134",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0135|ACEi code|"
+                ]
+            },
+            "gt0136": {
+                "id": "gt0136",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0137": {
+                        "id": "gt0137",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0138|Cough code|"
+                ]
+            },
+            "gt0147": {
+                "id": "gt0147",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0149": {
+                        "id": "gt0149",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0150|ARB code|"
+                ]
+            },
+            "gt0157": {
+                "id": "gt0157",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0158": {
+                        "id": "gt0158",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0159|Spironolactone code|"
+                ]
+            },
+            "gt0163": {
+                "id": "gt0163",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0164": {
+                        "id": "gt0164",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0165|Bisoprolol code|"
+                ]
+            },
+            "gt0169": {
+                "id": "gt0169",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0170": {
+                        "id": "gt0170",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0171|Ivabradine code|"
+                ]
+            },
+            "gt0175": {
+                "id": "gt0175",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0176": {
+                        "id": "gt0176",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0177|Hydralazine code|"
+                ]
+            },
+            "gt0184": {
+                "id": "gt0184",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0185": {
+                        "id": "gt0185",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0186|Digoxin code|"
+                ]
+            },
+            "gt0190": {
+                "id": "gt0190",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0191": {
+                        "id": "gt0191",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0192|Entresto code|"
+                ]
+            },
+            "gt0196": {
+                "id": "gt0196",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0197": {
+                        "id": "gt0197",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0198|Eplerenone code|"
+                ]
+            },
+            "gt0208": {
+                "id": "gt0208",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0209": {
+                        "id": "gt0209",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0210|Citalopram code|"
+                ]
+            },
+            "gt0217": {
+                "id": "gt0217",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0218": {
+                        "id": "gt0218",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0219|Escitalopram code|"
+                ]
+            },
+            "gt0220": {
+                "id": "gt0220",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0221": {
+                        "id": "gt0221",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0222|TCA code|"
+                ]
+            },
+            "gt0232": {
+                "id": "gt0232",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0233": {
+                        "id": "gt0233",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0234|Desvenlafaxine code|"
+                ]
+            },
+            "gt0235": {
+                "id": "gt0235",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+                "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0236": {
+                        "id": "gt0236",
+                        "path": "/medicationCodeableConcept/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/medicationCodeableConcept/coding[0] is_a local::gt0237|Duloxetine code|"
+                ]
+            },
+            "gt1100": {
+                "id": "gt1100",
+                "model_id": "org.hl7.fhir.dstu3.model.Observation",
+                "template_id": "FHIR-STU3-Observation.body_mass_index.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt1101": {
+                        "id": "gt1101",
+                        "path": "/code/coding[0]"
+                    },
+                    "gt1102": {
+                        "id": "gt1102",
+                        "path": "/valueQuantity"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt1103|BMI code|"
+                ]
+            }
+        },
+        "rules": {
+            "gt0007": {
+                "id": "gt0007",
+                "priority": 33,
+                "when": [
+                    "$gt0004|eGFR_value|<60,mL/min/{1.73_m2}",
+                    "$gt0008|Dapagliflozin|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0011.term}",
+                        "detail": "{$gt0012.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0016": {
+                "id": "gt0016",
+                "priority": 32,
+                "when": [
+                    "$gt0004|eGFR_value|<45,mL/min/{1.73_m2}",
+                    "$gt0020|Canagliflozin|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0017.term}",
+                        "detail": "{$gt0018.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0022": {
+                "id": "gt0022",
+                "priority": 31,
+                "when": [
+                    "$gt0004|eGFR_value|<45,mL/min/{1.73_m2}",
+                    "$gt0026|Empagliflozin|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0023.term}",
+                        "detail": "{$gt0024.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0031": {
+                "id": "gt0031",
+                "priority": 30,
+                "when": [
+                    "$gt0029|Insulin|!=null",
+                    "$gt0033|SSRI|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0036.term}",
+                        "detail": "{$gt0037.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0044": {
+                "id": "gt0044",
+                "priority": 29,
+                "when": [
+                    "$gt0033|SSRI|!=null",
+                    "$gt0042|Blood_glucose_lowering_drugs|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0045.term}",
+                        "detail": "{$gt0046.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0054": {
+                "id": "gt0054",
+                "priority": 28,
+                "when": [
+                    "$gt0048|Tramadol|!=null",
+                    "$gt0052|MAOi|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0056.term}",
+                        "detail": "{$gt0057.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0064": {
+                "id": "gt0064",
+                "priority": 27,
+                "when": [
+                    "$gt0029|Insulin|!=null",
+                    "$gt0062|Mirtazapine|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0065.term}",
+                        "detail": "{$gt0066.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0067": {
+                "id": "gt0067",
+                "priority": 26,
+                "when": [
+                    "$gt0062|Mirtazapine|!=null",
+                    "$gt0042|Blood_glucose_lowering_drugs|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0068.term}",
+                        "detail": "{$gt0069.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0073": {
+                "id": "gt0073",
+                "priority": 25,
+                "when": [
+                    "$gt0029|Insulin|!=null",
+                    "$gt0071|Bupropion|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0074.term}",
+                        "detail": "{$gt0075.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0076": {
+                "id": "gt0076",
+                "priority": 24,
+                "when": [
+                    "$gt0071|Bupropion|!=null",
+                    "$gt0042|Blood_glucose_lowering_drugs|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0077.term}",
+                        "detail": "{$gt0078.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0085": {
+                "id": "gt0085",
+                "priority": 23,
+                "when": [
+                    "$gt0029|Insulin|!=null",
+                    "$gt0083|Venlafaxin|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0086.term}",
+                        "detail": "{$gt0087.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0088": {
+                "id": "gt0088",
+                "priority": 22,
+                "when": [
+                    "$gt0083|Venlafaxin|!=null",
+                    "$gt0042|Blood_glucose_lowering_drugs|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0089.term}",
+                        "detail": "{$gt0090.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0101": {
+                "id": "gt0101",
+                "priority": 21,
+                "when": [
+                    "$gt0099|Agomelatin|!=null",
+                    "($gt0092|hepatic_steatosis|!=null)||($gt1102|BMI_value|>=30,kg/m2)"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0103.term}",
+                        "detail": "{$gt0104.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0114": {
+                "id": "gt0114",
+                "priority": 20,
+                "when": [
+                    "$gt0112|HF|!=null",
+                    "$gt0109|Pioglitazone|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0116.term}",
+                        "detail": "{$gt0117.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0124": {
+                "id": "gt0124",
+                "priority": 19,
+                "when": [
+                    "$gt0112|HF|!=null",
+                    "$gt0122|Saxagliptin|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0125.term}",
+                        "detail": "{$gt0126.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0127": {
+                "id": "gt0127",
+                "priority": 18,
+                "when": [
+                    "$gt0112|HF|!=null",
+                    "$gt0131|Sitagliptin|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0128.term}",
+                        "detail": "{$gt0129.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0139": {
+                "id": "gt0139",
+                "priority": 17,
+                "when": [
+                    "$gt0137|Cough|!=null",
+                    "$gt0134|ACEi|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0141.term}",
+                        "detail": "{$gt0142.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0146": {
+                "id": "gt0146",
+                "priority": 16,
+                "when": [
+                    "$gt0004|eGFR_value|<30,mL/min/{1.73_m2}",
+                    "($gt0134|ACEi|!=null)||($gt0149|ARB|!=null)"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0152.term}",
+                        "detail": "{$gt0153.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0160": {
+                "id": "gt0160",
+                "priority": 15,
+                "when": [
+                    "$gt0004|eGFR_value|<30,mL/min/{1.73_m2}",
+                    "$gt0158|Spironolactone|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0161.term}",
+                        "detail": "{$gt0162.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0166": {
+                "id": "gt0166",
+                "priority": 14,
+                "when": [
+                    "$gt0004|eGFR_value|<20,mL/min/{1.73_m2}",
+                    "$gt0164|Bisoprolol|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0167.term}",
+                        "detail": "{$gt0168.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0172": {
+                "id": "gt0172",
+                "priority": 13,
+                "when": [
+                    "$gt0004|eGFR_value|<15,mL/min/{1.73_m2}",
+                    "$gt0170|Ivabradine|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0173.term}",
+                        "detail": "{$gt0174.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0178": {
+                "id": "gt0178",
+                "priority": 12,
+                "when": [
+                    "$gt0004|eGFR_value|<30,mL/min/{1.73_m2}",
+                    "$gt0176|Hydralazine|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0179.term}",
+                        "detail": "{$gt0180.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0187": {
+                "id": "gt0187",
+                "priority": 11,
+                "when": [
+                    "$gt0004|eGFR_value|<60,mL/min/{1.73_m2}",
+                    "$gt0185|Digoxin|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0188.term}",
+                        "detail": "{$gt0189.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0193": {
+                "id": "gt0193",
+                "priority": 10,
+                "when": [
+                    "$gt0004|eGFR_value|<30,mL/min/{1.73_m2}",
+                    "$gt0191|Entresto|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0194.term}",
+                        "detail": "{$gt0195.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0199": {
+                "id": "gt0199",
+                "priority": 9,
+                "when": [
+                    "$gt0004|eGFR_value|<=60,mL/min/{1.73_m2}",
+                    "$gt0004|eGFR_value|>=30,mL/min/{1.73_m2}",
+                    "$gt0197|Eplerenone|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0200.term}",
+                        "detail": "{$gt0201.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0202": {
+                "id": "gt0202",
+                "priority": 8,
+                "when": [
+                    "$gt0004|eGFR_value|<30,mL/min/{1.73_m2}",
+                    "$gt0197|Eplerenone|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0203.term}",
+                        "detail": "{$gt0204.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0205": {
+                "id": "gt0205",
+                "priority": 7,
+                "when": [
+                    "$gt0004|eGFR_value|<30,mL/min/{1.73_m2}",
+                    "$gt0052|MAOi|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0206.term}",
+                        "detail": "{$gt0207.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0211": {
+                "id": "gt0211",
+                "priority": 6,
+                "when": [
+                    "$gt0209|Citalopram|!=null",
+                    "$gt0112|HF|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0212.term}",
+                        "detail": "{$gt0213.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0214": {
+                "id": "gt0214",
+                "priority": 5,
+                "when": [
+                    "$gt0218|Escitalopram|!=null",
+                    "$gt0112|HF|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0215.term}",
+                        "detail": "{$gt0216.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0223": {
+                "id": "gt0223",
+                "priority": 4,
+                "when": [
+                    "$gt0083|Venlafaxin|!=null",
+                    "$gt0112|HF|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0224.term}",
+                        "detail": "{$gt0225.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0229": {
+                "id": "gt0229",
+                "priority": 3,
+                "when": [
+                    "$gt0233|Desvenlafaxine|!=null",
+                    "$gt0112|HF|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0230.term}",
+                        "detail": "{$gt0231.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0238": {
+                "id": "gt0238",
+                "priority": 2,
+                "when": [
+                    "$gt0236|Duloxetine|!=null",
+                    "$gt0112|HF|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0239.term}",
+                        "detail": "{$gt0240.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            },
+            "gt0244": {
+                "id": "gt0244",
+                "priority": 1,
+                "when": [
+                    "$gt0071|Bupropion|!=null",
+                    "$gt0112|HF|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0245.term}",
+                        "detail": "{$gt0246.term}",
+                        "indicator": "warning"
+                    }
+                ]
+            }
+        }
+    },
+    "ontology": {
+        "term_definitions": {
+            "en": {
+                "id": "en",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "Drug Interaction (based on reconciliation rules)"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "eGFR",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "eGFR_value",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "eGFR code",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "Stop Dapagliflozin if GFR < 60"
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "Dapagliflozin",
+                        "description": ""
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "Dapagliflozin code",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "STOP Dapagliflozin",
+                        "description": "summaryValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "STOP Dapagliflozin when GFR < 60",
+                        "description": "detailValue"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "Stop Canagliflozin if GFR < 45"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "STOP Canagliflozin",
+                        "description": "summaryValue"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "STOP Canagliflozin when GFR < 45",
+                        "description": "detailValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "Canagliflozin",
+                        "description": ""
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "Canagliflozin code",
+                        "description": ""
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "Stop Empagliflozin if GFR < 45"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "STOP Empagliflozin",
+                        "description": "summaryValue"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "STOP Empagliflozin when GFR < 45",
+                        "description": "detailValue"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Empagliflozin",
+                        "description": ""
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "Empagliflozin code",
+                        "description": ""
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "Insulin",
+                        "description": ""
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "Insulin code",
+                        "description": ""
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Alert Insulin and SSRI "
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "SSRI",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "SSRI code",
+                        "description": ""
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Alert: SSRI and Insulin",
+                        "description": "summaryValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "Patient with depression on insulin might experience an altered glucose control if given SSRI",
+                        "description": "detailValue"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "Blood_glucose_lowering_drugs",
+                        "description": ""
+                    },
+                    "gt0043": {
+                        "id": "gt0043",
+                        "text": "Blood_glucose_lowering_drugs code",
+                        "description": ""
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "Alert glucose lowering drugs and SSRI "
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "Alert: SSRI and blood glucose lowering drugs",
+                        "description": "summaryValue"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "Patient with depression on blood glucose lowering drugs might experience an altered glucose control if given SSRI",
+                        "description": "detailValue"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "Tramadol",
+                        "description": ""
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "coding[0]",
+                        "description": ""
+                    },
+                    "gt0050": {
+                        "id": "gt0050",
+                        "text": "Tramadol code",
+                        "description": ""
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "MAOi",
+                        "description": ""
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "MAOi code",
+                        "description": ""
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "Alert tramadol and MAOi"
+                    },
+                    "gt0056": {
+                        "id": "gt0056",
+                        "text": "Alert: Tramadol and MAO inhibitors",
+                        "description": "summaryValue"
+                    },
+                    "gt0057": {
+                        "id": "gt0057",
+                        "text": "Tramadol is contra-indicated with MAO inhibitors. Stop the combination. ",
+                        "description": "detailValue"
+                    },
+                    "gt0058": {
+                        "id": "gt0058",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0059": {
+                        "id": "gt0059",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "Mirtazapine code",
+                        "description": ""
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "Alert Insulin and Mirtazapine"
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "Alert: Insulin and Mirtazapine",
+                        "description": "summaryValue"
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "Patient with depression on insulin might experience an altered glucose control if given Mirtazapine.",
+                        "description": "detailValue"
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "Alert glucose lowering drugs and Mirtazapine"
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "Alert: Blood glucose lowering drugs and Mirtazapine",
+                        "description": "summaryValue"
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Patient with depression on blood glucose lowering drugs might experience an altered glucose control if given Mirtazapine.",
+                        "description": "detailValue"
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "Bupropion",
+                        "description": ""
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "Bupropion code",
+                        "description": ""
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "Alert Insulin and Bupropion"
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "Alert: Insulin and Bupropion",
+                        "description": "summaryValue"
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Patient with depression on Bupropion have an increased risk of epileptic seizures if treated with insulin.",
+                        "description": "detailValue"
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "Alert glucose lowering drugs and Bupropion"
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "Alert: Blood glucose lowering drugs and Bupropion",
+                        "description": "summaryValue"
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Patient with depression on Bupropion have an increased risk of epileptic seizures if treated with oral glucose lowering medication.",
+                        "description": "detailValue"
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "Copy of Copy of Alert glucose lowering drugs and Mirtazapine"
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "Alert: Blood glucose lowering drugs and Mirtazapine",
+                        "description": "summaryValue"
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "Patient with depression on blood glucose lowering drugs might experience an altered glucose control if given Mirtazapine.",
+                        "description": "detailValue"
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "Venlafaxin",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "Venlafaxin code",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "Alert Insulin and Venlafaxin"
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "Alert: Insulin and Venlafaxin",
+                        "description": "summaryValue"
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Patient with depression on insulin might experience an altered glucose control if given Venlafaxin.",
+                        "description": "detailValue"
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "Alert glucose lowering drugs and Venlafaxin"
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "Alert: Blood glucose lowering drugs and Venlafaxin",
+                        "description": "summaryValue"
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Patient with depression on blood glucose lowering drugs might experience an altered glucose control if given Venlafaxin.",
+                        "description": "detailValue"
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "hepatic_steatosis",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "hepatic_steatosis code",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "BMI",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "BMI code",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "BMI_value",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "Agomelatin",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "Agomelatin code",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "Alert Agomelatin and hepatic steatosis or obese"
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Alert: Agomelatin and hepatic steatosis or obese",
+                        "description": "summaryValue"
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "Patient with depression on agomelatin experience a risk for hepatic insufficiency. This risk is increased in patients with hepatic steatosis with increased prevalence in obesity.",
+                        "description": "detailValue"
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0109": {
+                        "id": "gt0109",
+                        "text": "Pioglitazone",
+                        "description": ""
+                    },
+                    "gt0110": {
+                        "id": "gt0110",
+                        "text": "Pioglitazone code",
+                        "description": ""
+                    },
+                    "gt0112": {
+                        "id": "gt0112",
+                        "text": "HF",
+                        "description": ""
+                    },
+                    "gt0113": {
+                        "id": "gt0113",
+                        "text": "HF code",
+                        "description": ""
+                    },
+                    "gt0114": {
+                        "id": "gt0114",
+                        "text": "Pioglitazone contraindicated in HF"
+                    },
+                    "gt0116": {
+                        "id": "gt0116",
+                        "text": "Pioglitazone contraindicated in HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0117": {
+                        "id": "gt0117",
+                        "text": "Pioglitazone contraindicated in HF",
+                        "description": "detailValue"
+                    },
+                    "gt0118": {
+                        "id": "gt0118",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0119": {
+                        "id": "gt0119",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0120": {
+                        "id": "gt0120",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0122": {
+                        "id": "gt0122",
+                        "text": "Saxagliptin",
+                        "description": ""
+                    },
+                    "gt0123": {
+                        "id": "gt0123",
+                        "text": "Saxagliptin code",
+                        "description": ""
+                    },
+                    "gt0124": {
+                        "id": "gt0124",
+                        "text": "Alert saxagliptin with HF"
+                    },
+                    "gt0125": {
+                        "id": "gt0125",
+                        "text": "Saxagliptin can exacerbate HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0126": {
+                        "id": "gt0126",
+                        "text": "Saxagliptin should be used with caution in patients with HF.",
+                        "description": "detailValue"
+                    },
+                    "gt0127": {
+                        "id": "gt0127",
+                        "text": "Alert sitagliptin with HF"
+                    },
+                    "gt0128": {
+                        "id": "gt0128",
+                        "text": "Sitagliptin can exacerbate HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0129": {
+                        "id": "gt0129",
+                        "text": "Sitagliptin should be used with caution in patients with HF.",
+                        "description": "detailValue"
+                    },
+                    "gt0131": {
+                        "id": "gt0131",
+                        "text": "Sitagliptin",
+                        "description": ""
+                    },
+                    "gt0132": {
+                        "id": "gt0132",
+                        "text": "Sitagliptin code",
+                        "description": ""
+                    },
+                    "gt0134": {
+                        "id": "gt0134",
+                        "text": "ACEi",
+                        "description": ""
+                    },
+                    "gt0135": {
+                        "id": "gt0135",
+                        "text": "ACEi code",
+                        "description": ""
+                    },
+                    "gt0137": {
+                        "id": "gt0137",
+                        "text": "Cough",
+                        "description": ""
+                    },
+                    "gt0138": {
+                        "id": "gt0138",
+                        "text": "Cough code",
+                        "description": ""
+                    },
+                    "gt0139": {
+                        "id": "gt0139",
+                        "text": "Alert cough and ACEi"
+                    },
+                    "gt0141": {
+                        "id": "gt0141",
+                        "text": "Alert: cough due to ACEi?",
+                        "description": "summaryValue"
+                    },
+                    "gt0142": {
+                        "id": "gt0142",
+                        "text": "Consider whether cough is due to ACEi and consider switching to ARB",
+                        "description": "detailValue"
+                    },
+                    "gt0143": {
+                        "id": "gt0143",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0144": {
+                        "id": "gt0144",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0145": {
+                        "id": "gt0145",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0146": {
+                        "id": "gt0146",
+                        "text": "Alert ACEi/ARB if eGFR < 30"
+                    },
+                    "gt0149": {
+                        "id": "gt0149",
+                        "text": "ARB",
+                        "description": ""
+                    },
+                    "gt0150": {
+                        "id": "gt0150",
+                        "text": "ARB code",
+                        "description": ""
+                    },
+                    "gt0152": {
+                        "id": "gt0152",
+                        "text": "Review ACEi/ARB as eGFR < 30",
+                        "description": "summaryValue"
+                    },
+                    "gt0153": {
+                        "id": "gt0153",
+                        "text": "Consider reducing dose or stopping ACEi/ARB when renal function deteriorates (eGFR < 30)",
+                        "description": "detailValue"
+                    },
+                    "gt0154": {
+                        "id": "gt0154",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0155": {
+                        "id": "gt0155",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0156": {
+                        "id": "gt0156",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0158": {
+                        "id": "gt0158",
+                        "text": "Spironolactone",
+                        "description": ""
+                    },
+                    "gt0159": {
+                        "id": "gt0159",
+                        "text": "Spironolactone code",
+                        "description": ""
+                    },
+                    "gt0160": {
+                        "id": "gt0160",
+                        "text": "Stop Spironolactone if GFR < 30"
+                    },
+                    "gt0161": {
+                        "id": "gt0161",
+                        "text": "STOP Spironolactone",
+                        "description": "summaryValue"
+                    },
+                    "gt0162": {
+                        "id": "gt0162",
+                        "text": "STOP Spironolactone when GFR < 30",
+                        "description": "detailValue"
+                    },
+                    "gt0164": {
+                        "id": "gt0164",
+                        "text": "Bisoprolol",
+                        "description": ""
+                    },
+                    "gt0165": {
+                        "id": "gt0165",
+                        "text": "Bisoprolol code",
+                        "description": ""
+                    },
+                    "gt0166": {
+                        "id": "gt0166",
+                        "text": "Reduce Bisoprolol if GFR < 20"
+                    },
+                    "gt0167": {
+                        "id": "gt0167",
+                        "text": "Reduce Bisoprolol",
+                        "description": "summaryValue"
+                    },
+                    "gt0168": {
+                        "id": "gt0168",
+                        "text": "Reduce Bisoprolol when GFR < 20",
+                        "description": "detailValue"
+                    },
+                    "gt0170": {
+                        "id": "gt0170",
+                        "text": "Ivabradine",
+                        "description": ""
+                    },
+                    "gt0171": {
+                        "id": "gt0171",
+                        "text": "Ivabradine code",
+                        "description": ""
+                    },
+                    "gt0172": {
+                        "id": "gt0172",
+                        "text": "Caution with Ivabradine if GFR < 15"
+                    },
+                    "gt0173": {
+                        "id": "gt0173",
+                        "text": "Caution with Ivabradine",
+                        "description": "summaryValue"
+                    },
+                    "gt0174": {
+                        "id": "gt0174",
+                        "text": "Use with caution or stop Ivabradine when GFR < 15",
+                        "description": "detailValue"
+                    },
+                    "gt0176": {
+                        "id": "gt0176",
+                        "text": "Hydralazine",
+                        "description": ""
+                    },
+                    "gt0177": {
+                        "id": "gt0177",
+                        "text": "Hydralazine code",
+                        "description": ""
+                    },
+                    "gt0178": {
+                        "id": "gt0178",
+                        "text": "Reduce Hydralazine if GFR < 30"
+                    },
+                    "gt0179": {
+                        "id": "gt0179",
+                        "text": "Reduce dose of Hydralazine",
+                        "description": "summaryValue"
+                    },
+                    "gt0180": {
+                        "id": "gt0180",
+                        "text": "Reduce dose of Hydralazine when GFR < 30",
+                        "description": "detailValue"
+                    },
+                    "gt0181": {
+                        "id": "gt0181",
+                        "text": "Copy of Copy of Caution with Ivabradine if GFR < 15"
+                    },
+                    "gt0182": {
+                        "id": "gt0182",
+                        "text": "Caution with Ivabradine",
+                        "description": "summaryValue"
+                    },
+                    "gt0183": {
+                        "id": "gt0183",
+                        "text": "Use with caution or stop Ivabradine as GFR < 15",
+                        "description": "detailValue"
+                    },
+                    "gt0185": {
+                        "id": "gt0185",
+                        "text": "Digoxin",
+                        "description": ""
+                    },
+                    "gt0186": {
+                        "id": "gt0186",
+                        "text": "Digoxin code",
+                        "description": ""
+                    },
+                    "gt0187": {
+                        "id": "gt0187",
+                        "text": "Alert Digoxin if GFR < 60"
+                    },
+                    "gt0188": {
+                        "id": "gt0188",
+                        "text": "Monitor Digoxin levels",
+                        "description": "summaryValue"
+                    },
+                    "gt0189": {
+                        "id": "gt0189",
+                        "text": "Monitor Digoxin levels and adjust dose if necessary when GFR < 60",
+                        "description": "detailValue"
+                    },
+                    "gt0191": {
+                        "id": "gt0191",
+                        "text": "Entresto",
+                        "description": ""
+                    },
+                    "gt0192": {
+                        "id": "gt0192",
+                        "text": "Entresto code",
+                        "description": ""
+                    },
+                    "gt0193": {
+                        "id": "gt0193",
+                        "text": "Alert Entresto if GFR < 30"
+                    },
+                    "gt0194": {
+                        "id": "gt0194",
+                        "text": "Reduce dose of Entresto (Sacubitril/valsartan)",
+                        "description": "summaryValue"
+                    },
+                    "gt0195": {
+                        "id": "gt0195",
+                        "text": "Reduce dose of Entresto (Sacubitril/valsartan) when GFR < 30",
+                        "description": "detailValue"
+                    },
+                    "gt0197": {
+                        "id": "gt0197",
+                        "text": "Eplerenone",
+                        "description": ""
+                    },
+                    "gt0198": {
+                        "id": "gt0198",
+                        "text": "Eplerenone code",
+                        "description": ""
+                    },
+                    "gt0199": {
+                        "id": "gt0199",
+                        "text": "Alert Eplerenone if GFR 30-60"
+                    },
+                    "gt0200": {
+                        "id": "gt0200",
+                        "text": "Reduce dose of Eplerenone",
+                        "description": "summaryValue"
+                    },
+                    "gt0201": {
+                        "id": "gt0201",
+                        "text": "Reduce dose of Eplerenone to 25mg alternate days and monitor renal function when GFR 30-60",
+                        "description": "detailValue"
+                    },
+                    "gt0202": {
+                        "id": "gt0202",
+                        "text": "Stop Eplerenone if GFR < 30 "
+                    },
+                    "gt0203": {
+                        "id": "gt0203",
+                        "text": "Stop Eplerenone",
+                        "description": "summaryValue"
+                    },
+                    "gt0204": {
+                        "id": "gt0204",
+                        "text": "Stop Eplerenone when GFR < 30",
+                        "description": "detailValue"
+                    },
+                    "gt0205": {
+                        "id": "gt0205",
+                        "text": "Stop MAOi if GFR < 30"
+                    },
+                    "gt0206": {
+                        "id": "gt0206",
+                        "text": "Stop MAOi",
+                        "description": "summaryValue"
+                    },
+                    "gt0207": {
+                        "id": "gt0207",
+                        "text": "Stop MAO inhibitors when GFR < 30",
+                        "description": "detailValue"
+                    },
+                    "gt0209": {
+                        "id": "gt0209",
+                        "text": "Citalopram",
+                        "description": ""
+                    },
+                    "gt0210": {
+                        "id": "gt0210",
+                        "text": "Citalopram code",
+                        "description": ""
+                    },
+                    "gt0211": {
+                        "id": "gt0211",
+                        "text": "Alert Citalopram if HF"
+                    },
+                    "gt0212": {
+                        "id": "gt0212",
+                        "text": "Citalopram Not recommended for HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0213": {
+                        "id": "gt0213",
+                        "text": "Citalopram not recommended in patients with uncompensated HF: monitor for cardiac arrhythmia signs",
+                        "description": "detailValue"
+                    },
+                    "gt0214": {
+                        "id": "gt0214",
+                        "text": "Alert Escitalopram if HF"
+                    },
+                    "gt0215": {
+                        "id": "gt0215",
+                        "text": "Escitalopram Not recommended for HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0216": {
+                        "id": "gt0216",
+                        "text": "Escitalopram not recommended in patients with uncompensated HF: monitor for cardiac arrhythmia signs",
+                        "description": "detailValue"
+                    },
+                    "gt0218": {
+                        "id": "gt0218",
+                        "text": "Escitalopram",
+                        "description": ""
+                    },
+                    "gt0219": {
+                        "id": "gt0219",
+                        "text": "Escitalopram code",
+                        "description": ""
+                    },
+                    "gt0221": {
+                        "id": "gt0221",
+                        "text": "TCA",
+                        "description": ""
+                    },
+                    "gt0222": {
+                        "id": "gt0222",
+                        "text": "TCA code",
+                        "description": ""
+                    },
+                    "gt0223": {
+                        "id": "gt0223",
+                        "text": "Alert Venlafaxine if HF"
+                    },
+                    "gt0224": {
+                        "id": "gt0224",
+                        "text": "Alert: venlafaxine with HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0225": {
+                        "id": "gt0225",
+                        "text": "Risk of exacerbation of hypertension; monitor blood pressure",
+                        "description": "detailValue"
+                    },
+                    "gt0227": {
+                        "id": "gt0227",
+                        "text": "Venlafaxine",
+                        "description": ""
+                    },
+                    "gt0228": {
+                        "id": "gt0228",
+                        "text": "Venlafaxine code",
+                        "description": ""
+                    },
+                    "gt0229": {
+                        "id": "gt0229",
+                        "text": "Alert Desvenlafaxine if HF"
+                    },
+                    "gt0230": {
+                        "id": "gt0230",
+                        "text": "Alert: desvenlafaxine with HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0231": {
+                        "id": "gt0231",
+                        "text": "Risk of exacerbation of hypertension; monitor blood pressure",
+                        "description": "detailValue"
+                    },
+                    "gt0233": {
+                        "id": "gt0233",
+                        "text": "Desvenlafaxine",
+                        "description": ""
+                    },
+                    "gt0234": {
+                        "id": "gt0234",
+                        "text": "Desvenlafaxine code",
+                        "description": ""
+                    },
+                    "gt0236": {
+                        "id": "gt0236",
+                        "text": "Duloxetine",
+                        "description": ""
+                    },
+                    "gt0237": {
+                        "id": "gt0237",
+                        "text": "Duloxetine code",
+                        "description": ""
+                    },
+                    "gt0238": {
+                        "id": "gt0238",
+                        "text": "Alert Duloxetine if HF"
+                    },
+                    "gt0239": {
+                        "id": "gt0239",
+                        "text": "Alert: duloxetine with HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0240": {
+                        "id": "gt0240",
+                        "text": "Risk of exacerbation of hypertension; monitor blood pressure",
+                        "description": "detailValue"
+                    },
+                    "gt0241": {
+                        "id": "gt0241",
+                        "text": "Copy of Alert Venlafaxine if HF"
+                    },
+                    "gt0242": {
+                        "id": "gt0242",
+                        "text": "Alert: venlafaxine with HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0243": {
+                        "id": "gt0243",
+                        "text": "Risk of exacerbation of hypertension; monitor blood pressure",
+                        "description": "detailValue"
+                    },
+                    "gt0244": {
+                        "id": "gt0244",
+                        "text": "Alert Bupropion if HF"
+                    },
+                    "gt0245": {
+                        "id": "gt0245",
+                        "text": "Alert: Bupropion with HF",
+                        "description": "summaryValue"
+                    },
+                    "gt0246": {
+                        "id": "gt0246",
+                        "text": "Monitor blood pressure, STOP bupropion if clinically relevant increase in blood pressure occurs.",
+                        "description": "detailValue"
+                    },
+                    "gt1101": {
+                        "id": "gt1101",
+                        "text": "BMI",
+                        "description": ""
+                    },
+                    "gt1102": {
+                        "id": "gt1102",
+                        "text": "BMI_value",
+                        "description": ""
+                    },
+                    "gt1103": {
+                        "id": "gt1103",
+                        "text": "BMI code",
+                        "description": ""
+                    }
+                }
+            },
+            "sv": {
+                "id": "sv",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) Drug Interaction (based on reconciliation rules)"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) eGFR",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) eGFR_value",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "*(en) eGFR code",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) Stop Dapagliflozin if GFR < 60",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Dapagliflozin",
+                        "description": ""
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "*(en) Dapagliflozin code",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "Sätt ut Dapagliflozin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "Sätt ut Dapagliflozin när GFR <60",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "*(en) Stop Canagliflozin if GFR < 45",
+                        "description": ""
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "Sätt ut Canagliflozin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "Sätt ut Canagliflozin när GFR <45",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) Canagliflozin",
+                        "description": ""
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "*(en) Canagliflozin code",
+                        "description": ""
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) Stop Empagliflozin if GFR < 45",
+                        "description": ""
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "Sätt ut Empagliflozin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Sätt ut Empagliflozin när GFR <45",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "*(en) Empagliflozin",
+                        "description": ""
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "*(en) Empagliflozin code",
+                        "description": ""
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) Insulin",
+                        "description": ""
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "*(en) Insulin code",
+                        "description": ""
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "*(en) Alert Insulin and SSRI ",
+                        "description": ""
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "*(en) SSRI",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "*(en) SSRI code",
+                        "description": ""
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Varning: SSRI och insulin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "Insulinbehandlad patient med depression kan få en förändrad glukoskontroll om SSRI ges",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "*(en) Blood_glucose_lowering_drugs",
+                        "description": ""
+                    },
+                    "gt0043": {
+                        "id": "gt0043",
+                        "text": "*(en) Blood_glucose_lowering_drugs code",
+                        "description": ""
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "*(en) Alert glucose lowering drugs and SSRI ",
+                        "description": ""
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "Varning: SSRI och blodsockersänkande läkemedel",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "Patienter med blodsockersänkande läkemedel kan få en förändrad glukoskontroll om SSRI ges",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "*(en) Tramadol",
+                        "description": ""
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "*(en) coding[0]",
+                        "description": ""
+                    },
+                    "gt0050": {
+                        "id": "gt0050",
+                        "text": "*(en) Tramadol code",
+                        "description": ""
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "*(en) MAOi",
+                        "description": ""
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "*(en) MAOi code",
+                        "description": ""
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "*(en) Alert tramadol and MAOi",
+                        "description": ""
+                    },
+                    "gt0056": {
+                        "id": "gt0056",
+                        "text": "Varning: Tramadol och MAO-hämmare",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0057": {
+                        "id": "gt0057",
+                        "text": "Tramadol är kontraindicerat tillsammans med MAO-hämmare. Sätt ut kombinationen.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0058": {
+                        "id": "gt0058",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0059": {
+                        "id": "gt0059",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "*(en) Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "*(en) Mirtazapine code",
+                        "description": ""
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "*(en) Alert Insulin and Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "Varning: Insulin och Mirtazapin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "Insulinbehandlad patient med depression kan få en förändrad glukoskontroll om  Mirtazapin ges.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "*(en) Alert glucose lowering drugs and Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "Varning: Blodsockersänkande läkemedel och Mirtazapin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Patienter med blodsockersänkande läkemedel kan få en förändrad glukoskontroll om Mirtazapin ges.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "*(en) Bupropion",
+                        "description": ""
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "*(en) Bupropion code",
+                        "description": ""
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "*(en) Alert Insulin and Bupropion",
+                        "description": ""
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "Varning: Insulin och Bupropion",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Bupropion-behandlad patient med depression har en ökad risk för epileptiska anfall vid insulin-behandling.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "*(en) Alert glucose lowering drugs and Bupropion",
+                        "description": ""
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "Varning: Blodsockersänkande läkemedel och Bupropion",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Bupropion-behandlad patient med depression har en ökad risk för epileptiska anfall vid behandling med orala glukossänkande läkemedel.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "*(en) Copy of Copy of Alert glucose lowering drugs and Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "Varning: Blodsockersänkande läkemedel och Mirtazapin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "Patient med  blodsockersänkande läkemedel kan få en förändrad glukoskontroll om Mirtazapin ges.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "*(en) Venlafaxin",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "*(en) Venlafaxin code",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "*(en) Alert Insulin and Venlafaxin",
+                        "description": ""
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "Varning: Insulin och Venlafaxin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Insulinbehandlad patient med depression kan få en förändrad glukoskontroll om Venlafaxin ges.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "*(en) Alert glucose lowering drugs and Venlafaxin",
+                        "description": ""
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "Varning: Blodsockersänkande läkemedel och Venlafaxin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Deprimerad patient med  blodsockersänkande läkemedel kan få en förändrad glukoskontroll om Venlafaxin ges.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "*(en) hepatic_steatosis",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "*(en) hepatic_steatosis code",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "*(en) BMI",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "*(en) BMI code",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "*(en) BMI_value",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "*(en) Agomelatin",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "*(en) Agomelatin code",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "*(en) Alert Agomelatin and hepatic steatosis or obese",
+                        "description": ""
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Varning: Agomelatin och hepatisk steatos eller fetma",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "Agomelatin-behandlad patient med depression har en risk för leverinsufficiens. Denna risk är ökad hos patienter med leverstatos och vid fetma.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0109": {
+                        "id": "gt0109",
+                        "text": "*(en) Pioglitazone",
+                        "description": ""
+                    },
+                    "gt0110": {
+                        "id": "gt0110",
+                        "text": "*(en) Pioglitazone code",
+                        "description": ""
+                    },
+                    "gt0112": {
+                        "id": "gt0112",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0113": {
+                        "id": "gt0113",
+                        "text": "*(en) HF code",
+                        "description": ""
+                    },
+                    "gt0114": {
+                        "id": "gt0114",
+                        "text": "*(en) Pioglitazone contraindicated in HF",
+                        "description": ""
+                    },
+                    "gt0116": {
+                        "id": "gt0116",
+                        "text": "Pioglitazon kontraindicerat vid hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0117": {
+                        "id": "gt0117",
+                        "text": "Pioglitazon kontraindicerat vid hjärtsvikt",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0118": {
+                        "id": "gt0118",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0119": {
+                        "id": "gt0119",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0120": {
+                        "id": "gt0120",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0122": {
+                        "id": "gt0122",
+                        "text": "*(en) Saxagliptin",
+                        "description": ""
+                    },
+                    "gt0123": {
+                        "id": "gt0123",
+                        "text": "*(en) Saxagliptin code",
+                        "description": ""
+                    },
+                    "gt0124": {
+                        "id": "gt0124",
+                        "text": "*(en) Alert saxagliptin with HF",
+                        "description": ""
+                    },
+                    "gt0125": {
+                        "id": "gt0125",
+                        "text": "Saxagliptin kan förvärra hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0126": {
+                        "id": "gt0126",
+                        "text": "Saxagliptin ska användas med försiktighet till patienter med hjärtsvikt.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0127": {
+                        "id": "gt0127",
+                        "text": "*(en) Alert sitagliptin with HF",
+                        "description": ""
+                    },
+                    "gt0128": {
+                        "id": "gt0128",
+                        "text": "Sitagliptin kan förvärra hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0129": {
+                        "id": "gt0129",
+                        "text": "Sitagliptin ska användas med försiktighet till patienter med hjärtsvikt.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0131": {
+                        "id": "gt0131",
+                        "text": "*(en) Sitagliptin",
+                        "description": ""
+                    },
+                    "gt0132": {
+                        "id": "gt0132",
+                        "text": "*(en) Sitagliptin code",
+                        "description": ""
+                    },
+                    "gt0134": {
+                        "id": "gt0134",
+                        "text": "*(en) ACEi",
+                        "description": ""
+                    },
+                    "gt0135": {
+                        "id": "gt0135",
+                        "text": "*(en) ACEi code",
+                        "description": ""
+                    },
+                    "gt0137": {
+                        "id": "gt0137",
+                        "text": "*(en) Cough",
+                        "description": ""
+                    },
+                    "gt0138": {
+                        "id": "gt0138",
+                        "text": "*(en) Cough code",
+                        "description": ""
+                    },
+                    "gt0139": {
+                        "id": "gt0139",
+                        "text": "*(en) Alert cough and ACEi",
+                        "description": ""
+                    },
+                    "gt0141": {
+                        "id": "gt0141",
+                        "text": "Varning: hosta på grund av ACE-hämmare?",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0142": {
+                        "id": "gt0142",
+                        "text": "Överväg om hostan beror på ACE-hämmare och överväga att byta till Angiotensin II-agonister",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0143": {
+                        "id": "gt0143",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0144": {
+                        "id": "gt0144",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0145": {
+                        "id": "gt0145",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0146": {
+                        "id": "gt0146",
+                        "text": "*(en) Alert ACEi/ARB if eGFR < 30",
+                        "description": ""
+                    },
+                    "gt0149": {
+                        "id": "gt0149",
+                        "text": "*(en) ARB",
+                        "description": ""
+                    },
+                    "gt0150": {
+                        "id": "gt0150",
+                        "text": "*(en) ARB code",
+                        "description": ""
+                    },
+                    "gt0152": {
+                        "id": "gt0152",
+                        "text": "Granska användningen av ACE-hämmare / Angiotensin II-agonister om eGFR <30",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0153": {
+                        "id": "gt0153",
+                        "text": "Överväg reducerad dos eller utsättning av ACE-hämmare / Angiotensin II-agonister när njurfunktionen försämras (eGFR <30)",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0154": {
+                        "id": "gt0154",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0155": {
+                        "id": "gt0155",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0156": {
+                        "id": "gt0156",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0158": {
+                        "id": "gt0158",
+                        "text": "*(en) Spironolactone",
+                        "description": ""
+                    },
+                    "gt0159": {
+                        "id": "gt0159",
+                        "text": "*(en) Spironolactone code",
+                        "description": ""
+                    },
+                    "gt0160": {
+                        "id": "gt0160",
+                        "text": "*(en) Stop Spironolactone if GFR < 30",
+                        "description": ""
+                    },
+                    "gt0161": {
+                        "id": "gt0161",
+                        "text": "Sätt ut Spironolakton",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0162": {
+                        "id": "gt0162",
+                        "text": "Sätt ut Spironolakton när GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0164": {
+                        "id": "gt0164",
+                        "text": "*(en) Bisoprolol",
+                        "description": ""
+                    },
+                    "gt0165": {
+                        "id": "gt0165",
+                        "text": "*(en) Bisoprolol code",
+                        "description": ""
+                    },
+                    "gt0166": {
+                        "id": "gt0166",
+                        "text": "*(en) Reduce Bisoprolol if GFR < 20",
+                        "description": ""
+                    },
+                    "gt0167": {
+                        "id": "gt0167",
+                        "text": "Minska bisoprolol",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0168": {
+                        "id": "gt0168",
+                        "text": "Minska bisoprolol när GFR <20",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0170": {
+                        "id": "gt0170",
+                        "text": "*(en) Ivabradine",
+                        "description": ""
+                    },
+                    "gt0171": {
+                        "id": "gt0171",
+                        "text": "*(en) Ivabradine code",
+                        "description": ""
+                    },
+                    "gt0172": {
+                        "id": "gt0172",
+                        "text": "*(en) Caution with Ivabradine if GFR < 15",
+                        "description": ""
+                    },
+                    "gt0173": {
+                        "id": "gt0173",
+                        "text": "Försiktighet med ivabradin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0174": {
+                        "id": "gt0174",
+                        "text": "Använd med försiktighet eller sätt ut ivabradin när GFR <15",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0176": {
+                        "id": "gt0176",
+                        "text": "*(en) Hydralazine",
+                        "description": ""
+                    },
+                    "gt0177": {
+                        "id": "gt0177",
+                        "text": "*(en) Hydralazine code",
+                        "description": ""
+                    },
+                    "gt0178": {
+                        "id": "gt0178",
+                        "text": "*(en) Reduce Hydralazine if GFR < 30",
+                        "description": ""
+                    },
+                    "gt0179": {
+                        "id": "gt0179",
+                        "text": "Minska dosen av hydralazin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0180": {
+                        "id": "gt0180",
+                        "text": "Minska dosen av hydralazin när GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0181": {
+                        "id": "gt0181",
+                        "text": "*(en) Copy of Copy of Caution with Ivabradine if GFR < 15",
+                        "description": ""
+                    },
+                    "gt0182": {
+                        "id": "gt0182",
+                        "text": "Försiktighet med ivabradin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0183": {
+                        "id": "gt0183",
+                        "text": "Använd med försiktighet eller sätt ut ivabradin när GFR <15",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0185": {
+                        "id": "gt0185",
+                        "text": "*(en) Digoxin",
+                        "description": ""
+                    },
+                    "gt0186": {
+                        "id": "gt0186",
+                        "text": "*(en) Digoxin code",
+                        "description": ""
+                    },
+                    "gt0187": {
+                        "id": "gt0187",
+                        "text": "*(en) Alert Digoxin if GFR < 60",
+                        "description": ""
+                    },
+                    "gt0188": {
+                        "id": "gt0188",
+                        "text": "Övervaka digoxin i serum",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0189": {
+                        "id": "gt0189",
+                        "text": "Övervaka digoxin i serum och justera dosen om det behövs när GFR <60",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0191": {
+                        "id": "gt0191",
+                        "text": "*(en) Entresto",
+                        "description": ""
+                    },
+                    "gt0192": {
+                        "id": "gt0192",
+                        "text": "*(en) Entresto code",
+                        "description": ""
+                    },
+                    "gt0193": {
+                        "id": "gt0193",
+                        "text": "*(en) Alert Entresto if GFR < 30",
+                        "description": ""
+                    },
+                    "gt0194": {
+                        "id": "gt0194",
+                        "text": "Minska dosen av Entresto (Sacubitril / valsartan)",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0195": {
+                        "id": "gt0195",
+                        "text": "Minska dosen av Entresto (Sacubitril / valsartan) när GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0197": {
+                        "id": "gt0197",
+                        "text": "*(en) Eplerenone",
+                        "description": ""
+                    },
+                    "gt0198": {
+                        "id": "gt0198",
+                        "text": "*(en) Eplerenone code",
+                        "description": ""
+                    },
+                    "gt0199": {
+                        "id": "gt0199",
+                        "text": "*(en) Alert Eplerenone if GFR 30-60",
+                        "description": ""
+                    },
+                    "gt0200": {
+                        "id": "gt0200",
+                        "text": "Minska dosen av Eplerenon",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0201": {
+                        "id": "gt0201",
+                        "text": "Minska dosen av Eplerenon till 25 mg var annan dag och övervaka njurfunktionen när GFR 30-60",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0202": {
+                        "id": "gt0202",
+                        "text": "*(en) Stop Eplerenone if GFR < 30 ",
+                        "description": ""
+                    },
+                    "gt0203": {
+                        "id": "gt0203",
+                        "text": "Sätt ut Eplerenon",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0204": {
+                        "id": "gt0204",
+                        "text": "Sätt ut Eplerenon när GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0205": {
+                        "id": "gt0205",
+                        "text": "*(en) Stop MAOi if GFR < 30",
+                        "description": ""
+                    },
+                    "gt0206": {
+                        "id": "gt0206",
+                        "text": "Sätt ut MAO-hämmare",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0207": {
+                        "id": "gt0207",
+                        "text": "Sätt ut MAO-hämmare när GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0209": {
+                        "id": "gt0209",
+                        "text": "*(en) Citalopram",
+                        "description": ""
+                    },
+                    "gt0210": {
+                        "id": "gt0210",
+                        "text": "*(en) Citalopram code",
+                        "description": ""
+                    },
+                    "gt0211": {
+                        "id": "gt0211",
+                        "text": "*(en) Alert Citalopram if HF",
+                        "description": ""
+                    },
+                    "gt0212": {
+                        "id": "gt0212",
+                        "text": "Citalopram rekommenderas inte vid hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0213": {
+                        "id": "gt0213",
+                        "text": "Citalopram rekommenderas inte till patienter med inkompenserad hjärtsvikt: övervaka för tecken på arrytmi",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0214": {
+                        "id": "gt0214",
+                        "text": "*(en) Alert Escitalopram if HF",
+                        "description": ""
+                    },
+                    "gt0215": {
+                        "id": "gt0215",
+                        "text": "Escitalopram rekommenderas inte vid hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0216": {
+                        "id": "gt0216",
+                        "text": "Escitalopram rekommenderas inte till patienter med inkompenserad hjärtsvikt: övervaka för tecken på arrytmi",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0218": {
+                        "id": "gt0218",
+                        "text": "*(en) Escitalopram",
+                        "description": ""
+                    },
+                    "gt0219": {
+                        "id": "gt0219",
+                        "text": "*(en) Escitalopram code",
+                        "description": ""
+                    },
+                    "gt0221": {
+                        "id": "gt0221",
+                        "text": "*(en) TCA",
+                        "description": ""
+                    },
+                    "gt0222": {
+                        "id": "gt0222",
+                        "text": "*(en) TCA code",
+                        "description": ""
+                    },
+                    "gt0223": {
+                        "id": "gt0223",
+                        "text": "*(en) Alert Venlafaxine if HF",
+                        "description": ""
+                    },
+                    "gt0224": {
+                        "id": "gt0224",
+                        "text": "Varning: venlafaxin vid hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0225": {
+                        "id": "gt0225",
+                        "text": "Risk för försämring av hypertoni, övervaka blodtrycket",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0227": {
+                        "id": "gt0227",
+                        "text": "*(en) Venlafaxine",
+                        "description": ""
+                    },
+                    "gt0228": {
+                        "id": "gt0228",
+                        "text": "*(en) Venlafaxine code",
+                        "description": ""
+                    },
+                    "gt0229": {
+                        "id": "gt0229",
+                        "text": "*(en) Alert Desvenlafaxine if HF",
+                        "description": ""
+                    },
+                    "gt0230": {
+                        "id": "gt0230",
+                        "text": "Varning: desvenlafaxin vid hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0231": {
+                        "id": "gt0231",
+                        "text": "Risk för försämring av hypertoni, övervaka blodtrycket",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0233": {
+                        "id": "gt0233",
+                        "text": "*(en) Desvenlafaxine",
+                        "description": ""
+                    },
+                    "gt0234": {
+                        "id": "gt0234",
+                        "text": "*(en) Desvenlafaxine code",
+                        "description": ""
+                    },
+                    "gt0236": {
+                        "id": "gt0236",
+                        "text": "*(en) Duloxetine",
+                        "description": ""
+                    },
+                    "gt0237": {
+                        "id": "gt0237",
+                        "text": "*(en) Duloxetine code",
+                        "description": ""
+                    },
+                    "gt0238": {
+                        "id": "gt0238",
+                        "text": "*(en) Alert Duloxetine if HF",
+                        "description": ""
+                    },
+                    "gt0239": {
+                        "id": "gt0239",
+                        "text": "Varning: duloxetin vid hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0240": {
+                        "id": "gt0240",
+                        "text": "Risk för försämring av hypertoni, övervaka blodtrycket",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0241": {
+                        "id": "gt0241",
+                        "text": "*(en) Copy of Alert Venlafaxine if HF",
+                        "description": ""
+                    },
+                    "gt0242": {
+                        "id": "gt0242",
+                        "text": "Varning: venlafaxin vid hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0243": {
+                        "id": "gt0243",
+                        "text": "Risk för försämring av hypertoni, övervaka blodtrycket",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0244": {
+                        "id": "gt0244",
+                        "text": "*(en) Alert Bupropion if HF",
+                        "description": ""
+                    },
+                    "gt0245": {
+                        "id": "gt0245",
+                        "text": "Varning: Bupropion vid hjärtsvikt",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0246": {
+                        "id": "gt0246",
+                        "text": "Övervaka blodtryck, sätt ut bupropion om kliniskt relevant ökning av blodtrycket inträffar.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt1101": {
+                        "id": "gt1101",
+                        "text": "*(en) BMI",
+                        "description": ""
+                    },
+                    "gt1102": {
+                        "id": "gt1102",
+                        "text": "*(en) BMI_value",
+                        "description": ""
+                    },
+                    "gt1103": {
+                        "id": "gt1103",
+                        "text": "*(en) BMI code",
+                        "description": ""
+                    }
+                }
+            },
+            "es": {
+                "id": "es",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) Drug Interaction (based on reconciliation rules)"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) eGFR",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) eGFR_value",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "*(en) eGFR code",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) Stop Dapagliflozin if GFR < 60",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Dapagliflozin",
+                        "description": ""
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "*(en) Dapagliflozin code",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "DETENER Dapagliflozin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "DETENGA Dapagliflozina cuando GFR <60",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "*(en) Stop Canagliflozin if GFR < 45",
+                        "description": ""
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "STOP canagliflozin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "DETENGA Canagliflozin cuando GFR <45",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) Canagliflozin",
+                        "description": ""
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "*(en) Canagliflozin code",
+                        "description": ""
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) Stop Empagliflozin if GFR < 45",
+                        "description": ""
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "Parada de empagliflozin",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "DETENGA Empagliflozin cuando GFR <45",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "*(en) Empagliflozin",
+                        "description": ""
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "*(en) Empagliflozin code",
+                        "description": ""
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) Insulin",
+                        "description": ""
+                    },
+                    "gt0030": {
+                        "id": "gt0030",
+                        "text": "*(en) Insulin code",
+                        "description": ""
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "*(en) Alert Insulin and SSRI ",
+                        "description": ""
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "*(en) SSRI",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "*(en) SSRI code",
+                        "description": ""
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Alerta: ISRS e insulina",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "El paciente con depresión con insulina podría experimentar un control de glucosa alterado si se le administra un ISRS",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "*(en) Blood_glucose_lowering_drugs",
+                        "description": ""
+                    },
+                    "gt0043": {
+                        "id": "gt0043",
+                        "text": "*(en) Blood_glucose_lowering_drugs code",
+                        "description": ""
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "*(en) Alert glucose lowering drugs and SSRI ",
+                        "description": ""
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "Alerta: SSRI y medicamentos hipoglucemiantes.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "Los pacientes con depresión que toman medicamentos hipoglucemiantes pueden experimentar un control de glucosa alterado si se les administra un ISRS",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "*(en) Tramadol",
+                        "description": ""
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "*(en) coding[0]",
+                        "description": ""
+                    },
+                    "gt0050": {
+                        "id": "gt0050",
+                        "text": "*(en) Tramadol code",
+                        "description": ""
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "*(en) MAOi",
+                        "description": ""
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "*(en) MAOi code",
+                        "description": ""
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "*(en) Alert tramadol and MAOi",
+                        "description": ""
+                    },
+                    "gt0056": {
+                        "id": "gt0056",
+                        "text": "Alerta: Tramadol e inhibidores de la MAO.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0057": {
+                        "id": "gt0057",
+                        "text": "Tramadol está contraindicado con inhibidores de la MAO. Detener la combinación.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0058": {
+                        "id": "gt0058",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0059": {
+                        "id": "gt0059",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "*(en) Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "*(en) Mirtazapine code",
+                        "description": ""
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "*(en) Alert Insulin and Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "Alerta: Insulina y mirtazapina.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "El paciente con depresión con insulina puede experimentar una alteración en el control de glucosa si se le administra mirtazapina.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "*(en) Alert glucose lowering drugs and Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "Alerta: Medicamentos hipoglucemiantes y mirtazapina.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Los pacientes con depresión que toman medicamentos hipoglucemiantes pueden experimentar un control de glucosa alterado si se les administra mirtazapina.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "*(en) Bupropion",
+                        "description": ""
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "*(en) Bupropion code",
+                        "description": ""
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "*(en) Alert Insulin and Bupropion",
+                        "description": ""
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "Alerta: Insulina y Bupropion",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Los pacientes con depresión en Bupropion tienen un mayor riesgo de convulsiones epilépticas si se tratan con insulina.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "*(en) Alert glucose lowering drugs and Bupropion",
+                        "description": ""
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "Alerta: Medicamentos hipoglucemiantes y Bupropion.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Los pacientes con depresión en Bupropion tienen un mayor riesgo de ataques epilépticos si se tratan con medicamentos orales para reducir la glucosa.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "*(en) Copy of Copy of Alert glucose lowering drugs and Mirtazapine",
+                        "description": ""
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "Alerta: Medicamentos hipoglucemiantes y mirtazapina.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "Los pacientes con depresión que toman medicamentos hipoglucemiantes pueden experimentar un control de glucosa alterado si se les administra mirtazapina.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "*(en) Venlafaxin",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "*(en) Venlafaxin code",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "*(en) Alert Insulin and Venlafaxin",
+                        "description": ""
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "Alerta: Insulina y Venlafaxina.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Los pacientes con depresión con insulina pueden experimentar una alteración del control de glucosa si se les administra Venlafaxin.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "*(en) Alert glucose lowering drugs and Venlafaxin",
+                        "description": ""
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "Alerta: Medicamentos hipoglucemiantes y venlafaxina.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Los pacientes con depresión que toman medicamentos hipoglucemiantes pueden experimentar un control de glucosa alterado si se les administra Venlafaxin.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "*(en) hepatic_steatosis",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "*(en) hepatic_steatosis code",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "*(en) BMI",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "*(en) BMI code",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "*(en) BMI_value",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "*(en) Agomelatin",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "*(en) Agomelatin code",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "*(en) Alert Agomelatin and hepatic steatosis or obese",
+                        "description": ""
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Alerta: Agomelatina y esteatosis hepática u obesidad.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "Pacientes con depresión en agomelatino experimentan un riesgo de insuficiencia hepática. Este riesgo aumenta en pacientes con esteatosis hepática con mayor prevalencia en la obesidad.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0109": {
+                        "id": "gt0109",
+                        "text": "*(en) Pioglitazone",
+                        "description": ""
+                    },
+                    "gt0110": {
+                        "id": "gt0110",
+                        "text": "*(en) Pioglitazone code",
+                        "description": ""
+                    },
+                    "gt0112": {
+                        "id": "gt0112",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0113": {
+                        "id": "gt0113",
+                        "text": "*(en) HF code",
+                        "description": ""
+                    },
+                    "gt0114": {
+                        "id": "gt0114",
+                        "text": "*(en) Pioglitazone contraindicated in HF",
+                        "description": ""
+                    },
+                    "gt0116": {
+                        "id": "gt0116",
+                        "text": "Pioglitazona contraindicada en HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0117": {
+                        "id": "gt0117",
+                        "text": "Pioglitazona contraindicada en HF",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0118": {
+                        "id": "gt0118",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0119": {
+                        "id": "gt0119",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0120": {
+                        "id": "gt0120",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0122": {
+                        "id": "gt0122",
+                        "text": "*(en) Saxagliptin",
+                        "description": ""
+                    },
+                    "gt0123": {
+                        "id": "gt0123",
+                        "text": "*(en) Saxagliptin code",
+                        "description": ""
+                    },
+                    "gt0124": {
+                        "id": "gt0124",
+                        "text": "*(en) Alert saxagliptin with HF",
+                        "description": ""
+                    },
+                    "gt0125": {
+                        "id": "gt0125",
+                        "text": "Saxagliptina puede exacerbar HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0126": {
+                        "id": "gt0126",
+                        "text": "La saxagliptina debe usarse con precaución en pacientes con insuficiencia cardíaca.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0127": {
+                        "id": "gt0127",
+                        "text": "*(en) Alert sitagliptin with HF",
+                        "description": ""
+                    },
+                    "gt0128": {
+                        "id": "gt0128",
+                        "text": "Sitagliptina puede exacerbar HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0129": {
+                        "id": "gt0129",
+                        "text": "Sitagliptina debe usarse con precaución en pacientes con insuficiencia cardíaca.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0131": {
+                        "id": "gt0131",
+                        "text": "*(en) Sitagliptin",
+                        "description": ""
+                    },
+                    "gt0132": {
+                        "id": "gt0132",
+                        "text": "*(en) Sitagliptin code",
+                        "description": ""
+                    },
+                    "gt0134": {
+                        "id": "gt0134",
+                        "text": "*(en) ACEi",
+                        "description": ""
+                    },
+                    "gt0135": {
+                        "id": "gt0135",
+                        "text": "*(en) ACEi code",
+                        "description": ""
+                    },
+                    "gt0137": {
+                        "id": "gt0137",
+                        "text": "*(en) Cough",
+                        "description": ""
+                    },
+                    "gt0138": {
+                        "id": "gt0138",
+                        "text": "*(en) Cough code",
+                        "description": ""
+                    },
+                    "gt0139": {
+                        "id": "gt0139",
+                        "text": "*(en) Alert cough and ACEi",
+                        "description": ""
+                    },
+                    "gt0141": {
+                        "id": "gt0141",
+                        "text": "Alerta: tos debida a IECAs?",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0142": {
+                        "id": "gt0142",
+                        "text": "Considere si la tos se debe a ACEi y considere cambiar a ARB",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0143": {
+                        "id": "gt0143",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0144": {
+                        "id": "gt0144",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0145": {
+                        "id": "gt0145",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0146": {
+                        "id": "gt0146",
+                        "text": "*(en) Alert ACEi/ARB if eGFR < 30",
+                        "description": ""
+                    },
+                    "gt0149": {
+                        "id": "gt0149",
+                        "text": "*(en) ARB",
+                        "description": ""
+                    },
+                    "gt0150": {
+                        "id": "gt0150",
+                        "text": "*(en) ARB code",
+                        "description": ""
+                    },
+                    "gt0152": {
+                        "id": "gt0152",
+                        "text": "Revisar ACEi / ARB como eGFR <30",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0153": {
+                        "id": "gt0153",
+                        "text": "Considere reducir la dosis o suspender el ACEi / ARB cuando la función renal se deteriore (eGFR <30)",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0154": {
+                        "id": "gt0154",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0155": {
+                        "id": "gt0155",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0156": {
+                        "id": "gt0156",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0158": {
+                        "id": "gt0158",
+                        "text": "*(en) Spironolactone",
+                        "description": ""
+                    },
+                    "gt0159": {
+                        "id": "gt0159",
+                        "text": "*(en) Spironolactone code",
+                        "description": ""
+                    },
+                    "gt0160": {
+                        "id": "gt0160",
+                        "text": "*(en) Stop Spironolactone if GFR < 30",
+                        "description": ""
+                    },
+                    "gt0161": {
+                        "id": "gt0161",
+                        "text": "PARAR espironolactona",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0162": {
+                        "id": "gt0162",
+                        "text": "DETENGA la espironolactona cuando GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0164": {
+                        "id": "gt0164",
+                        "text": "*(en) Bisoprolol",
+                        "description": ""
+                    },
+                    "gt0165": {
+                        "id": "gt0165",
+                        "text": "*(en) Bisoprolol code",
+                        "description": ""
+                    },
+                    "gt0166": {
+                        "id": "gt0166",
+                        "text": "*(en) Reduce Bisoprolol if GFR < 20",
+                        "description": ""
+                    },
+                    "gt0167": {
+                        "id": "gt0167",
+                        "text": "Reducir el bisoprolol",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0168": {
+                        "id": "gt0168",
+                        "text": "Reducir el bisoprolol cuando GFR <20",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0170": {
+                        "id": "gt0170",
+                        "text": "*(en) Ivabradine",
+                        "description": ""
+                    },
+                    "gt0171": {
+                        "id": "gt0171",
+                        "text": "*(en) Ivabradine code",
+                        "description": ""
+                    },
+                    "gt0172": {
+                        "id": "gt0172",
+                        "text": "*(en) Caution with Ivabradine if GFR < 15",
+                        "description": ""
+                    },
+                    "gt0173": {
+                        "id": "gt0173",
+                        "text": "Precaución con Ivabradine",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0174": {
+                        "id": "gt0174",
+                        "text": "Usar con precaución o detener Ivabradine cuando el filtrado glomerular <15",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0176": {
+                        "id": "gt0176",
+                        "text": "*(en) Hydralazine",
+                        "description": ""
+                    },
+                    "gt0177": {
+                        "id": "gt0177",
+                        "text": "*(en) Hydralazine code",
+                        "description": ""
+                    },
+                    "gt0178": {
+                        "id": "gt0178",
+                        "text": "*(en) Reduce Hydralazine if GFR < 30",
+                        "description": ""
+                    },
+                    "gt0179": {
+                        "id": "gt0179",
+                        "text": "Reducir la dosis de hidralazina",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0180": {
+                        "id": "gt0180",
+                        "text": "Reducir la dosis de hidralazina cuandoel filtrado glomerular <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0181": {
+                        "id": "gt0181",
+                        "text": "*(en) Copy of Copy of Caution with Ivabradine if GFR < 15",
+                        "description": ""
+                    },
+                    "gt0182": {
+                        "id": "gt0182",
+                        "text": "Precaución con Ivabradine",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0183": {
+                        "id": "gt0183",
+                        "text": "Usar con precaución o detener Ivabradine como GFR <15",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0185": {
+                        "id": "gt0185",
+                        "text": "*(en) Digoxin",
+                        "description": ""
+                    },
+                    "gt0186": {
+                        "id": "gt0186",
+                        "text": "*(en) Digoxin code",
+                        "description": ""
+                    },
+                    "gt0187": {
+                        "id": "gt0187",
+                        "text": "*(en) Alert Digoxin if GFR < 60",
+                        "description": ""
+                    },
+                    "gt0188": {
+                        "id": "gt0188",
+                        "text": "Monitorizar los niveles de digoxina.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0189": {
+                        "id": "gt0189",
+                        "text": "Monitoree los niveles de Digoxin y ajuste la dosis si es necesario cuando GFR <60",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0191": {
+                        "id": "gt0191",
+                        "text": "*(en) Entresto",
+                        "description": ""
+                    },
+                    "gt0192": {
+                        "id": "gt0192",
+                        "text": "*(en) Entresto code",
+                        "description": ""
+                    },
+                    "gt0193": {
+                        "id": "gt0193",
+                        "text": "*(en) Alert Entresto if GFR < 30",
+                        "description": ""
+                    },
+                    "gt0194": {
+                        "id": "gt0194",
+                        "text": "Reducir la dosis de Entresto (Sacubitril / valsartán)",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0195": {
+                        "id": "gt0195",
+                        "text": "Reducir la dosis de Entresto (Sacubitril / valsartán) cuando GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0197": {
+                        "id": "gt0197",
+                        "text": "*(en) Eplerenone",
+                        "description": ""
+                    },
+                    "gt0198": {
+                        "id": "gt0198",
+                        "text": "*(en) Eplerenone code",
+                        "description": ""
+                    },
+                    "gt0199": {
+                        "id": "gt0199",
+                        "text": "*(en) Alert Eplerenone if GFR 30-60",
+                        "description": ""
+                    },
+                    "gt0200": {
+                        "id": "gt0200",
+                        "text": "Reducir la dosis de eplerenona",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0201": {
+                        "id": "gt0201",
+                        "text": "Reduzca la dosis de Eplerenona a 2 mg días alternos y supervise la función renal cuando la GFR 30-60",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0202": {
+                        "id": "gt0202",
+                        "text": "*(en) Stop Eplerenone if GFR < 30 ",
+                        "description": ""
+                    },
+                    "gt0203": {
+                        "id": "gt0203",
+                        "text": "Dejar de eplerenona",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0204": {
+                        "id": "gt0204",
+                        "text": "Detener eplerenona cuando GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0205": {
+                        "id": "gt0205",
+                        "text": "*(en) Stop MAOi if GFR < 30",
+                        "description": ""
+                    },
+                    "gt0206": {
+                        "id": "gt0206",
+                        "text": "Detener IMAO",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0207": {
+                        "id": "gt0207",
+                        "text": "Detener los inhibidores de la MAO cuando GFR <30",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0209": {
+                        "id": "gt0209",
+                        "text": "*(en) Citalopram",
+                        "description": ""
+                    },
+                    "gt0210": {
+                        "id": "gt0210",
+                        "text": "*(en) Citalopram code",
+                        "description": ""
+                    },
+                    "gt0211": {
+                        "id": "gt0211",
+                        "text": "*(en) Alert Citalopram if HF",
+                        "description": ""
+                    },
+                    "gt0212": {
+                        "id": "gt0212",
+                        "text": "Citalopram No recomendado para HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0213": {
+                        "id": "gt0213",
+                        "text": "Citalopram no recomendado en pacientes con insuficiencia cardíaca no compensada: monitorizar signos de arritmia cardíaca",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0214": {
+                        "id": "gt0214",
+                        "text": "*(en) Alert Escitalopram if HF",
+                        "description": ""
+                    },
+                    "gt0215": {
+                        "id": "gt0215",
+                        "text": "Escitalopram No recomendado para HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0216": {
+                        "id": "gt0216",
+                        "text": "Escitalopram no recomendado en pacientes con insuficiencia cardíaca no compensada: monitor de signos de arritmia cardíaca",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0218": {
+                        "id": "gt0218",
+                        "text": "*(en) Escitalopram",
+                        "description": ""
+                    },
+                    "gt0219": {
+                        "id": "gt0219",
+                        "text": "*(en) Escitalopram code",
+                        "description": ""
+                    },
+                    "gt0221": {
+                        "id": "gt0221",
+                        "text": "*(en) TCA",
+                        "description": ""
+                    },
+                    "gt0222": {
+                        "id": "gt0222",
+                        "text": "*(en) TCA code",
+                        "description": ""
+                    },
+                    "gt0223": {
+                        "id": "gt0223",
+                        "text": "*(en) Alert Venlafaxine if HF",
+                        "description": ""
+                    },
+                    "gt0224": {
+                        "id": "gt0224",
+                        "text": "Alerta: venlafaxina con HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0225": {
+                        "id": "gt0225",
+                        "text": "Riesgo de exacerbación de la hipertensión; controlar la presión arterial",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0227": {
+                        "id": "gt0227",
+                        "text": "*(en) Venlafaxine",
+                        "description": ""
+                    },
+                    "gt0228": {
+                        "id": "gt0228",
+                        "text": "*(en) Venlafaxine code",
+                        "description": ""
+                    },
+                    "gt0229": {
+                        "id": "gt0229",
+                        "text": "*(en) Alert Desvenlafaxine if HF",
+                        "description": ""
+                    },
+                    "gt0230": {
+                        "id": "gt0230",
+                        "text": "Alerta: desvenlafaxina con HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0231": {
+                        "id": "gt0231",
+                        "text": "Riesgo de exacerbación de la hipertensión; controlar la presión arterial",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0233": {
+                        "id": "gt0233",
+                        "text": "*(en) Desvenlafaxine",
+                        "description": ""
+                    },
+                    "gt0234": {
+                        "id": "gt0234",
+                        "text": "*(en) Desvenlafaxine code",
+                        "description": ""
+                    },
+                    "gt0236": {
+                        "id": "gt0236",
+                        "text": "*(en) Duloxetine",
+                        "description": ""
+                    },
+                    "gt0237": {
+                        "id": "gt0237",
+                        "text": "*(en) Duloxetine code",
+                        "description": ""
+                    },
+                    "gt0238": {
+                        "id": "gt0238",
+                        "text": "*(en) Alert Duloxetine if HF",
+                        "description": ""
+                    },
+                    "gt0239": {
+                        "id": "gt0239",
+                        "text": "Alerta: duloxetina con HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0240": {
+                        "id": "gt0240",
+                        "text": "Riesgo de exacerbación de la hipertensión; controlar la presión arterial",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0241": {
+                        "id": "gt0241",
+                        "text": "*(en) Copy of Alert Venlafaxine if HF",
+                        "description": ""
+                    },
+                    "gt0242": {
+                        "id": "gt0242",
+                        "text": "Alerta: venlafaxina con HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0243": {
+                        "id": "gt0243",
+                        "text": "Riesgo de exacerbación de la hipertensión; controlar la presión arterial",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0244": {
+                        "id": "gt0244",
+                        "text": "*(en) Alert Bupropion if HF",
+                        "description": ""
+                    },
+                    "gt0245": {
+                        "id": "gt0245",
+                        "text": "Alerta: Bupropion con HF",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0246": {
+                        "id": "gt0246",
+                        "text": "Monitoree la presión arterial, PARE el bupropión si se produce un aumento clínicamente relevante de la presión arterial.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt1101": {
+                        "id": "gt1101",
+                        "text": "*(en) BMI",
+                        "description": ""
+                    },
+                    "gt1102": {
+                        "id": "gt1102",
+                        "text": "*(en) BMI_value",
+                        "description": ""
+                    },
+                    "gt1103": {
+                        "id": "gt1103",
+                        "text": "*(en) BMI code",
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "term_bindings": {
+            "ATC": {
+                "id": "ATC",
+                "bindings": {
+                    "gt0009": {
+                        "codes": [
+                            "ATC::A10BK01"
+                        ]
+                    },
+                    "gt0027": {
+                        "codes": [
+                            "ATC::A10BK03"
+                        ]
+                    },
+                    "gt0021": {
+                        "codes": [
+                            "ATC::A10BK02"
+                        ]
+                    },
+                    "gt0043": {
+                        "codes": [
+                            "ATC::A10B"
+                        ]
+                    },
+                    "gt0186": {
+                        "codes": [
+                            "ATC::C01AA05"
+                        ]
+                    },
+                    "gt0165": {
+                        "codes": [
+                            "ATC::C07AB07",
+                            "ATC::C07FX04",
+                            "ATC::C07FB07",
+                            "ATC::C07BB07",
+                            "ATC::C09BX02"
+                        ]
+                    },
+                    "gt0100": {
+                        "codes": [
+                            "ATC::N06AX22"
+                        ]
+                    },
+                    "gt0123": {
+                        "codes": [
+                            "ATC::A10BH03",
+                            "ATC::A10BD10",
+                            "ATC::A10BD21"
+                        ]
+                    },
+                    "gt0084": {
+                        "codes": [
+                            "ATC::N06AX16"
+                        ]
+                    },
+                    "gt0063": {
+                        "codes": [
+                            "ATC::N06AX11"
+                        ]
+                    },
+                    "gt0219": {
+                        "codes": [
+                            "ATC::N06AB10"
+                        ]
+                    },
+                    "gt0135": {
+                        "codes": [
+                            "ATC::C09A",
+                            "ATC::C09B"
+                        ]
+                    },
+                    "gt0234": {
+                        "codes": [
+                            "ATC::N06AX23"
+                        ]
+                    },
+                    "gt0159": {
+                        "codes": [
+                            "ATC::C03DA01"
+                        ]
+                    },
+                    "gt0237": {
+                        "codes": [
+                            "ATC::N06AX21"
+                        ]
+                    },
+                    "gt0110": {
+                        "codes": [
+                            "ATC::A10BG03",
+                            "ATC::A10BD05",
+                            "ATC::A10BD06",
+                            "ATC::A10BD09",
+                            "ATC::A10BD12"
+                        ]
+                    },
+                    "gt0132": {
+                        "codes": [
+                            "ATC::A10BH01",
+                            "ATC::A10BH51",
+                            "ATC::A10BD07",
+                            "ATC::A10BD12"
+                        ]
+                    },
+                    "gt0198": {
+                        "codes": [
+                            "ATC::C03DA04"
+                        ]
+                    },
+                    "gt0034": {
+                        "codes": [
+                            "ATC::N06AB"
+                        ]
+                    },
+                    "gt0177": {
+                        "codes": [
+                            "ATC::C02DB02",
+                            "ATC::C02LG02"
+                        ]
+                    },
+                    "gt0210": {
+                        "codes": [
+                            "ATC::N06AB04"
+                        ]
+                    },
+                    "gt0050": {
+                        "codes": [
+                            "ATC::N02AX02"
+                        ]
+                    },
+                    "gt0072": {
+                        "codes": [
+                            "ATC::N06AX12"
+                        ]
+                    },
+                    "gt0171": {
+                        "codes": [
+                            "ATC::C01EB17",
+                            "ATC::C07FX05",
+                            "ATC::C07FX06"
+                        ]
+                    },
+                    "gt0150": {
+                        "codes": [
+                            "ATC::C09C",
+                            "ATC::C09D"
+                        ]
+                    },
+                    "gt0030": {
+                        "codes": [
+                            "ATC::A10A"
+                        ]
+                    },
+                    "gt0053": {
+                        "codes": [
+                            "ATC::C02KC"
+                        ]
+                    },
+                    "gt0192": {
+                        "codes": [
+                            "ATC::C09DX04"
+                        ]
+                    }
+                }
+            },
+            "ICD-10-SE": {
+                "id": "ICD-10-SE",
+                "bindings": {
+                    "gt0093": {
+                        "codes": [
+                            "ICD-10-SE::K700",
+                            "ICD-10-SE::K758",
+                            "ICD-10-SE::K760"
+                        ]
+                    },
+                    "gt0113": {
+                        "codes": [
+                            "ICD-10-SE::I110",
+                            "ICD-10-SE::I130",
+                            "ICD-10-SE::I132",
+                            "ICD-10-SE::I50"
+                        ]
+                    },
+                    "gt0138": {
+                        "codes": [
+                            "ICD-10-SE::R05"
+                        ]
+                    }
+                }
+            },
+            "NPU": {
+                "id": "NPU",
+                "bindings": {
+                    "gt0005": {
+                        "codes": [
+                            "NPU::EGFRKRE"
+                        ]
+                    }
+                }
+            },
+            "ICD-10": {
+                "id": "ICD-10",
+                "bindings": {
+                    "gt0093": {
+                        "codes": [
+                            "ICD-10::K70.0",
+                            "ICD-10::K75.8",
+                            "ICD-10::K76.0"
+                        ]
+                    },
+                    "gt0113": {
+                        "codes": [
+                            "ICD-10::I11.0",
+                            "ICD-10::I13.0",
+                            "ICD-10::I13.2",
+                            "ICD-10::I50"
+                        ]
+                    },
+                    "gt0138": {
+                        "codes": [
+                            "ICD-10::R05"
+                        ]
+                    }
+                }
+            },
+            "DBP": {
+                "id": "DBP",
+                "bindings": {
+                    "gt1103": {
+                        "codes": [
+                            "DBP::7"
+                        ]
+                    },
+                    "gt0005": {
+                        "codes": [
+                            "DBP::33382"
+                        ]
+                    }
+                }
+            },
+            "LOINC": {
+                "id": "LOINC",
+                "bindings": {
+                    "gt1103": {
+                        "codes": [
+                            "LOINC::39156-5"
+                        ]
+                    },
+                    "gt0005": {
+                        "codes": [
+                            "LOINC::33914-3"
+                        ]
+                    }
+                }
+            },
+            "CIE-10-CM-ES": {
+                "id": "CIE-10-CM-ES",
+                "bindings": {
+                    "gt0093": {
+                        "codes": [
+                            "CIE-10-CM-ES::K70.0",
+                            "CIE-10-CM-ES::K75.8",
+                            "CIE-10-CM-ES::K76.0"
+                        ]
+                    },
+                    "gt0113": {
+                        "codes": [
+                            "CIE-10-CM-ES::I11.0",
+                            "CIE-10-CM-ES::I13.0",
+                            "CIE-10-CM-ES::I13.2",
+                            "CIE-10-CM-ES::I50"
+                        ]
+                    },
+                    "gt0138": {
+                        "codes": [
+                            "CIE-10-CM-ES::R05"
+                        ]
+                    }
+                }
+            },
+            "SNOMED-CT": {
+                "id": "SNOMED-CT",
+                "bindings": {
+                    "gt0093": {
+                        "codes": [
+                            "SNOMED-CT::197321007"
+                        ]
+                    },
+                    "gt0113": {
+                        "codes": [
+                            "SNOMED-CT::42343007",
+                            "SNOMED-CT::420300004",
+                            "SNOMED-CT::421704003",
+                            "SNOMED-CT::420913000",
+                            "SNOMED-CT::422293003",
+                            "SNOMED-CT::5148006",
+                            "SNOMED-CT::194779001",
+                            "SNOMED-CT::194781004"
+                        ]
+                    },
+                    "gt0138": {
+                        "codes": [
+                            "SNOMED-CT::49727002"
+                        ]
+                    }
+                }
+            },
+            "READ2": {
+                "id": "READ2",
+                "bindings": {
+                    "gt0093": {
+                        "codes": [
+                            "READ2::J610",
+                            "READ2::J61y1",
+                            "READ2::J61y7",
+                            "READ2::J61y9"
+                        ]
+                    },
+                    "gt1103": {
+                        "codes": [
+                            "READ2::22K"
+                        ]
+                    },
+                    "gt0113": {
+                        "codes": [
+                            "READ2::G58"
+                        ]
+                    },
+                    "gt0005": {
+                        "codes": [
+                            "READ2::451E"
+                        ]
+                    },
+                    "gt0138": {
+                        "codes": [
+                            "READ2::R062"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

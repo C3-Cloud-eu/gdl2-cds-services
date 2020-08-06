@@ -1,0 +1,432 @@
+{
+  "id": "chf_lifestyle_advice.v1",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2018-06-12",
+      "name": "Lei Zhao",
+      "organisation": "University of Warwick",
+      "email": "lei.zhao@warwick.ac.uk"
+    },
+    "other_contributors": [
+      "Jimmy Axelsson"
+    ],
+    "lifecycle_state": "Author draft",
+    "details": {
+      "en": {
+        "id": "en",
+        "keywords": [
+          "CHF",
+          "Lifestyle"
+        ]
+      }
+    },
+    "other_details": {},
+    "references": [
+      {
+        "id": "1",
+        "label": "Chronic heart failure in adults: management",
+        "url": "https://www.nice.org.uk/guidance/cg108"
+      }
+    ]
+  },
+  "definition": {
+    "pre_conditions": [
+      "$gt0003|HF|!=null"
+    ],
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0004|HF Code|"
+        ]
+      },
+      "gt0025": {
+        "id": "gt0025",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.alcohol_use.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0026": {
+            "id": "gt0026",
+            "path": "/code/coding[0]"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "path": "/valueQuantity"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0028|drinkAlcohol Code|"
+        ]
+      },
+      "gt0006": {
+        "id": "gt0006",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.chf-lifestyle-advice.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt2019": {
+            "id": "gt2019",
+            "path": "/valueCodeableConcept/coding[0]"
+          }
+        },
+        "predicates": [
+          "/valueCodeableConcept/coding[0] is_a local::gt0008|Smoking|"
+        ]
+      }
+    },
+    "templates": {
+      "gt0010": {
+        "id": "gt0010",
+        "model_id": "org.hl7.fhir.dstu3.model.Goal",
+        "template_id": "FHIR-STU3-Goal.generic.v0",
+        "object": {
+          "description": {
+            "coding": [
+              {
+                "code": "{$gt0014}",
+                "system": "c3-cloud",
+                "display": "{$gt0013}"
+              }
+            ],
+            "text": "{$gt0015}"
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "code": "EMPTY2",
+                  "system": "EMPTY1",
+                  "display": "EMPTY0"
+                }
+              ],
+              "text": "{$gt0011}"
+            }
+          ],
+          "startDate": "2018-06-12",
+          "status": "proposed",
+          "resourceType": "Goal"
+        }
+      }
+    },
+    "rules": {
+      "gt0029": {
+        "id": "gt0029",
+        "priority": 1,
+        "when": [
+          "$gt0027|drinkAlcoholQuantity|>0,/d"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0031.term}",
+            "detail": "{$gt0032.term}",
+            "indicator": "info",
+            "suggestions": [
+              {
+                "uuid": "cad69655-89a4-4d3b-9f1c-d1e9a43ab139",
+                "label": "{$gt0036.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0039.term}",
+                    "resource_template": {
+                      "template_id": "gt0010",
+                      "assignments": [
+                        "$gt0011='Behavior'",
+                        "$gt0013='Stop alcohol usage'",
+                        "$gt0014='g0003'",
+                        "$gt0015='Stop alcohol usage'"
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "uuid": "39c81781-5d31-4df8-9f80-4ee88f35c3d8",
+                "label": "{$gt0037.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0041.term}",
+                    "resource_template": {
+                      "template_id": "gt0010",
+                      "assignments": [
+                        "$gt0011='Behavior'",
+                        "$gt0015='Reduce alcohol usage'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "priority": 2,
+        "when": [
+          "$gt2019|Smoking|!=null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0017.term}",
+            "detail": "{$gt0018.term}",
+            "indicator": "info",
+            "source": {
+              "label": "Chronic heart failure in adults: management",
+              "url": "https://www.nice.org.uk/guidance/cg108",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "78438726-adb1-4fa4-aac5-af4c29ceeb66",
+                "label": "{$gt0022.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0024.term}",
+                    "resource_template": {
+                      "template_id": "gt0010",
+                      "assignments": [
+                        "$gt0011='Behavior'",
+                        "$gt0013='Stop Smoking'",
+                        "$gt0014='g0001'",
+                        "$gt0015='Stop Smoking'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0007": {
+            "id": "gt0007",
+            "text": "smoker",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Card-2, Drink Alcohol"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Smoker Code",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "smokerValue",
+            "description": ""
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "HF",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "HF Code",
+            "description": ""
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "drinkAlcohol",
+            "description": ""
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Card-1, Smoker is yes"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "drinkAlcoholQuantity",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "drinkAlcohol Code",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Stop Smoking",
+            "description": "labelValue"
+          },
+          "gt0001": {
+            "id": "gt0001",
+            "text": "CHF Lifestyle Advice"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Stop Smoking",
+            "description": "descriptionValue"
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Reduce alcohol usage",
+            "description": "descriptionValue"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Patients should be strongly advised not to smoke. Consider referral to smoking cessation services.",
+            "description": "detailValue"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "code",
+            "description": "/description/coding[0]"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Stop alcohol usage",
+            "description": "labelValue"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "Reduce alcohol usage",
+            "description": "labelValue"
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "Lifestyle advice about tobacco smoking",
+            "description": "summaryValue"
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "Stop alcohol usage",
+            "description": "descriptionValue"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Patients with alcohol-related heart failure should abstain from drinking alcohol. Discuss alcohol consumption with the patient and tailor the advice appropriately to the clinical circumstances.",
+            "description": "detailValue"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "value",
+            "description": "/category[0]/text"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "value",
+            "description": "/description/coding[0]"
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Lifestyle advice about alcohol consumption",
+            "description": "summaryValue"
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "LOINC": {
+        "id": "LOINC",
+        "bindings": {
+          "gt0008": {
+            "codes": [
+              "LOINC::64234-8"
+            ]
+          },
+          "gt0028": {
+            "codes": [
+              "LOINC::74013-4"
+            ]
+          }
+        }
+      },
+      "ICD-10": {
+        "id": "ICD-10",
+        "bindings": {
+          "gt0004": {
+            "codes": [
+              "ICD-10::I11.0",
+              "ICD-10::I13.0",
+              "ICD-10::I13.2",
+              "ICD-10::I50"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

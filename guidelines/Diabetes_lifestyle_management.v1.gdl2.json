@@ -1,0 +1,1755 @@
+{
+  "id": "Diabetes_lifestyle_management.v1",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2018-10-09",
+      "organisation": "Cambio Healthcare Systems"
+    },
+    "lifecycle_state": "Author draft",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "Sample fhir-based cds-rules for demonstration purpose",
+        "copyright": "© Cambio Healthcare Systems"
+      },
+      "sv": {
+        "id": "sv",
+        "purpose": "FHIR-baserade cds-regler för demonstrationsändamål",
+        "copyright": "© Cambio Healthcare Systems"
+      },
+      "es": {
+        "id": "es",
+        "purpose": "Ejemplos de reglas de cds basadas en fhir para propósitos de demostración",
+        "copyright": "© Cambio Healthcare Systems"
+      }
+    },
+    "other_details": {
+      "references": "1. NICE diabetes guideline, Chapter 1.7.11 [48, p. 28]\n2. NICE CHF guideline CG108, Chapter 5.1.1 [57, p. 72]"
+    },
+    "references": [
+      {
+        "id": "1",
+        "label": "NICE guideline Hypertension in adults: diagnosis and management",
+        "url": "https://www.nice.org.uk/guidance/cg127"
+      }
+    ]
+  },
+  "definition": {
+    "pre_conditions": [
+      "(($gt0003|typeIIDiabetesDiagnosis|!=null)&&($gt0006|hypertensionDiagnosis|==null))||($gt0009|heartFailureDiagnosis|!=null)"
+    ],
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0004|Type 2 Diabetes|"
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0007|Hypertension Diagnosis|"
+        ]
+      },
+      "gt0008": {
+        "id": "gt0008",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0010|Heart Failure Diagnosis|"
+        ]
+      },
+      "gt0012": {
+        "id": "gt0012",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.tobacco_use.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0037": {
+            "id": "gt0037",
+            "path": "/code/coding[0]"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "path": "/valueCodeableConcept/coding[0]"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0019|Tobacco Smoking Status|",
+          "/valueCodeableConcept/coding[0] is_a local::gt0080|All smoking values|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0013": {
+        "id": "gt0013",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.alcohol_use.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0015": {
+            "id": "gt0015",
+            "path": "/code/coding[0]"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "path": "/valueQuantity"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0021|Alcoholic drinks per week|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0200": {
+        "id": "gt0200",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0201": {
+            "id": "gt0201",
+            "path": "/code/coding[0]"
+          },
+          "gt0202": {
+            "id": "gt0202",
+            "path": "/valueQuantity"
+          },
+          "gt0203": {
+            "id": "gt0203",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0204|Estimated Glomerular Filtration Rate|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0205": {
+        "id": "gt0205",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0006": {
+            "id": "gt0206",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0207|Chronic kidney disease stages 2-5|"
+        ]
+      }
+    },
+    "templates": {
+      "gt0041": {
+        "id": "gt0041",
+        "model_id": "org.hl7.fhir.dstu3.model.Goal",
+        "template_id": "FHIR-STU3-Goal.generic.v0",
+        "object": {
+          "description": {
+            "coding": [
+              {
+                "code": "{$gt0045}",
+                "system": "http://www.c3-cloud.eu/fhir/goal-code",
+                "display": "{$gt0044}"
+              }
+            ],
+            "text": "{$gt0046}"
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "code": "{$gt0042}",
+                  "system": "http://hl7.org/fhir/goal-category",
+                  "display": "{$gt0043}"
+                }
+              ]
+            }
+          ],
+          "startDate": "{$gt0047}",
+          "status": "proposed",
+          "resourceType": "Goal"
+        }
+      }
+    },
+    "rules": {
+      "gt0016": {
+        "id": "gt0016",
+        "priority": 3,
+        "when": [
+          "($gt0085|currentSmokingStatus| is_a local::gt0081|Smoker|)||($gt0085|currentSmokingStatus| is_a local::gt0082|Occasional smoker|)||(($gt0085|currentSmokingStatus| is_a local::gt0083|Moderate smoker|)||($gt0085|currentSmokingStatus| is_a local::gt0084|Heavy smoker|))"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0049.term}",
+            "detail": "{$gt0050.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE guideline Hypertension in adults: diagnosis and management",
+              "url": "https://www.nice.org.uk/guidance/cg127",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "5d447333-3f49-4132-a71b-6131926cbdc5",
+                "label": "{$gt0056.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0059.term}",
+                    "resource_template": {
+                      "template_id": "gt0041",
+                      "assignments": [
+                        "$gt0047=($currentDateTime)",
+                        "$gt0044=$gt0086.term",
+                        "$gt0045='g0001'",
+                        "$gt0046=$gt0087.term",
+                        "$gt0043=$gt0088.term",
+                        "$gt0042='behavioral'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0024": {
+        "id": "gt0024",
+        "priority": 2,
+        "when": [
+          "$gt0029|noOfAlcoholicDrinksPerWeek|>7,/wk||$gt0029|noOfAlcoholicDrinksPerWeek|>1,/d"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0061.term}",
+            "detail": "{$gt0062.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE guideline Hypertension in adults: diagnosis and management",
+              "url": "https://www.nice.org.uk/guidance/cg127",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "5d447333-3f49-4132-a71b-6131926cbdc5",
+                "label": "{$gt0066.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0067.term}",
+                    "resource_template": {
+                      "template_id": "gt0041",
+                      "assignments": [
+                        "$gt0047=($currentDateTime)",
+                        "$gt0044=$gt0089.term",
+                        "$gt0045='g0004'",
+                        "$gt0046=$gt0090.term",
+                        "$gt0043=$gt0091.term",
+                        "$gt0042='behavioral'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0027": {
+        "id": "gt0027",
+        "priority": 1,
+        "when": [
+          "$gt0003|typeIIDiabetesDiagnosis|!=null",
+          "$gt0202|eGFRValue|>=90,mL/min/{1.73_m2}||$gt0206|renalFailureStage2-5|==null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0068.term}",
+            "detail": "{$gt0069.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE guideline Hypertension in adults: diagnosis and management",
+              "url": "https://www.nice.org.uk/guidance/cg127",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "5d447333-3f49-4132-a71b-6131926cbdc5",
+                "label": "{$gt0073.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0074.term}",
+                    "resource_template": {
+                      "template_id": "gt0041",
+                      "assignments": [
+                        "$gt0047=($currentDateTime)",
+                        "$gt0044=$gt0092.term",
+                        "$gt0045='g0005'",
+                        "$gt0046=$gt0093.term",
+                        "$gt0043=$gt0094.term",
+                        "$gt0042='behavioral'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Lifestyle Management"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "typeIIDiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Type 2 Diabetes",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "hypertensionDiagnosis",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Hypertension Diagnosis",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "heartFailureDiagnosis",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Heart Failure Diagnosis",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "alcoholicDrinksPerWeek",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "stop smoking"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Tobacco Smoking Status",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Alcoholic drinks per week",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "reduce alcohol"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "increase physical activity and diet change"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "noOfAlcoholicDrinksPerWeek",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "tobaccoSmokingStatus",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "FHIR-STU3-Goal.generic.v0"
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "code",
+            "description": "/category[0]/coding[0]"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "value",
+            "description": "/category[0]/coding[0]"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "value",
+            "description": "/description/coding[0]"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "code",
+            "description": "/description/coding[0]"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "Life advice about tobacco smoking",
+            "description": "summaryValue"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "Patients should be strongly advised not to smoke. Consider referral to smoking cessation services.",
+            "description": "detailValue"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Stop Smoking Followup Goal",
+            "description": "labelValue"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "Stop Smoking",
+            "description": "descriptionValue"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "Life advice about alcohol consumption",
+            "description": "summaryValue"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "Patients with alcohol-related heart failure, or diabetes should abstain from drinking alcohol. Discuss alcohol consumption with the patient and tailor the advice appropriately to the clinical circumstances.",
+            "description": "detailValue"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "Reduce Alcohol Consumption Followup Goal",
+            "description": "labelValue"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "Reduce Alcohol Consumption",
+            "description": "descriptionValue"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "General Life Advice",
+            "description": "summaryValue"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "Recommend increasing physical activity and dietary change if necessary",
+            "description": "detailValue"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "Increase Physical Activity and Comply with the dietary restrictions",
+            "description": "labelValue"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "Increase Physical Activity Goal",
+            "description": "descriptionValue"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Comply with the dietary restrictions. Evaluate every 6 months",
+            "description": "descriptionValue"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Smoker",
+            "description": ""
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Occasional smoker",
+            "description": ""
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "Moderate smoker",
+            "description": ""
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Heavy smoker",
+            "description": ""
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "currentSmokingStatus",
+            "description": ""
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "Stop smoking",
+            "description": ""
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "Stop smoking",
+            "description": ""
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "Behavioral",
+            "description": ""
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "Reduce alcohol consumption",
+            "description": ""
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "Reduce alcohol consumption",
+            "description": ""
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "Behavioral",
+            "description": ""
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "Increase physical activity",
+            "description": ""
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "Increase physical activity",
+            "description": ""
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Behavioral",
+            "description": ""
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "Comply with dietary recommendations",
+            "description": ""
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "Comply with dietary recommendations",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Dietary",
+            "description": ""
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "tobaccoUseEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "alcoholUseEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0201": {
+            "id": "gt0201",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt0202": {
+            "id": "gt0202",
+            "text": "eGFRValue",
+            "description": ""
+          },
+          "gt0203": {
+            "id": "gt0203",
+            "text": "eGFReffectiveDateTime",
+            "description": ""
+          },
+          "gt0206": {
+            "id": "gt0206",
+            "text": "renalFailureStage2-5",
+            "description": ""
+          }
+        }
+      },
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Livsstilshandläggning"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "typ2DiabetesDiagnos",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Typ 2-diabetes",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "högtBlodtryckDiagnos",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Högt blodtryck",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "hjärtsviktDiagnos",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Hjärtsvikt",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "alkoholkonsumtionOmVecka",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Sluta röka",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Rökningstatus",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Alkoholkonsumtion om vecka",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Minska alkoholkonsumtionen",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Förhöja fysisk träning och hälsosamt ätande",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "alkoholkonsumtionOmVecka",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "rökningStatus",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "FHIR-STU3-Goal.generic.v0",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "code",
+            "description": "/category[0]/coding[0]"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "value",
+            "description": "/category[0]/coding[0]"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "value",
+            "description": "/description/coding[0]"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "code",
+            "description": "/description/coding[0]"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "Livsstilsråd om rökning",
+            "description": "summaryValue"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "Ge patienter råd om att sluta röka. Överväg remiss till rökavvänjningsenhet.",
+            "description": "detailValue"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Uppföljningsmål för rökstopp",
+            "description": "labelValue"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "Sluta röka",
+            "description": "descriptionValue"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "Livsstilsråd om alkoholkonsumtion",
+            "description": "summaryValue"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "Patienter som har alkoholrelaterad hjärtsvikt eller diabetes bör avstå från att dricka alkohol. Diskutera alkoholkonsumtionen med patienten och anpassa rådgivningen efter de kliniska omständigheterna.",
+            "description": "detailValue"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "Uppföljningsmål för minskad alkoholkonsumtion",
+            "description": "labelValue"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "Minska alkoholkonsumtionen",
+            "description": "descriptionValue"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "Allmän livsstilsrådgivning",
+            "description": "summaryValue"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "Rekommendera ökad fysisk aktivitet och kostomläggning om nödvändigt",
+            "description": "detailValue"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "Öka mängden fysisk aktivitet och Följ kostråden",
+            "description": "labelValue"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "Mål för ökad fysisk aktivitet",
+            "description": "descriptionValue"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Följ kostråden. Utvärdera var sjätte månad",
+            "description": "descriptionValue"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Rökare",
+            "description": ""
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Enstaka rökare",
+            "description": ""
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "Måttlig rökare",
+            "description": ""
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Storrökare",
+            "description": ""
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "nuvarandeRökningStatus",
+            "description": ""
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "Sluta röka",
+            "description": ""
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "Sluta röka",
+            "description": ""
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "Beteende",
+            "description": ""
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "Minska alkoholkonsumtionen",
+            "description": ""
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "Minska alkoholkonsumtionen",
+            "description": ""
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "Beteende",
+            "description": ""
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "Öka mängden fysisk aktivitet",
+            "description": ""
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "Öka mängden fysisk aktivitet",
+            "description": ""
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Beteende",
+            "description": ""
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "Följ kostråden",
+            "description": ""
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "Följ kostråden",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Kost",
+            "description": ""
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "tobaccoUseEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "alcoholUseEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0201": {
+            "id": "gt0201",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt0202": {
+            "id": "gt0202",
+            "text": "eGFRValue",
+            "description": ""
+          },
+          "gt0203": {
+            "id": "gt0203",
+            "text": "eGFReffectiveDateTime",
+            "description": ""
+          },
+          "gt0206": {
+            "id": "gt0206",
+            "text": "renalFailureStage2-5",
+            "description": ""
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes - Manejo del estilo de vida"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "typeIIDiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Type 2 Diabetes",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "hypertensionDiagnosis",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Hypertension Diagnosis",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "heartFailureDiagnosis",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Heart Failure Diagnosis",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "alcoholicDrinksPerWeek",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "stop smoking",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Tobacco Smoking Status",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Alcoholic drinks per week",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "reduce alcohol",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "increase physical activity and diet change",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "noOfAlcoholicDrinksPerWeek",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "tobaccoSmokingStatus",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "FHIR-STU3-Goal.generic.v0",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "code",
+            "description": "/category[0]/coding[0]"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "value",
+            "description": "/category[0]/coding[0]"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "value",
+            "description": "/description/coding[0]"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "code",
+            "description": "/description/coding[0]"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "value",
+            "description": "/description/text"
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "value",
+            "description": "/startDate"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "Consejos de vida sobre el tabaquismo",
+            "description": "summaryValue"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "Se debe aconsejar a los pacientes que no fumen. Considere la posibilidad de derivarlo a los programas de deshabituación",
+            "description": "detailValue"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Dejar de fumar; meta de seguimiento",
+            "description": "labelValue"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "Deje de fumar",
+            "description": "descriptionValue"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "Consejos de vida sobre el consumo de alcohol",
+            "description": "summaryValue"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "Los pacientes con insuficiencia cardíaca relacionada con el alcohol o diabetes, deben abstenerse de beber alcohol. Trate el consumo de alcohol con el paciente y adapte los consejos a las circunstancias clínicas.",
+            "description": "detailValue"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "Reduzca el consumo de alcohol; meta de seguimiento",
+            "description": "labelValue"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "Reduzca el consumo de alcohol",
+            "description": "descriptionValue"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "Consejos generales de vida",
+            "description": "summaryValue"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "Recomiende aumentar la actividad física y el cambio de dieta si es necesario",
+            "description": "detailValue"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "Aumente la actividad física y cumplacon las restricciones dietéticas",
+            "description": "labelValue"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "Meta aumentar la actividad física",
+            "description": "descriptionValue"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Cumpla con las restricciones dietéticas. Evalúe cada 6 meses",
+            "description": "descriptionValue"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Smoker",
+            "description": ""
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Occasional smoker",
+            "description": ""
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "Moderate smoker",
+            "description": ""
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Heavy smoker",
+            "description": ""
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "currentSmokingStatus",
+            "description": ""
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "Deje de fumar",
+            "description": ""
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "Deje de fumar",
+            "description": ""
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "Comportamiento",
+            "description": ""
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "Reduzca el consumo de alcohol",
+            "description": ""
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "Reduzca el consumo de alcohol",
+            "description": ""
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "Comportamiento",
+            "description": ""
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "Aumente la actividad física",
+            "description": ""
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "Aumente la actividad física",
+            "description": ""
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Comportamiento",
+            "description": ""
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "Cumpla con las recomendaciones dietéticas",
+            "description": ""
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "Cumpla con las recomendaciones dietéticas",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Dieta",
+            "description": ""
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "tobaccoUseEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "alcoholUseEffectiveDateTime",
+            "description": "/effectiveDateTime"
+          },
+          "gt0201": {
+            "id": "gt0201",
+            "text": "eGFR",
+            "description": ""
+          },
+          "gt0202": {
+            "id": "gt0202",
+            "text": "eGFRValue",
+            "description": ""
+          },
+          "gt0203": {
+            "id": "gt0203",
+            "text": "eGFReffectiveDateTime",
+            "description": ""
+          },
+          "gt0206": {
+            "id": "gt0206",
+            "text": "renalFailureStage2-5",
+            "description": ""
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ICD-10-SE": {
+        "id": "ICD-10-SE",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "ICD-10-SE::I50",
+              "ICD-10-SE::I110",
+              "ICD-10-SE::I130",
+              "ICD-10-SE::I132"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10-SE::I10"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-SE::E11",
+              "ICD-10-SE::G632"
+            ]
+          },
+          "gt0207": {
+            "codes": [
+              "ICD-10-SE::N182",
+              "ICD-10-SE::N183",
+              "ICD-10-SE::N184",
+              "ICD-10-SE::N185"
+            ]
+          }
+        }
+      },
+      "ICD-10-UK": {
+        "id": "ICD-10-UK",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "ICD-10-UK::I50",
+              "ICD-10-UK::I11.0",
+              "ICD-10-UK::I13.0",
+              "ICD-10-UK::I13.2"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10-UK::I10"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-UK::E11",
+              "ICD-10-UK::G63.2"
+            ]
+          },
+          "gt0207": {
+            "codes": [
+              "ICD-10-UK::N18.2",
+              "ICD-10-UK::N18.3",
+              "ICD-10-UK::N18.4",
+              "ICD-10-UK::N18.5"
+            ]
+          }
+        }
+      },
+      "ICD-10": {
+        "id": "ICD-10",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "ICD-10::I50",
+              "ICD-10::I11.0",
+              "ICD-10::I13.0",
+              "ICD-10::I13.2"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10::I10"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10::E11",
+              "ICD-10::G63.2"
+            ]
+          },
+          "gt0207": {
+            "codes": [
+              "ICD-10::N18.2",
+              "ICD-10::N18.3",
+              "ICD-10::N18.4",
+              "ICD-10::N18.5"
+            ]
+          }
+        }
+      },
+      "LOINC": {
+        "id": "LOINC",
+        "bindings": {
+          "gt0021": {
+            "codes": [
+              "LOINC::44940-5"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "LOINC::72166-2"
+            ]
+          },
+          "gt0080": {
+            "codes": [
+              "LOINC::64234-8"
+            ]
+          },
+          "gt0081": {
+            "codes": [
+              "LOINC::64234-8"
+            ]
+          },
+          "gt0204": {
+            "codes": [
+              "LOINC::33914-3"
+            ]
+          }
+        }
+      },
+      "CIE-10-CM-ES": {
+        "id": "CIE-10-CM-ES",
+        "bindings": {
+          "gt0004": {
+            "codes": [
+              "CIE-10-CM-ES::E11",
+              "CIE-10-CM-ES::E13.11",
+              "CIE-10-CM-ES::E10.10"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "CIE-10-CM-ES::I10"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "CIE-10-CM-ES::I50"
+            ]
+          },
+          "gt0207": {
+            "codes": [
+              "CIE-10-CM-ES::N18.2",
+              "CIE-10-CM-ES::N18.3",
+              "CIE-10-CM-ES::N18.4",
+              "CIE-10-CM-ES::N18.5"
+            ]
+          }
+        }
+      },
+      "DBP": {
+        "id": "DBP",
+        "bindings": {
+          "gt0021": {
+            "codes": [
+              "DBP::13"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "DBP::12"
+            ]
+          },
+          "gt0080": {
+            "codes": [
+              "DBP::16025",
+              "DBP::15696"
+            ]
+          },
+          "gt0082": {
+            "codes": [
+              "DBP::16025"
+            ]
+          },
+          "gt0084": {
+            "codes": [
+              "DBP::15696"
+            ]
+          },
+          "gt0204": {
+            "codes": [
+              "DBP::33382"
+            ]
+          }
+        }
+      },
+      "NPU": {
+        "id": "NPU",
+        "bindings": {
+          "gt0204": {
+            "codes": [
+              "NPU::EGFRKRE",
+              "NPU::SWE05406",
+              "NPU::SWE05405",
+              "NPU::SWE05404",
+              "NPU::SWE05387",
+              "NPU::SWE05386",
+              "NPU::SWE05385"
+            ]
+          }
+        }
+      },
+      "READ2": {
+        "id": "READ2",
+        "bindings": {
+          "gt0004": {
+            "codes": [
+              "READ2::C10F",
+              "READ2::F1711",
+              "READ2::C107",
+              "READ2::C104",
+              "READ2::C101",
+              "READ2::F372",
+              "READ2::EMISNQHO137"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "READ2::G2"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "READ2::G58",
+              "READ2::G5yy9"
+            ]
+          },
+          "gt0021": {
+            "codes": [
+              "READ2::136"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "READ2::137"
+            ]
+          },
+          "gt0080": {
+            "codes": [
+              "READ2::137C",
+              "READ2::137G",
+              "READ2::137H",
+              "READ2::137J",
+              "READ2::137P",
+              "READ2::137R",
+              "READ2::137V",
+              "READ2::137a",
+              "READ2::137b",
+              "READ2::137c",
+              "READ2::137d",
+              "READ2::137e",
+              "READ2::1377",
+              "READ2::1372",
+              "READ2::1373",
+              "READ2::1374",
+              "READ2::1375",
+              "READ2::1376"
+            ]
+          },
+          "gt0081": {
+            "codes": [
+              "READ2::137C",
+              "READ2::137G",
+              "READ2::137H",
+              "READ2::137J",
+              "READ2::137P",
+              "READ2::137R",
+              "READ2::137V",
+              "READ2::137a",
+              "READ2::137b",
+              "READ2::137c",
+              "READ2::137d",
+              "READ2::137e",
+              "READ2::1377"
+            ]
+          },
+          "gt0082": {
+            "codes": [
+              "READ2::137G"
+            ]
+          },
+          "gt0083": {
+            "codes": [
+              "READ2::1372",
+              "READ2::1373"
+            ]
+          },
+          "gt0084": {
+            "codes": [
+              "READ2::1374",
+              "READ2::1375",
+              "READ2::1376"
+            ]
+          },
+          "gt0204": {
+            "codes": [
+              "READ2::451E"
+            ]
+          },
+          "gt0207": {
+            "codes": [
+              "READ2::1Z11",
+              "READ2::1Z12",
+              "READ2::1Z13",
+              "READ2::1Z14",
+              "READ2::K052",
+              "READ2::K053",
+              "READ2::K054",
+              "READ2::K055"
+            ]
+          }
+        }
+      },
+      "SNOMED-CT": {
+        "id": "SNOMED-CT",
+        "bindings": {
+          "gt0004": {
+            "codes": [
+              "SNOMED-CT::44054006",
+              "SNOMED-CT::420436000",
+              "SNOMED-CT::423263001",
+              "SNOMED-CT::421895002",
+              "SNOMED-CT::421707005",
+              "SNOMED-CT::395204000",
+              "SNOMED-CT::120731000119103",
+              "SNOMED-CT::420662003",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::421847006",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::420422005",
+              "SNOMED-CT::49455004"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "SNOMED-CT::38341003"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "SNOMED-CT::84114007",
+              "SNOMED-CT::42343007",
+              "SNOMED-CT::134401001"
+            ]
+          },
+          "gt0083": {
+            "codes": [
+              "SNOMED-CT::56578002"
+            ]
+          },
+          "gt0084": {
+            "codes": [
+              "SNOMED-CT::56771006"
+            ]
+          },
+          "gt0080": {
+            "codes": [
+              "SNOMED-CT::77176002",
+              "SNOMED-CT::428041000124106",
+              "SNOMED-CT::56578002",
+              "SNOMED-CT::56771006"
+            ]
+          },
+          "gt0081": {
+            "codes": [
+              "SNOMED-CT::77176002"
+            ]
+          },
+          "gt0082": {
+            "codes": [
+              "SNOMED-CT::428041000124106"
+            ]
+          },
+          "gt0207": {
+            "codes": [
+              "SNOMED-CT::431857002",
+              "SNOMED-CT::433146000",
+              "SNOMED-CT::433144002",
+              "SNOMED-CT::431856006"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2627 @@
+{
+  "id": "diabetic_foot_problem.v1",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2018-05-06",
+      "organisation": "Cambio Healthcare Systems"
+    },
+    "lifecycle_state": "Author draft",
+    "details": {
+      "sv": {
+        "id": "sv",
+        "purpose": "FHIR-baserade cds-regler för demonstrationsändamål."
+      },
+      "en": {
+        "id": "en",
+        "purpose": "Sample fhir-based cds-rules for demonstration purposes only."
+      },
+      "es": {
+        "id": "es",
+        "purpose": "Ejemplos de reglas de cds basadas en fhir para propósitos de demostración"
+      }
+    },
+    "other_details": {
+      "references": "1. NICE diabetes guideline Chapter 1.7.11 [48, p. 28]."
+    },
+    "references": [
+      {
+        "id": "1",
+        "label": "NICE diabetes guideline Chapter 1.7.11 [48, p. 28].",
+        "url": "https://www.nice.org.uk/guidance/ng19"
+      }
+    ]
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0004|type2DiabetesDiagnosis|"
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0007|ulcerationOfFootDiagnosis|"
+        ]
+      },
+      "gt0008": {
+        "id": "gt0008",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0010|spreadingInfectionDiagnosis|"
+        ]
+      },
+      "gt0011": {
+        "id": "gt0011",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0013|criticalLimbIschaemiaDiagnosis|"
+        ]
+      },
+      "gt0014": {
+        "id": "gt0014",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0015": {
+            "id": "gt0015",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0016|gangreneDiagnosis|"
+        ]
+      },
+      "gt0017": {
+        "id": "gt0017",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0019|suspicionOfAcuteArthropathyDiagnosis|"
+        ]
+      },
+      "gt0025": {
+        "id": "gt0025",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+        "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0026": {
+            "id": "gt0026",
+            "path": "/medicationCodeableConcept/coding[0]"
+          }
+        },
+        "predicates": [
+          "/medicationCodeableConcept/coding[0] is_a local::gt0027|previousUlcerationTherapy|"
+        ]
+      },
+      "gt0028": {
+        "id": "gt0028",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0029": {
+            "id": "gt0029",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0030|amputationDiagnosis|"
+        ]
+      },
+      "gt0031": {
+        "id": "gt0031",
+        "model_id": "org.hl7.fhir.dstu3.model.Procedure",
+        "template_id": "FHIR-STU3-Procedure.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0032": {
+            "id": "gt0032",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0033|renalReplacementTherapyProcedure|"
+        ]
+      },
+      "gt0034": {
+        "id": "gt0034",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0035": {
+            "id": "gt0035",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0036|neuropathyDiagnosis|"
+        ]
+      },
+      "gt0037": {
+        "id": "gt0037",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0038": {
+            "id": "gt0038",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0039|nonCriticalLimbIschaemiaDiagnosis|"
+        ]
+      },
+      "gt0040": {
+        "id": "gt0040",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0041": {
+            "id": "gt0041",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0042|callusOfLimbDiagnosis|"
+        ]
+      },
+      "gt0043": {
+        "id": "gt0043",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0044": {
+            "id": "gt0044",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0045|deformityOfLimbDiagnosis|"
+        ]
+      },
+      "gt0118": {
+        "id": "gt0118",
+        "model_id": "org.hl7.fhir.dstu3.model.Procedure",
+        "template_id": "FHIR-STU3-Procedure.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0119": {
+            "id": "gt0119",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0120|amputationProcedure|"
+        ]
+      }
+    },
+    "templates": {
+      "gt0079": {
+        "id": "gt0079",
+        "model_id": "org.hl7.fhir.dstu3.model.ReferralRequest",
+        "template_id": "FHIR-STU3-ReferralRequest.generic.v0",
+        "object": {
+          "specialty": {
+            "coding": [
+              {
+                "code": "{$gt0083}",
+                "system": "http://snomed.info/sct",
+                "display": "{$gt0082}"
+              }
+            ]
+          },
+          "authoredOn": "{$gt0080}",
+          "description": "{$gt0081}",
+          "intent": "proposal",
+          "status": "draft",
+          "resourceType": "ReferralRequest"
+        }
+      },
+      "gt0093": {
+        "id": "gt0093",
+        "model_id": "org.hl7.fhir.dstu3.model.Appointment",
+        "template_id": "FHIR-STU3-Appointment.generic.v0",
+        "object": {
+          "appointmentType": {
+            "coding": [
+              {
+                "code": "FOLLOWUP",
+                "system": "http://hl7.org/fhir/v2/0276",
+                "display": "{$gt5100}"
+              }
+            ]
+          },
+          "start": "{$gt0094}",
+          "description": "{$gt0095}",
+          "status": "proposed",
+          "resourceType": "Appointment"
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0003|Type 2 Diabetes|!=null"
+    ],
+    "rules": {
+      "gt0020": {
+        "id": "gt0020",
+        "priority": 4,
+        "when": [
+          "(($gt0006|Ulceration of foot|!=null)||($gt0009|Spreading infection|!=null))||(($gt0012|Critical limb ischaemia|!=null)||(($gt0015|Gangrene|!=null)||($gt0018|Suspicion of an acute arthropathy|!=null)))"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0071.term}",
+            "detail": "{$gt0072.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline Chapter 1.7.11 [48, p. 28].",
+              "url": "https://www.nice.org.uk/guidance/ng19",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "245254a2-3ede-4456-8fa7-97954b23064d",
+                "label": "{$gt0076.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0078.term}",
+                    "resource_template": {
+                      "template_id": "gt0079",
+                      "assignments": [
+                        "$gt0080=$currentDateTime",
+                        "$gt0081=$gt0141.term",
+                        "$gt0082=$gt0142.term",
+                        "$gt0083='408288004'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0046": {
+        "id": "gt0046",
+        "priority": 3,
+        "when": [
+          "!fired($gt0020)",
+          "((((($gt0026|Previous ulceration therapy|!=null)||($gt0029|Amputation condition|!=null))||($gt0119|Amputation procedure|!=null))||($gt0032|Renal replacement therapy|!=null))||(($gt0035|Neuropathy|!=null)&&($gt0038|Non-critical limb ischaemia|!=null)))||((($gt0035|Neuropathy|!=null)&&($gt0041|Callus of limb|!=null))||((($gt0035|Neuropathy|!=null)&&($gt0044|Deformity of limb|!=null))||((($gt0038|Non-critical limb ischaemia|!=null)&&($gt0041|Callus of limb|!=null))||(($gt0038|Non-critical limb ischaemia|!=null)&&($gt0044|Deformity of limb|!=null)))))"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0085.term}",
+            "detail": "{$gt0086.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline Chapter 1.7.11 [48, p. 28].",
+              "url": "https://www.nice.org.uk/guidance/ng19",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "a81722ec-56d0-48aa-bb33-e1f7592a3156",
+                "label": "{$gt0090.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0092.term}",
+                    "resource_template": {
+                      "template_id": "gt0079",
+                      "assignments": [
+                        "$gt0080=$currentDateTime",
+                        "$gt0081=$gt0143.term",
+                        "$gt0082=$gt0144.term",
+                        "$gt0083='408286000'"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt0097.term}",
+                    "resource_template": {
+                      "template_id": "gt0093",
+                      "assignments": [
+                        "$gt0094=$currentDateTime+42,d",
+                        "$gt0095=$gt0145.term",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0051": {
+        "id": "gt0051",
+        "priority": 2,
+        "when": [
+          "!fired($gt0020)",
+          "!fired($gt0046)",
+          "($gt0035|Neuropathy|!=null)||(($gt0044|Deformity of limb|!=null)||($gt0038|Non-critical limb ischaemia|!=null))"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0099.term}",
+            "detail": "{$gt0100.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline Chapter 1.7.11 [48, p. 28].",
+              "url": "https://www.nice.org.uk/guidance/ng19",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "4bcd8080-0b36-480d-9284-009464dc32b0",
+                "label": "{$gt0104.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0106.term}",
+                    "resource_template": {
+                      "template_id": "gt0079",
+                      "assignments": [
+                        "$gt0080=$currentDateTime",
+                        "$gt0081=$gt0146.term",
+                        "$gt0082=$gt0147.term",
+                        "$gt0083='408286000'"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "create",
+                    "description": "{$gt0108.term}",
+                    "resource_template": {
+                      "template_id": "gt0093",
+                      "assignments": [
+                        "$gt0094=$currentDateTime+3,mo",
+                        "$gt0095=$gt0148.term",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0056": {
+        "id": "gt0056",
+        "priority": 1,
+        "when": [
+          "!fired($gt0020)",
+          "!fired($gt0046)",
+          "!fired($gt0051)"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0110.term}",
+            "detail": "{$gt0111.term}",
+            "indicator": "info",
+            "source": {
+              "label": "NICE diabetes guideline Chapter 1.7.11 [48, p. 28].",
+              "url": "https://www.nice.org.uk/guidance/ng19",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "728fa7ff-acba-4123-9673-9daa339fec5b",
+                "label": "{$gt0115.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0117.term}",
+                    "resource_template": {
+                      "template_id": "gt0093",
+                      "assignments": [
+                        "$gt0094=$currentDateTime+1,a",
+                        "$gt0095=$gt0149.term",
+                        "$gt5100=$gt5000.term"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetic Foot Problem"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Type 2 Diabetes",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "type2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Ulceration of foot",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "ulcerationOfFootDiagnosis",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Spreading infection",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "spreadingInfectionDiagnosis",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Critical limb ischaemia",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "criticalLimbIschaemiaDiagnosis",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Gangrene",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "gangreneDiagnosis",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Suspicion of an acute arthropathy",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "suspicionOfAcuteArthropathyDiagnosis",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "C1=YES (Card 1)"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Previous ulceration therapy",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "previousUlcerationTherapy",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Amputation condition",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "amputationDiagnosis",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Renal replacement therapy",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "renalReplacementTherapyProcedure",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Neuropathy",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "neuropathyDiagnosis",
+            "description": ""
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "Non-critical limb ischaemia",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "nonCriticalLimbIschaemiaDiagnosis",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Callus of limb",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "callusOfLimbDiagnosis",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "Deformity of limb",
+            "description": ""
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "deformityOfLimbDiagnosis",
+            "description": ""
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "C1=NO & C2=YES (Card 2)"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "C1=NO & C2=NO & C3=YES (Card 3)"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "C1=NO & C2=NO & C3=NO (Card 4)"
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "Copy of Copy of C1=NO & C2=NO & C3=YES (Card 3)"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "value",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "code",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "FHIR-STU3-Appointment.generic.v0"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "Immediate referral to general surgery.",
+            "description": "summaryValue"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "Immediate referral to general surgery. Also notify multidisciplinary foot care team.",
+            "description": "detailValue"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "Immediate referral to general surgery.",
+            "description": "labelValue"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Referral to specialist services",
+            "description": "descriptionValue"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "value",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "code",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "Referral to foot protection service within 2-4 weeks and 1 to 2 monthly foot assessment visit.",
+            "description": "summaryValue"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "Referral to foot protection service within 2-4 weeks and 1 to 2 monthly foot assessment visit.",
+            "description": "detailValue"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "Referral to foot protection service within 2-4 weeks and 1 to 2 monthly foot assessment visit.",
+            "description": "labelValue"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "Referral to specialist services",
+            "description": "descriptionValue"
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "FHIR-STU3-Appointment.generic.v0"
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Appointment for foot assessment visit",
+            "description": "descriptionValue"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "Referral to foot protection service within 6-8 weeks and 3 to 6 monthly foot assessment visit.",
+            "description": "summaryValue"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "Referral to foot protection service within 6-8 weeks and 3 to 6 monthly foot assessment visit.",
+            "description": "detailValue"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "Referral to foot protection service within 6-8 weeks and 3 to 6 monthly foot assessment visit.",
+            "description": "labelValue"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "Referral to specialist services",
+            "description": "descriptionValue"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "Appointment for foot assessment visit",
+            "description": "descriptionValue"
+          },
+          "gt0110": {
+            "id": "gt0110",
+            "text": "Appointment for annual control visit",
+            "description": "summaryValue"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "Appointment for annual control visit (Diabetic Foot Problem Management)",
+            "description": "detailValue"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "Appointment for annual control visit",
+            "description": "labelValue"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "Appointment for foot assessment visit",
+            "description": "descriptionValue"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "Amputation procedure",
+            "description": ""
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "amputationProcedure",
+            "description": ""
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "descriptionValue",
+            "description": "descriptionValue"
+          },
+          "gt0140": {
+            "id": "gt0140",
+            "text": "Referral to a multidisciplinary foot care team.",
+            "description": "Referral to a multidisciplinary foot care team."
+          },
+          "gt0141": {
+            "id": "gt0141",
+            "text": "Referral to specialist services",
+            "description": ""
+          },
+          "gt0142": {
+            "id": "gt0142",
+            "text": "General surgery",
+            "description": ""
+          },
+          "gt0143": {
+            "id": "gt0143",
+            "text": "Referral to specialist services",
+            "description": ""
+          },
+          "gt0144": {
+            "id": "gt0144",
+            "text": "Referral to footcare protection program",
+            "description": ""
+          },
+          "gt0145": {
+            "id": "gt0145",
+            "text": "Appointment for foot assessment visit",
+            "description": ""
+          },
+          "gt0146": {
+            "id": "gt0146",
+            "text": "Referral to specialist services",
+            "description": ""
+          },
+          "gt0147": {
+            "id": "gt0147",
+            "text": "Referral to footcare protection program",
+            "description": ""
+          },
+          "gt0148": {
+            "id": "gt0148",
+            "text": "Appointment for foot assessment visit",
+            "description": ""
+          },
+          "gt0149": {
+            "id": "gt0149",
+            "text": "Appointment for foot assessment visit",
+            "description": ""
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "FOLLOWUP",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          }
+        }
+      },
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Problem med diabetesfot"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Typ 2-diabetes",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "diagnosFörTyp2Diabetes",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Sårbildning på fot",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "diagnosFörSårPåFot",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Sepsis",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "diagnosFörSepsis",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Kritisk ischemi i ben",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "diagnosFörKritiskIschemiIBen",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Gangrän",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "diagnosFörGangrän",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Misstänkt inflammatorisk artrit",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "diagnosFörMisstänktInflammatoriskArtrit",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "C1=JA (Kort 1)",
+            "description": ""
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Medel vid sår- och brännskador",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "medelVidSårOchBrännskador",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Traumatisk amputation av underben",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "diagnosFörTraumatiskAmputationAvUnderben",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Kontinuerlig njurbytesterapi",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "åtgärdFörKontinuerligNjurbytesterapi",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Neuropati",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "diagnosFörNeuropati",
+            "description": ""
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "Ischemi i extremitet",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "diagnosFörIschemiIExtremitet",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Kallositet",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "diagnosFörKallositet",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "Deformitet i extremitet",
+            "description": ""
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "diagnosFörDeformitetIExtremitet",
+            "description": ""
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "C1=NEJ & C2=JA (Kort 2)",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "C1=NEJ & C2=NEJ & C3=JA (Kort 3)",
+            "description": ""
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "C1=NEJ & C2=NEJ & C3=NEJ (Kort 4)",
+            "description": ""
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "Kopia av Kopia av C1=NEJ & C2=NEJ & C3=JA (Kort 3)",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0",
+            "description": ""
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "value",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "code",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "FHIR-STU3-Appointment.generic.v0",
+            "description": ""
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "Remittera akut till multidisciplinärt fotvårdsteam",
+            "description": "summaryValue"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "Remittera akut till multidisciplinärt fotvårdsteam.",
+            "description": "detailValue"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "Remittera akut till multidisciplinärt fotvårdsteam.",
+            "description": "labelValue"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Remittera till specialist",
+            "description": "descriptionValue"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0",
+            "description": ""
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "value",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "code",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "Remittera till fotskyddstjänst inom 2-4 veckor samt 1-2 månatliga besök för fotbedömning.",
+            "description": "summaryValue"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "Remittera till fotskyddstjänst inom 2-4 veckor samt 1-2 månatliga besök för fotbedömning.",
+            "description": "detailValue"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "Remittera till fotskyddstjänst inom 2-4 veckor samt 1-2 månatliga besök för fotbedömning.",
+            "description": "labelValue"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "Remittera till specialist",
+            "description": "descriptionValue"
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "FHIR-STU3-Appointment.generic.v0",
+            "description": ""
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Boka besökstid för fotbedömning.",
+            "description": "descriptionValue"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "Remittera till fotvård inom 6-8 veckor samt 3-6 månatliga besök för fotbedömning.",
+            "description": "summaryValue"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "Remittera till fotvård inom 6-8 veckor samt 3-6 månatliga besök för fotbedömning.",
+            "description": "detailValue"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "Remittera till fotvård inom 6-8 veckor samt 3-6 månatliga besök för fotbedömning.",
+            "description": "labelValue"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "Remittera till specialist",
+            "description": "descriptionValue"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "Boka besökstid för fotbedömning.",
+            "description": "descriptionValue"
+          },
+          "gt0110": {
+            "id": "gt0110",
+            "text": "Boka besökstid för årlig kontroll.",
+            "description": "summaryValue"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "Boka besökstid för årlig kontroll (bedömning av diabetesfot)",
+            "description": "detailValue"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "Boka besökstid för årligt kontroll.",
+            "description": "labelValue"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "Boka besökstid för fotbedömning.",
+            "description": "descriptionValue"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "Amputation av ben",
+            "description": ""
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "amputationAvBen",
+            "description": ""
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "descriptionValue",
+            "description": "descriptionValue"
+          },
+          "gt0140": {
+            "id": "gt0140",
+            "text": "Remittera till multidisciplinärt fotvårdsteam.",
+            "description": "Remittera till multidisciplinärt fotvårdsteam."
+          },
+          "gt0141": {
+            "id": "gt0141",
+            "text": "Remittering till specialisttjänster",
+            "description": ""
+          },
+          "gt0142": {
+            "id": "gt0142",
+            "text": "Multidisciplinärt fotvårdsteam",
+            "description": ""
+          },
+          "gt0143": {
+            "id": "gt0143",
+            "text": "Remittering till specialisttjänster",
+            "description": ""
+          },
+          "gt0144": {
+            "id": "gt0144",
+            "text": "Remittera till fotvård",
+            "description": ""
+          },
+          "gt0145": {
+            "id": "gt0145",
+            "text": "Boka besökstid för fotbedömning.",
+            "description": ""
+          },
+          "gt0146": {
+            "id": "gt0146",
+            "text": "Remittering till specialisttjänster",
+            "description": ""
+          },
+          "gt0147": {
+            "id": "gt0147",
+            "text": "Remittera till fotvård",
+            "description": ""
+          },
+          "gt0148": {
+            "id": "gt0148",
+            "text": "Boka besökstid för fotbedömning.",
+            "description": ""
+          },
+          "gt0149": {
+            "id": "gt0149",
+            "text": "Boka besökstid för fotbedömning.",
+            "description": ""
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Upföjlning",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Problema del pie diabético"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Diabetes tipo 2",
+            "description": ""
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "type2DiabetesDiagnosis",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Ulceration of foot",
+            "description": ""
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "ulcerationOfFootDiagnosis",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Spreading infection",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "spreadingInfectionDiagnosis",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Critical limb ischaemia",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "criticalLimbIschaemiaDiagnosis",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Gangrene",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "gangreneDiagnosis",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Suspicion of an acute arthropathy",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "suspicionOfAcuteArthropathyDiagnosis",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "C1=YES (Card 1)"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Previous ulceration therapy",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "previousUlcerationTherapy",
+            "description": ""
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Amputation condition",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "amputationDiagnosis",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Renal replacement therapy",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "renalReplacementTherapyProcedure",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Neuropathy",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "neuropathyDiagnosis",
+            "description": ""
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "Non-critical limb ischaemia",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "nonCriticalLimbIschaemiaDiagnosis",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Callus of limb",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "callusOfLimbDiagnosis",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "Deformity of limb",
+            "description": ""
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "deformityOfLimbDiagnosis",
+            "description": ""
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "C1=NO & C2=YES (Card 2)"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "C1=NO & C2=NO & C3=YES (Card 3)"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "C1=NO & C2=NO & C3=NO (Card 4)"
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "Copy of Copy of C1=NO & C2=NO & C3=YES (Card 3)"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "value",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "code",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "FHIR-STU3-Appointment.generic.v0"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "Derivación urgente a Cirugía Vascular.",
+            "description": "summaryValue"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "Derivación urgente a Cirugía Vascular.",
+            "description": "detailValue"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "Derivación urgente a Cirugía Vascular.",
+            "description": "labelValue"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Derivación a especialista",
+            "description": "descriptionValue"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "FHIR-STU3-ReferralRequest.generic.v0"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "value",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "code",
+            "description": "/specialty/coding[0]"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "Derivación a Cirugía Vascular en 2-4 semanas y 1-2 visitas mensuales para la evaluación del pie.",
+            "description": "summaryValue"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "Derivación a Cirugía Vascular en 2-4 semanas y 1-2 visitas mensuales para la evaluación del pie.",
+            "description": "detailValue"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "Derivación a Cirugía Vascular en 2-4 semanas y 1-2 visitas mensuales para la evaluación del pie.",
+            "description": "labelValue"
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "Derivación a especialista",
+            "description": "descriptionValue"
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "FHIR-STU3-Appointment.generic.v0"
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "value",
+            "description": "/start"
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "value",
+            "description": "/description"
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Cita para la evaluación del pie.",
+            "description": "descriptionValue"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "Derivación a Cirugía Vascular en 6-8 semanas y de 3-6 visitas mensuales para la  evaluación del pie.",
+            "description": "summaryValue"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "Derivación a Cirugía Vascular en 6-8 semanas y de 3-6 visitas mensuales para la  evaluación del pie.",
+            "description": "detailValue"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "Derivación a Cirugía Vascular en 6-8 semanas y de 3-6 visitas mensuales para la  evaluación del pie.",
+            "description": "labelValue"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "Derivación a especialista.",
+            "description": "descriptionValue"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "Cita para la evaluación del pie.",
+            "description": "descriptionValue"
+          },
+          "gt0110": {
+            "id": "gt0110",
+            "text": "Cita para control anual.",
+            "description": "summaryValue"
+          },
+          "gt0111": {
+            "id": "gt0111",
+            "text": "Cita para visita de control anual (Manejo de problemas del pie diabético)",
+            "description": "detailValue"
+          },
+          "gt0112": {
+            "id": "gt0112",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0113": {
+            "id": "gt0113",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0114": {
+            "id": "gt0114",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0115": {
+            "id": "gt0115",
+            "text": "Cita para control anual.",
+            "description": "labelValue"
+          },
+          "gt0116": {
+            "id": "gt0116",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0117": {
+            "id": "gt0117",
+            "text": "Cita para la evaluación del pie.",
+            "description": "descriptionValue"
+          },
+          "gt0119": {
+            "id": "gt0119",
+            "text": "Amputation procedure",
+            "description": ""
+          },
+          "gt0120": {
+            "id": "gt0120",
+            "text": "amputationProcedure",
+            "description": ""
+          },
+          "gt0129": {
+            "id": "gt0129",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0130": {
+            "id": "gt0130",
+            "text": "descriptionValue",
+            "description": "descriptionValue"
+          },
+          "gt0140": {
+            "id": "gt0140",
+            "text": "Derivación a Cirugía Vascular.",
+            "description": "Referral to a multidisciplinary foot care team."
+          },
+          "gt0141": {
+            "id": "gt0141",
+            "text": "Derivación a especialista",
+            "description": ""
+          },
+          "gt0142": {
+            "id": "gt0142",
+            "text": "Equipo de Cirugía vascular para el cuidado del pie",
+            "description": ""
+          },
+          "gt0143": {
+            "id": "gt0143",
+            "text": "Derivación a especialista",
+            "description": ""
+          },
+          "gt0144": {
+            "id": "gt0144",
+            "text": "Derivación a Enfermería para ofrecer educación y medidas preventivas para evitar lesiones en el pie diabético",
+            "description": ""
+          },
+          "gt0145": {
+            "id": "gt0145",
+            "text": "Cita para la evaluación del pie.",
+            "description": ""
+          },
+          "gt0146": {
+            "id": "gt0146",
+            "text": "Derivación a especialista",
+            "description": ""
+          },
+          "gt0147": {
+            "id": "gt0147",
+            "text": "Derivación a Enfermería para ofrecer educación y medidas preventivas para evitar lesiones en el pie diabético",
+            "description": ""
+          },
+          "gt0148": {
+            "id": "gt0148",
+            "text": "Cita para la evaluación del pie.",
+            "description": ""
+          },
+          "gt0149": {
+            "id": "gt0149",
+            "text": "Cita para la evaluación del pie.",
+            "description": ""
+          },
+          "gt5000": {
+            "id": "gt5000",
+            "text": "Seguir",
+            "description": "/appointmentType/coding/display"
+          },
+          "gt5100": {
+            "id": "gt5100",
+            "text": "value",
+            "description": "/appointmentType/coding/display"
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ATC": {
+        "id": "ATC",
+        "bindings": {
+          "gt0027": {
+            "codes": [
+              "ATC::D03"
+            ]
+          }
+        }
+      },
+      "ICD-10-SE": {
+        "id": "ICD-10-SE",
+        "bindings": {
+          "gt0007": {
+            "codes": [
+              "ICD-10-SE::L98499"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "ICD-10-SE::M129"
+            ]
+          },
+          "gt0036": {
+            "codes": [
+              "ICD-10-SE::G589"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-SE::E11",
+              "ICD-10-SE::G632"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "ICD-10-SE::I702A",
+              "ICD-10-SE::E105B",
+              "ICD-10-SE::E115B",
+              "ICD-10-SE::R02"
+            ]
+          },
+          "gt0039": {
+            "codes": [
+              "ICD-10-SE::I70209"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "ICD-10-SE::B999"
+            ]
+          },
+          "gt0120": {
+            "codes": [
+              "ICD-10-SE::Z896"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "ICD-10-SE::Z992"
+            ]
+          },
+          "gt0045": {
+            "codes": [
+              "ICD-10-SE::M2190"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "ICD-10-SE::I702A",
+              "ICD-10-SE::I702C"
+            ]
+          },
+          "gt0030": {
+            "codes": [
+              "ICD-10-SE::S98",
+              "ICD-10-SE::S88"
+            ]
+          },
+          "gt0042": {
+            "codes": [
+              "ICD-10-SE::L84"
+            ]
+          }
+        }
+      },
+      "ICD-10": {
+        "id": "ICD-10",
+        "bindings": {
+          "gt0007": {
+            "codes": [
+              "ICD-10::L98.499"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "ICD-10::M12.9"
+            ]
+          },
+          "gt0036": {
+            "codes": [
+              "ICD-10::G58.9"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10::E11",
+              "ICD-10::G63.2"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "ICD-10::I96"
+            ]
+          },
+          "gt0039": {
+            "codes": [
+              "ICD-10::I70.209"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "ICD-10::B99.9"
+            ]
+          },
+          "gt0120": {
+            "codes": [
+              "ICD-10::Z89.6"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "ICD-10::Z99.2"
+            ]
+          },
+          "gt0045": {
+            "codes": [
+              "ICD-10::M21.90"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "ICD-10::I70.25"
+            ]
+          },
+          "gt0030": {
+            "codes": [
+              "ICD-10::S98",
+              "ICD-10::S88"
+            ]
+          },
+          "gt0042": {
+            "codes": [
+              "ICD-10::L84"
+            ]
+          }
+        }
+      },
+      "CIE-10-CM-ES": {
+        "id": "CIE-10-CM-ES",
+        "bindings": {
+          "gt0007": {
+            "codes": [
+              "CIE-10-CM-ES::L98.499"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "CIE-10-CM-ES::M12.9"
+            ]
+          },
+          "gt0036": {
+            "codes": [
+              "CIE-10-CM-ES::G58.9"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "CIE-10-CM-ES::E11",
+              "CIE-10-CM-ES::E13.11",
+              "CIE-10-CM-ES::E10.10"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "CIE-10-CM-ES::I96"
+            ]
+          },
+          "gt0039": {
+            "codes": [
+              "CIE-10-CM-ES::I70.209"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "CIE-10-CM-ES::B99.9"
+            ]
+          },
+          "gt0120": {
+            "codes": [
+              "CIE-10-CM-ES::Z89.6"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "CIE-10-CM-ES::Z99.2"
+            ]
+          },
+          "gt0045": {
+            "codes": [
+              "CIE-10-CM-ES::M21.90"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "CIE-10-CM-ES::I70.25"
+            ]
+          },
+          "gt0030": {
+            "codes": [
+              "CIE-10-CM-ES::S98",
+              "CIE-10-CM-ES::S88"
+            ]
+          },
+          "gt0042": {
+            "codes": [
+              "CIE-10-CM-ES::L84"
+            ]
+          }
+        }
+      },
+      "ICD-10-UK": {
+        "id": "ICD-10-UK",
+        "bindings": {
+          "gt0007": {
+            "codes": [
+              "ICD-10-UK::L98.499"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "ICD-10-UK::M12.9"
+            ]
+          },
+          "gt0036": {
+            "codes": [
+              "ICD-10-UK::G58.9"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-UK::E11",
+              "ICD-10-UK::G63.2"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "ICD-10-UK::I96"
+            ]
+          },
+          "gt0039": {
+            "codes": [
+              "ICD-10-UK::I70.209"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "ICD-10-UK::B99.9"
+            ]
+          },
+          "gt0120": {
+            "codes": [
+              "ICD-10-UK::Z89.6"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "ICD-10-UK::Z99.2"
+            ]
+          },
+          "gt0045": {
+            "codes": [
+              "ICD-10-UK::M21.90"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "ICD-10-UK::I70.25"
+            ]
+          },
+          "gt0030": {
+            "codes": [
+              "ICD-10-UK::S98",
+              "ICD-10-UK::S88"
+            ]
+          },
+          "gt0042": {
+            "codes": [
+              "ICD-10-UK::L84"
+            ]
+          }
+        }
+      },
+      "READ2": {
+        "id": "READ2",
+        "bindings": {
+          "gt0120": {
+            "codes": [
+              "READ2::7L06"
+            ]
+          },
+          "gt0010": {
+            "codes": [
+              "READ2::A38z"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "READ2::7L1A"
+            ]
+          },
+          "gt0045": {
+            "codes": [
+              "READ2::N36z"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "READ2::G733"
+            ]
+          },
+          "gt0030": {
+            "codes": [
+              "READ2::7L06"
+            ]
+          },
+          "gt0042": {
+            "codes": [
+              "READ2::M2010",
+              "READ2::M2011",
+              "READ2::M2012",
+              "READ2::M2014"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "READ2::M271"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "READ2::N06zA"
+            ]
+          },
+          "gt0036": {
+            "codes": [
+              "READ2::F367"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "READ2::C10F",
+              "READ2::F1711",
+              "READ2::C107",
+              "READ2::C104",
+              "READ2::C101",
+              "READ2::F372",
+              "READ2::EMISNQHO137"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "READ2::R054"
+            ]
+          }
+        }
+      },
+      "SNOMED-CT": {
+        "id": "SNOMED-CT",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "SNOMED-CT::105592009"
+            ]
+          },
+          "gt0120": {
+            "codes": [
+              "SNOMED-CT::397117006"
+            ]
+          },
+          "gt0033": {
+            "codes": [
+              "SNOMED-CT::714749008"
+            ]
+          },
+          "gt0045": {
+            "codes": [
+              "SNOMED-CT::445144002"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "SNOMED-CT::233962007"
+            ]
+          },
+          "gt0042": {
+            "codes": [
+              "SNOMED-CT::201040000"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "SNOMED-CT::95345008"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "SNOMED-CT::431956005"
+            ]
+          },
+          "gt0036": {
+            "codes": [
+              "SNOMED-CT::386033004"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "SNOMED-CT::44054006",
+              "SNOMED-CT::420436000",
+              "SNOMED-CT::423263001",
+              "SNOMED-CT::421895002",
+              "SNOMED-CT::421707005",
+              "SNOMED-CT::395204000",
+              "SNOMED-CT::120731000119103",
+              "SNOMED-CT::420662003",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::421847006",
+              "SNOMED-CT::127013003",
+              "SNOMED-CT::420422005",
+              "SNOMED-CT::49455004"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "SNOMED-CT::372070002"
+            ]
+          },
+          "gt0039": {
+            "codes": [
+              "SNOMED-CT::21631000119105"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

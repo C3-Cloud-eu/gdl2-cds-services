@@ -1,0 +1,2313 @@
+{
+  "id": "CKD_CVDPrevAndTreatment.v10",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2020-01-14",
+      "name": "Jacques BOUAUD",
+      "organisation": "AP-HP - LIMICS",
+      "email": "jacques.bouaud@aphp.fr"
+    },
+    "other_contributors": [
+      "Jacques BOUAUD",
+      "Brigitte SEROUSSI",
+      "Catherine DUCLOS"
+    ],
+    "lifecycle_state": "Author draft",
+    "details": {
+      "sv": {
+        "id": "sv",
+        "purpose": "To determine the drug treatment to prevent or treat cardiovascular disease.",
+        "keywords": [
+          "C3-Cloud",
+          "Chronic Kidney Disease",
+          "Renal Failure",
+          "CVD prevention",
+          "CVD treatment",
+          "Version 10"
+        ],
+        "misuse": "Implementation notes [2019/06/03 JB]\n- All rules implemented\n- Use of additional specific FHIR profile to have a local placeholder for a boolean variable (FHIR-STU3- Observation.ckd-referral-variable.v0)\n- One reconciliation rule added: R4.5.DMRF10. \n- Execution in GDL2 editor works\n- [10/01/2019: prepared multilingual support (en/sv/es)]\n- [11/01/2019: adaptation to GDL2 Editor v2.3.0 - max(effectiveDateTime)]\n- [24/01/2019: include full mappings for CDSM terminologies]\n- [25/01/2019: include validated translations for Swedish and Spanish]\n- [30/01/2019: include codes for local terminologies]\n- [20/02/2019: Correction for READ2 and ICD-10-SE identifiers]\n- [10/03/2019: New codes for CVD]\n- [16/09/2019: ICD-10-UK (and READ) update for CKD, HF, Diabetes and AF by JB]\n- [14/01/2020: Condition of rule R4.5.DMRF10 changed not to fire in case the patient is under any statin (issue 332) by JB]",
+        "copyright": "© LIMICS"
+      },
+      "en": {
+        "id": "en",
+        "purpose": "To determine the drug treatment to prevent or treat cardiovascular disease.",
+        "keywords": [
+          "C3-Cloud",
+          "Chronic Kidney Disease",
+          "Renal Failure",
+          "CVD prevention",
+          "CVD treatment",
+          "Version 10"
+        ],
+        "misuse": "Implementation notes [2019/06/03 JB]\n- All rules implemented\n- Use of additional specific FHIR profile to have a local placeholder for a boolean variable (FHIR-STU3- Observation.ckd-referral-variable.v0)\n- One reconciliation rule added: R4.5.DMRF10. \n- Execution in GDL2 editor works\n- [10/01/2019: prepared multilingual support (en/sv/es)]\n- [11/01/2019: adaptation to GDL2 Editor v2.3.0 - max(effectiveDateTime)]\n- [24/01/2019: include full mappings for CDSM terminologies]\n- [25/01/2019: include validated translations for Swedish and Spanish]\n- [30/01/2019: include codes for local terminologies]\n- [20/02/2019: Correction for READ2 and ICD-10-SE identifiers]\n- [10/03/2019: New codes for CVD]\n- [16/09/2019: ICD-10-UK (and READ) update for CKD, HF, Diabetes and AF by JB]\n- [14/01/2020: Condition of rule R4.5.DMRF10 changed not to fire in case the patient is under any statin (issue 332) by JB]",
+        "copyright": "© LIMICS"
+      },
+      "es": {
+        "id": "es",
+        "purpose": "To determine the drug treatment to prevent or treat cardiovascular disease.",
+        "keywords": [
+          "C3-Cloud",
+          "Chronic Kidney Disease",
+          "Renal Failure",
+          "CVD prevention",
+          "CVD treatment",
+          "Version 10"
+        ],
+        "misuse": "Implementation notes [2019/06/03 JB]\n- All rules implemented\n- Use of additional specific FHIR profile to have a local placeholder for a boolean variable (FHIR-STU3- Observation.ckd-referral-variable.v0)\n- One reconciliation rule added: R4.5.DMRF10. \n- Execution in GDL2 editor works\n- [10/01/2019: prepared multilingual support (en/sv/es)]\n- [11/01/2019: adaptation to GDL2 Editor v2.3.0 - max(effectiveDateTime)]\n- [24/01/2019: include full mappings for CDSM terminologies]\n- [25/01/2019: include validated translations for Swedish and Spanish]\n- [30/01/2019: include codes for local terminologies]\n- [20/02/2019: Correction for READ2 and ICD-10-SE identifiers]\n- [10/03/2019: New codes for CVD]\n- [16/09/2019: ICD-10-UK (and READ) update for CKD, HF, Diabetes and AF by JB]\n- [14/01/2020: Condition of rule R4.5.DMRF10 changed not to fire in case the patient is under any statin (issue 332) by JB]",
+        "copyright": "© LIMICS"
+      }
+    },
+    "other_details": {
+      "references": "Chronic kidney disease in adults: assessment and management - Clinical guideline [CG182] - Published date: July 2014 - Last updated: January 2015\nhttps://www.nice.org.uk/guidance/cg182/chapter/1-Recommendations#referral-criteria\n\nCardiovascular disease: risk assessment and reduction, including lipid modification - Clinical guideline [CG181] - Published date: July 2014 - Last updated: September 2016\nhttps://www.nice.org.uk/guidance/cg181/chapter/1-Recommendations#lipid-modification-therapy-for-the-primary-and-secondary-prevention-of-cvd-2"
+    },
+    "references": [
+      {
+        "id": "1",
+        "label": "Cardiovascular disease: risk assessment and reduction, including lipid modification - Clinical guideline [CG181] - Published date: July 2014 - Last updated: September 2016 ",
+        "url": "https://www.nice.org.uk/guidance/cg181/chapter/1-Recommendations#lipid-modification-therapy-for-the-primary-and-secondary-prevention-of-cvd-2"
+      },
+      {
+        "id": "2",
+        "label": "Chronic kidney disease in adults: assessment and management - Clinical guideline [CG182] - Published date: July 2014 - Last updated: January 2015",
+        "url": "https://www.nice.org.uk/guidance/cg182/chapter/1-Recommendations#referral-criteria"
+      }
+    ]
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0004|CKDcode|"
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0007|CVDcode|"
+        ]
+      },
+      "gt0008": {
+        "id": "gt0008",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0010|NonValvularAFcode|"
+        ]
+      },
+      "gt0011": {
+        "id": "gt0011",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0013|AFcode|"
+        ]
+      },
+      "gt0014": {
+        "id": "gt0014",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0015": {
+            "id": "gt0015",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0016|priorStrokecode|"
+        ]
+      },
+      "gt0017": {
+        "id": "gt0017",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0019|priorTransientIschemicAttackcode|"
+        ]
+      },
+      "gt0020": {
+        "id": "gt0020",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0022|Hypertensioncode|"
+        ]
+      },
+      "gt0023": {
+        "id": "gt0023",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0104|Diabetescode|"
+        ]
+      },
+      "gt0026": {
+        "id": "gt0026",
+        "model_id": "org.hl7.fhir.dstu3.model.Condition",
+        "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0027": {
+            "id": "gt0027",
+            "path": "/code/coding[0]"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0028|SymptomaticHFcode|"
+        ]
+      },
+      "gt0029": {
+        "id": "gt0029",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.estimated_glomerular_filtration_rate.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0030": {
+            "id": "gt0030",
+            "path": "/code/coding[0]"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "path": "/valueQuantity"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "path": "/effectiveDateTime"
+          }
+        },
+        "predicates": [
+          "/code/coding[0] is_a local::gt0031|eGRFcode|",
+          "max(/effectiveDateTime)"
+        ]
+      },
+      "gt0038": {
+        "id": "gt0038",
+        "model_id": "org.hl7.fhir.dstu3.model.Observation",
+        "template_id": "FHIR-STU3-Observation.ckd-referral-variable.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0040": {
+            "id": "gt0040",
+            "path": "/component[0]/valueCode"
+          }
+        }
+      },
+      "gt0060": {
+        "id": "gt0060",
+        "model_id": "org.hl7.fhir.dstu3.model.Patient",
+        "template_id": "FHIR-STU3-Patient.basic_demographic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0061": {
+            "id": "gt0061",
+            "path": "/birthDate"
+          }
+        }
+      },
+      "gt0086": {
+        "id": "gt0086",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+        "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0087": {
+            "id": "gt0087",
+            "path": "/medicationCodeableConcept/coding[0]"
+          }
+        },
+        "predicates": [
+          "/medicationCodeableConcept/coding[0] is_a local::gt0088|Antiplateletcode|"
+        ]
+      },
+      "gt0089": {
+        "id": "gt0089",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+        "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0090": {
+            "id": "gt0090",
+            "path": "/medicationCodeableConcept/coding[0]"
+          }
+        },
+        "predicates": [
+          "/medicationCodeableConcept/coding[0] is_a local::gt0091|Apixabancode|"
+        ]
+      },
+      "gt0092": {
+        "id": "gt0092",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+        "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0093": {
+            "id": "gt0093",
+            "path": "/medicationCodeableConcept/coding[0]"
+          }
+        },
+        "predicates": [
+          "/medicationCodeableConcept/coding[0] is_a local::gt0094|Atorvastatincode|"
+        ]
+      },
+      "gt0095": {
+        "id": "gt0095",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationStatement",
+        "template_id": "FHIR-STU3-MedicationStatement.generic.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0096": {
+            "id": "gt0096",
+            "path": "/medicationCodeableConcept/coding[0]"
+          }
+        },
+        "predicates": [
+          "/medicationCodeableConcept/coding[0] is_a local::gt0097|Statincode|"
+        ]
+      }
+    },
+    "templates": {
+      "gt0041": {
+        "id": "gt0041",
+        "name": "org.hl7.fhir.dstu3.model.MedicationRequest",
+        "model_id": "org.hl7.fhir.dstu3.model.MedicationRequest",
+        "template_id": "FHIR-STU3-MedicationRequest.generic.v0",
+        "object": {
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "code": "{$gt0043}",
+                "system": "http://www.whocc.no/atc",
+                "display": "{$gt0042}"
+              }
+            ]
+          },
+          "intent": "proposal",
+          "status": "draft",
+          "resourceType": "MedicationRequest"
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0003|CKD|!=null"
+    ],
+    "default_actions": [
+      "$gt0038.create($gt0040|OneOfRiskFactors|=local::0|False|)"
+    ],
+    "rules": {
+      "gt0045": {
+        "id": "gt0045",
+        "priority": 11,
+        "when": [
+          "$gt0003|CKD|!=null",
+          "$gt0006|CVD|!=null",
+          "$gt0087|AntiplateletMedication|==null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0047.term}",
+            "detail": "{$gt0048.term}",
+            "indicator": "info",
+            "suggestions": [
+              {
+                "uuid": "c5d50b86-e55a-443b-bfb4-4efac9ca70cd",
+                "label": "{$gt0052.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0056.term}",
+                    "resource_template": {
+                      "template_id": "gt0041",
+                      "assignments": [
+                        "$gt0042=$gt0106.term",
+                        "$gt0043='B01AC'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0057": {
+        "id": "gt0057",
+        "priority": 10,
+        "when": [
+          "$gt0015|priorStroke|!=null",
+          "$gt0040|OneOfRiskFactors|==local::0|False|"
+        ],
+        "then": [
+          "$gt0040|OneOfRiskFactors|=local::1|True|"
+        ]
+      },
+      "gt0058": {
+        "id": "gt0058",
+        "priority": 9,
+        "when": [
+          "$gt0018|priorTransientIschemicAttack|!=null",
+          "$gt0040|OneOfRiskFactors|==local::0|False|"
+        ],
+        "then": [
+          "$gt0040|OneOfRiskFactors|=local::1|True|"
+        ]
+      },
+      "gt0059": {
+        "id": "gt0059",
+        "priority": 8,
+        "when": [
+          "$gt0040|OneOfRiskFactors|==local::0|False|",
+          "$gt0061|birthDate|.year<=($currentDateTime.year-75)"
+        ],
+        "then": [
+          "$gt0040|OneOfRiskFactors|=local::1|True|"
+        ]
+      },
+      "gt0063": {
+        "id": "gt0063",
+        "priority": 7,
+        "when": [
+          "$gt0021|Hypertension|!=null",
+          "$gt0040|OneOfRiskFactors|==local::0|False|"
+        ],
+        "then": [
+          "$gt0040|OneOfRiskFactors|=local::1|True|"
+        ]
+      },
+      "gt0064": {
+        "id": "gt0064",
+        "priority": 6,
+        "when": [
+          "$gt0024|Diabetes|!=null",
+          "$gt0040|OneOfRiskFactors|==local::0|False|"
+        ],
+        "then": [
+          "$gt0040|OneOfRiskFactors|=local::1|True|"
+        ]
+      },
+      "gt0065": {
+        "id": "gt0065",
+        "priority": 5,
+        "when": [
+          "$gt0027|SymptomaticHF|!=null",
+          "$gt0040|OneOfRiskFactors|==local::0|False|"
+        ],
+        "then": [
+          "$gt0040|OneOfRiskFactors|=local::1|True|"
+        ]
+      },
+      "gt0066": {
+        "id": "gt0066",
+        "priority": 4,
+        "when": [
+          "$gt0003|CKD|!=null",
+          "$gt0009|NonValvularAF|!=null",
+          "$gt0040|OneOfRiskFactors|==local::1|True|",
+          "$gt0032|eGFRValue|>=30,mL/min/{1.73_m2}",
+          "$gt0032|eGFRValue|<=50,mL/min/{1.73_m2}",
+          "$gt0090|ApixabanMedication|==null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0068.term}",
+            "detail": "{$gt0069.term}",
+            "indicator": "info",
+            "suggestions": [
+              {
+                "uuid": "6de59aaf-653f-4690-8d05-0ada3e648053",
+                "label": "{$gt0073.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0075.term}",
+                    "resource_template": {
+                      "template_id": "gt0041",
+                      "assignments": [
+                        "$gt0042=$gt0107.term",
+                        "$gt0043='B01AF02'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0076": {
+        "id": "gt0076",
+        "priority": 3,
+        "when": [
+          "$gt0003|CKD|!=null",
+          "$gt0012|AF|!=null",
+          "!fired($gt0066)",
+          "$gt0090|ApixabanMedication|==null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0078.term}",
+            "detail": "{$gt0079.term}",
+            "indicator": "info"
+          }
+        ]
+      },
+      "gt0098": {
+        "id": "gt0098",
+        "priority": 2,
+        "when": [
+          "$gt0003|CKD|!=null",
+          "$gt0024|Diabetes|!=null",
+          "$gt0032|eGFRValue|<60,mL/min/{1.73_m2}",
+          "$gt0096|StatinMedication|==null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0099.term}",
+            "detail": "{$gt0100.term}",
+            "indicator": "info",
+            "source": {
+              "label": "Cardiovascular disease: risk assessment and reduction, including lipid modification - Clinical guideline [CG181] - Published date: July 2014 - Last updated: September 2016 ",
+              "url": "https://www.nice.org.uk/guidance/cg181/chapter/1-Recommendations#lipid-modification-therapy-for-the-primary-and-secondary-prevention-of-cvd-2",
+              "label_reference": "$ref[1].label",
+              "url_reference": "$ref[1].url"
+            },
+            "suggestions": [
+              {
+                "uuid": "992ff5e9-09d4-411f-92f6-724f6dd139f7",
+                "label": "{$gt0101.term}",
+                "actions": [
+                  {
+                    "type": "create",
+                    "description": "{$gt0102.term}",
+                    "resource_template": {
+                      "template_id": "gt0041",
+                      "assignments": [
+                        "$gt0042=$gt0108.term",
+                        "$gt0043='C10AA05'"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gt0083": {
+        "id": "gt0083",
+        "priority": 1,
+        "when": [
+          "$gt0003|CKD|!=null",
+          "!fired($gt0098)",
+          "$gt0096|StatinMedication|==null"
+        ],
+        "cards": [
+          {
+            "summary": "{$gt0084.term}",
+            "detail": "{$gt0085.term}",
+            "indicator": "info"
+          }
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Riktlinjer för kronisk njursjukdom och förebyggande och behandling av hjärt-kärlsjukdom",
+            "description": "This guideline service deals with the prevention and treatment of cardiovascular disease in patient with chronic kidney disease.It implements the flowchart '5.4.9. Cardiovascular disease prevention and treatment' of deliverable D7.1 of the C3Cloud project.This flowchart is based on the NICE CKD guideline CG182, Chapter 1.6.16, [60, p. 33-34]. This CDSM accounts for DM-RF reconciliation rules specified in deliverable D7.2 of the C3Cloud project."
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "*(en) CKD",
+            "description": "*(en) Element"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "*(en) CKDcode",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "*(en) CVD",
+            "description": "*(en) Element"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "*(en) CVDcode",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "*(en) NonValvularAF",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "*(en) NonValvularAFcode",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "*(en) AF",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "*(en) AFcode",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "*(en) priorStroke",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "*(en) priorStrokecode",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "*(en) priorTransientIschemicAttack",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "*(en) priorTransientIschemicAttackcode",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "*(en) Hypertension",
+            "description": ""
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "*(en) Hypertensioncode",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "*(en) Diabetes",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "*(en) T2Diabetescode",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "*(en) SymptomaticHF",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "*(en) SymptomaticHFcode",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "*(en) eGFRObservation",
+            "description": ""
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "*(en) eGRFcode",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "*(en) eGFRValue",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "*(en) coding[0]",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "*(en) coding[0]",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "*(en) OneOfRiskFactors",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "*(en) OneOfRiskFactors",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "*(en) FHIR-STU3-MedicationRequest.generic.v0",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "*(en) value",
+            "description": "*(en) /medicationCodeableConcept/coding[0]"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "*(en) code",
+            "description": "*(en) /medicationCodeableConcept/coding[0]"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "*(en) value",
+            "description": "*(en) /dosageInstruction[0]/text"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "*(en) R4.1-Card 1 antiplatelet drugs  ",
+            "description": ""
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Förebygg och behandla hjärt-kärlsjukdom med orala trombocytaggregationshämmande/antikoagulantia - trombocytaggregationshämmares indikation",
+            "description": "summaryValue"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "Erbjud trombocythämmande läkemedel för personer med kronisk njursjukdom för sekundär prevention av hjärt-kärlsjukdom, men var medveten om den ökade blödningsrisken.",
+            "description": "detailValue"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Erbjud trombocythämmande läkemedel",
+            "description": "labelValue"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Förskriv trombocytaggregationshämmande medel, men var medveten om den ökade blödningsrisken.",
+            "description": "descriptionValue"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Förskriv trombocytaggregationshämmande medel, men var medveten om den ökade blödningsrisken.",
+            "description": "descriptionValue"
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "*(en) R4.2a-OneOfRiskFactors = prior stroke",
+            "description": ""
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "*(en) R4.2b-OneOfRiskFactors = prior trans. isch. attack",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "*(en) R4.2c-OneOfRiskFactors = age>=75",
+            "description": ""
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "*(en) birthDate",
+            "description": ""
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "*(en) R4.2d-OneOfRiskFactors = hypertension",
+            "description": ""
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "*(en) R4.2e-OneOfRiskFactors = diabetes mellitus",
+            "description": ""
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "*(en) R4.2f-OneOfRiskFactors = symptomatic HF",
+            "description": ""
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "*(en) R4.3-Card 2 apixaban",
+            "description": ""
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "Förebygg och behandla hjärt-kärlsjukdom med orala trombocytaggregationshämmande/antikoagulantia - Apixabans indikation",
+            "description": "summaryValue"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "Överväg apixaban före warfarin hos personer med bekräftat eGFR 30-50 ml/min/1,73 m2 och icke-valvulärt förmaksflimmer med en eller flera av följande riskfaktorer: - tidigare stroke eller TIA - ålder 75 år eller äldre -hypertension - diabetes mellitus - symtomatisk hjärtsvikt",
+            "description": "detailValue"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "Ordinera apixaban",
+            "description": "labelValue"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Ordinera apixaban",
+            "description": "descriptionValue"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "*(en) R4.4-Card 3 check AF specific guidelines",
+            "description": ""
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Kontrollera NICE riktlinjer om behandling av förmaksflimmer",
+            "description": "summaryValue"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "I denna situation med kronisk njursjukdom och förmaksflimmer, se NICE riktlinje för diagnos och behandling av förmaksflimmer [CG180] (https://www.nice.org.uk/guidance/cg180).",
+            "description": "detailValue"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "*(en) R4.5-Card 4 check CVD prevention guidelines",
+            "description": ""
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Kontrollera NICE riktlinjer om förebyggande av hjärt-kärlsjukdom inklusive lipidbehandling",
+            "description": "summaryValue"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "I denna situation med kronisk njursjukdom och innan statiner insätts, se NICE riktlinjer för bedömning och vård av vuxna med hjärt-kärlsjukdom eller risk för detta  [CG181] (https://www.nice.org.uk/guidance/ cg181)",
+            "description": "detailValue"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "*(en) AntiplateletMedication",
+            "description": ""
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "*(en) Antiplateletcode",
+            "description": ""
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "*(en) ApixabanMedication",
+            "description": ""
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "*(en) Apixabancode",
+            "description": ""
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "*(en) AtorvastatinMedication",
+            "description": ""
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "*(en) Atorvastatincode",
+            "description": ""
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "*(en) StatinMedication",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "*(en) Statincode",
+            "description": ""
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "*(en) R4.5.DMRF10. Card 5 atorvastatin 20 mg",
+            "description": ""
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "Erbjud atorvastatin 20 mg för primär eller sekundär prevention av hjärt-kärlsjukdom för personer med kronisk njursjukdom",
+            "description": "summaryValue"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "Erbjud atorvastatin 20 mg för primär eller sekundär prevention av hjärt-kärlsjukdom för personer med kronisk njursjukdom. Öka dosen om en minskning av icke-HDL-kolesterol på minst 40% inte uppnås (se rekommendation 1.3.28) och om eGFR är 30 ml/min/1,73 m2 eller mer. Förankra användning av högre doser med en njurspecialist om eGFR är mindre än 30 ml/min/1,73 m2.",
+            "description": "detailValue"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "Ordinera atorvastatin",
+            "description": "labelValue"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "Förskriv atorvastatin 20 mg",
+            "description": "descriptionValue"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "*(en) value",
+            "description": "*(en) /authoredOn"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "*(en) Diabetescode",
+            "description": ""
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "*(en) effectiveDateTime",
+            "description": ""
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "trombocytaggregationshämmande medel förutom heparin",
+            "description": ""
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "apixaban",
+            "description": ""
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "atorvastatin",
+            "description": ""
+          }
+        }
+      },
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "CKD Guideline CVD Prevention and Treatment Service",
+            "description": "This guideline service deals with the prevention and treatment of cardiovascular disease in patient with chronic kidney disease.It implements the flowchart '5.4.9. Cardiovascular disease prevention and treatment' of deliverable D7.1 of the C3Cloud project.This flowchart is based on the NICE CKD guideline CG182, Chapter 1.6.16, [60, p. 33-34]. This CDSM accounts for DM-RF reconciliation rules specified in deliverable D7.2 of the C3Cloud project."
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "CKD",
+            "description": "Element"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "CKDcode",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "CVD",
+            "description": "Element"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "CVDcode",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "NonValvularAF",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "NonValvularAFcode",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "AF",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "AFcode",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "priorStroke",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "priorStrokecode",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "priorTransientIschemicAttack",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "priorTransientIschemicAttackcode",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Hypertension",
+            "description": ""
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Hypertensioncode",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Diabetes",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "T2Diabetescode",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "SymptomaticHF",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "SymptomaticHFcode",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "eGFRObservation",
+            "description": ""
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "eGRFcode",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "eGFRValue",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "coding[0]",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "coding[0]",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "OneOfRiskFactors",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "OneOfRiskFactors",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "FHIR-STU3-MedicationRequest.generic.v0"
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "value",
+            "description": "/medicationCodeableConcept/coding[0]"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "code",
+            "description": "/medicationCodeableConcept/coding[0]"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "value",
+            "description": "/dosageInstruction[0]/text"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "R4.1-Card 1 antiplatelet drugs  "
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Preventing and treating cardiovascular disease by oral antiplatelets and anticoagulants - antiplatelets indication",
+            "description": "summaryValue"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "Offer antiplatelet drugs to people with CKD for the secondary prevention of cardiovascular disease, but be aware of the increased risk of bleeding.",
+            "description": "detailValue"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Offer antiplatelet drugs",
+            "description": "labelValue"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Prescribe antiplatelets, but be aware of the increased risk of bleeding.",
+            "description": "descriptionValue"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Prescribe antiplatelets, but be aware of the increased risk of bleeding.",
+            "description": "descriptionValue"
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "R4.2a-OneOfRiskFactors = prior stroke"
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "R4.2b-OneOfRiskFactors = prior trans. isch. attack"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "R4.2c-OneOfRiskFactors = age>=75"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "birthDate",
+            "description": ""
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "R4.2d-OneOfRiskFactors = hypertension"
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "R4.2e-OneOfRiskFactors = diabetes mellitus"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "R4.2f-OneOfRiskFactors = symptomatic HF"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "R4.3-Card 2 apixaban"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "Preventing and treating cardiovascular disease by oral antiplatelets and anticoagulants - Apixaban indication",
+            "description": "summaryValue"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "Consider apixaban in preference to warfarin in people with a confirmed eGFR of 30-50 ml/min/1.73 m2 and non-valvular atrial fibrillation who have 1 or more of the following risk factors: - prior stroke or transient ischaemic attack - age 75 years or older\u2028 -\u2028hypertension\u2028 - diabetes mellitus - symptomatic heart failure",
+            "description": "detailValue"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "Prescribe apixaban",
+            "description": "labelValue"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "description",
+            "description": "description"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Prescribe apixaban",
+            "description": "descriptionValue"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "R4.4-Card 3 check AF specific guidelines"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Check NICE guideline on atrial fibrillation management",
+            "description": "summaryValue"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "In this situation of Chronic Kidney Disease and Atrial Fibrillation, check NICE guideline on the diagnosis and management of atrial fibrillation [CG180] (https://www.nice.org.uk/guidance/cg180).",
+            "description": "detailValue"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "critical",
+            "description": "critical"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "warning",
+            "description": "warning"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "info",
+            "description": "info"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "R4.5-Card 4 check CVD prevention guidelines"
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Check NICE guideline on cardiovascular disease prevention including lipid modification",
+            "description": "summaryValue"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "In this situation of Chronic Kidney Disease and before using statins, check NICE guideline on the assessment and care of adults who are at risk of or who have cardiovascular disease [CG181] (https://www.nice.org.uk/guidance/cg181)",
+            "description": "detailValue"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "AntiplateletMedication",
+            "description": ""
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "Antiplateletcode",
+            "description": ""
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "ApixabanMedication",
+            "description": ""
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "Apixabancode",
+            "description": ""
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "AtorvastatinMedication",
+            "description": ""
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Atorvastatincode",
+            "description": ""
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "StatinMedication",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "Statincode",
+            "description": ""
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "R4.5.DMRF10. Card 5 atorvastatin 20 mg"
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "Offer atorvastatin 20 mg for the primary or secondary prevention of CVD to people with CKD",
+            "description": "summaryValue"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "Offer atorvastatin 20 mg for the primary or secondary prevention of CVD to people with CKD. Increase the dose if a greater than 40% reduction in non-HDL cholesterol is not achieved (see recommendation 1.3.28) and eGFR is 30 ml/min/1.73 m2 or more. Agree the use of higher doses with a renal specialist if eGFR is less than 30 ml/min/1.73 m2.",
+            "description": "detailValue"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "Prescribe atorvastatin",
+            "description": "labelValue"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "Prescribe atorvastatin 20 mg",
+            "description": "descriptionValue"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "value",
+            "description": "/authoredOn"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "Diabetescode",
+            "description": ""
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "eGFReffectiveDateTime",
+            "description": ""
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "platelet aggregation inhibitors excl. heparin",
+            "description": ""
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "apixaban",
+            "description": ""
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "atorvastatin",
+            "description": ""
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Tratamiento y prevención de la enfermedad cardiovascular de la Guía para la Insuficiencia renal crónica. ",
+            "description": "This guideline service deals with the prevention and treatment of cardiovascular disease in patient with chronic kidney disease.It implements the flowchart '5.4.9. Cardiovascular disease prevention and treatment' of deliverable D7.1 of the C3Cloud project.This flowchart is based on the NICE CKD guideline CG182, Chapter 1.6.16, [60, p. 33-34]. This CDSM accounts for DM-RF reconciliation rules specified in deliverable D7.2 of the C3Cloud project."
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "*(en) CKD",
+            "description": "*(en) Element"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "*(en) CKDcode",
+            "description": ""
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "*(en) CVD",
+            "description": "*(en) Element"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "*(en) CVDcode",
+            "description": ""
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "*(en) NonValvularAF",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "*(en) NonValvularAFcode",
+            "description": ""
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "*(en) AF",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "*(en) AFcode",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "*(en) priorStroke",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "*(en) priorStrokecode",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "*(en) priorTransientIschemicAttack",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "*(en) priorTransientIschemicAttackcode",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "*(en) Hypertension",
+            "description": ""
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "*(en) Hypertensioncode",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "*(en) Diabetes",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "*(en) T2Diabetescode",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "*(en) SymptomaticHF",
+            "description": ""
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "*(en) SymptomaticHFcode",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "*(en) eGFRObservation",
+            "description": ""
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "*(en) eGRFcode",
+            "description": ""
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "*(en) eGFRValue",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "*(en) coding[0]",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "*(en) coding[0]",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "*(en) OneOfRiskFactors",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "*(en) OneOfRiskFactors",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "*(en) FHIR-STU3-MedicationRequest.generic.v0",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "*(en) value",
+            "description": "*(en) /medicationCodeableConcept/coding[0]"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "*(en) code",
+            "description": "*(en) /medicationCodeableConcept/coding[0]"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "*(en) value",
+            "description": "*(en) /dosageInstruction[0]/text"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "*(en) R4.1-Card 1 antiplatelet drugs  ",
+            "description": ""
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Prevención y tratamiento de enfermedades cardiovasculares por antiagregantes plaquetarios orales y anticoagulantes - indicación antiagregantes plaquetarios",
+            "description": "summaryValue"
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "Ofrezca antiagregantes plaquetarios a las personas con insuficiencia renal crónica para la prevención secundaria de enfermedades cardiovasculares, pero tenga en cuenta el aumento del riesgo de hemorragia. ",
+            "description": "detailValue"
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Ofrezca fármacos antiagregantes plaquetarios",
+            "description": "labelValue"
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Prescriba antiagregantes plaquetarios, pero tenga en cuenta el aumento del riesgo de hemorragia.",
+            "description": "descriptionValue"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Prescriba antiagregantes plaquetarios, pero tenga en cuenta el aumento del riesgo de hemorragia.",
+            "description": "descriptionValue"
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "*(en) R4.2a-OneOfRiskFactors = prior stroke",
+            "description": ""
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "*(en) R4.2b-OneOfRiskFactors = prior trans. isch. attack",
+            "description": ""
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "*(en) R4.2c-OneOfRiskFactors = age>=75",
+            "description": ""
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "*(en) birthDate",
+            "description": ""
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "*(en) R4.2d-OneOfRiskFactors = hypertension",
+            "description": ""
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "*(en) R4.2e-OneOfRiskFactors = diabetes mellitus",
+            "description": ""
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "*(en) R4.2f-OneOfRiskFactors = symptomatic HF",
+            "description": ""
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "*(en) R4.3-Card 2 apixaban",
+            "description": ""
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "Prevención y tratamiento de enfermedades cardiovascular por antiagregantes plaquetarios orales y anticoagulantes - indicación Apixaban",
+            "description": "summaryValue"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "Considere el apixaban en preferencia a la warfarina en personas con un filtrado glomerular confirmado de 30-50 ml/min/1.73 m2 y fibrilación auricular no valvular que tengan uno o más de los siguientes factores de riesgo: - accidente cerebrovascular previo o ataque isquémico transitorio - edad de 75 años o más - hipertensión - diabetes mellitus - insuficiencia cardíaca sintomática.",
+            "description": "detailValue"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "Prescriba apixaban",
+            "description": "labelValue"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "*(en) description",
+            "description": "*(en) description"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Prescriba apixaban",
+            "description": "descriptionValue"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "*(en) R4.4-Card 3 check AF specific guidelines",
+            "description": ""
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Consulte la guía NICE sobre el tratamiento de la fibrilación auricular",
+            "description": "summaryValue"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "En situación de insuficiencia renal crónica y fibrilación auricular, consulte guía NICE para el diagnóstico y manejo de la fibrilación auricular [CG180] (https://www.nice.org.uk/guidance/cg180).",
+            "description": "detailValue"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "*(en) critical",
+            "description": "*(en) critical"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "*(en) warning",
+            "description": "*(en) warning"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "*(en) info",
+            "description": "*(en) info"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "*(en) R4.5-Card 4 check CVD prevention guidelines",
+            "description": ""
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Consulte la guía NICE sobre la prevención de la enfermedad cardiovascular, incluyendo la modificación de lípidos",
+            "description": "summaryValue"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "En situación de insuficienica renal crónica y antes de utilizar estatinas, consulte guía NICE para la evaluación y el cuidado de los adultos que están en riesgo o  tienen enfermedades cardiovasculares [CG181] (https://www.nice.org.uk/guidance/ cg181)",
+            "description": "detailValue"
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "*(en) AntiplateletMedication",
+            "description": ""
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "*(en) Antiplateletcode",
+            "description": ""
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "*(en) ApixabanMedication",
+            "description": ""
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "*(en) Apixabancode",
+            "description": ""
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "*(en) AtorvastatinMedication",
+            "description": ""
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "*(en) Atorvastatincode",
+            "description": ""
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "*(en) StatinMedication",
+            "description": ""
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "*(en) Statincode",
+            "description": ""
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "*(en) R4.5.DMRF10. Card 5 atorvastatin 20 mg",
+            "description": ""
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "Ofrezca atorvastatina 20 mg para la prevención primaria o secundaria de  enfermedades cardiovasculares a las personas con insuficiencia renal crónica",
+            "description": "summaryValue"
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "Ofrecer atorvastatina 20 mg para la prevención primaria o secundaria de  enfermedades cardiovasculares a las personas con insuficiencia renal crónica. Aumente la dosis si no se logra una reducción mayor del 40% en el colesterol NO HDL (véase la recomendación 1.3.28) y el filtrado glomerular es 30 ml / min / 1,73 m2 o más.  Acuerde el uso de dosis mayores con el nefrólogo si el filtrado glomerular es inferior a 30 ml / min / 1,73 m2.",
+            "description": "detailValue"
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "Prescriba atorvastatina",
+            "description": "labelValue"
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "Prescriba atorvastatina 20 mg",
+            "description": "descriptionValue"
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "*(en) value",
+            "description": "*(en) /authoredOn"
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "*(en) Diabetescode",
+            "description": ""
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "*(en) effectiveDateTime",
+            "description": ""
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "antiagregantes plaquetarios; excluida heparina",
+            "description": ""
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "apixaban",
+            "description": ""
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "atorvastatina",
+            "description": ""
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ATC": {
+        "id": "ATC",
+        "bindings": {
+          "gt0088": {
+            "codes": [
+              "ATC::B01AC",
+              "ATC::N02BA15",
+              "ATC::N02BA65",
+              "ATC::N02BA02",
+              "ATC::A01AD05",
+              "ATC::N02BA01",
+              "ATC::M01BA03",
+              "ATC::N02BA51",
+              "ATC::N02BA71",
+              "ATC::C10BX08",
+              "ATC::C10BX12",
+              "ATC::C10BX06",
+              "ATC::C07FX04",
+              "ATC::N02AJ07",
+              "ATC::N02AJ02",
+              "ATC::C07FX03",
+              "ATC::N02AJ18",
+              "ATC::C10BX02",
+              "ATC::C10BX05",
+              "ATC::C10BX01"
+            ]
+          },
+          "gt0094": {
+            "codes": [
+              "ATC::C10AA05",
+              "ATC::C10BX08",
+              "ATC::C10BX03",
+              "ATC::C10BA05",
+              "ATC::C10BX15",
+              "ATC::C10BX12",
+              "ATC::C10BX06",
+              "ATC::C10BX11"
+            ]
+          },
+          "gt0097": {
+            "codes": [
+              "ATC::C10AA",
+              "ATC::C10B"
+            ]
+          },
+          "gt0091": {
+            "codes": [
+              "ATC::B01AF02"
+            ]
+          }
+        }
+      },
+      "ICD-10-SE": {
+        "id": "ICD-10-SE",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "ICD-10-SE::I48"
+            ]
+          },
+          "gt0022": {
+            "codes": [
+              "ICD-10-SE::I10"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "ICD-10-SE::I48"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10-SE::E115",
+              "ICD-10-SE::I00-I99",
+              "ICD-10-SE::I20",
+              "ICD-10-SE::I21",
+              "ICD-10-SE::I213",
+              "ICD-10-SE::I214",
+              "ICD-10-SE::I22",
+              "ICD-10-SE::I23",
+              "ICD-10-SE::I24",
+              "ICD-10-SE::I25",
+              "ICD-10-SE::I63",
+              "ICD-10-SE::I66",
+              "ICD-10-SE::I65",
+              "ICD-10-SE::I672",
+              "ICD-10-SE::I70",
+              "ICD-10-SE::K551"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "ICD-10-SE::G45"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-SE::N18",
+              "ICD-10-SE::N19",
+              "ICD-10-SE::I120",
+              "ICD-10-SE::I131"
+            ]
+          },
+          "gt0104": {
+            "codes": [
+              "ICD-10-SE::E10",
+              "ICD-10-SE::E11",
+              "ICD-10-SE::E12",
+              "ICD-10-SE::E13",
+              "ICD-10-SE::E14"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "ICD-10-SE::I60",
+              "ICD-10-SE::I61",
+              "ICD-10-SE::I62",
+              "ICD-10-SE::I63",
+              "ICD-10-SE::I64"
+            ]
+          },
+          "gt0028": {
+            "codes": [
+              "ICD-10-SE::I50",
+              "ICD-10-SE::I110",
+              "ICD-10-SE::I130",
+              "ICD-10-SE::I132"
+            ]
+          }
+        }
+      },
+      "NPU": {
+        "id": "NPU",
+        "bindings": {
+          "gt0031": {
+            "codes": [
+              "NPU::EGFRKRE"
+            ]
+          }
+        }
+      },
+      "DBP": {
+        "id": "DBP",
+        "bindings": {
+          "gt0031": {
+            "codes": [
+              "DBP::33382"
+            ]
+          }
+        }
+      },
+      "LOINC": {
+        "id": "LOINC",
+        "bindings": {
+          "gt0031": {
+            "codes": [
+              "LOINC::33914-3"
+            ]
+          }
+        }
+      },
+      "CIE-10-CM-ES": {
+        "id": "CIE-10-CM-ES",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "CIE-10-CM-ES::I48"
+            ]
+          },
+          "gt0022": {
+            "codes": [
+              "CIE-10-CM-ES::I10"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "CIE-10-CM-ES::I48"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "CIE-10-CM-ES::E11.51",
+              "CIE-10-CM-ES::I20.9",
+              "CIE-10-CM-ES::I21",
+              "CIE-10-CM-ES::I213",
+              "CIE-10-CM-ES::I214",
+              "CIE-10-CM-ES::I22",
+              "CIE-10-CM-ES::I23",
+              "CIE-10-CM-ES::I24.8",
+              "CIE-10-CM-ES::I25.9",
+              "CIE-10-CM-ES::I63.9",
+              "CIE-10-CM-ES::I66.8",
+              "CIE-10-CM-ES::I65.8",
+              "CIE-10-CM-ES::I67.2",
+              "CIE-10-CM-ES::I70.90",
+              "CIE-10-CM-ES::K55.1"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "CIE-10-CM-ES::G45"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "CIE-10-CM-ES::N18",
+              "CIE-10-CM-ES::N19",
+              "CIE-10-CM-ES::I12.0",
+              "CIE-10-CM-ES::I13.1"
+            ]
+          },
+          "gt0104": {
+            "codes": [
+              "CIE-10-CM-ES::E10",
+              "CIE-10-CM-ES::E11",
+              "CIE-10-CM-ES::E12",
+              "CIE-10-CM-ES::E13",
+              "CIE-10-CM-ES::E14"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "CIE-10-CM-ES::I60",
+              "CIE-10-CM-ES::I61",
+              "CIE-10-CM-ES::I62",
+              "CIE-10-CM-ES::I63",
+              "CIE-10-CM-ES::I64"
+            ]
+          },
+          "gt0028": {
+            "codes": [
+              "CIE-10-CM-ES::I50",
+              "CIE-10-CM-ES::I11.0",
+              "CIE-10-CM-ES::I13.0",
+              "CIE-10-CM-ES::I13.2"
+            ]
+          }
+        }
+      },
+      "ICD-10-UK": {
+        "id": "ICD-10-UK",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "ICD-10-UK::I48"
+            ]
+          },
+          "gt0022": {
+            "codes": [
+              "ICD-10-UK::I10"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "ICD-10-UK::I48"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10-UK::E115",
+              "ICD-10-UK::I00-I99",
+              "ICD-10-UK::I20",
+              "ICD-10-UK::I21",
+              "ICD-10-UK::I213",
+              "ICD-10-UK::I214",
+              "ICD-10-UK::I22",
+              "ICD-10-UK::I23",
+              "ICD-10-UK::I24",
+              "ICD-10-UK::I25",
+              "ICD-10-UK::I63",
+              "ICD-10-UK::I66",
+              "ICD-10-UK::I65",
+              "ICD-10-UK::I672",
+              "ICD-10-UK::I70",
+              "ICD-10-UK::K551"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "ICD-10-UK::G45"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10-UK::N18",
+              "ICD-10-UK::N19",
+              "ICD-10-UK::I120",
+              "ICD-10-UK::I131"
+            ]
+          },
+          "gt0104": {
+            "codes": [
+              "ICD-10-UK::E10",
+              "ICD-10-UK::E11",
+              "ICD-10-UK::E12",
+              "ICD-10-UK::E13",
+              "ICD-10-UK::E14"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "ICD-10-UK::I60",
+              "ICD-10-UK::I61",
+              "ICD-10-UK::I62",
+              "ICD-10-UK::I63",
+              "ICD-10-UK::I64"
+            ]
+          },
+          "gt0028": {
+            "codes": [
+              "ICD-10-UK::I50",
+              "ICD-10-UK::I110",
+              "ICD-10-UK::I130",
+              "ICD-10-UK::I132",
+              "ICD-10-UK::I420",
+              "ICD-10-UK::I429"
+            ]
+          }
+        }
+      },
+      "READ2": {
+        "id": "READ2",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "READ2::G5730",
+              "READ2::G5732"
+            ]
+          },
+          "gt0022": {
+            "codes": [
+              "READ2::G2"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "READ2::G5730",
+              "READ2::G5732"
+            ]
+          },
+          "gt0031": {
+            "codes": [
+              "READ2::451E"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "READ2::G5yX",
+              "READ2::C107",
+              "READ2::G33",
+              "READ2::G30",
+              "READ2::G36",
+              "READ2::Gyu32",
+              "READ2::G3",
+              "READ2::G64z",
+              "READ2::Gyu66",
+              "READ2::G63",
+              "READ2::G670",
+              "READ2::G70",
+              "READ2::J421"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "READ2::G65"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "READ2::1Z1",
+              "READ2::K05"
+            ]
+          },
+          "gt0104": {
+            "codes": [
+              "READ2::C10"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "READ2::G64",
+              "READ2::12C4",
+              "READ2::XE0X2"
+            ]
+          },
+          "gt0028": {
+            "codes": [
+              "READ2::G58",
+              "READ2::G232",
+              "READ2::G234",
+              "READ2::Q42",
+              "READ2::J0603",
+              "READ2::XE0V8",
+              "READ2::XE1f3"
+            ]
+          }
+        }
+      },
+      "SNOMED-CT": {
+        "id": "SNOMED-CT",
+        "bindings": {
+          "gt0010": {
+            "codes": [
+              "SNOMED-CT::49436004"
+            ]
+          },
+          "gt0022": {
+            "codes": [
+              "SNOMED-CT::38341003"
+            ]
+          },
+          "gt0013": {
+            "codes": [
+              "SNOMED-CT::49436004"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "SNOMED-CT::49601007"
+            ]
+          },
+          "gt0019": {
+            "codes": [
+              "SNOMED-CT::266257000"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "SNOMED-CT::425369003",
+              "SNOMED-CT::431855005",
+              "SNOMED-CT::431856006",
+              "SNOMED-CT::433144002",
+              "SNOMED-CT::431857002",
+              "SNOMED-CT::433146000"
+            ]
+          },
+          "gt0016": {
+            "codes": [
+              "SNOMED-CT::230690007"
+            ]
+          },
+          "gt0104": {
+            "codes": [
+              "SNOMED-CT::73211009",
+              "SNOMED-CT::46635009",
+              "SNOMED-CT::44054006"
+            ]
+          },
+          "gt0028": {
+            "codes": [
+              "SNOMED-CT::84114007",
+              "SNOMED-CT::42343007",
+              "SNOMED-CT::698594003"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

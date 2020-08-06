@@ -1,0 +1,2275 @@
+{
+    "id": "chf_stability_review.v4",
+    "gdl_version": "2.0",
+    "concept": "gt0001",
+    "language": {
+        "original_language": "ISO_639-1::en"
+    },
+    "description": {
+        "original_author": {
+            "date": "2018-06-13",
+            "name": "Lei Zhao",
+            "organisation": "University of Warwick",
+            "email": "lei.zhao@warwick.ac.uk"
+        },
+        "lifecycle_state": "Author draft",
+        "details": {
+            "sv": {
+                "id": "sv",
+                "keywords": [
+                    "*(en) CHF",
+                    "*(en) Review",
+                    "*(en) Stable"
+                ]
+            },
+            "en": {
+                "id": "en",
+                "keywords": [
+                    "CHF",
+                    "Review",
+                    "Stable"
+                ]
+            },
+            "es": {
+                "id": "es",
+                "keywords": [
+                    "*(en) CHF",
+                    "*(en) Review",
+                    "*(en) Stable"
+                ]
+            }
+        },
+        "other_details": {},
+        "references": [
+            {
+                "id": "1",
+                "label": "Chronic heart failure in adults: management",
+                "url": "https://www.nice.org.uk/guidance/cg108"
+            }
+        ]
+    },
+    "definition": {
+        "data_bindings": {
+            "gt0002": {
+                "id": "gt0002",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0003": {
+                        "id": "gt0003",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0004|HF Code|"
+                ]
+            },
+            "gt0030": {
+                "id": "gt0030",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0031": {
+                        "id": "gt0031",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0032|Depression code|"
+                ]
+            }
+        },
+        "templates": {
+            "gt0027": {
+                "id": "gt0027",
+                "name": "org.hl7.fhir.dstu3.model.Appointment",
+                "model_id": "org.hl7.fhir.dstu3.model.Appointment",
+                "template_id": "FHIR-STU3-Appointment.generic.v0",
+                "object": {
+                    "start": "{$gt0029}",
+                    "description": "{$gt0028}",
+                    "status": "proposed",
+                    "resourceType": "Appointment"
+                }
+            },
+            "gt0043": {
+                "id": "gt0043",
+                "name": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+                "model_id": "org.hl7.fhir.dstu3.model.ProcedureRequest",
+                "template_id": "FHIR-STU3-ProcedureRequest.generic.v0",
+                "object": {
+                    "extension": [
+                        {
+                            "valueString": "{$gt0044}",
+                            "url": "https://gitlab.cambiocds.com/CDS-PLATFORM/c3cloud-cdsm/blob/resource_profiles/src/main/resources/extensions/extension-ProcedureRequest-description-string-value.xml"
+                        }
+                    ],
+                    "code": {
+                        "coding": [
+                            {
+                                "code": "{$gt0050}",
+                                "system": "http://loinc.org",
+                                "display": "{$gt0049}"
+                            }
+                        ]
+                    },
+                    "performer": {
+                        "display": "PATIENT"
+                    },
+                    "category": [
+                        {
+                            "coding": [
+                                {
+                                    "code": "lab-request",
+                                    "system": "http://www.c3-cloud.eu/fhir/care-plan-activity-category",
+                                    "display": "Lab Request"
+                                }
+                            ]
+                        }
+                    ],
+                    "intent": "proposal",
+                    "status": "draft",
+                    "resourceType": "ProcedureRequest"
+                }
+            }
+        },
+        "rules": {
+            "gt0005": {
+                "id": "gt0005",
+                "priority": 2,
+                "when": [
+                    "$gt0003|HF|!=null",
+                    "$gt0031|Depression|==null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0007.term}",
+                        "detail": "{$gt0008.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        }
+                    },
+                    {
+                        "summary": "{$gt0013.term}",
+                        "detail": "{$gt0014.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        }
+                    },
+                    {
+                        "summary": "{$gt0019.term}",
+                        "detail": "{$gt0020.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        },
+                        "suggestions": [
+                            {
+                                "uuid": "4b0951aa-49b4-49e3-873c-ab7421815ec9",
+                                "label": "{$gt0024.term}",
+                                "actions": [
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0026.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0027",
+                                            "assignments": [
+                                                "$gt0029=$currentDateTime+6,mo",
+                                                "$gt0028=$gt0065.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0051.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0066.term",
+                                                "$gt0049=$gt0067.term",
+                                                "$gt0050=$gt0068.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0052.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0069.term",
+                                                "$gt0049=$gt0070.term",
+                                                "$gt0050=$gt0071.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0053.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0072.term",
+                                                "$gt0049=$gt0073.term",
+                                                "$gt0050=$gt0074.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0054.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0075.term",
+                                                "$gt0049=$gt0076.term",
+                                                "$gt0050=$gt0077.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0055.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0078.term",
+                                                "$gt0049=$gt0079.term",
+                                                "$gt0050=$gt0080.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0056.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0081.term",
+                                                "$gt0049=$gt0082.term",
+                                                "$gt0050=$gt0083.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0057.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0084.term",
+                                                "$gt0049=$gt0085.term",
+                                                "$gt0050=$gt0086.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0058.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0087.term",
+                                                "$gt0049=$gt0088.term",
+                                                "$gt0050=$gt0089.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0059.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0090.term",
+                                                "$gt0049=$gt0091.term",
+                                                "$gt0050=$gt0092.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0060.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0093.term",
+                                                "$gt0049=$gt0094.term",
+                                                "$gt0050=$gt0095.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0061.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0096.term",
+                                                "$gt0049=$gt0097.term",
+                                                "$gt0050=$gt0098.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0062.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0099.term",
+                                                "$gt0049=$gt0100.term",
+                                                "$gt0050=$gt0101.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0063.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0102.term",
+                                                "$gt0049=$gt0103.term",
+                                                "$gt0050=$gt0104.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0064.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0105.term",
+                                                "$gt0049=$gt0106.term",
+                                                "$gt0050=$gt0107.term"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gt0033": {
+                "id": "gt0033",
+                "priority": 1,
+                "when": [
+                    "$gt0003|HF|!=null",
+                    "$gt0031|Depression|!=null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0034.term}",
+                        "detail": "{$gt0035.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        }
+                    },
+                    {
+                        "summary": "{$gt0036.term}",
+                        "detail": "{$gt0037.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        }
+                    },
+                    {
+                        "summary": "{$gt0038.term}",
+                        "detail": "{$gt0039.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        },
+                        "suggestions": [
+                            {
+                                "uuid": "10c55c65-5203-48cb-84d8-0d7f73605c85",
+                                "label": "{$gt0040.term}",
+                                "actions": [
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0041.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0027",
+                                            "assignments": [
+                                                "$gt0029=$currentDateTime+3,mo",
+                                                "$gt0028=$gt0065.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0051.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0066.term",
+                                                "$gt0049=$gt0067.term",
+                                                "$gt0050=$gt0068.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0052.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0069.term",
+                                                "$gt0049=$gt0070.term",
+                                                "$gt0050=$gt0071.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0053.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0072.term",
+                                                "$gt0049=$gt0073.term",
+                                                "$gt0050=$gt0074.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0054.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0075.term",
+                                                "$gt0049=$gt0076.term",
+                                                "$gt0050=$gt0077.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0055.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0078.term",
+                                                "$gt0049=$gt0079.term",
+                                                "$gt0050=$gt0080.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0056.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0081.term",
+                                                "$gt0049=$gt0082.term",
+                                                "$gt0050=$gt0083.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0057.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0084.term",
+                                                "$gt0049=$gt0085.term",
+                                                "$gt0050=$gt0086.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0058.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0087.term",
+                                                "$gt0049=$gt0088.term",
+                                                "$gt0050=$gt0089.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0059.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0090.term",
+                                                "$gt0049=$gt0091.term",
+                                                "$gt0050=$gt0092.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0060.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0093.term",
+                                                "$gt0049=$gt0094.term",
+                                                "$gt0050=$gt0095.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0061.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0096.term",
+                                                "$gt0049=$gt0097.term",
+                                                "$gt0050=$gt0098.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0062.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0099.term",
+                                                "$gt0049=$gt0100.term",
+                                                "$gt0050=$gt0101.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0063.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0102.term",
+                                                "$gt0049=$gt0103.term",
+                                                "$gt0050=$gt0104.term"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0064.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0043",
+                                            "assignments": [
+                                                "$gt0044=$gt0105.term",
+                                                "$gt0049=$gt0106.term",
+                                                "$gt0050=$gt0107.term"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "ontology": {
+        "term_definitions": {
+            "en": {
+                "id": "en",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "CHF Stability Review"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "HF Code",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "Card-0/1/2a, HF and NOT Depression"
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "Monitoring and assess if the patient’s condition is stable.",
+                        "description": "summaryValue"
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "Review patient status: •\tClinical Observations •\tPhysical exam •\tFunctional capacity •\tBlood tests •\tMedication effects •\tCognitive status •\tNutritional status A stable patient should be below NYHA class IV, can be effectively managed at home, and medication is optimised.  If the patient has severe condition (NYHA IV), is not responding to treatment, or no longer being managed effectively in the home setting, consider referral to hospital or palliative care. ",
+                        "description": "detailValue"
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "Offer rehabilitation programme",
+                        "description": "summaryValue"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "If patient condition is stable: •\tIf an exercise rehabilitation programme has not been offered, offer the programme. •\tEnable discussion regarding sexual activity which may not be broached by patient. ",
+                        "description": "detailValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "Blood test (serum urea, electrolytes, creatinine and eGFR)",
+                        "description": "summaryValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "Review every 6 months when the patient has attained a stable condition.",
+                        "description": "detailValue"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Blood Test & Review Appointment",
+                        "description": "labelValue"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Appointment for stability review",
+                        "description": "descriptionValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "FHIR-STU3-Appointment.generic.v0"
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "value",
+                        "description": "/description"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "value",
+                        "description": "/start"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Depression",
+                        "description": ""
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "Depression code",
+                        "description": ""
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "Card-0/1/2b, HF and Depression"
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "Monitoring and assess if the patient’s condition is stable.",
+                        "description": "summaryValue"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Review patient status: •\tClinical Observations •\tPhysical exam •\tFunctional capacity •\tBlood tests •\tMedication effects •\tCognitive status •\tNutritional status A stable patient should be below NYHA class IV, can be effectively managed at home, and medication is optimised.  If the patient has severe condition (NYHA IV), is not responding to treatment, or no longer being managed effectively in the home setting, consider referral to hospital or palliative care. ",
+                        "description": "detailValue"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Offer rehabilitation programme",
+                        "description": "summaryValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "If patient condition is stable: •\tIf an exercise rehabilitation programme has not been offered, offer the programme. •\tEnable discussion regarding sexual activity which may not be broached by patient. ",
+                        "description": "detailValue"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "Blood test (serum urea, electrolytes, creatinine and eGFR)",
+                        "description": "summaryValue"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Review every 3 months when the patient with Heart Failure and Depression has attained a stable condition.",
+                        "description": "detailValue"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "Blood Test & Review Appointment",
+                        "description": "labelValue"
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "Stability Review Appointment",
+                        "description": "descriptionValue"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+                    },
+                    "gt0043": {
+                        "id": "gt0043",
+                        "text": "FHIR-STU3-ProcedureRequest.generic.v0"
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "value",
+                        "description": "/extension[0]/valueString"
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "value",
+                        "description": "/category[0]/coding[0]"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "code",
+                        "description": "/category[0]/coding[0]"
+                    },
+                    "gt0047": {
+                        "id": "gt0047",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "Blood tests for follow-up monitoring",
+                        "description": "descriptionValue"
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "value",
+                        "description": "/code/coding[0]"
+                    },
+                    "gt0050": {
+                        "id": "gt0050",
+                        "text": "code",
+                        "description": "/code/coding[0]"
+                    },
+                    "gt0051": {
+                        "id": "gt0051",
+                        "text": "Have Sodium test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "Have Potassium test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "Have Calcium test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "Have Albumin test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0055": {
+                        "id": "gt0055",
+                        "text": "Have Creatinine test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0056": {
+                        "id": "gt0056",
+                        "text": "Have Glucose test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0057": {
+                        "id": "gt0057",
+                        "text": "Have eGFR test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0058": {
+                        "id": "gt0058",
+                        "text": "Have ALT test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0059": {
+                        "id": "gt0059",
+                        "text": "Have AST test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "Have Cholesterol test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0061": {
+                        "id": "gt0061",
+                        "text": "Have HDL-C test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "Have LDL-C test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "Have Triglyceride test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "Have FBC test before the control visit",
+                        "description": "descriptionValue"
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "Monitoring and review patient stability",
+                        "description": ""
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "Have Sodium test before the control visit",
+                        "description": ""
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "Sodium [Moles/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "2951-2",
+                        "description": ""
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Have Potassium test before the control visit",
+                        "description": ""
+                    },
+                    "gt0070": {
+                        "id": "gt0070",
+                        "text": "Potassium [Moles/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "2823-3",
+                        "description": ""
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "Have Calcium test before the control visit",
+                        "description": ""
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "Calcium [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "17861-6",
+                        "description": ""
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Have Albumin test before the control visit",
+                        "description": ""
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "Albumin [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "1751-7",
+                        "description": ""
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Have Creatinine test before the control visit",
+                        "description": ""
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "Creatinine [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "2160-0",
+                        "description": ""
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "Have Glucose test before the control visit",
+                        "description": ""
+                    },
+                    "gt0082": {
+                        "id": "gt0082",
+                        "text": "Glucose [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "2345-7",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "Have eGFR test before the control visit",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum or Plasma by Creatinine-based formula (MDRD)",
+                        "description": ""
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "33914-3",
+                        "description": ""
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Have ALT test before the control visit",
+                        "description": ""
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "1742-6",
+                        "description": ""
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Have AST test before the control visit",
+                        "description": ""
+                    },
+                    "gt0091": {
+                        "id": "gt0091",
+                        "text": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "1920-8",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "Have Cholesterol test before the control visit",
+                        "description": ""
+                    },
+                    "gt0094": {
+                        "id": "gt0094",
+                        "text": "Cholesterol [Mass/​volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "2093-3",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "Have HDL-C test before the control visit",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "Cholesterol in HDL [Mass/volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0098": {
+                        "id": "gt0098",
+                        "text": "2085-9",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "Have LDL-C test before the control visit",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "13457-7",
+                        "description": ""
+                    },
+                    "gt0102": {
+                        "id": "gt0102",
+                        "text": "Have Triglyceride test before the control visit",
+                        "description": ""
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Triglyceride [Mass/​volume] in Serum or Plasma",
+                        "description": ""
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "2571-8",
+                        "description": ""
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "Have FBC test before the control visit",
+                        "description": ""
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": "Complete blood count (hemogram) panel - Blood by Automated count",
+                        "description": ""
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "58410-2",
+                        "description": ""
+                    }
+                }
+            },
+            "sv": {
+                "id": "sv",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) CHF Stability Review"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) HF Code",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "*(en) Card-0/1/2a, HF and NOT Depression",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "Övervaka och bedöm om patientens tillstånd är stabilt.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "Granska patientens status: • Kliniska observationer • Fysisk undersökning • Funktionell kapacitet • Blodprov • Medicinska effekter • Kognitivt status • Näringsstatus. En stabil patient ska vara under NYHA klass IV och kan skötas hemma om medicinen optimeras. Om patienten har svårt tillstånd (NYHA IV), inte svarar på behandlingen, eller inte längre kan skötas i hemmet, överväg remiss till sjukhus eller palliativ vård.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "Erbjud rehabiliteringsprogram",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "Om patientens tillstånd är stabilt: • Om ett träningsrehabiliteringsprogram inte har erbjudits, erbjud programmet. • Diskuter med patienten angående sexuell aktivitet, något som patienten kanske avstår ifrån.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "Blodprov (serumurea, elektrolyter, kreatinin och eGFR)",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "Följ upp var 6: e månad när patienten har uppnått ett stabilt tillstånd.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Blodtest och återbesök",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Återbesök för att följa upp att situationen är stabil",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "*(en) FHIR-STU3-Appointment.generic.v0",
+                        "description": ""
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "*(en) value",
+                        "description": "*(en) /description"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) value",
+                        "description": "*(en) /start"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "*(en) Depression",
+                        "description": ""
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "*(en) Depression code",
+                        "description": ""
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "*(en) Card-0/1/2b, HF and Depression",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "Följ upp och bedöm om patientens tillstånd är stabilt.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Granska patientens status: • Kliniska observationer • Fysisk undersökning • Funktionell kapacitet • Blodprov • Medicinska effekter • Kognitivt status • Näringsstatus. En stabil patient ska vara under NYHA klass IV och kan skötas hemma om medicinen optimeras. Om patienten har svårt tillstånd (NYHA IV), inte svarar på behandlingen, eller inte längre kan skötas i hemmet, överväg remiss till sjukhus eller palliativ vård.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Erbjud rehabiliteringsprogram",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "Om patientens tillstånd är stabilt: • Om ett träningsrehabiliteringsprogram inte har erbjudits, erbjud programmet. • Diskuter med patienten angående sexuell aktivitet, något som patienten kanske avstår ifrån.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "Blodprov (serumurea, elektrolyter, kreatinin och eGFR)",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Följ upp var tredje månad när patienten med hjärtsvikt och depression har uppnått ett stabilt tillstånd.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "Blodprov och återbesök",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "Återbesök för att följa upp att situationen är stabil",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "*(en) FHIR-STU3-ProcedureRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0043": {
+                        "id": "gt0043",
+                        "text": "*(en) FHIR-STU3-ProcedureRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "*(en) value",
+                        "description": "*(en) /extension[0]/valueString"
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "*(en) value",
+                        "description": "*(en) /category[0]/coding[0]"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "*(en) code",
+                        "description": "*(en) /category[0]/coding[0]"
+                    },
+                    "gt0047": {
+                        "id": "gt0047",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "Blodprov för uppföljning",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "*(en) value",
+                        "description": "*(en) /code/coding[0]"
+                    },
+                    "gt0050": {
+                        "id": "gt0050",
+                        "text": "*(en) code",
+                        "description": "*(en) /code/coding[0]"
+                    },
+                    "gt0051": {
+                        "id": "gt0051",
+                        "text": "Ta prov på s-natrium före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "Ta prov på s-kalium före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "Ta prov på s-kalcium före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "Ta prov på s-albumin före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0055": {
+                        "id": "gt0055",
+                        "text": "Ta prov på s-kreatinin före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0056": {
+                        "id": "gt0056",
+                        "text": "Ta glukosprov före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0057": {
+                        "id": "gt0057",
+                        "text": "Kontrollera eGFR före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0058": {
+                        "id": "gt0058",
+                        "text": "Kontrollera ALAT före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0059": {
+                        "id": "gt0059",
+                        "text": "Kontrollera ASAT-test före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "Kontrollera kolesterol innan kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0061": {
+                        "id": "gt0061",
+                        "text": "Kontrollera HDL före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "Kontrollera LDL före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "Kontrollera Triglycerider före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "Kontrollera faste-glukos före kontrollbesöket",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "Uppföljning av att patientens situation är stabil",
+                        "description": ""
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "Ta prov på s-natrium före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "Natrium i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "*(en) 2951-2",
+                        "description": ""
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Ta prov på s-kalium före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0070": {
+                        "id": "gt0070",
+                        "text": "Kalium i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "*(en) 2823-3",
+                        "description": ""
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "Ta prov på s-kalcium före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "Kalcium i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "*(en) 17861-6",
+                        "description": ""
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Ta prov på s-albumin före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "Albumin i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "*(en) 1751-7",
+                        "description": ""
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Ta prov på s-kreatinin före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "Kreatinin i plasma eller serum",
+                        "description": ""
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "*(en) 2160-0",
+                        "description": ""
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "Ta glukosprov före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0082": {
+                        "id": "gt0082",
+                        "text": "Glukos i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "*(en) 2345-7",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "Kontrollera eGFR före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "Uppskattad Glomerulär filtreringshastighet / 1,73 m²  i serum eller plasma med kreatininbaserad formel (MDRD)",
+                        "description": ""
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "*(en) 33914-3",
+                        "description": ""
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Kontrollera ALAT före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "Alaninaminotransferas i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "*(en) 1742-6",
+                        "description": ""
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Kontrollera ASAT-test före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0091": {
+                        "id": "gt0091",
+                        "text": "Aspartataminotransferas i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "*(en) 1920-8",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "Kontrollera kolesterol innan kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0094": {
+                        "id": "gt0094",
+                        "text": "Kolesterol i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "*(en) 2093-3",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "Kontrollera HDL före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "HDL-Kolesterol i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0098": {
+                        "id": "gt0098",
+                        "text": "*(en) 2085-9",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "Kontrollera LDL före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "LDL-Kolesterol i serum eller plasma (beräknad)",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "*(en) 13457-7",
+                        "description": ""
+                    },
+                    "gt0102": {
+                        "id": "gt0102",
+                        "text": "Kontrollera Triglycerider före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Triglycerid i serum eller plasma",
+                        "description": ""
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "*(en) 2571-8",
+                        "description": ""
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "Kontrollera faste-glukos före kontrollbesöket",
+                        "description": ""
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": "Fullständigt blodstatus",
+                        "description": ""
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "*(en) 58410-2",
+                        "description": ""
+                    }
+                }
+            },
+            "es": {
+                "id": "es",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) CHF Stability Review"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) HF Code",
+                        "description": ""
+                    },
+                    "gt0005": {
+                        "id": "gt0005",
+                        "text": "*(en) Card-0/1/2a, HF and NOT Depression",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "Controle y valore si la condición del paciente es estable.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "Valore el estado del paciente: • Observaciones clínicas • Examen físico • Capacidad funcional • Análisis de sangre • Efectos de los medicamentos • Estado cognitivo • Estado nutricional •Un paciente estable debe estar por debajo de la clase IV de la NYHA, se le puede atender de manera efectiva en su domicilio y optimizar la medicación de manera correcta. Si el paciente tiene una afección grave (NYHA IV), no responde al tratamiento o ya no se le puede atender de manera efectiva en el domicilio, considere la derivación a un hospital o atención paliativa.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0010": {
+                        "id": "gt0010",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "Ofrezca un programa de rehabilitación.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "Si la condición del paciente es estable: • Si no se ha ofrecido un programa de rehabilitación con ejercicios, ofrezca el programa. •Facilite la conversación acerca de la actividad sexual; de lo que es recomendable y de lo que no lo es para el paciente.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "Análisis de sangre (con urea sérica, electrolitos, creatinina y filtrado glomerular)",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "Revisión cada 6 meses cuando el paciente está estable.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Análisis de sangre y cita de revisión",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0026": {
+                        "id": "gt0026",
+                        "text": "Cita para revisión de estabilidad.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "*(en) FHIR-STU3-Appointment.generic.v0",
+                        "description": ""
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "*(en) value",
+                        "description": "*(en) /description"
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) value",
+                        "description": "*(en) /start"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "*(en) Depression",
+                        "description": ""
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "*(en) Depression code",
+                        "description": ""
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "*(en) Card-0/1/2b, HF and Depression",
+                        "description": ""
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "Controle y valore si la condición del paciente es estable.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "Valore el estado del paciente: • Observaciones clínicas • Examen físico • Capacidad funcional • Análisis de sangre • Efectos de los medicamentos • Estado cognitivo • Estado nutricional •Un paciente estable debe estar por debajo de la clase IV de la NYHA, se le puede atender de manera efectiva en su domicilio y optimizar la medicación de manera correcta. Si el paciente tiene una afección grave (NYHA IV), no responde al tratamiento o ya no se le puede atender de manera efectiva en el domicilio, considere la derivación a un hospital o atención paliativa.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Ofrezca programa de rehabilitación.",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "Si la condición del paciente es estable: • Si no se ha ofrecido un programa de rehabilitación con ejercicios, ofrezca el programa. •Facilite la conversación acerca de la actividad sexual; de lo que es recomendable y de lo que no lo es para el paciente.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "Análisis de sangre (con urea sérica, electrolitos, creatinina y filtrado glomerular)",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Revisión cada 3 meses cuando el paciente con insuficiencia cardíaca y depresión está estable.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "Análisis de sangre y cita de revisión",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "Cita de revisión para control de la  estabilidad",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "*(en) FHIR-STU3-ProcedureRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0043": {
+                        "id": "gt0043",
+                        "text": "*(en) FHIR-STU3-ProcedureRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0044": {
+                        "id": "gt0044",
+                        "text": "*(en) value",
+                        "description": "*(en) /extension[0]/valueString"
+                    },
+                    "gt0045": {
+                        "id": "gt0045",
+                        "text": "*(en) value",
+                        "description": "*(en) /category[0]/coding[0]"
+                    },
+                    "gt0046": {
+                        "id": "gt0046",
+                        "text": "*(en) code",
+                        "description": "*(en) /category[0]/coding[0]"
+                    },
+                    "gt0047": {
+                        "id": "gt0047",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0048": {
+                        "id": "gt0048",
+                        "text": "Análisis de sangre para seguimiento",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0049": {
+                        "id": "gt0049",
+                        "text": "*(en) value",
+                        "description": "*(en) /code/coding[0]"
+                    },
+                    "gt0050": {
+                        "id": "gt0050",
+                        "text": "*(en) code",
+                        "description": "*(en) /code/coding[0]"
+                    },
+                    "gt0051": {
+                        "id": "gt0051",
+                        "text": "Realice un análisis de sodio antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0052": {
+                        "id": "gt0052",
+                        "text": "Realice un análisis de potasio antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0053": {
+                        "id": "gt0053",
+                        "text": "Realice un análisis de calcio antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0054": {
+                        "id": "gt0054",
+                        "text": "Realice un análisis de albúmina antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0055": {
+                        "id": "gt0055",
+                        "text": "Realice un análisis de creatininna antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0056": {
+                        "id": "gt0056",
+                        "text": "Realice un análisis de glucosa antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0057": {
+                        "id": "gt0057",
+                        "text": "Realice un análisis de filtrado glomerular antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0058": {
+                        "id": "gt0058",
+                        "text": "Realice un análisis de ALT/GPT antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0059": {
+                        "id": "gt0059",
+                        "text": "Realice un análisis de AST/GOT antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0060": {
+                        "id": "gt0060",
+                        "text": "Realice un análisis de colesterol antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0061": {
+                        "id": "gt0061",
+                        "text": "Realice un análisis de colesterol HDL-C  suero antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0062": {
+                        "id": "gt0062",
+                        "text": "Realice un análisis de colesterol LDL antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0063": {
+                        "id": "gt0063",
+                        "text": "Realice un análisis de triglicéridos antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0064": {
+                        "id": "gt0064",
+                        "text": "Realice un hemograma antes de la visita de control.",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0065": {
+                        "id": "gt0065",
+                        "text": "Monitorice y revise la estabilidad del paciente",
+                        "description": ""
+                    },
+                    "gt0066": {
+                        "id": "gt0066",
+                        "text": "Realice un análisis de sodio antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0067": {
+                        "id": "gt0067",
+                        "text": "Sodio [Moles / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0068": {
+                        "id": "gt0068",
+                        "text": "*(en) 2951-2",
+                        "description": ""
+                    },
+                    "gt0069": {
+                        "id": "gt0069",
+                        "text": "Realice un análisis de potasio antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0070": {
+                        "id": "gt0070",
+                        "text": "Potasio [Moles / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0071": {
+                        "id": "gt0071",
+                        "text": "*(en) 2823-3",
+                        "description": ""
+                    },
+                    "gt0072": {
+                        "id": "gt0072",
+                        "text": "Realice un análisis de calcio antes de la visita de control",
+                        "description": ""
+                    },
+                    "gt0073": {
+                        "id": "gt0073",
+                        "text": "Calcio [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0074": {
+                        "id": "gt0074",
+                        "text": "*(en) 17861-6",
+                        "description": ""
+                    },
+                    "gt0075": {
+                        "id": "gt0075",
+                        "text": "Realice un análisis de albúmina antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0076": {
+                        "id": "gt0076",
+                        "text": "Albúmina [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0077": {
+                        "id": "gt0077",
+                        "text": "*(en) 1751-7",
+                        "description": ""
+                    },
+                    "gt0078": {
+                        "id": "gt0078",
+                        "text": "Realice un análisis de creatinina antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0079": {
+                        "id": "gt0079",
+                        "text": "Creatinina [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0080": {
+                        "id": "gt0080",
+                        "text": "*(en) 2160-0",
+                        "description": ""
+                    },
+                    "gt0081": {
+                        "id": "gt0081",
+                        "text": "Realice análisis de glucosa antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0082": {
+                        "id": "gt0082",
+                        "text": "Glucosa [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0083": {
+                        "id": "gt0083",
+                        "text": "*(en) 2345-7",
+                        "description": ""
+                    },
+                    "gt0084": {
+                        "id": "gt0084",
+                        "text": "Realice un análisis de filtrado glomerular (eGFR) antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0085": {
+                        "id": "gt0085",
+                        "text": "Tasa de filtración glomerular / 1.73 metros cuadrados pronosticada [tasa de volumen / área] en suero o plasma mediante la fórmula basada en creatinina (MDRD)",
+                        "description": ""
+                    },
+                    "gt0086": {
+                        "id": "gt0086",
+                        "text": "*(en) 33914-3",
+                        "description": ""
+                    },
+                    "gt0087": {
+                        "id": "gt0087",
+                        "text": "Realice un análisis de ALT/GPT antes de la visita de control",
+                        "description": ""
+                    },
+                    "gt0088": {
+                        "id": "gt0088",
+                        "text": "Alanina aminotransferasa/GPT [Actividad / volumen enzimático] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0089": {
+                        "id": "gt0089",
+                        "text": "*(en) 1742-6",
+                        "description": ""
+                    },
+                    "gt0090": {
+                        "id": "gt0090",
+                        "text": "Realice un análisis de AST/GOT antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0091": {
+                        "id": "gt0091",
+                        "text": "Aspartato aminotransferasa/GOT [Actividad enzimática / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0092": {
+                        "id": "gt0092",
+                        "text": "*(en) 1920-8",
+                        "description": ""
+                    },
+                    "gt0093": {
+                        "id": "gt0093",
+                        "text": "Realice un análisis de colesterol antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0094": {
+                        "id": "gt0094",
+                        "text": "Colesterol [masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0095": {
+                        "id": "gt0095",
+                        "text": "*(en) 2093-3",
+                        "description": ""
+                    },
+                    "gt0096": {
+                        "id": "gt0096",
+                        "text": "Realice un análisis de colesterol HDL-C  suero antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0097": {
+                        "id": "gt0097",
+                        "text": "Colesterol en HDL [Masa / volumen] en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0098": {
+                        "id": "gt0098",
+                        "text": "*(en) 2085-9",
+                        "description": ""
+                    },
+                    "gt0099": {
+                        "id": "gt0099",
+                        "text": "Realice un análisis de colesterol LDL antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0100": {
+                        "id": "gt0100",
+                        "text": "Colesterol  LDL [Masa / volumen] en suero o plasma por cálculo",
+                        "description": ""
+                    },
+                    "gt0101": {
+                        "id": "gt0101",
+                        "text": "*(en) 13457-7",
+                        "description": ""
+                    },
+                    "gt0102": {
+                        "id": "gt0102",
+                        "text": "Realice un análisis de triglicéridos antes de la visita de control",
+                        "description": ""
+                    },
+                    "gt0103": {
+                        "id": "gt0103",
+                        "text": "Nivel de Trigliceridos en suero o plasma",
+                        "description": ""
+                    },
+                    "gt0104": {
+                        "id": "gt0104",
+                        "text": "*(en) 2571-8",
+                        "description": ""
+                    },
+                    "gt0105": {
+                        "id": "gt0105",
+                        "text": "Realice un hemograma antes de la visita de control.",
+                        "description": ""
+                    },
+                    "gt0106": {
+                        "id": "gt0106",
+                        "text": " Sangre por recuento automatizado",
+                        "description": ""
+                    },
+                    "gt0107": {
+                        "id": "gt0107",
+                        "text": "*(en) 58410-2",
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "term_bindings": {
+            "ICD-10-SE": {
+                "id": "ICD-10-SE",
+                "bindings": {
+                    "gt0032": {
+                        "codes": [
+                            "ICD-10-SE::F320",
+                            "ICD-10-SE::F321",
+                            "ICD-10-SE::F329",
+                            "ICD-10-SE::F330",
+                            "ICD-10-SE::F331",
+                            "ICD-10-SE::F339",
+                            "ICD-10-SE::F341"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "ICD-10-SE::I110",
+                            "ICD-10-SE::I130",
+                            "ICD-10-SE::I132",
+                            "ICD-10-SE::I50"
+                        ]
+                    }
+                }
+            },
+            "ICD-10": {
+                "id": "ICD-10",
+                "bindings": {
+                    "gt0032": {
+                        "codes": [
+                            "ICD-10::F32.0",
+                            "ICD-10::F32.1",
+                            "ICD-10::F32.9",
+                            "ICD-10::F33.0",
+                            "ICD-10::F33.1",
+                            "ICD-10::F33.9",
+                            "ICD-10::F34.1"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "ICD-10::I11.0",
+                            "ICD-10::I13.0",
+                            "ICD-10::I13.2",
+                            "ICD-10::I50"
+                        ]
+                    }
+                }
+            },
+            "CIE-10-CM-ES": {
+                "id": "CIE-10-CM-ES",
+                "bindings": {
+                    "gt0032": {
+                        "codes": [
+                            "CIE-10-CM-ES::F32.0",
+                            "CIE-10-CM-ES::F32.1",
+                            "CIE-10-CM-ES::F32.89",
+                            "CIE-10-CM-ES::F32.9",
+                            "CIE-10-CM-ES::F33.0",
+                            "CIE-10-CM-ES::F33.1",
+                            "CIE-10-CM-ES::F33.9",
+                            "CIE-10-CM-ES::F34.1",
+                            "CIE-10-CM-ES::F43.21"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "CIE-10-CM-ES::I11.0",
+                            "CIE-10-CM-ES::I13.0",
+                            "CIE-10-CM-ES::I13.2",
+                            "CIE-10-CM-ES::I50"
+                        ]
+                    }
+                }
+            },
+            "SNOMED-CT": {
+                "id": "SNOMED-CT",
+                "bindings": {
+                    "gt0032": {
+                        "codes": [
+                            "SNOMED-CT::310495003",
+                            "SNOMED-CT::40379007",
+                            "SNOMED-CT::78667006"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "SNOMED-CT::42343007",
+                            "SNOMED-CT::420300004",
+                            "SNOMED-CT::421704003",
+                            "SNOMED-CT::420913000",
+                            "SNOMED-CT::422293003",
+                            "SNOMED-CT::5148006",
+                            "SNOMED-CT::194779001",
+                            "SNOMED-CT::194781004"
+                        ]
+                    }
+                }
+            },
+            "READ2": {
+                "id": "READ2",
+                "bindings": {
+                    "gt0032": {
+                        "codes": [
+                            "READ2::E2003",
+                            "READ2::Eu32",
+                            "READ2::Eu32z",
+                            "READ2::E112",
+                            "READ2::E1120",
+                            "READ2::E1121",
+                            "READ2::E1122",
+                            "READ2::E1125",
+                            "READ2::E1126",
+                            "READ2::E112z",
+                            "READ2::E2B",
+                            "READ2::E2B1",
+                            "READ2::E1130",
+                            "READ2::E1131",
+                            "READ2::E1132",
+                            "READ2::E1135",
+                            "READ2::E1136",
+                            "READ2::E1137",
+                            "READ2::1BT"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "READ2::G58"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

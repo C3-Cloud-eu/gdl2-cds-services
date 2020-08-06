@@ -1,0 +1,887 @@
+{
+    "id": "chf_vaccination_recommendation.v4",
+    "gdl_version": "2.0",
+    "concept": "gt0001",
+    "language": {
+        "original_language": "ISO_639-1::en"
+    },
+    "description": {
+        "original_author": {
+            "date": "2018-07-05",
+            "name": "Lei Zhao",
+            "organisation": "University of Warwick",
+            "email": "lei.zhao@warwick.ac.uk"
+        },
+        "lifecycle_state": "Author draft",
+        "details": {
+            "sv": {
+                "id": "sv",
+                "keywords": [
+                    "*(en) HF",
+                    "*(en) Vaccination"
+                ]
+            },
+            "en": {
+                "id": "en",
+                "keywords": [
+                    "HF",
+                    "Vaccination"
+                ]
+            },
+            "es": {
+                "id": "es",
+                "keywords": [
+                    "*(en) HF",
+                    "*(en) Vaccination"
+                ]
+            }
+        },
+        "other_details": {},
+        "references": [
+            {
+                "id": "1",
+                "label": "Chronic heart failure in adults: management",
+                "url": "https://www.nice.org.uk/guidance/cg108"
+            }
+        ]
+    },
+    "definition": {
+        "data_bindings": {
+            "gt0002": {
+                "id": "gt0002",
+                "model_id": "org.hl7.fhir.dstu3.model.Condition",
+                "template_id": "FHIR-STU3-Condition.problem_diagnosis.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0003": {
+                        "id": "gt0003",
+                        "path": "/code/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/code/coding[0] is_a local::gt0004|HF Code|"
+                ]
+            },
+            "gt0005": {
+                "id": "gt0005",
+                "model_id": "org.hl7.fhir.dstu3.model.Immunization",
+                "template_id": "FHIR-STU3-Immunization.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0006": {
+                        "id": "gt0006",
+                        "path": "/vaccineCode/coding[0]"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "path": "/date"
+                    }
+                },
+                "predicates": [
+                    "/vaccineCode/coding[0] is_a local::gt0007|Influenza_vaccines Code|",
+                    "/date>=($currentDateTime-1,a)"
+                ]
+            },
+            "gt0026": {
+                "id": "gt0026",
+                "model_id": "org.hl7.fhir.dstu3.model.Immunization",
+                "template_id": "FHIR-STU3-Immunization.generic.v0",
+                "type": "INPUT",
+                "elements": {
+                    "gt0027": {
+                        "id": "gt0027",
+                        "path": "/vaccineCode/coding[0]"
+                    }
+                },
+                "predicates": [
+                    "/vaccineCode/coding[0] is_a local::gt0028|Pneumococcal_vaccines Code|"
+                ]
+            }
+        },
+        "templates": {
+            "gt0019": {
+                "id": "gt0019",
+                "name": "org.hl7.fhir.dstu3.model.MedicationRequest",
+                "model_id": "org.hl7.fhir.dstu3.model.MedicationRequest",
+                "template_id": "FHIR-STU3-MedicationRequest.generic.v0",
+                "object": {
+                    "authoredOn": "{$gt0020}",
+                    "medicationCodeableConcept": {
+                        "coding": [
+                            {
+                                "code": "{$gt0021}",
+                                "system": "http://www.whocc.no/atc",
+                                "display": "{$gt0022}"
+                            }
+                        ]
+                    },
+                    "intent": "proposal",
+                    "status": "draft",
+                    "resourceType": "MedicationRequest"
+                }
+            }
+        },
+        "pre_conditions": [
+            "$gt0003|HF|!=null"
+        ],
+        "rules": {
+            "gt0008": {
+                "id": "gt0008",
+                "priority": 2,
+                "when": [
+                    "$gt0006|Influenza_vaccines|==null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0011.term}",
+                        "detail": "{$gt0012.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        },
+                        "suggestions": [
+                            {
+                                "uuid": "2c27ba07-2a4d-499c-b27d-9fd497f0007c",
+                                "label": "{$gt0016.term}",
+                                "actions": [
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0024.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0019",
+                                            "assignments": [
+                                                "$gt0020=$currentDateTime+0,d",
+                                                "$gt0022=$gt0039.term",
+                                                "$gt0021=$gt0040.term"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gt0029": {
+                "id": "gt0029",
+                "priority": 1,
+                "when": [
+                    "$gt0027|Pneumococcal_vaccines|==null"
+                ],
+                "cards": [
+                    {
+                        "summary": "{$gt0031.term}",
+                        "detail": "{$gt0032.term}",
+                        "indicator": "info",
+                        "source": {
+                            "label": "Chronic heart failure in adults: management",
+                            "url": "https://www.nice.org.uk/guidance/cg108",
+                            "label_reference": "$ref[1].label",
+                            "url_reference": "$ref[1].url"
+                        },
+                        "suggestions": [
+                            {
+                                "uuid": "42437ff6-7aaf-4a03-8abc-2d45b92e6aa3",
+                                "label": "{$gt0036.term}",
+                                "actions": [
+                                    {
+                                        "type": "create",
+                                        "description": "{$gt0038.term}",
+                                        "resource_template": {
+                                            "template_id": "gt0019",
+                                            "assignments": [
+                                                "$gt0020=$currentDateTime+0,d",
+                                                "$gt0022=$gt0041.term",
+                                                "$gt0021=$gt0042.term"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "ontology": {
+        "term_definitions": {
+            "en": {
+                "id": "en",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "chf_vaccination"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "HF Code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "Influenza_vaccines",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "Influenza_vaccines Code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "Card 1, no Influenza vaccines in past year"
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "Influenza_vaccines_date",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "Influenza Immunization Recommendation",
+                        "description": "summaryValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "Patients with heart failure should be offered an annual vaccination against influenza.",
+                        "description": "detailValue"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "Prescribe influenza vaccination",
+                        "description": "labelValue"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "Recommend Influenza Vaccination",
+                        "description": "descriptionValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "FHIR-STU3-MedicationRequest.generic.v0"
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "value",
+                        "description": "/authoredOn"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "code",
+                        "description": "/medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "value",
+                        "description": "/medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Recommend annual vaccination against influenza",
+                        "description": "descriptionValue"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "Influenza_vaccines_date",
+                        "description": ""
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "Pneumococcal_vaccines",
+                        "description": ""
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "Pneumococcal_vaccines Code",
+                        "description": ""
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "Card 2, no pneumococcal vaccines"
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Pneumococcal Immunization Recommendation",
+                        "description": "summaryValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "Patients with heart failure should be offered vaccination against pneumococcal disease (only required once).",
+                        "description": "detailValue"
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "critical",
+                        "description": "critical"
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "warning",
+                        "description": "warning"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "info",
+                        "description": "info"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Prescribe pneumococcal vaccination",
+                        "description": "labelValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "description",
+                        "description": "description"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "Recommend one-time vaccination against pneumococcal disease",
+                        "description": "descriptionValue"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Influenza vaccines",
+                        "description": ""
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "J07BB",
+                        "description": ""
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "Pneumococcal vaccines",
+                        "description": ""
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "J07AL",
+                        "description": ""
+                    }
+                }
+            },
+            "sv": {
+                "id": "sv",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) chf_vaccination"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) HF Code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "*(en) Influenza_vaccines",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) Influenza_vaccines Code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Card 1, no Influenza vaccines in past year",
+                        "description": ""
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "*(en) Influenza_vaccines_date",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "Rekommendation för influensavaccination",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "Patienter med hjärtsvikt bör årligen erbjudas vaccination mot influensa.",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "Förskriv influensavaccin",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "Rekommendera influensavaccination",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "*(en) FHIR-STU3-MedicationRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) value",
+                        "description": "*(en) /authoredOn"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "*(en) code",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) value",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Rekommendera årlig vaccination mot influensa",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "*(en) Influenza_vaccines_date",
+                        "description": ""
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "*(en) Pneumococcal_vaccines",
+                        "description": ""
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "*(en) Pneumococcal_vaccines Code",
+                        "description": ""
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) Card 2, no pneumococcal vaccines",
+                        "description": ""
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Rekommendation angående pneumokockvaccination ",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "Patienter med hjärtsvikt bör erbjudas vaccination mot pneumokocksjukdom (krävs endast en gång).",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Förskriv pneumokockvaccin",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "Rekommendera vaccination mot pneumokocksjukdom  (krävs endast en gång).",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Influensavacciner",
+                        "description": ""
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "*(en) J07BB",
+                        "description": ""
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "Pneumokockvacciner",
+                        "description": ""
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "*(en) J07AL",
+                        "description": ""
+                    }
+                }
+            },
+            "es": {
+                "id": "es",
+                "terms": {
+                    "gt0001": {
+                        "id": "gt0001",
+                        "text": "*(en) chf_vaccination"
+                    },
+                    "gt0003": {
+                        "id": "gt0003",
+                        "text": "*(en) HF",
+                        "description": ""
+                    },
+                    "gt0004": {
+                        "id": "gt0004",
+                        "text": "*(en) HF Code",
+                        "description": ""
+                    },
+                    "gt0006": {
+                        "id": "gt0006",
+                        "text": "*(en) Influenza_vaccines",
+                        "description": ""
+                    },
+                    "gt0007": {
+                        "id": "gt0007",
+                        "text": "*(en) Influenza_vaccines Code",
+                        "description": ""
+                    },
+                    "gt0008": {
+                        "id": "gt0008",
+                        "text": "*(en) Card 1, no Influenza vaccines in past year",
+                        "description": ""
+                    },
+                    "gt0009": {
+                        "id": "gt0009",
+                        "text": "*(en) Influenza_vaccines_date",
+                        "description": ""
+                    },
+                    "gt0011": {
+                        "id": "gt0011",
+                        "text": "Recomendación de vacunación contra el virus de la gripe",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0012": {
+                        "id": "gt0012",
+                        "text": "A los pacientes con insuficiencia cardíaca se les debe ofrecer vacunación anual contra el virus de la gripe",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0013": {
+                        "id": "gt0013",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0014": {
+                        "id": "gt0014",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0015": {
+                        "id": "gt0015",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0016": {
+                        "id": "gt0016",
+                        "text": "Prescriba la vacuna contra el virus de la gripe",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0017": {
+                        "id": "gt0017",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0018": {
+                        "id": "gt0018",
+                        "text": "Recomiende la vacuna contra el virus de la gripe",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0019": {
+                        "id": "gt0019",
+                        "text": "*(en) FHIR-STU3-MedicationRequest.generic.v0",
+                        "description": ""
+                    },
+                    "gt0020": {
+                        "id": "gt0020",
+                        "text": "*(en) value",
+                        "description": "*(en) /authoredOn"
+                    },
+                    "gt0021": {
+                        "id": "gt0021",
+                        "text": "*(en) code",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0022": {
+                        "id": "gt0022",
+                        "text": "*(en) value",
+                        "description": "*(en) /medicationCodeableConcept/coding[0]"
+                    },
+                    "gt0023": {
+                        "id": "gt0023",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0024": {
+                        "id": "gt0024",
+                        "text": "Recomiende la vacunación contra el virus de la gripe",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0025": {
+                        "id": "gt0025",
+                        "text": "*(en) Influenza_vaccines_date",
+                        "description": ""
+                    },
+                    "gt0027": {
+                        "id": "gt0027",
+                        "text": "*(en) Pneumococcal_vaccines",
+                        "description": ""
+                    },
+                    "gt0028": {
+                        "id": "gt0028",
+                        "text": "*(en) Pneumococcal_vaccines Code",
+                        "description": ""
+                    },
+                    "gt0029": {
+                        "id": "gt0029",
+                        "text": "*(en) Card 2, no pneumococcal vaccines",
+                        "description": ""
+                    },
+                    "gt0031": {
+                        "id": "gt0031",
+                        "text": "Recomendación de vacunación contra el Neumococo",
+                        "description": "*(en) summaryValue"
+                    },
+                    "gt0032": {
+                        "id": "gt0032",
+                        "text": "A los pacientes con insuficiencia cardíaca se les debe ofrecer la vacuna contra la enfermedad neumocócica (solo se requiere una vez).",
+                        "description": "*(en) detailValue"
+                    },
+                    "gt0033": {
+                        "id": "gt0033",
+                        "text": "*(en) critical",
+                        "description": "*(en) critical"
+                    },
+                    "gt0034": {
+                        "id": "gt0034",
+                        "text": "*(en) warning",
+                        "description": "*(en) warning"
+                    },
+                    "gt0035": {
+                        "id": "gt0035",
+                        "text": "*(en) info",
+                        "description": "*(en) info"
+                    },
+                    "gt0036": {
+                        "id": "gt0036",
+                        "text": "Prescriba la vacunación contra el neumococo",
+                        "description": "*(en) labelValue"
+                    },
+                    "gt0037": {
+                        "id": "gt0037",
+                        "text": "*(en) description",
+                        "description": "*(en) description"
+                    },
+                    "gt0038": {
+                        "id": "gt0038",
+                        "text": "Recomiende la vacunación única contra la enfermedad neumocócica",
+                        "description": "*(en) descriptionValue"
+                    },
+                    "gt0039": {
+                        "id": "gt0039",
+                        "text": "Vacunas contra el virus de la gripe",
+                        "description": ""
+                    },
+                    "gt0040": {
+                        "id": "gt0040",
+                        "text": "*(en) J07BB",
+                        "description": ""
+                    },
+                    "gt0041": {
+                        "id": "gt0041",
+                        "text": "Vacunas contra el neumococo",
+                        "description": ""
+                    },
+                    "gt0042": {
+                        "id": "gt0042",
+                        "text": "*(en) J07AL",
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "term_bindings": {
+            "ATC": {
+                "id": "ATC",
+                "bindings": {
+                    "gt0007": {
+                        "codes": [
+                            "ATC::J07BB"
+                        ]
+                    },
+                    "gt0028": {
+                        "codes": [
+                            "ATC::J07AL"
+                        ]
+                    }
+                }
+            },
+            "ICD-10-SE": {
+                "id": "ICD-10-SE",
+                "bindings": {
+                    "gt0004": {
+                        "codes": [
+                            "ICD-10-SE::I110",
+                            "ICD-10-SE::I130",
+                            "ICD-10-SE::I132",
+                            "ICD-10-SE::I50"
+                        ]
+                    }
+                }
+            },
+            "ICD-10": {
+                "id": "ICD-10",
+                "bindings": {
+                    "gt0004": {
+                        "codes": [
+                            "ICD-10::I11.0",
+                            "ICD-10::I13.0",
+                            "ICD-10::I13.2",
+                            "ICD-10::I50"
+                        ]
+                    }
+                }
+            },
+            "DBP": {
+                "id": "DBP",
+                "bindings": {
+                    "gt0007": {
+                        "codes": [
+                            "DBP::25"
+                        ]
+                    },
+                    "gt0028": {
+                        "codes": [
+                            "DBP::34026",
+                            "DBP::32357"
+                        ]
+                    }
+                }
+            },
+            "CIE-10-CM-ES": {
+                "id": "CIE-10-CM-ES",
+                "bindings": {
+                    "gt0004": {
+                        "codes": [
+                            "CIE-10-CM-ES::I11.0",
+                            "CIE-10-CM-ES::I13.0",
+                            "CIE-10-CM-ES::I13.2",
+                            "CIE-10-CM-ES::I50"
+                        ]
+                    }
+                }
+            },
+            "SNOMED-CT": {
+                "id": "SNOMED-CT",
+                "bindings": {
+                    "gt0004": {
+                        "codes": [
+                            "SNOMED-CT::42343007",
+                            "SNOMED-CT::420300004",
+                            "SNOMED-CT::421704003",
+                            "SNOMED-CT::420913000",
+                            "SNOMED-CT::422293003",
+                            "SNOMED-CT::5148006",
+                            "SNOMED-CT::194779001",
+                            "SNOMED-CT::194781004"
+                        ]
+                    }
+                }
+            },
+            "READ2": {
+                "id": "READ2",
+                "bindings": {
+                    "gt0007": {
+                        "codes": [
+                            "READ2::65E"
+                        ]
+                    },
+                    "gt0004": {
+                        "codes": [
+                            "READ2::G58"
+                        ]
+                    },
+                    "gt0028": {
+                        "codes": [
+                            "READ2::6572"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
