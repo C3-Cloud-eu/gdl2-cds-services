@@ -7,4 +7,4 @@ The guidelines have been developed using the NICE guidelines for these condition
 
 Full openEHR GDL specification can be found at: https://specifications.openehr.org/releases/CDS/latest/GDL.html
 
-These guidelines can be deployed in any supporting CDS service such as [CDS Hooks](https://cds-hooks.org). Further documentation on how to imlpement the guidelines and related tools can be found at https://gdl-lang.org
+These guidelines can be deployed as microservices in any supporting CDS service such as [CDS Hooks](https://cds-hooks.org). Further documentation on how to imlpement the guidelines and related tools can be found at https://gdl-lang.org
